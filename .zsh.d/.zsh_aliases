@@ -1,0 +1,55 @@
+setopt complete_aliases
+
+# alias where="command -v"
+
+alias ls='ls -F --color=tty'
+alias ll='ls -lF --color=tty'
+alias la='ls -laF --color=tty'
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -i'
+alias h='history'
+alias -g L='| lv'
+alias -g H='| head'
+alias -g T='| tail'
+alias -g W='| wc'
+alias -g G='| grep'
+alias gomi='rm -f *~'
+alias relogin='exec $SHELL -l'
+alias ...='../..'
+alias ....='../../..'
+alias .....='../../../..'
+
+
+case "${OSTYPE}" in
+linux*|cygwin*)
+    alias e='emacs -nw'
+    ;;
+freebsd*|darwin*)
+    alias del="trash -r"  # https://github.com/rcmdnk/trash
+    alias e='/usr/local/bin/emacs'
+    alias brew="PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin brew"
+    ;;
+esac
+
+
+# alias du="du -h"
+# alias df="df -h"
+
+
+# AUTO OPEN
+alias -s zip=zipinfo
+alias -s tgz=gzcat
+alias -s gz=gzcat
+alias -s tbz=bzcat
+alias -s bz2=bzcat
+alias -s java=lv
+alias -s c=lv
+alias -s h=lv
+alias -s C=lv
+alias -s txt=lv
+alias -s cpp=lv
+alias -s txt=lv
+alias -s xml=lv
+alias -s html=google-crhome
+alias -s xhtml=google-chrome
