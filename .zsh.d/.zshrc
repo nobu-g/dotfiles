@@ -204,7 +204,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # pipenv設定
 export PIPENV_VENV_IN_PROJECT=true  # pipenv で仮想環境をプロジェクト直下に作るように
-eval "$(pipenv --completion)"
+#eval "$(pipenv --completion)"  # Ubuntuで時間がかかりすぎていたので
 
 # LOAD SETTING FILES
 ZSHHOME="${HOME}/dotfiles/.zsh.d"
