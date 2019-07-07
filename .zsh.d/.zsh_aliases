@@ -24,6 +24,7 @@ alias .....='../../../..'
 case "${OSTYPE}" in
 linux*|cygwin*)
     alias e='emacs -nw'
+    alias brew="PATH=$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:/usr/bin:/bin:/usr/sbin:/sbin brew"
     ;;
 freebsd*|darwin*)
     alias del="trash -r"  # https://github.com/rcmdnk/trash
