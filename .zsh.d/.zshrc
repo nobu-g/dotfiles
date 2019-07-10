@@ -137,7 +137,7 @@ unsetopt promptcr
 
 
 ## show directory stack when changed directories
-chpwd_functions=($chpwd_functions dirs)
+#chpwd_functions=($chpwd_functions dirs)
 
 
 # cdの後にlsを実行
@@ -204,7 +204,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # pipenv設定
 export PIPENV_VENV_IN_PROJECT=true  # pipenv で仮想環境をプロジェクト直下に作るように
-#eval "$(pipenv --completion)"  # Ubuntuで時間がかかりすぎていたので
+#eval "$(pipenv --completion)"  # Ubuntuで時間がかかりすぎていたのでコメントアウト
 
 # LOAD SETTING FILES
 ZSHHOME="${HOME}/dotfiles/.zsh.d"
