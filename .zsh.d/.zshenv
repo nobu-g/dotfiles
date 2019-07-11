@@ -9,13 +9,12 @@ path=(
     $HOME/.local/bin(N-/)
     $HOME/local/bin(N-/)
     $HOME/usr/bin(N-/)
-    /bin(N-/)
     /usr/local/bin(N-/)
     /usr/local/sbin(N-/)
-    /sbin(N-/)
-    /bin(N-/)
-    /usr/sbin(N-/)
     /usr/bin(N-/)
+    /usr/sbin(N-/)
+    /bin(N-/)
+    /sbin(N-/)
 )
 
 
