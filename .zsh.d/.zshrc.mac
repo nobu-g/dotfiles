@@ -9,6 +9,10 @@ if [ "$EMACS" = t ]; then
 fi
 
 
+# pipenv設定
+eval "$(pipenv --completion)"
+
+
 # pyenv設定
 export PYENV_ROOT=/usr/local/var/pyenv
 if [ -d "${PYENV_ROOT}" ]; then

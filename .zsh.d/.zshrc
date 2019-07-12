@@ -1,4 +1,7 @@
-# ENVIRONMENT VARIABLES
+# ALIAS
+if [ -f ${ZSHHOME}/.zsh_aliases ]; then
+    source ${ZSHHOME}/.zsh_aliases
+fi
 
 ## COLOR
 export LS_COLORS=':no=00:fi=00:di=36:ln=35:pi=33:so=32:bd=34;46:cd=34;43:ex=31:'
@@ -204,7 +207,6 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # pipenv設定
 export PIPENV_VENV_IN_PROJECT=true  # pipenv で仮想環境をプロジェクト直下に作るように
-#eval "$(pipenv --completion)"  # Ubuntuで時間がかかりすぎていたのでコメントアウト
 
 # LOAD SETTING FILES
 ZSHHOME="${HOME}/dotfiles/.zsh.d"
@@ -221,7 +223,3 @@ freebsd*|darwin*)
     fi
     ;;
 esac
-
-if [ -f ${ZSHHOME}/.zsh_aliases ]; then
-    source ${ZSHHOME}/.zsh_aliases
-fi
