@@ -1,0 +1,3 @@
+alias del="trash -r"  # https://github.com/rcmdnk/trash
+alias e='/usr/local/bin/emacs'
+alias brew="PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin brew"

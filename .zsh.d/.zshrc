@@ -1,6 +1,6 @@
 # ALIAS
-if [ -f ${ZSHHOME}/.zsh_aliases ]; then
-    source ${ZSHHOME}/.zsh_aliases
+if [ -f ${HOME}/dotfiles/.zsh.d/.zaliases ]; then
+    source ${HOME}/dotfiles/.zsh.d/.zaliases
 fi
 
 ## COLOR
@@ -196,30 +196,21 @@ zstyle ':chpwd:*' recent-dirs-max 10000
 zstyle ':chpwd:*' recent-dirs-default yes
 zstyle ':completion:*' recent-dirs-insert both
 
+
 # カレントディレクトリを変更すると自動的に仮想環境に入るようにする
 if [ -f ~/utils/virtualenv-auto-activate.sh ]; then
     source ~/utils/virtualenv-auto-activate.sh
 fi
 unset VIRTUAL_ENV  # zsh起動時にvirtualenvから抜けるので
 
+
 # shell integration 設定
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
 
 # pipenv設定
 export PIPENV_VENV_IN_PROJECT=true  # pipenv で仮想環境をプロジェクト直下に作るように
 
-# LOAD SETTING FILES
-ZSHHOME="${HOME}/dotfiles/.zsh.d"
 
-case "${OSTYPE}" in
-linux*|cygwin*)
-    if [ -e ${ZSHHOME}/.zshrc.basil ]; then
-        source ${ZSHHOME}/.zshrc.basil
-    fi
-    ;;
-freebsd*|darwin*)
-    if [ -e ${ZSHHOME}/.zshrc.mac ]; then
-        source ${ZSHHOME}/.zshrc.mac
-    fi
-    ;;
-esac
+# LOAD SETTING FILES
+source ${ZSHHOME}/.zshrc

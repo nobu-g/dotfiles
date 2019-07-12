@@ -1,0 +1,3 @@
+alias e='emacs -nw'
+alias brew="PATH=$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:/usr/bin:/bin:/usr/sbin:/sbin brew"
+alias pwd='/bin/pwd'

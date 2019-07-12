@@ -3,6 +3,7 @@ export LANG=ja_JP.UTF-8
 export LC_CTYPE=${LANG}
 export LC_ALL=${LANG}
 
+
 # PATH(GENERAL)
 typeset -U path
 path=(
@@ -53,22 +54,18 @@ fi
 # PAGER
 export PAGER="less"
 
+
 # EDITOR
 export EDITOR=emacsclient  # use emacs
 
 
-# LOAD INDIVIDUAL SETTING
-ZSHHOME="${HOME}/dotfiles/.zsh.d"
-
 case "${OSTYPE}" in
 linux*|cygwin*)
-    if [ -e ${ZSHHOME}/.zshenv.basil ]; then
-        source ${ZSHHOME}/.zshenv.basil
-    fi
+    ZSHHOME="${HOME}/dotfiles/.zsh.d/linux"
     ;;
 freebsd*|darwin*)
-    if [ -e ${ZSHHOME}/.zshenv.mac ]; then
-        source ${ZSHHOME}/.zshenv.mac
-    fi
+    ZSHHOME="${HOME}/dotfiles/.zsh.d/osx"
     ;;
 esac
+
+source ${ZSHHOME}/.zshenv

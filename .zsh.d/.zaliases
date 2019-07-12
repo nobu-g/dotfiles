@@ -21,19 +21,6 @@ alias ....='../../..'
 alias .....='../../../..'
 
 
-case "${OSTYPE}" in
-linux*|cygwin*)
-    alias e='emacs -nw'
-    alias brew="PATH=$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:/usr/bin:/bin:/usr/sbin:/sbin brew"
-    ;;
-freebsd*|darwin*)
-    alias del="trash -r"  # https://github.com/rcmdnk/trash
-    alias e='/usr/local/bin/emacs'
-    alias brew="PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin brew"
-    ;;
-esac
-
-
 # alias du="du -h"
 # alias df="df -h"
 
@@ -54,3 +41,6 @@ alias -s txt=lv
 alias -s xml=lv
 alias -s html=google-crhome
 alias -s xhtml=google-chrome
+
+
+source ${ZSHHOME}/.zaliases
