@@ -1,0 +1,102 @@
+
+# tap repositories and their packages
+
+tap homebrew/core
+brew autoconf
+brew boost
+brew coreutils
+brew diffutils
+brew direnv
+brew docker
+brew ed
+brew emacs
+brew findutils
+brew gawk
+brew gcc
+brew gdbm
+brew gettext
+brew ghostscript
+brew glib
+brew gmp
+brew gnu-sed
+brew gnu-tar
+brew gnutls
+brew gperftools
+brew grep
+brew gzip
+brew htop
+brew icu4c
+brew isl
+brew jpeg
+brew juman
+brew libevent
+brew libffi
+brew libmpc
+brew libomp
+brew libtasn1
+brew libtiff
+brew libunistring
+brew mas
+brew mono
+brew mpfr
+brew ncurses
+brew nettle
+brew nginx
+brew nkf
+brew nodebrew
+brew openssl
+brew p11-kit
+brew pandoc
+brew pcre
+brew peco
+brew pipenv
+brew pkg-config
+brew pyenv
+brew python
+brew readline
+brew sl
+brew source-highlight
+brew sqlite
+brew sshfs
+brew swiftlint
+brew tinycdb
+brew unbound
+brew xz
+brew zlib
+brew zsh
+brew zsh-autosuggestions
+brew zsh-history-substring-search
+brew zsh-syntax-highlighting
+
+tap homebrew/cask
+cask docker
+cask mactex
+
+tap argon/mas
+
+tap rcmdnk/file
+brew brew-file
+
+tap uetchy/nlp
+brew knp
+
+# Other Cask applications
+cask google-cloud-sdk
+cask osxfuse
+cask realm-browser
+
+# App Store applications
+appstore 417375580 BetterSnapTool (1.9)
+appstore 406056744 Evernote (7.11)
+appstore 409183694 Keynote (9.1)
+appstore 405399194 Kindle (1.26.1)
+appstore 539883307 LINE (5.17.2)
+appstore 1349670778 Mathpix Snipping Tool (1.4.1)
+appstore 462058435 Microsoft Excel (16.26)
+appstore 462062816 Microsoft PowerPoint (16.26)
+appstore 462054704 Microsoft Word (16.26)
+appstore 409203825 Numbers (6.1)
+appstore 823766827 OneDrive (19.070.2410)
+appstore 409201541 Pages (8.1)
+appstore 803453959 Slack (4.0.0)
+appstore 497799835 Xcode (10.2.1)
