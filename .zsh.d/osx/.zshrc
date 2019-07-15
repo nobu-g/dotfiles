@@ -1,3 +1,7 @@
+# in ~/.zshenv, executed `unsetopt GLOBAL_RCS` and ignored /etc/zshrc
+[ -r /etc/zshrc ] && . /etc/zshrc
+
+
 PROMPT="%F{green}local%f%F{yellow}(%~)%f
 $ "
 

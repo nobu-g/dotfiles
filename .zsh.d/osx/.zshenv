@@ -1,4 +1,13 @@
 # PATH
+
+## ignore /etc/zprofile, /etc/zshrc, /etc/zlogin, and /etc/zlogout
+unsetopt GLOBAL_RCS
+## copied from /etc/zprofile
+## system-wide environment settings for zsh
+if [ -x /usr/libexec/path_helper ]; then
+    eval `/usr/libexec/path_helper -s`
+fi
+
 ## GNU/Linux 版コマンドを使えるように
 path=(
     /usr/local/opt/coreutils/libexec/gnubin(N-/) # coreutils
