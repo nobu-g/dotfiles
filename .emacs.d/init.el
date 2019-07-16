@@ -30,24 +30,27 @@
 
 
 (prefer-coding-system 'utf-8)
-(menu-bar-mode -1)		   ; menu barを表示しない
-(if window-system                  ; "Symbol's function definition is void" 対策(2015/1/27 修正)
-    ((tool-bar-mode -1)		   ; tool barを表示しない
-     (set-scroll-bar-mode 'right)  ; scroll barを右へ
+(menu-bar-mode -1)                  ; menu barを表示しない
+(if window-system                   ; "Symbol's function definition is void" 対策(2015/1/27 修正)
+    ((tool-bar-mode -1)             ; tool barを表示しない
+     (set-scroll-bar-mode 'right)   ; scroll barを右へ
 ))
-(line-number-mode 1)		   ; cursorの行数を表示
-(column-number-mode 1)		   ; cursorの行頭からの文字数を表示
-(global-font-lock-mode t)	   ; 色付
-(show-paren-mode t)		   ; 括弧の対応を表示
-(transient-mark-mode t)		   ; enable visual feedback on selections
+(line-number-mode t)                ; cursorの行数を表示
+(column-number-mode t)              ; cursorの行頭からの文字数を表示
+(global-font-lock-mode t)           ; 色付
+(show-paren-mode t)                 ; 括弧の対応を表示
+(transient-mark-mode t)             ; enable visual feedback on selections
 (global-set-key "\C-x\C-b" 'electric-buffer-list)
 (global-set-key "\C-cg" 'goto-line)
 (global-set-key "\C-h" 'delete-backward-char)
 
+
 ;;; バックアップファイルを作らない
 (setq backup-inhibited t)
+
 ;;; 補完時に大文字小文字を区別しない
 (setq completion-ignore-case t)
+
 ;;; 補完機能
 ;(partial-completion-mode 1) ;; エラーが出たのでコメントアウト
 
@@ -60,22 +63,6 @@
 ;	    (define-key comint-mode-map "\M-p" 'comint-previous-matching-input-from-input)
 ;	    (define-key comint-mode-map "\M-n" 'comint-next-matching-input-from-input)
 ;	    ))
-
-;;; YaTeX
-;(setq load-path (cons (expand-file-name "/usr/share/emacs/site-lisp/yatex") load-path))
-;(setq auto-mode-alist
-;      (cons (cons "\\.tex$" 'yatex-mode) auto-mode-alist))
-;(autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
-;(setq load-path (cons (expand-file-name "~/src/emacs/yatex") load-path))
-;(setq YaTeX-kanji-code 4	; utf-8
-;      YaTeX-use-AMS-LaTeX t
-;      YaTeX-use-LaTeX2e t)
-;(setq tex-command "platex"
-;      dvi2-command "pxdvi"
-;      dviprint-command-format "pdvips -f %f %t %s | lpr"
-;      dviprint-from-format "-p %b"
-;      dviprint-to-format "-l %e"
-;      section-name "documentclass")
 
 
 ;;; ispell (日本語でとまらないように)
@@ -95,20 +82,20 @@
       ps-n-up-border-p nil)
 
 
-;;; ivy設定
-;(require 'ivy)
-;(ivy-mode 1)
-;(setq ivy-use-virtual-buffers t)
-;(setq enable-recursive-minibuffers t)
-;(setq ivy-height 30)  ; minibufferのサイズを拡大！(重要)
-;(setq ivy-extra-directories nil)
-;(setq ivy-re-builders-alist '((t . ivy--regex-plus)))
+;; ivy設定
+(require 'ivy)
+(ivy-mode 1)
+(setq ivy-use-virtual-buffers t)
+(setq enable-recursive-minibuffers t)
+(setq ivy-height 30)  ; minibufferのサイズを拡大！(重要)
+(setq ivy-extra-directories nil)
+(setq ivy-re-builders-alist '((t . ivy--regex-plus)))
 
 
-;;; counsel設定
-;(global-set-key (kbd "M-x") 'counsel-M-x)
-;(global-set-key (kbd "C-x C-f") 'counsel-find-file)  ; find-fileもcounsel任せ
-;(defvar counsel-find-file-ignore-regexp (regexp-opt '("./" "../")))
+;; counsel設定
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)  ; find-fileもcounsel任せ
+(defvar counsel-find-file-ignore-regexp (regexp-opt '("./" "../")))
 
 
 ;;; swiper
@@ -248,16 +235,3 @@
 
 (provide '.emacs)
 ;;; .emacs ends here
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (undo-tree popup jedi-core f esup counsel company))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
