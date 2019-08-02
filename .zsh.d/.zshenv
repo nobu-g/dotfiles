@@ -45,6 +45,7 @@ export LV="-c -l"
 ## less setting (https://qiita.com/delphinus/items/b04752bb5b64e6cc4ea9)
 export LESS="-i -M -R -x4"
 # LESS="$LESS -X -F"
+export LESSCHARSET='utf-8'
 if [ -e /usr/local/bin/src-hilite-lesspipe.sh ]; then
     export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
 fi
@@ -52,7 +53,14 @@ fi
 if [ -e /home/ueda/usr/bin/lesspipe.sh ]; then
     export LESSOPEN="| $HOME/usr/bin/lesspipe.sh %s 2>&-"
 fi
-
+# LESS man page colors (makes Man pages more readable).
+export LESS_TERMCAP_mb=$'\E[01;31m'
+export LESS_TERMCAP_md=$'\E[01;31m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[00;44;37m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;32m'
 
 # PAGER
 export PAGER="less"

@@ -13,8 +13,8 @@ setopt prompt_subst  # PROMPT変数内で変数参照する
 setopt prompt_percent
 setopt transient_rprompt  # コマンド実行後に右プロンプトを消す(?)
 ## DISPLAY SETTING
-autoload colors
-colors
+autoload colors; colors
+
 ## DISPLAY
 # case ${UID} in
 # 0)
@@ -58,6 +58,11 @@ setopt inc_append_history   # append command to list immediately
 setopt share_history        # 同時に起動した zsh の間でヒストリを共有する
 setopt hist_reduce_blanks   # ヒストリに保存するときに余分なスペースを削除する
 setopt hist_expand          # 補完時にヒストリを自動的に展開
+## Do not add in root
+if [[ $UID == 0 ]]; then
+    unset HISTFILE
+    export SAVEHIST=0
+fi
 
 
 # KEY SETTING FOR COMMAND HISTORY
@@ -70,42 +75,51 @@ bindkey "^[n" history-beginning-search-forward-end
 # EMACS-LIKE KEYBINDINGS
 bindkey -d # reset
 bindkey -e
-
-# bindkey
 bindkey "^[f" emacs-forward-word
 bindkey "^[b" emacs-backward-word
 
 # COMPLETION
 ## initialize
 autoload -U compinit
-compinit
+compinit -C
 
-## range
-zstyle ':completion:*' completer \
-    _oldlist _complete _match _history _ignored _approximate _prefix
-
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}  # TODO: LSCOLORS に対応
-# 補完を強力に。https://gihyo.jp/dev/serial/01/zsh-book/0005 を参考にした。
+## Fuzzy match
+### https://gihyo.jp/dev/serial/01/zsh-book/0005 を参考
 ### 補完候補がなければより曖昧に候補を探す。
 ### m:{a-z}={A-Z}: 小文字を大文字に変えたものでも補完する。
 ### r:|[._-]=*: 「.」「_」「-」の前にワイルドカード「*」があるものとして補完する。
 ### l:|=*: 入力文字の前にワイルドカード「*」があるものとして補完する。
 ### r:|?=**: 各入力文字の前後に「*」があるものとして補完する(?)。
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}' '+r:|[-_.]=**' '+l:|=*' '+r:|?=**'
-#コマンドにsudoを付けても補完(macのみコメントアウトを外す)
-zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
-# 補完メッセージを読みやすくする
+#zstyle ':completion:*' completer _oldlist _complete _match _history _ignored _approximate _prefix
+zstyle ':completion:*' completer _oldlist _complete _match _ignored _approximate _prefix
+
+# Format
 zstyle ':completion:*' verbose yes
-zstyle ':completion:*' format '%B%d%b'
-zstyle ':completion:*:warnings' format 'No matches for: %d'
+zstyle ':completion:*' format '%F{magenta}-- %d --%f'
 zstyle ':completion:*' group-name ''
+zstyle ':completion:*:options' description yes
+zstyle ':completion:*:options' auto-description '%d'
+zstyle ':completion:*:corrections' format ' %F{yellow}-- %d (errors: %e) --%f'
+zstyle ':completion:*:descriptions' format ' %F{magenta}-- %d --%f'
+zstyle ':completion:*:messages' format ' %F{blue}-- %d --%f'
+zstyle ':completion:*:warnings' format ' %F{red}-- No matches for: %d --%f'
+zstyle ':completion:*:default' list-prompt '%S%M matches%s'
 
 ### color
-zstyle ':completion:*' list-colors 'di=34' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 ## misc.
-zstyle ':completion:*' use-cache yes  # use cache
-zstyle ':completion:sudo:*' environ PATH="$SUDO_PATH:$PATH"  # use sudo path
+### Show selected candidate
+zstyle ':completion:*:default' menu select=2
+### Show man candidates with section
+zstyle ':completion:*:manuals' separate-sections true
+### Directory candidates order
+zstyle ':completion:*:cd:*' tag-order local-directories path-directories
+### use cache
+zstyle ':completion:*' use-cache yes
+### use sudo path
+zstyle ':completion:sudo:*' environ PATH="$SUDO_PATH:$PATH"
 setopt complete_in_word  # complete at cursor point
 setopt glob_complete
 setopt hist_expand  # 補完時にヒストリを自動的に展開
