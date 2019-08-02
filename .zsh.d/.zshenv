@@ -5,6 +5,7 @@ export LC_ALL=${LANG}
 
 
 # PATH(GENERAL)
+## -U: 重複したパスを登録しない
 typeset -U path
 path=(
     $HOME/.local/bin(N-/)
@@ -16,8 +17,8 @@ path=(
     /usr/sbin(N-/)
     /bin(N-/)
     /sbin(N-/)
+    # "$path[@]"
 )
-
 
 # PATH FOR MAN(MANUAL)
 typeset -U manpath
@@ -28,6 +29,8 @@ manpath=(
 
 
 # PATH(SUDO)
+## -x: export SUDO_PATHも一緒に行う。
+## -T: SUDO_PATHとsudo_pathを連動する。
 typeset -xT SUDO_PATH sudo_path
 typeset -U sudo_path
 sudo_path=({,/usr/pkg,/usr/local,/usr}/sbin(N-/))
@@ -40,14 +43,14 @@ fi
 ## lv setting
 export LV="-c -l"
 ## less setting (https://qiita.com/delphinus/items/b04752bb5b64e6cc4ea9)
-## https://qiita.com/delphinus/items/b04752bb5b64e6cc4ea9
-export LESS="-i -M -R -x4 -X -F"
+export LESS="-i -M -R -x4"
+# LESS="$LESS -X -F"
 if [ -e /usr/local/bin/src-hilite-lesspipe.sh ]; then
-    export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
+    export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
 fi
 
 if [ -e /home/ueda/usr/bin/lesspipe.sh ]; then
-    export LESSOPEN='| /usr/bin/env lesspipe.sh %s 2>&-'
+    export LESSOPEN="| $HOME/usr/bin/lesspipe.sh %s 2>&-"
 fi
 
 
