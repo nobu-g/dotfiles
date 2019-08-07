@@ -39,18 +39,6 @@ autoload -Uz colors && colors
 PROMPT="%F{green}local%f%F{yellow}(%~)%f
 $ "
 
-## git (http://tkengo.github.io/blog/2013/05/12/zsh-vcs-info/)
-autoload -Uz vcs_info
-setopt prompt_subst
-zstyle ':vcs_info:git:*' check-for-changes true  # formats 設定項目で %c,%u が使用可
-zstyle ':vcs_info:git:*' stagedstr '%F{yellow}!'  # commit されていないファイルがある
-zstyle ':vcs_info:git:*' unstagedstr '%F{red}+'  # add されていないファイルがある
-zstyle ':vcs_info:*' formats '%F{green}%c%u[%b]%f'  # 通常
-zstyle ':vcs_info:*' actionformats '[%b|%a]'  # rebase 途中,merge コンフリクト等 formats 外の表示
-add-zsh-hook precmd vcs_info
-RPROMPT='${vcs_info_msg_0_}'
-
-
 WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
 
 # COMMAND HISTORY
