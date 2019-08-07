@@ -4,6 +4,7 @@ if [[ -z "$TMUX" && -z "$STY" ]]; then
     # セッションが存在し、まだ attach してなかったら attach
     if [[ $? -eq 0 && -z $client ]]; then
 	tmux -CC attach
+    exit
     fi
 fi
 
