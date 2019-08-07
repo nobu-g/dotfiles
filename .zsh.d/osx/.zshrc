@@ -14,7 +14,7 @@ fi
 
 
 # pipenv設定
-eval "$(pipenv --completion)"
+eval "$(pipenv --completion)"  # compinitが呼ばれていて起動が遅くなる原因になっているが、次バージョンで修正されそう
 
 
 # pyenv設定
