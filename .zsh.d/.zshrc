@@ -3,17 +3,20 @@ if [ -f ${HOME}/dotfiles/.zsh.d/.zaliases ]; then
     source ${HOME}/dotfiles/.zsh.d/.zaliases
 fi
 
-## COLOR
+# COLOR
 export LS_COLORS=':no=00:fi=00:di=36:ln=35:pi=33:so=32:bd=34;46:cd=34;43:ex=31:'
 export LSCOLORS=gxfxcxdxbxegexabagacad  # GNU系の LS_COLORS に相当
 export TERM='xterm-256color'
+
+# HOOK
+autoload -Uz add-zsh-hook
 
 # PROMPT
 setopt prompt_subst  # PROMPT変数内で変数参照する
 setopt prompt_percent
 setopt transient_rprompt  # コマンド実行後に右プロンプトを消す(?)
 ## DISPLAY SETTING
-autoload colors; colors
+autoload -Uz colors && colors
 
 ## DISPLAY
 # case ${UID} in
@@ -36,14 +39,17 @@ autoload colors; colors
 PROMPT="%F{green}local%f%F{yellow}(%~)%f
 $ "
 
-# TERMINAL TITLE
-# case "${TERM}" in
-# kterm*|xterm)
-#     precmd() {
-#         echo -ne "\033]0;${USER}@${HOST%%.*}:${PWD}\007"
-#     }
-#     ;;
-# esac
+## git (http://tkengo.github.io/blog/2013/05/12/zsh-vcs-info/)
+autoload -Uz vcs_info
+setopt prompt_subst
+zstyle ':vcs_info:git:*' check-for-changes true  # formats 設定項目で %c,%u が使用可
+zstyle ':vcs_info:git:*' stagedstr '%F{yellow}!'  # commit されていないファイルがある
+zstyle ':vcs_info:git:*' unstagedstr '%F{red}+'  # add されていないファイルがある
+zstyle ':vcs_info:*' formats '%F{green}%c%u[%b]%f'  # 通常
+zstyle ':vcs_info:*' actionformats '[%b|%a]'  # rebase 途中,merge コンフリクト等 formats 外の表示
+add-zsh-hook precmd vcs_info
+RPROMPT='${vcs_info_msg_0_}'
+
 
 WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
 
@@ -66,7 +72,7 @@ fi
 
 
 # KEY SETTING FOR COMMAND HISTORY
-autoload history-search-end
+autoload -Uz history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 bindkey "^[p" history-beginning-search-backward-end
@@ -80,8 +86,7 @@ bindkey "^[b" emacs-backward-word
 
 # COMPLETION
 ## initialize
-autoload -U compinit
-compinit -C
+autoload -Uz compinit && compinit -C
 
 ## Fuzzy match
 ### https://gihyo.jp/dev/serial/01/zsh-book/0005 を参考
@@ -153,14 +158,12 @@ setopt list_packed
 unsetopt promptcr
 
 
-## show directory stack when changed directories
-#chpwd_functions=($chpwd_functions dirs)
-
-
 # cdの後にlsを実行
-chpwd() {
+function chpwd_ls() {
     ls
 }
+add-zsh-hook chpwd chpwd_ls
+
 
 # mkdirとcdを同時実行
 function mkcd() {
@@ -203,8 +206,7 @@ zle -N peco-cdr
 bindkey '^x' peco-cdr
 
 # cdr設定(pecoの'^x'に必要)
-# cdr, add-zsh-hook を有効にする
-autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+autoload -Uz chpwd_recent_dirs cdr
 add-zsh-hook chpwd chpwd_recent_dirs
 zstyle ':chpwd:*' recent-dirs-max 10000
 zstyle ':chpwd:*' recent-dirs-default yes
