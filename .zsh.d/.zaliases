@@ -20,6 +20,10 @@ alias ...='../..'
 alias ....='../../..'
 alias .....='../../../..'
 alias -- -='cd -'
+## http://keisanbutsuriya.hateblo.jp/entry/2015/02/13/133858
+alias e='emacsclient -nw -a ""'
+alias emacs='emacsclient -nw -a ""'
+alias ekill='emacsclient -e "(kill-emacs)"'
 
 
 # alias du="du -h"
