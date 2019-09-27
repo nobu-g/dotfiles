@@ -208,9 +208,5 @@ zstyle ':completion:*' recent-dirs-insert both
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 
-# pipenv設定
-export PIPENV_VENV_IN_PROJECT=true  # pipenv で仮想環境をプロジェクト直下に作るように
-
-
 # LOAD SETTING FILES
 source ${ZSHHOME}/.zshrc

@@ -2,6 +2,10 @@ PROMPT="[%F{green}%m%f-%F{yellow}(%~)%f]
 $ "
 
 
+# use cached directory for virtualenv
+export WORKON_HOME=/mnt/berry_f/home/ueda/.virtualenvs
+
+
 if [ "$EMACS" = t ]; then
     unsetopt zle
     stty -echo
