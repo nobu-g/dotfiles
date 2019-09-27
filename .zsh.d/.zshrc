@@ -164,6 +164,12 @@ function mkcd() {
 }
 
 
+# grep を除いて任意のプロセスを表示
+function pss () {
+    ps aux | grep -E "PID|$1" | grep -v grep
+}
+
+
 # peco
 function peco-select-history() {
   BUFFER=$(\history -n -r 1 | peco --query "$LBUFFER")

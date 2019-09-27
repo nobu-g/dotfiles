@@ -9,7 +9,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
 alias h='history'
-alias -g L='| lv'
+alias -g L='| lv'  # -g でパイプが使える(zsh)
 alias -g H='| head'
 alias -g T='| tail'
 alias -g W='| wc'
@@ -19,6 +19,7 @@ alias relogin='exec $SHELL -l'
 alias ...='../..'
 alias ....='../../..'
 alias .....='../../../..'
+alias -- -='cd -'
 
 
 # alias du="du -h"

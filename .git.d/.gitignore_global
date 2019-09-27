@@ -125,3 +125,5 @@ fabric.properties
 
 # ignore all (added)
 .idea
+
+.vscode
