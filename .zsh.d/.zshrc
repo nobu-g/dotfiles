@@ -36,9 +36,6 @@ autoload -Uz colors && colors
 #     ;;
 # esac
 
-PROMPT="%F{green}local%f%F{yellow}(%~)%f
-$ "
-
 WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
 
 # COMMAND HISTORY
@@ -205,13 +202,6 @@ add-zsh-hook chpwd chpwd_recent_dirs
 zstyle ':chpwd:*' recent-dirs-max 10000
 zstyle ':chpwd:*' recent-dirs-default yes
 zstyle ':completion:*' recent-dirs-insert both
-
-
-# カレントディレクトリを変更すると自動的に仮想環境に入るようにする
-if [ -f ~/utils/virtualenv-auto-activate.sh ]; then
-    source ~/utils/virtualenv-auto-activate.sh
-fi
-unset VIRTUAL_ENV  # zsh起動時にvirtualenvから抜けるので
 
 
 # shell integration 設定

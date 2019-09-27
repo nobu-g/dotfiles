@@ -23,6 +23,16 @@ fi
 export SSH_AUTH_SOCK="$SSH_AUTH_SOCK_LINK"
 
 
+# direnv設定 (PROMPT設定後)
+eval "$(direnv hook zsh)"
+show_virtual_env() {
+  if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
+    echo "($(basename ${DIRENV_DIR:1}))"
+  fi
+}
+PROMPT='$(show_virtual_env)'$PROMPT
+
+
 # zsh-syntax-highlighting
 if [ -f ~/utils/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
     source ~/utils/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

@@ -35,8 +35,14 @@ if [ -d "${PYENV_ROOT}" ]; then
 fi
 
 
-# direnv設定
+# direnv設定 (PROMPT設定後)
 eval "$(direnv hook zsh)"
+show_virtual_env() {
+  if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
+    echo "($(basename ${DIRENV_DIR:1}))"
+  fi
+}
+PROMPT='$(show_virtual_env)'$PROMPT
 
 
 # zsh-syntax-highlighting
