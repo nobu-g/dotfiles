@@ -4,7 +4,7 @@ $ "
 
 # use cached directory for virtualenv
 export WORKON_HOME=/mnt/berry_f/home/ueda/.virtualenvs
-
+export PIPENV_VENV_IN_PROJECT=false
 
 if [ "$EMACS" = t ]; then
     unsetopt zle
