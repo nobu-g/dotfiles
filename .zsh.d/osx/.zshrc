@@ -67,3 +67,19 @@ fi
 if [ -f /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh ]; then
     source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 fi
+
+
+# search with google
+google(){
+    if [[ $(echo $1 | egrep "^-[nt]$") ]]; then
+        local opt="$1"
+        shift
+    fi
+    local url="https://www.google.co.jp/search?q=${*// /+}"
+    # local args=${url}
+    if [[ ${opt} != "-t" ]]; then
+        open --new -a 'Google Chrome' --args "${url}" --new-window
+    else
+        open --new -a 'Google Chrome' --args "${url}"
+    fi
+}
