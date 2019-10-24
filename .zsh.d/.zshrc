@@ -63,13 +63,13 @@ fi
 autoload -Uz history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
-bindkey "^[p" history-beginning-search-backward-end
-bindkey "^[n" history-beginning-search-forward-end
+bindkey "^p" history-beginning-search-backward-end
+bindkey "^n" history-beginning-search-forward-end
 
 # EMACS-LIKE KEYBINDINGS
 bindkey -e
-bindkey "^[f" emacs-forward-word
-bindkey "^[b" emacs-backward-word
+# bindkey "^[[1;5D" backward-word
+# bindkey "^[[1;5C" forward-word
 
 # COMPLETION
 ## initialize
@@ -226,14 +226,14 @@ function peco-find-file() {
     else
         source_files=$(find . -type f)
     fi
-    selected_files=$(echo $source_files | peco --prompt "[find file]")
+    selected_files=$(echo $source_files | peco --prompt "[find file]" | tr '\n', ' ')
 
-    BUFFER="${BUFFER}${echo $selected_files | tr '\n' ' '}"
+    BUFFER=${BUFFER}${selected_files}
     CURSOR=$#BUFFER
     zle redisplay
 }
 zle -N peco-find-file
-bindkey '^q' peco-find-file
+bindkey '^_' peco-find-file
 
 # shell integration 設定
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
