@@ -25,6 +25,11 @@ alias e='emacsclient -nw -a ""'
 alias emacs='emacsclient -nw -a ""'
 alias ekill='emacsclient -e "(kill-emacs)"'
 
+if [[ -x `which colordiff` ]]; then
+  alias diff='colordiff -u'
+else
+  alias diff='diff -u'
+fi
 
 # alias du="du -h"
 # alias df="df -h"
