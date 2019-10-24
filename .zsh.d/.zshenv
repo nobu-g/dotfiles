@@ -53,14 +53,6 @@ fi
 if [ -e /home/ueda/usr/bin/lesspipe.sh ]; then
     export LESSOPEN="| $HOME/usr/bin/lesspipe.sh %s 2>&-"
 fi
-# LESS man page colors (makes Man pages more readable).
-export LESS_TERMCAP_mb=$'\E[01;31m'
-export LESS_TERMCAP_md=$'\E[01;31m'
-export LESS_TERMCAP_me=$'\E[0m'
-export LESS_TERMCAP_se=$'\E[0m'
-export LESS_TERMCAP_so=$'\E[00;44;37m'
-export LESS_TERMCAP_ue=$'\E[0m'
-export LESS_TERMCAP_us=$'\E[01;32m'
 
 # PAGER
 export PAGER="less"

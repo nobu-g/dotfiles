@@ -1,7 +1,4 @@
-# in ~/.zshenv, executed `unsetopt GLOBAL_RCS` and ignored /etc/zshrc
-[ -r /etc/zshrc ] && . /etc/zshrc
-
-
+# prompt
 PROMPT="%F{green}local%f%F{yellow}(%~)%f
 $ "
 
@@ -24,19 +21,19 @@ if [ "$EMACS" = t ]; then
 fi
 
 
-# pipenv設定
+# pipenv
 eval "$(pipenv --completion)"  # compinitが呼ばれていて起動が遅くなる原因になっているが、次バージョンで修正されそう
 export PIPENV_VENV_IN_PROJECT=true  # pipenv で仮想環境をプロジェクト直下に作るように
 
 
-# pyenv設定
+# pyenv
 export PYENV_ROOT=/usr/local/var/pyenv
 if [ -d "${PYENV_ROOT}" ]; then
     eval "$(pyenv init -)"  # 自動補完機能
 fi
 
 
-# direnv設定 (PROMPT設定後)
+# direnv (after setting PROMPT)
 eval "$(direnv hook zsh)"
 show_virtual_env() {
   if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then

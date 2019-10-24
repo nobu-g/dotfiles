@@ -3,13 +3,16 @@ if [ -f ${HOME}/dotfiles/.zsh.d/.zaliases ]; then
     source ${HOME}/dotfiles/.zsh.d/.zaliases
 fi
 
+# HOOK
+autoload -Uz add-zsh-hook
+
+# RESET KEY BINDINGS
+bindkey -d
+
 # COLOR
 export LS_COLORS=':no=00:fi=00:di=36:ln=35:pi=33:so=32:bd=34;46:cd=34;43:ex=31:'
 export LSCOLORS=gxfxcxdxbxegexabagacad  # GNU系の LS_COLORS に相当
 export TERM='xterm-256color'
-
-# HOOK
-autoload -Uz add-zsh-hook
 
 # PROMPT
 setopt prompt_subst  # PROMPT変数内で変数参照する
@@ -64,7 +67,6 @@ bindkey "^[p" history-beginning-search-backward-end
 bindkey "^[n" history-beginning-search-forward-end
 
 # EMACS-LIKE KEYBINDINGS
-bindkey -d # reset
 bindkey -e
 bindkey "^[f" emacs-forward-word
 bindkey "^[b" emacs-backward-word
@@ -167,9 +169,23 @@ function pss () {
 }
 
 
+# LESS man page colors (makes Man pages more readable).
+function man() {
+    env \
+        LESS_TERMCAP_mb=$'\E[01;31m' \
+        LESS_TERMCAP_md=$'\E[01;31m' \
+        LESS_TERMCAP_me=$'\E[0m' \
+        LESS_TERMCAP_se=$'\E[0m' \
+        LESS_TERMCAP_so=$'\E[00;44;37m' \
+        LESS_TERMCAP_ue=$'\E[0m' \
+        LESS_TERMCAP_us=$'\E[01;32m' \
+        man "$@"
+}
+
+
 # peco
 function peco-select-history() {
-  BUFFER=$(\history -n -r 1 | peco --query "$LBUFFER")
+  BUFFER=$(\history -n -r 1 | peco --query "$LBUFFER" --prompt "[hist]" --print-query | tail -n 1)
   CURSOR=$#BUFFER
 #  zle clear-screen
 }
@@ -180,7 +196,7 @@ bindkey '^r' peco-select-history
 function peco-get-destination-from-cdr() {
   cdr -l | \
   sed -e 's/^[[:digit:]]*[[:blank:]]*//' | \
-  peco --query "$LBUFFER"
+  peco --query "$LBUFFER" --prompt "[dest]"
 }
 
 ## search a destination from cdr list and cd the destination
@@ -203,10 +219,24 @@ zstyle ':chpwd:*' recent-dirs-max 10000
 zstyle ':chpwd:*' recent-dirs-default yes
 zstyle ':completion:*' recent-dirs-insert both
 
+# peco find file (https://k0kubun.hatenablog.com/entry/2014/07/06/033336)
+function peco-find-file() {
+    if git rev-parse 2> /dev/null; then
+        source_files=$(git ls-files)
+    else
+        source_files=$(find . -type f)
+    fi
+    selected_files=$(echo $source_files | peco --prompt "[find file]")
+
+    BUFFER="${BUFFER}${echo $selected_files | tr '\n' ' '}"
+    CURSOR=$#BUFFER
+    zle redisplay
+}
+zle -N peco-find-file
+bindkey '^q' peco-find-file
 
 # shell integration 設定
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
 
 # LOAD SETTING FILES
 source ${ZSHHOME}/.zshrc
