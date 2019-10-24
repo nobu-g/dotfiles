@@ -26,3 +26,9 @@
 
 [pager]
     branch = cat
+
+[merge]
+    ff = false
+
+[pull]
+    ff = only
