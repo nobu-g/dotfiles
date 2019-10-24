@@ -22,7 +22,7 @@
     ui = true
 
 [core]
-    editor = emacs
+    editor = emacsclient -nw
 
 [pager]
     branch = cat
