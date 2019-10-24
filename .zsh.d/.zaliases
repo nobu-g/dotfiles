@@ -9,6 +9,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
 alias h='history'
+alias g='git'
 alias -g L='| lv'  # -g でパイプが使える(zsh)
 alias -g H='| head'
 alias -g T='| tail'
