@@ -26,7 +26,7 @@ fi
 export SSH_AUTH_SOCK="$SSH_AUTH_SOCK_LINK"
 
 
-# direnv設定 (PROMPT設定後)
+# direnv (after setting PROMPT)
 eval "$(direnv hook zsh)"
 show_virtual_env() {
   if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
@@ -39,20 +39,41 @@ PROMPT='$(show_virtual_env)'$PROMPT
 # zsh-syntax-highlighting
 if [ -f ~/utils/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
     source ~/utils/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    # エイリアスコマンドのハイライト
+    ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
+    # 存在するパスのハイライト
+    ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
+    # グロブ
+    ZSH_HIGHLIGHT_STYLES[globbing]='none'
 fi
-# Declare the variable
-typeset -A ZSH_HIGHLIGHT_STYLES
-# エイリアスコマンドのハイライト
-ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
-# 存在するパスのハイライト
-ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
-# グロブ
-ZSH_HIGHLIGHT_STYLES[globbing]='none'
 
 # zsh-autosuggestions
 if [ -f ~/utils/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     source ~/utils/zsh-autosuggestions/zsh-autosuggestions.zsh
+    # Widgets that accept the entire suggestion
+    ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(
+        end-of-line
+        vi-end-of-line
+        vi-add-eol
+    )
+    # Widgets that accept the suggestion as far as the cursor moves
+    ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(
+        forward-char
+        forward-word
+        emacs-forward-word
+        vi-forward-char
+        vi-forward-word
+        vi-forward-word-end
+        vi-forward-blank-word
+        vi-forward-blank-word-end
+        vi-find-next-char
+        vi-find-next-char-skip
+    )
+    # Widgets that accept the entire suggestion and execute it
+    ZSH_AUTOSUGGEST_EXECUTE_WIDGETS=(
+    )
 fi
+
 # zsh-history-substring-search
 if [ -f ~/utils/zsh-history-substring-search/zsh-history-substring-search.zsh ]; then
     source ~/utils/zsh-history-substring-search/zsh-history-substring-search.zsh
