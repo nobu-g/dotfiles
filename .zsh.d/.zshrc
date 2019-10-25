@@ -1,6 +1,6 @@
 # ALIAS
-if [ -f ${HOME}/dotfiles/.zsh.d/.zaliases ]; then
-    source ${HOME}/dotfiles/.zsh.d/.zaliases
+if [[ -f $HOME/dotfiles/.zsh.d/.zaliases ]]; then
+    source $HOME/dotfiles/.zsh.d/.zaliases
 fi
 
 # HOOK
@@ -146,14 +146,12 @@ unsetopt promptcr
 
 
 # cdの後にlsを実行
-function chpwd_ls() {
-    ls
-}
+chpwd_ls() { ls }
 add-zsh-hook chpwd chpwd_ls
 
 
 # mkdirとcdを同時実行
-function mkcd() {
+mkcd() {
     if [[ -d $1 ]]; then
         echi "$1 already exists!"
         cd $1
@@ -164,13 +162,13 @@ function mkcd() {
 
 
 # grep を除いて任意のプロセスを表示
-function pss () {
+pss () {
     ps aux | grep -E "PID|$1" | grep -v grep
 }
 
 
 # LESS man page colors (makes Man pages more readable).
-function man() {
+man() {
     env \
         LESS_TERMCAP_mb=$'\E[01;31m' \
         LESS_TERMCAP_md=$'\E[01;31m' \
@@ -184,7 +182,7 @@ function man() {
 
 
 # peco
-function peco-select-history() {
+peco-select-history() {
   BUFFER=$(\history -n -r 1 | peco --query "$LBUFFER" --prompt "[hist]" --print-query | tail -n 1)
   CURSOR=$#BUFFER
 #  zle clear-screen
@@ -193,16 +191,16 @@ zle -N peco-select-history
 bindkey '^r' peco-select-history
 
 ## search a destination from cdr list
-function peco-get-destination-from-cdr() {
+peco-get-destination-from-cdr() {
   cdr -l | \
   sed -e 's/^[[:digit:]]*[[:blank:]]*//' | \
   peco --query "$LBUFFER" --prompt "[dest]"
 }
 
 ## search a destination from cdr list and cd the destination
-function peco-cdr() {
+peco-cdr() {
   local destination="$(peco-get-destination-from-cdr)"
-  if [ -n "$destination" ]; then
+  if [[ -n "$destination" ]]; then
     BUFFER="cd $destination"
     zle accept-line
   else
@@ -220,7 +218,7 @@ zstyle ':chpwd:*' recent-dirs-default yes
 zstyle ':completion:*' recent-dirs-insert both
 
 # peco find file (https://k0kubun.hatenablog.com/entry/2014/07/06/033336)
-function peco-find-file() {
+peco-find-file() {
     if git rev-parse 2> /dev/null; then
         source_files=$(git ls-files)
     else
@@ -233,7 +231,7 @@ function peco-find-file() {
     zle redisplay
 }
 zle -N peco-find-file
-bindkey '^_' peco-find-file
+bindkey '^_' peco-find-file  # works by ^/
 
 # shell integration 設定
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

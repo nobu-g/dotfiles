@@ -14,7 +14,7 @@ add-zsh-hook precmd vcs_info
 RPROMPT='${vcs_info_msg_0_}'
 
 
-if [ "$EMACS" = t ]; then
+if [[ "$EMACS" = t ]]; then
     unsetopt zle
     stty -echo
     alias ls='ls -F -G'
@@ -28,7 +28,7 @@ export PIPENV_VENV_IN_PROJECT=true  # pipenv で仮想環境をプロジェク�
 
 # pyenv
 export PYENV_ROOT=/usr/local/var/pyenv
-if [ -d "${PYENV_ROOT}" ]; then
+if [[ -d "${PYENV_ROOT}" ]]; then
     eval "$(pyenv init -)"  # 自動補完機能
 fi
 
@@ -44,7 +44,7 @@ PROMPT='$(show_virtual_env)'$PROMPT
 
 
 # zsh-syntax-highlighting
-if [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+if [[ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
     source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 # Declare the variable
@@ -57,17 +57,17 @@ ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
 ZSH_HIGHLIGHT_STYLES[globbing]='none'
 
 # zsh-autosuggestions
-if [ -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+if [[ -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
     source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 # zsh-history-substring-search
-if [ -f /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh ]; then
+if [[ -f /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh ]]; then
     source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 fi
 
 
 # search with google
-google(){
+google() {
     if [[ $(echo $1 | egrep "^-[nt]$") ]]; then
         local opt="$1"
         shift

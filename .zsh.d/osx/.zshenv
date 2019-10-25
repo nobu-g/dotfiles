@@ -27,7 +27,6 @@ manpath=(
     /usr/local/opt/grep/libexec/gnuman(N-/) # grep
     ${manpath}
 )
-#PATH=/usr/local/opt/coreutils/libexec/gnubin:/usr/local/opt/grep/libexec/gnubin:$PATH
 
 ## texlive
 PATH=/usr/local/texlive/2018/bin/x86_64-darwin:$PATH
