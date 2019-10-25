@@ -46,12 +46,12 @@ export LV="-c -l"
 export LESS="-i -M -R -x4"
 # LESS="$LESS -X -F"
 export LESSCHARSET='utf-8'
-if [ -e /usr/local/bin/src-hilite-lesspipe.sh ]; then
+if [[ -e /usr/local/bin/src-hilite-lesspipe.sh ]]; then
     export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
 fi
 
-if [ -e /home/ueda/usr/bin/lesspipe.sh ]; then
-    export LESSOPEN="| $HOME/usr/bin/lesspipe.sh %s 2>&-"
+if [[ -e $HOME/usr/bin/src-hilite-lesspipe.sh ]]; then
+    export LESSOPEN="| $HOME/usr/bin/src-hilite-lesspipe.sh %s"
 fi
 
 # PAGER

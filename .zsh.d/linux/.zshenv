@@ -1,5 +1,5 @@
 # GXP3
-if [ -d $HOME/gxp3 ]; then
+if [[ -d $HOME/gxp3 ]]; then
    PATH=$HOME/gxp3:$PATH
 fi
 
