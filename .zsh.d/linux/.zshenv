@@ -13,6 +13,9 @@ if [[ $(uname -n) =~ "^baracuda" ]] || [[ $(uname -n) =~ "^moss" ]] || [[ $(unam
     export CUDA_DEVICE_ORDER=PCI_BUS_ID
 fi
 
+# Boost
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/usr/lib/x86_64-linux-gnu
+
 
 PATH=/share/usr-$(uname -m)/bin:$PATH
 if [[ -f /mnt/orange/ubrew/brew.zsh ]] then
