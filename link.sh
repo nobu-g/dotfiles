@@ -1,9 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-mkdir -p ~/.emacs.d
-mkdir -p ~/.config
-mkdir -p ~/.config/git
-mkdir -p ~/.config/peco
+set -exu
 
 ln -sf ~/dotfiles/.zsh.d/.zshenv ~/.zshenv
 ln -sf ~/dotfiles/.zsh.d/.zprofile ~/.zprofile
