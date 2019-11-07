@@ -26,9 +26,18 @@
 
 [pager]
     branch = cat
+	diff = (diff-highlight 2>/dev/null || cat) | less -+F -+X -R
+	show = (diff-highlight 2>/dev/null || cat) | less -+F -+X -R
+	log  = (diff-highlight 2>/dev/null || cat) | less -+F -+X -R
 
 [merge]
     ff = false
 
 [pull]
     ff = only
+
+[diff]
+	indentHeuristic = true
+
+[interactive]
+	diffFilter = diff-highlight

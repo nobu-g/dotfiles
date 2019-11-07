@@ -6,3 +6,5 @@ mkdir -p ~/.emacs.d
 mkdir -p ~/.config
 mkdir -p ~/.config/git
 mkdir -p ~/.config/peco
+
+${DOTPATH}/brew.sh

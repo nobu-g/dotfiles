@@ -9,3 +9,11 @@ ln -sf ~/dotfiles/.emacs.d/init.el ~/.emacs.d/init.el
 ln -sf ~/dotfiles/.git.d/.gitconfig ~/.gitconfig
 ln -sf ~/dotfiles/.git.d/.gitignore_global ~/.config/git/ignore
 ln -sf ~/dotfiles/.peco/config.json ~/.config/peco/config.json
+
+case "${OSTYPE}" in
+linux*|cygwin*)
+    ;;
+freebsd*|darwin*)
+    ln -sf /usr/local/share/git-core/contrib/diff-highlight /usr/local/bin
+    ;;
+esac
