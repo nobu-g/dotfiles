@@ -14,6 +14,6 @@ case "${OSTYPE}" in
 linux*|cygwin*)
     ;;
 freebsd*|darwin*)
-    ln -sf /usr/local/share/git-core/contrib/diff-highlight /usr/local/bin
+    ln -sf /usr/local/share/git-core/contrib/diff-highlight/diff-highlight /usr/local/bin
     ;;
 esac
