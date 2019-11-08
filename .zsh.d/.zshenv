@@ -11,6 +11,7 @@ path=(
     $HOME/.local/bin(N-/)
     $HOME/local/bin(N-/)
     $HOME/usr/bin(N-/)
+    $HOME/scripts(N-/)
     /usr/local/bin(N-/)
     /usr/local/sbin(N-/)
     /usr/bin(N-/)
