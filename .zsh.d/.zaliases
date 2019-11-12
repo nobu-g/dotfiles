@@ -25,6 +25,7 @@ alias -- -='cd -'
 alias e='emacsclient -nw -a ""'
 alias emacs='emacsclient -nw -a ""'
 alias ekill='emacsclient -e "(kill-emacs)"'
+alias dpython='python -m ipdb -c continue'
 
 if [[ -x `which colordiff` ]]; then
   alias diff='colordiff -u'
