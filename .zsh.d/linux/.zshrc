@@ -20,6 +20,7 @@ show_virtual_env() {
   fi
 }
 PROMPT='$(show_virtual_env)'$PROMPT
+direnv allow
 
 
 # zsh-syntax-highlighting
