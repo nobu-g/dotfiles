@@ -41,8 +41,15 @@ show_virtual_env() {
     fi
 }
 PROMPT='$(show_virtual_env)'$PROMPT
-direnv allow
-
+p=$PWD
+while  [[ $p != '/' ]]
+do
+    if [[ -f $p/.envrc ]]; then
+        direnv allow
+        break
+    fi
+    p=$(dirname $p)
+done
 
 # zsh-syntax-highlighting
 if [[ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then

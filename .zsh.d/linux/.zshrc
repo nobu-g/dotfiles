@@ -15,12 +15,20 @@ fi
 # direnv (after setting PROMPT)
 eval "$(direnv hook zsh)"
 show_virtual_env() {
-  if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
-    echo "($(basename ${DIRENV_DIR:1}))"
-  fi
+    if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
+        echo "($(basename ${DIRENV_DIR:1}))"
+    fi
 }
 PROMPT='$(show_virtual_env)'$PROMPT
-direnv allow
+p=$PWD
+while  [[ $p != '/' ]]
+do
+    if [[ -f $p/.envrc ]]; then
+        direnv allow
+        break
+    fi
+    p=$(dirname $p)
+done
 
 
 # zsh-syntax-highlighting
