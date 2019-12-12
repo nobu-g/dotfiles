@@ -218,9 +218,6 @@ zplugin light peco/peco
 
 zplugin load soimort/translate-shell
 
-# git diif や tig の可読性をより良くします。(要設定)
-# Homebrew で git をインストールしていること、 `HOMEBREW_PREFIX` に Homebrew のプリフィックスが格納されている前提です。
-zplugin snippet --command "${HOMEBREW_PREFIX}/share/git-core/contrib/diff-highlight/diff-highlight"
 
 ## 一旦コメントアウト(あとでいいのを選ぶ)
 # prompt theme (1)
