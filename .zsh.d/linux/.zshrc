@@ -30,7 +30,7 @@ do
     p=$(dirname $p)
 done
 
-
+<< COMMENTOUT
 # zsh-syntax-highlighting
 if [ -f ~/utils/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
     source ~/utils/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -73,3 +73,4 @@ fi
 if [ -f ~/utils/zsh-history-substring-search/zsh-history-substring-search.zsh ]; then
     source ~/utils/zsh-history-substring-search/zsh-history-substring-search.zsh
 fi
+COMMENTOUT

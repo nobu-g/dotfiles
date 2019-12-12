@@ -1,3 +1,11 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block, everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+
 # ALIAS
 if [[ -f $HOME/dotfiles/.zsh.d/.zaliases ]]; then
     source $HOME/dotfiles/.zsh.d/.zaliases
@@ -141,9 +149,91 @@ setopt extended_history      # 履歴ファイルにzsh の開始・終了時刻
 setopt nohup
 # setopt correct
 setopt list_packed
-
 unsetopt promptcr
 
+
+
+### Added by Zplugin's installer
+source "$HOME/.zplugin/bin/zplugin.zsh"
+autoload -Uz _zplugin
+(( ${+_comps} )) && _comps[zplugin]=_zplugin
+### End of Zplugin installer's chunk
+
+zplugin ice wait"!0" atinit"zpcompinit; zpcdreplay -q"  # FIXME: 上でも compinit している
+
+zplugin light zsh-users/zsh-history-substring-search
+# zplugin load zdharma/history-search-multi-word
+
+zplugin ice wait atload"_zsh_autosuggest_start"
+zplugin light zsh-users/zsh-autosuggestions
+# Widgets that accept the entire suggestion
+ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(
+    end-of-line
+    vi-end-of-line
+    vi-add-eol
+)
+# Widgets that accept the suggestion as far as the cursor moves
+ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(
+    forward-char
+    forward-word
+    emacs-forward-word
+    vi-forward-char
+    vi-forward-word
+    vi-forward-word-end
+    vi-forward-blank-word
+    vi-forward-blank-word-end
+    vi-find-next-char
+    vi-find-next-char-skip
+)
+# Widgets that accept the entire suggestion and execute it
+ZSH_AUTOSUGGEST_EXECUTE_WIDGETS=(
+)
+
+zplugin light zdharma/fast-syntax-highlighting
+# エイリアスコマンドのハイライト
+# ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
+# 存在するパスのハイライト
+# ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
+# グロブ
+# ZSH_HIGHLIGHT_STYLES[globbing]='none'
+
+# zplugin light chrissicool/zsh-256color
+
+# completion
+zplugin ice wait'!0' blockf; zplugin load zsh-users/zsh-completions
+# clipcopy and clippaste function
+zplugin snippet 'OMZ::lib/clipboard.zsh'
+
+# ogham/exa, replacement for ls
+zplugin ice wait"2" lucid from"gh-r" as"program" mv"exa* -> exa"
+zplugin light ogham/exa
+
+# direnv
+zplugin ice from"gh-r" as"program" mv"direnv* -> direnv"
+zplugin light direnv/direnv
+
+# peco
+zplugin ice from"gh-r" as"program" mv"peco* -> peco"
+zplugin light peco/peco
+
+zplugin load soimort/translate-shell
+
+# git diif や tig の可読性をより良くします。(要設定)
+# Homebrew で git をインストールしていること、 `HOMEBREW_PREFIX` に Homebrew のプリフィックスが格納されている前提です。
+zplugin snippet --command "${HOMEBREW_PREFIX}/share/git-core/contrib/diff-highlight/diff-highlight"
+
+## 一旦コメントアウト(あとでいいのを選ぶ)
+# prompt theme (1)
+# zplugin ice wait'!' lucid atload'source ~/.p10k.zsh; _p9k_precmd' nocd
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=off # zplugin light romkatv/powerlevel10k
+zplugin unload romkatv/powerlevel10k
+# prompt theme (2)
+# zplugin ice pick"async.zsh" src"pure.zsh"
+# zplugin light sindresorhus/pure
+# zplugin snippet OMZ::themes/dstufft.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # cdの後にlsを実行
 chpwd_ls() { ls }

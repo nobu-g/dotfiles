@@ -40,6 +40,7 @@ if [ $(id -u) -eq 0 ]; then  # root user
     path=($sudo_path $path)
 fi
 
+HOMEBREW_PREFIX=$(brew --prefix)
 
 ## lv setting
 export LV="-c -l"

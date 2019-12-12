@@ -50,7 +50,7 @@ do
     fi
     p=$(dirname $p)
 done
-
+<< COMMENTOUT
 # zsh-syntax-highlighting
 if [[ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
     source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -93,7 +93,7 @@ fi
 if [[ -f /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh ]]; then
     source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 fi
-
+COMMENTOUT
 
 # search with google
 google() {
