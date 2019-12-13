@@ -155,7 +155,7 @@ unsetopt promptcr
 source "$HOME/.zplugin/bin/zplugin.zsh"
 autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
-ZPLGM[COMPINIT_OPTS]='-C'
+
 # debug mode
 # typeset -g ZPLG_MOD_DEBUG=1
 
@@ -163,12 +163,13 @@ ZPLGM[COMPINIT_OPTS]='-C'
 zplugin ice atclone"dircolors -b LS_COLORS > clrs.zsh" atpull'%atclone' pick"clrs.zsh" nocompile'!'
 zplugin light trapd00r/LS_COLORS
 
+zplugin ice wait lucid
 zplugin light zsh-users/zsh-history-substring-search
 # zplugin load zdharma/history-search-multi-word
 
 
 ## zsh-autosuggestions
-zplugin ice wait lucid atload"_zsh_autosuggest_start"
+zplugin ice wait lucid atload"!_zsh_autosuggest_start"
 zplugin light zsh-users/zsh-autosuggestions
 # Widgets that accept the entire suggestion
 ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(
@@ -195,13 +196,13 @@ ZSH_AUTOSUGGEST_EXECUTE_WIDGETS=(
 
 
 ## fast-syntax-highlighting
-zplugin ice wait lucid atinit"zpcompinit; zpcdreplay -q"
+zplugin ice wait lucid atinit"ZPLGM[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay -q"
 zplugin light zdharma/fast-syntax-highlighting
 
 
 ## completion
 zplugin ice wait lucid blockf atpull'zplugin creinstall -q .'
-zplugin load zsh-users/zsh-completions
+zplugin light zsh-users/zsh-completions
 
 
 ## clipcopy and clippaste function
@@ -225,15 +226,22 @@ do
     p=$(dirname $p)
 done
 
-
 ## peco
-zplugin ice from"gh-r" as"program" mv"peco* -> peco"
+zplugin ice from"gh-r" as"program" mv"peco* -> peco" pick"peco/peco"
 zplugin light peco/peco
 
+# sharkdp/fd, replacement for find
+zplugin ice as"command" from"gh-r" mv"fd* -> fd" pick"fd/fd"
+zplugin light sharkdp/fd
+
+# sharkdp/bat, replacement for cat
+zplugin ice as"command" from"gh-r" mv"bat* -> bat" pick"bat/bat"
+zplugin light sharkdp/bat
 
 ## comand line translation
-zplugin load soimort/translate-shell
-
+# zplugin ice as"program" atclone"rm -f src/auto/config.cache" atpull"%atclone" \
+#     make"TARGET=zsh -v" make"install PREFIX=$ZPFX -v" pick"$ZPFX/bin/trans"
+zplugin light soimort/translate-shell
 
 ## 一旦コメントアウト(あとでいいのを選ぶ)
 # prompt theme (1)

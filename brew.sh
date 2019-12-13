@@ -84,23 +84,18 @@ brew install tree
 # brew install vbindiff
 # brew install zopfli
 brew install colordiff
-brew install direnv
 brew install docker
 brew install htop
 brew install readline
 brew install nkf
 brew install jumanpp
 brew install knp
-brew install peco
 brew install pipenv
 brew install pyenv
 brew install python
 brew install sshfs  # maybe after osxfuse
 brew install wget
 brew install zlib
-brew install zsh-autosuggestions
-brew install zsh-history-substring-search
-brew install zsh-syntax-highlighting
 
 # Cask
 brew tap caskroom/cask
