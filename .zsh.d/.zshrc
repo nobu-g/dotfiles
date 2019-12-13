@@ -18,7 +18,7 @@ autoload -Uz add-zsh-hook
 bindkey -d
 
 # COLOR
-export LS_COLORS=':no=00:fi=00:di=36:ln=35:pi=33:so=32:bd=34;46:cd=34;43:ex=31:'
+# export LS_COLORS=':no=00:fi=00:di=36:ln=35:pi=33:so=32:bd=34;46:cd=34;43:ex=31:'
 # export LSCOLORS=gxfxcxdxbxegexabagacad  # GNU系の LS_COLORS に相当
 export TERM='xterm-256color'
 
@@ -81,7 +81,7 @@ bindkey -e
 
 # COMPLETION
 ## initialize
-autoload -Uz compinit && compinit -C
+# autoload -Uz compinit && compinit -C
 
 ## Fuzzy match
 ### https://gihyo.jp/dev/serial/01/zsh-book/0005 を参考
@@ -152,12 +152,9 @@ setopt list_packed
 unsetopt promptcr
 
 
-
-### Added by Zplugin's installer
 source "$HOME/.zplugin/bin/zplugin.zsh"
 autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
-### End of Zplugin installer's chunk
 
 zplugin ice atclone"dircolors -b LS_COLORS > clrs.zsh" atpull'%atclone' pick"clrs.zsh" nocompile'!'
 zplugin light trapd00r/LS_COLORS
@@ -167,7 +164,7 @@ zplugin light zsh-users/zsh-history-substring-search
 
 
 ## zsh-autosuggestions
-zplugin ice wait"!" atload"_zsh_autosuggest_start"
+zplugin ice wait lucid atload"_zsh_autosuggest_start"
 zplugin light zsh-users/zsh-autosuggestions
 # Widgets that accept the entire suggestion
 ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(
@@ -194,18 +191,12 @@ ZSH_AUTOSUGGEST_EXECUTE_WIDGETS=(
 
 
 ## fast-syntax-highlighting
-zplugin ice wait'!' atinit"zpcompinit; zpcdreplay -q"  # FIXME: 上でも compinit している
+zplugin ice wait lucid atinit"zpcompinit; zpcdreplay -q"
 zplugin light zdharma/fast-syntax-highlighting
-# エイリアスコマンドのハイライト
-# ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
-# 存在するパスのハイライト
-# ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
-# グロブ
-# ZSH_HIGHLIGHT_STYLES[globbing]='none'
 
 
 ## completion
-zplugin ice wait'!' blockf atpull'zplugin creinstall -q .'
+zplugin ice wait lucid blockf atpull'zplugin creinstall -q .'
 zplugin load zsh-users/zsh-completions
 
 
@@ -213,7 +204,7 @@ zplugin load zsh-users/zsh-completions
 zplugin snippet 'OMZ::lib/clipboard.zsh'
 
 # ogham/exa, replacement for ls
-zplugin ice wait'!2' lucid from"gh-r" as"program" mv"exa* -> exa"
+zplugin ice wait lucid from"gh-r" as"program" mv"exa* -> exa"
 zplugin light ogham/exa
 
 # direnv

@@ -57,4 +57,17 @@ alias -s html=google-crhome
 alias -s xhtml=google-chrome
 
 
+globalias() {
+  if [[ $LBUFFER =~ ' [A-Z0-9]+$' ]]; then
+    zle _expand_alias
+    # zle expand-word
+  fi
+  zle self-insert
+}
+
+zle -N globalias
+
+bindkey " " globalias
+
+
 source ${ZSHHOME}/.zaliases
