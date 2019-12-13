@@ -107,7 +107,7 @@ zstyle ':completion:*:warnings' format ' %F{red}-- No matches for: %d --%f'
 zstyle ':completion:*:default' list-prompt '%S%M matches%s'
 
 ### color
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 ## misc.
 ### Show selected candidate
@@ -161,6 +161,11 @@ autoload -Uz _zplugin
 
 
 zplugin ice atclone"dircolors -b LS_COLORS > clrs.zsh" atpull'%atclone' pick"clrs.zsh" nocompile'!'
+zplugin light trapd00r/LS_COLORS
+zplugin ice wait"0c" lucid reset \
+    atclone"dircolors -b <(sed '/^LINK/c\LINK 35' LS_COLORS) > clrs.zsh" \
+    atpull'%atclone' pick"clrs.zsh" nocompile'!' \
+    atload'zstyle ":completion:*" list-colors “${(s.:.)LS_COLORS}”'
 zplugin light trapd00r/LS_COLORS
 
 zplugin ice wait lucid
