@@ -41,6 +41,41 @@ if [[ $(id -u) -eq 0 ]]; then  # root user
 fi
 
 
+# Homebrew/Linuxbrew でプリフィックスのパスが違う。
+# $(brew --prefix) は時間がかかる処理であるため、ここで判定して HOMEBREW_PREFIX に格納する。
+if [[ -d "${HOME}/.linuxbrew" ]]
+then
+  HOMEBREW_PREFIX="${HOME}/.linuxbrew"
+elif [[ -x '/usr/local/bin/brew' ]]
+then
+  HOMEBREW_PREFIX='/usr/local'
+fi
+
+if [[ -n "$HOMEBREW_PREFIX" ]]
+then
+  # Homebrew の PATH の解決をここで行う。
+  export HOMEBREW_PREFIX
+  path=( "${HOMEBREW_PREFIX}/bin" "${path[@]}" )
+
+  export XDG_DATA_DIRS="${HOMEBREW_PREFIX}/share:${XDG_DATA_DIRS}"
+fi
+
+
+# Golang
+if [[ -d "${HOME}/.go" ]]
+then
+  export GOPATH="${HOME}/.go"
+  path=( "${GOPATH}/bin" "${path[@]}" )
+fi
+
+path=(
+  "${HOME}/.local/bin"(N-/)
+  "${HOME}/.cabal/bin"(N-/)
+  "${HOME}/.cargo/bin"(N-/)
+  "${path[@]}"
+)
+
+
 ## lv setting
 export LV="-c -l"
 ## less setting (https://qiita.com/delphinus/items/b04752bb5b64e6cc4ea9)

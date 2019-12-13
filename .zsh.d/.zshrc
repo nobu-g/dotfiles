@@ -155,6 +155,10 @@ unsetopt promptcr
 source "$HOME/.zplugin/bin/zplugin.zsh"
 autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
+ZPLGM[COMPINIT_OPTS]='-C'
+# debug mode
+# typeset -g ZPLG_MOD_DEBUG=1
+
 
 zplugin ice atclone"dircolors -b LS_COLORS > clrs.zsh" atpull'%atclone' pick"clrs.zsh" nocompile'!'
 zplugin light trapd00r/LS_COLORS
