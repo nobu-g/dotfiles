@@ -2,19 +2,20 @@ setopt complete_aliases
 
 alias which="command -v"
 
-alias -g ls='ls -F --color=tty'  # or exa -F
-alias -g ll='ls -lF --color=tty'  # or exa -lF
-alias -g la='ls -laF --color=tty'  # or exa -laF
-alias -g cp='cp -i'
-alias -g mv='mv -i'
-alias -g rm='rm -i'
+alias ls='ls -F --color=tty'  # or exa -F
+alias ll='ls -lF --color=tty'  # or exa -lF
+alias la='ls -laF --color=tty'  # or exa -laF
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -i'
 alias h='history'
 alias g='git'
 alias -g H='| head'
 alias -g T='| tail'
 alias -g W='| wc'
 alias -g G='| grep'
-alias -g wl='wc -l'
+alias -g L='| wc -l'
+alias wl='wc -l'
 alias gomi='rm -f *~'
 alias relogin='exec $SHELL -l'
 alias -g ...='../..'
@@ -44,14 +45,14 @@ alias -s gz=gzcat
 alias -s xz=xzcat
 alias -s tbz=bzcat
 alias -s bz2=bzcat
-alias -s java=less
-alias -s c=less
-alias -s h=less
-alias -s C=less
-alias -s txt=less
-alias -s cpp=less
-alias -s txt=less
-alias -s xml=less
+alias -s java=lv
+alias -s c=lv
+alias -s h=lv
+alias -s C=lv
+alias -s txt=lv
+alias -s cpp=lv
+alias -s txt=lv
+alias -s xml=lv
 alias -s html=google-crhome
 alias -s xhtml=google-chrome
 

@@ -36,7 +36,7 @@ typeset -xT SUDO_PATH sudo_path
 typeset -U sudo_path
 sudo_path=({,/usr/pkg,/usr/local,/usr}/sbin(N-/))
 
-if [ $(id -u) -eq 0 ]; then  # root user
+if [[ $(id -u) -eq 0 ]]; then  # root user
     path=($sudo_path $path)
 fi
 

@@ -159,12 +159,15 @@ autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
 ### End of Zplugin installer's chunk
 
-zplugin ice wait"!0" atinit"zpcompinit; zpcdreplay -q"  # FIXME: 上でも compinit している
+zplugin ice atclone"dircolors -b LS_COLORS > clrs.zsh" atpull'%atclone' pick"clrs.zsh" nocompile'!'
+zplugin light trapd00r/LS_COLORS
 
 zplugin light zsh-users/zsh-history-substring-search
 # zplugin load zdharma/history-search-multi-word
 
-zplugin ice wait atload"_zsh_autosuggest_start"
+
+## zsh-autosuggestions
+zplugin ice wait"!" atload"_zsh_autosuggest_start"
 zplugin light zsh-users/zsh-autosuggestions
 # Widgets that accept the entire suggestion
 ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(
@@ -189,6 +192,9 @@ ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(
 ZSH_AUTOSUGGEST_EXECUTE_WIDGETS=(
 )
 
+
+## fast-syntax-highlighting
+zplugin ice wait'!' atinit"zpcompinit; zpcdreplay -q"  # FIXME: 上でも compinit している
 zplugin light zdharma/fast-syntax-highlighting
 # エイリアスコマンドのハイライト
 # ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
@@ -197,33 +203,47 @@ zplugin light zdharma/fast-syntax-highlighting
 # グロブ
 # ZSH_HIGHLIGHT_STYLES[globbing]='none'
 
-# zplugin light chrissicool/zsh-256color
 
-# completion
-zplugin ice wait'!0' blockf; zplugin load zsh-users/zsh-completions
-# clipcopy and clippaste function
+## completion
+zplugin ice wait'!' blockf atpull'zplugin creinstall -q .'
+zplugin load zsh-users/zsh-completions
+
+
+## clipcopy and clippaste function
 zplugin snippet 'OMZ::lib/clipboard.zsh'
 
 # ogham/exa, replacement for ls
-zplugin ice wait"2" lucid from"gh-r" as"program" mv"exa* -> exa"
+zplugin ice wait'!2' lucid from"gh-r" as"program" mv"exa* -> exa"
 zplugin light ogham/exa
 
 # direnv
-zplugin ice from"gh-r" as"program" mv"direnv* -> direnv"
+zplugin ice from"gh-r" as"program" mv"direnv* -> direnv" \
+    './direnv hook zsh > zhook.zsh' atpull'%atclone' pick"direnv"
 zplugin light direnv/direnv
+p=$PWD
+while  [[ $p != '/' ]]
+do
+    if [[ -f $p/.envrc ]]; then
+        direnv allow
+        break
+    fi
+    p=$(dirname $p)
+done
 
-# peco
+
+## peco
 zplugin ice from"gh-r" as"program" mv"peco* -> peco"
 zplugin light peco/peco
 
+
+## comand line translation
 zplugin load soimort/translate-shell
 
 
 ## 一旦コメントアウト(あとでいいのを選ぶ)
 # prompt theme (1)
 # zplugin ice wait'!' lucid atload'source ~/.p10k.zsh; _p9k_precmd' nocd
-typeset -g POWERLEVEL9K_INSTANT_PROMPT=off # zplugin light romkatv/powerlevel10k
-zplugin unload romkatv/powerlevel10k
+# zplugin light romkatv/powerlevel10k
 # prompt theme (2)
 # zplugin ice pick"async.zsh" src"pure.zsh"
 # zplugin light sindresorhus/pure
@@ -232,12 +252,13 @@ zplugin unload romkatv/powerlevel10k
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# cdの後にlsを実行
+
+## auto ls after changing directory
 chpwd_ls() { ls }
 add-zsh-hook chpwd chpwd_ls
 
 
-# mkdirとcdを同時実行
+# mkdir and cd
 mkcd() {
     if [[ -d $1 ]]; then
         echi "$1 already exists!"
@@ -268,7 +289,7 @@ man() {
 }
 
 
-# peco
+## peco
 peco-select-history() {
   BUFFER=$(\history -n -r 1 | peco --query "$LBUFFER" --prompt "[hist]" --print-query | tail -n 1)
   CURSOR=$#BUFFER
