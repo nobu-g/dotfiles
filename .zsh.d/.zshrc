@@ -219,7 +219,7 @@ zplugin light ogham/exa
 
 # direnv
 zplugin ice from"gh-r" as"program" mv"direnv* -> direnv" \
-    './direnv hook zsh > zhook.zsh' atpull'%atclone' pick"direnv"
+    atload'./direnv hook zsh > zhook.zsh' atpull'%atclone' pick"direnv" src"zhook.zsh"
 zplugin light direnv/direnv
 p=$PWD
 while  [[ $p != '/' ]]
