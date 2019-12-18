@@ -174,7 +174,7 @@ zplugin light zsh-users/zsh-history-substring-search
 
 
 ## zsh-autosuggestions
-zplugin ice wait lucid atload"!_zsh_autosuggest_start"
+zplugin ice wait lucid atload"_zsh_autosuggest_start"
 zplugin light zsh-users/zsh-autosuggestions
 # Widgets that accept the entire suggestion
 ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(
@@ -201,7 +201,7 @@ ZSH_AUTOSUGGEST_EXECUTE_WIDGETS=(
 
 
 ## fast-syntax-highlighting
-zplugin ice wait lucid atinit"ZPLGM[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay -q"
+# zplugin ice wait lucid atinit"ZPLGM[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay -q"
 zplugin light zdharma/fast-syntax-highlighting
 
 
@@ -218,8 +218,8 @@ zplugin ice wait lucid from"gh-r" as"program" mv"exa* -> exa"
 zplugin light ogham/exa
 
 # direnv
-zplugin ice from"gh-r" as"program" mv"direnv* -> direnv" \
-    atload'./direnv hook zsh > zhook.zsh' atpull'%atclone' pick"direnv" src"zhook.zsh"
+zplugin ice as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
+    atpull'%atclone' pick"direnv" src"zhook.zsh"
 zplugin light direnv/direnv
 p=$PWD
 while  [[ $p != '/' ]]
@@ -230,6 +230,12 @@ do
     fi
     p=$(dirname $p)
 done
+
+# pyenv
+# zplugin ice atclone'PYENV_ROOT="$PWD" ./libexec/pyenv init - > zpyenv.zsh' \
+#     atinit'export PYENV_ROOT="$PWD"' atpull"%atclone" \
+#     as'command' pick'bin/pyenv' src"zpyenv.zsh" nocompile'!'
+# zplugin light pyenv/pyenv
 
 ## peco
 zplugin ice from"gh-r" as"program" mv"peco* -> peco" pick"peco/peco"
@@ -354,3 +360,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # LOAD SETTING FILES
 source ${ZSHHOME}/.zshrc
+
+if (which zprof > /dev/null 2>&1) ;then
+  zprof
+fi

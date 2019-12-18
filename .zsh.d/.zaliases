@@ -27,6 +27,7 @@ alias e='emacsclient -nw -a ""'
 alias emacs='emacsclient -nw -a ""'
 alias ekill='emacsclient -e "(kill-emacs)"'
 alias dpython='python -m ipdb -c continue'
+alias zshtime='for i in $(seq 1 10); do time zsh -i -c exit; done'
 
 if [[ -x `which colordiff` ]]; then
   alias diff='colordiff -u'

@@ -51,3 +51,9 @@ google() {
         open --new -a 'Google Chrome' --args "${url}"
     fi
 }
+
+
+dotedit() {
+    cd ~/dotfiles
+    code .
+}

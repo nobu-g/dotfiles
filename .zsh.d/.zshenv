@@ -1,8 +1,10 @@
+# profiling
+# zmodload zsh/zprof && zprof
+
 # LANG
 export LANG=ja_JP.UTF-8
 export LC_CTYPE=${LANG}
 export LC_ALL=${LANG}
-
 
 # PATH(GENERAL)
 ## -U: 重複したパスを登録しない
