@@ -21,3 +21,7 @@ PATH=/share/usr-$(uname -m)/bin:$PATH
 if [[ -f /mnt/orange/ubrew/brew.zsh ]] then
     source /mnt/orange/ubrew/brew.zsh
 fi
+
+# pyenv
+export PYENV_ROOT=$HOME/.pyenv
+export PATH="$PYENV_ROOT/bin:$PATH"

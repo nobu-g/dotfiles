@@ -20,13 +20,6 @@ eval "$(pipenv --completion)"  # compinitが呼ばれていて起動が遅くな
 export PIPENV_VENV_IN_PROJECT=true  # pipenv で仮想環境をプロジェクト直下に作るように
 
 
-# pyenv
-export PYENV_ROOT=/usr/local/var/pyenv
-if [[ -d "${PYENV_ROOT}" ]]; then
-    eval "$(pyenv init -)"  # 自動補完機能
-fi
-
-
 # direnv (after setting PROMPT)
 # eval "$(direnv hook zsh)"
 show_virtual_env() {

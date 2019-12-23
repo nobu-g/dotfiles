@@ -32,3 +32,7 @@ manpath=(
 PATH=/usr/local/texlive/2018/bin/x86_64-darwin:$PATH
 ## nodebrew
 PATH=$HOME/.nodebrew/current/bin:$PATH
+
+# pyenv
+export PYENV_ROOT=/usr/local/var/pyenv
+export PATH="$PYENV_ROOT/bin:$PATH"

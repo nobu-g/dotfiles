@@ -358,6 +358,11 @@ bindkey '^_' peco-find-file  # works by ^/
 # shell integration 設定
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+# pyenv
+if (type pyenv &> /dev/null); then
+    eval "$(pyenv init -)"  # 自動補完機能
+fi
+
 # LOAD SETTING FILES
 source ${ZSHHOME}/.zshrc
 
