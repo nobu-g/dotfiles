@@ -8,7 +8,7 @@ mkdir -p ~/.config/git
 mkdir -p ~/.config/peco
 
 # install Homebrew/Linuxbrew if not installed
-if [[ type brew &> /dev/null ]]; then
+if !(type brew &> /dev/null); then
     case "${OSTYPE}" in
     linux*|cygwin*)
         ${DOTPATH}linuxbrew.sh
