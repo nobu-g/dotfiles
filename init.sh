@@ -11,10 +11,10 @@ mkdir -p ~/.config/peco
 if !(type brew &> /dev/null); then
     case "${OSTYPE}" in
     linux*|cygwin*)
-        ${DOTPATH}linuxbrew.sh
+        ${DOTPATH}/linuxbrew.sh
         ;;
     freebsd*|darwin*)
-        ${DOTPATH}homebrew.sh
+        ${DOTPATH}/homebrew.sh
         ;;
     esac
 fi
