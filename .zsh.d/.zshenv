@@ -55,10 +55,11 @@ fi
 if [[ -n "$HOMEBREW_PREFIX" ]]; then
     # Homebrew の PATH の解決をここで行う。
     export HOMEBREW_PREFIX
-    path=(
-        ${HOMEBREW_PREFIX}/bin(N-/)
-        ${path[@]}
-    )
+    export HOMEBREW_CELLAR="${HOMEBREW_PREFIX}/Cellar"
+    export HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}/Homebrew"
+    export PATH="${HOMEBREW_PREFIX}/bin:${HOMEBREW_PREFIX}/sbin${PATH+:$PATH}"
+    export MANPATH="${HOMEBREW_PREFIX}/share/man${MANPATH+:$MANPATH}:"
+    export INFOPATH="${HOMEBREW_PREFIX}/share/info${INFOPATH+:$INFOPATH}"
     export XDG_DATA_DIRS="${HOMEBREW_PREFIX}/share:${XDG_DATA_DIRS}"
 fi
 
@@ -66,7 +67,7 @@ fi
 # Golang
 if [[ -d "${HOME}/.go" ]]; then
     export GOPATH="${HOME}/.go"
-    path=( 
+    path=(
         ${GOPATH}/bin(N-/)
         ${path[@]}
     )
