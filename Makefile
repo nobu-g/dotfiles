@@ -18,7 +18,7 @@ init: ## Setup environment settings
 update: ## Fetch changes for this repo
 	git pull origin master
 
-install: update deploy init ## Run make update, deploy, init
+install: update init deploy ## Run make update, init, deploy
 	@exec $$SHELL -l
 
 clean: ## Remove the dot files and this repo
