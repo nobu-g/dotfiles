@@ -7,4 +7,19 @@ mkdir -p ~/.config
 mkdir -p ~/.config/git
 mkdir -p ~/.config/peco
 
-${DOTPATH}/brew.sh
+# install Homebrew/Linuxbrew if not installed
+if [[ type brew &> /dev/null ]]; then
+    case "${OSTYPE}" in
+    linux*|cygwin*)
+        ${DOTPATH}linuxbrew.sh
+        ;;
+    freebsd*|darwin*)
+        ${DOTPATH}homebrew.sh
+        ;;
+    esac
+fi
+
+# install zplugin
+if ! [[ -d ${HOME}/.zplugin ]]; then
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)"
+fi

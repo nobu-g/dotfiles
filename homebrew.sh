@@ -94,8 +94,8 @@ brew install pipenv
 brew install pyenv
 brew install python
 brew install sshfs  # maybe after osxfuse
-brew install wget
 brew install zlib
+brew install st  # statistics
 
 # Cask
 brew tap caskroom/cask
