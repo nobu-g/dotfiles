@@ -1,4 +1,4 @@
-# profiling
+# profiling (remove comment out below to profile)
 # zmodload zsh/zprof && zprof
 
 # LANG
@@ -94,6 +94,14 @@ export PAGER="less"
 
 # EDITOR
 export EDITOR=emacsclient  # use emacs
+
+
+# PIPENV
+if [[ -d /mnt/berry_f/home ]]; then
+    export WORKON_HOME=/mnt/berry_f/home/ueda/.virtualenvs  # use cached directory for virtualenv
+else
+    export PIPENV_VENV_IN_PROJECT=true  # pipenv で仮想環境をプロジェクト直下に作るように
+fi
 
 
 case "${OSTYPE}" in

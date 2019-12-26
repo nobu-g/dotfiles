@@ -17,7 +17,6 @@ RPROMPT='${vcs_info_msg_0_}'
 
 # pipenv
 eval "$(pipenv --completion)"  # compinitが呼ばれていて起動が遅くなる原因になっているが、次バージョンで修正されそう
-export PIPENV_VENV_IN_PROJECT=true  # pipenv で仮想環境をプロジェクト直下に作るように
 
 
 # direnv (after setting PROMPT)
