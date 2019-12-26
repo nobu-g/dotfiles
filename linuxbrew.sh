@@ -49,6 +49,7 @@ brew install pyenv
 brew install python
 brew install zlib
 brew install st  # statistics
+brew install go
 
 
 # Remove outdated versions from the cellar.

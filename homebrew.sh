@@ -96,6 +96,7 @@ brew install python
 brew install sshfs  # maybe after osxfuse
 brew install zlib
 brew install st  # statistics
+brew install go
 
 # Cask
 brew tap caskroom/cask
