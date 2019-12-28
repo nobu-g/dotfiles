@@ -313,7 +313,7 @@ bindkey '^r' peco-select-history
 
 ## search a destination from cdr list and cd the destination
 peco-cdr() {
-  local dest=$(cdr -l | sed -Ee 's/^[0-9]+  //' | peco --query "$LBUFFER" --prompt "[dest]")
+  local dest=$(cdr -l | sed -Ee 's/^[0-9]+\s+//' | peco --query "$LBUFFER" --prompt "[dest]")
   if [[ -n "$dest" ]]; then
     BUFFER="cd $dest"
     zle accept-line
