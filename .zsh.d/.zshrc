@@ -312,18 +312,11 @@ peco-select-history() {
 zle -N peco-select-history
 bindkey '^r' peco-select-history
 
-## search a destination from cdr list
-peco-get-destination-from-cdr() {
-  cdr -l | \
-  sed -e 's/^[[:digit:]]*[[:blank:]]*//' | \
-  peco --query "$LBUFFER" --prompt "[dest]"
-}
-
 ## search a destination from cdr list and cd the destination
 peco-cdr() {
-  local destination="$(peco-get-destination-from-cdr)"
-  if [[ -n "$destination" ]]; then
-    BUFFER="cd $destination"
+  local dest=$(cdr -l | sed -Ee 's/^[0-9]+  //' | peco --query "$LBUFFER" --prompt "[dest]")
+  if [[ -n "$dest" ]]; then
+    BUFFER="cd $dest"
     zle accept-line
   else
     zle reset-prompt
@@ -335,7 +328,7 @@ bindkey '^x' peco-cdr
 # cdr設定(pecoの'^x'に必要)
 autoload -Uz chpwd_recent_dirs cdr
 add-zsh-hook chpwd chpwd_recent_dirs
-zstyle ':chpwd:*' recent-dirs-max 10000
+zstyle ':chpwd:*' recent-dirs-max 2000
 zstyle ':chpwd:*' recent-dirs-default yes
 zstyle ':completion:*' recent-dirs-insert both
 
