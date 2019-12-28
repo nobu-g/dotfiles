@@ -232,8 +232,7 @@ do
 done
 
 # pyenv
-# zplugin ice atclone'PYENV_ROOT="$PWD" ./libexec/pyenv init - > zpyenv.zsh' \
-#     atinit'export PYENV_ROOT="$PWD"' atpull"%atclone" \
+# zplugin ice wait'1' lucid atclone'./libexec/pyenv init - > zpyenv.zsh' atpull"%atclone" \
 #     as'command' pick'bin/pyenv' src"zpyenv.zsh" nocompile'!'
 # zplugin light pyenv/pyenv
 
@@ -352,9 +351,9 @@ bindkey '^_' peco-find-file  # works by ^/
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # pyenv
-if (type pyenv &> /dev/null); then
-    eval "$(pyenv init -)"  # 自動補完機能
-fi
+# if (type pyenv &> /dev/null); then
+#     eval "$(pyenv init -)"  # 自動補完機能
+# fi
 
 # LOAD SETTING FILES
 source ${ZSHHOME}/.zshrc
