@@ -152,12 +152,12 @@ setopt list_packed
 unsetopt promptcr
 
 
+# debug mode
+# typeset -g ZPLG_MOD_DEBUG=1
+
 source "$HOME/.zplugin/bin/zplugin.zsh"
 autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
-
-# debug mode
-# typeset -g ZPLG_MOD_DEBUG=1
 
 
 zplugin ice atclone"dircolors -b LS_COLORS > clrs.zsh" atpull'%atclone' pick"clrs.zsh" nocompile'!'
@@ -168,7 +168,7 @@ zplugin ice wait"0c" lucid reset \
     atload'zstyle ":completion:*" list-colors “${(s.:.)LS_COLORS}”'
 zplugin light trapd00r/LS_COLORS
 
-zplugin ice wait lucid
+zplugin ice wait"1" lucid
 zplugin light zsh-users/zsh-history-substring-search
 # zplugin load zdharma/history-search-multi-word
 
@@ -211,6 +211,7 @@ zplugin light zsh-users/zsh-completions
 
 
 ## clipcopy and clippaste function
+zplugin ice wait"2" lucid
 zplugin snippet 'OMZ::lib/clipboard.zsh'
 
 # ogham/exa, replacement for ls
@@ -237,20 +238,21 @@ done
 # zplugin light pyenv/pyenv
 
 ## peco
-zplugin ice from"gh-r" as"program" mv"peco* -> peco" pick"peco/peco"
+zplugin ice wait lucid from"gh-r" as"program" mv"peco* -> peco" pick"peco/peco"
 zplugin light peco/peco
 
 # sharkdp/fd, replacement for find
-zplugin ice as"command" from"gh-r" mv"fd* -> fd" pick"fd/fd"
+zplugin ice wait"1" lucid as"command" from"gh-r" mv"fd* -> fd" pick"fd/fd"
 zplugin light sharkdp/fd
 
 # sharkdp/bat, replacement for cat
-zplugin ice as"command" from"gh-r" mv"bat* -> bat" pick"bat/bat"
+zplugin ice wait"1" lucid as"command" from"gh-r" mv"bat* -> bat" pick"bat/bat"
 zplugin light sharkdp/bat
 
 ## comand line translation
 # zplugin ice as"program" atclone"rm -f src/auto/config.cache" atpull"%atclone" \
 #     make"TARGET=zsh -v" make"install PREFIX=$ZPFX -v" pick"$ZPFX/bin/trans"
+zplugin ice wait"1" lucid
 zplugin light soimort/translate-shell
 
 ## 一旦コメントアウト(あとでいいのを選ぶ)
@@ -283,7 +285,7 @@ mkcd() {
 
 
 # grep を除いて任意のプロセスを表示
-pss () {
+pss() {
     ps aux | grep -E "PID|$1" | grep -v grep
 }
 

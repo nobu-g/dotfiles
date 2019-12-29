@@ -8,6 +8,7 @@ export LC_CTYPE=${LANG}
 export LC_ALL=${LANG}
 
 # PATH(GENERAL)
+## zsh の機能で、path (array) は PATH と自動的に連動する
 ## -U: 重複したパスを登録しない
 typeset -U path
 path=(
@@ -21,7 +22,7 @@ path=(
     /usr/sbin(N-/)
     /bin(N-/)
     /sbin(N-/)
-    $path[@]
+    $path
 )
 
 # PATH FOR MAN(MANUAL)
@@ -29,6 +30,7 @@ typeset -U manpath
 manpath=(
     /usr/local/share/man(N-/)
     /usr/share/man(N-/)
+    $manpath
 )
 
 
@@ -65,12 +67,9 @@ fi
 
 
 # Golang
-if [[ -d "${HOME}/.go" ]]; then
-    export GOPATH="${HOME}/.go"
-    path=(
-        ${GOPATH}/bin(N-/)
-        ${path[@]}
-    )
+if [[ -d ${HOME}/.go ]]; then
+    export GOPATH=${HOME}/.go
+    path=(${GOPATH}/bin(N-/) ${path})
 fi
 
 

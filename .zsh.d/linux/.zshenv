@@ -1,8 +1,5 @@
 # GXP3
-if [[ -d $HOME/gxp3 ]]; then
-   PATH=$HOME/gxp3:$PATH
-fi
-
+path=($HOME/gxp3(N-/) $path)
 
 # baracuda, moss, saffron 設定
 if [[ $(uname -n) =~ "^baracuda" ]] || [[ $(uname -n) =~ "^moss" ]] || [[ $(uname -n) = "saffron" ]]; then
@@ -14,14 +11,18 @@ if [[ $(uname -n) =~ "^baracuda" ]] || [[ $(uname -n) =~ "^moss" ]] || [[ $(unam
 fi
 
 # Boost
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/usr/lib/x86_64-linux-gnu
+typeset -xT LD_LIBRARY_PATH ld_library_path  # LD_LIBRARY_PATH を unset すると色々なプログラムの実行が少し速くなる
+typeset -U ld_library_path
+ld_library_path=(
+    $HOME/usr/lib/x86_64-linux-gnu(N-/)
+    $ld_library_path
+)
 
-
-PATH=/share/usr-$(uname -m)/bin:$PATH
+path=(/share/usr-$(uname -m)/bin(N-/) $path)
 if [[ -f /mnt/orange/ubrew/brew.zsh ]] then
     source /mnt/orange/ubrew/brew.zsh
 fi
 
 # pyenv
 export PYENV_ROOT=$HOME/.pyenv
-export PATH="$PYENV_ROOT/bin:$PATH"
+path=($PYENV_ROOT/bin(N-/) $path)
