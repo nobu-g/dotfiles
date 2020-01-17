@@ -25,7 +25,7 @@ brew install moreutils
 brew install findutils
 # Install GNU `diff`, `cmp`, ...
 brew install diffutils
-# Install GNU 
+# Install GNU
 brew install ed
 # Install GNU `ld`, `ar`, ...
 brew install binutils
@@ -38,9 +38,9 @@ brew install zsh
 
 # Switch to using brew-installed zsh as default shell
 if ! fgrep -q "${BREW_PREFIX}/bin/zsh" /etc/shells; then
-  echo "${BREW_PREFIX}/bin/zsh" | sudo tee -a /etc/shells;
-  chsh -s "${BREW_PREFIX}/bin/zsh";
-fi;
+  echo "${BREW_PREFIX}/bin/zsh" | sudo tee -a /etc/shells
+  chsh -s "${BREW_PREFIX}/bin/zsh"
+fi
 
 # Install `wget` with IRI support.
 brew install wget --with-iri
@@ -93,9 +93,9 @@ brew install knp
 brew install pipenv
 brew install pyenv
 brew install python
-brew install sshfs  # maybe after osxfuse
+brew install sshfs # maybe after osxfuse
 brew install zlib
-brew install st  # statistics
+brew install st # statistics
 brew install go
 
 # Cask

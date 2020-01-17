@@ -1,8 +1,8 @@
 setopt complete_aliases
 
-alias ls='ls -F --color=tty'  # or exa -F
+alias ls='ls -F --color=tty'   # or exa -F
 alias ll='ls -lF --color=tty'  # or exa -lF
-alias la='ls -laF --color=tty'  # or exa -laF
+alias la='ls -laF --color=tty' # or exa -laF
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
@@ -27,7 +27,7 @@ alias ekill='emacsclient -e "(kill-emacs)"'
 alias dpython='python -m ipdb -c continue'
 alias zshtime='for i in $(seq 1 10); do time zsh -i -c exit; done'
 
-if (type colordiff &> /dev/null); then
+if (type colordiff &>/dev/null); then
   alias diff='colordiff -u'
 else
   alias diff='diff -u'
@@ -35,7 +35,6 @@ fi
 
 # alias du="du -h"
 # alias df="df -h"
-
 
 # AUTO OPEN
 alias -s zip=zipinfo
@@ -55,7 +54,6 @@ alias -s xml=lv
 alias -s html=google-crhome
 alias -s xhtml=google-chrome
 
-
 globalias() {
   if [[ $LBUFFER =~ ' [A-Z0-9]+$' ]]; then
     zle _expand_alias
@@ -65,6 +63,5 @@ globalias() {
 }
 zle -N globalias
 bindkey " " globalias
-
 
 source ${ZSHHOME}/.zaliases

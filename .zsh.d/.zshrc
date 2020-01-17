@@ -8,7 +8,7 @@
 
 # ALIAS
 if [[ -f $HOME/dotfiles/.zsh.d/.zaliases ]]; then
-    source $HOME/dotfiles/.zsh.d/.zaliases
+  source $HOME/dotfiles/.zsh.d/.zaliases
 fi
 
 # HOOK
@@ -62,8 +62,8 @@ setopt hist_reduce_blanks   # ヒストリに保存するときに余分なス�
 setopt hist_expand          # 補完時にヒストリを自動的に展開
 ## Do not add in root
 if [[ $UID == 0 ]]; then
-    unset HISTFILE
-    export SAVEHIST=0
+  unset HISTFILE
+  export SAVEHIST=0
 fi
 
 
@@ -273,32 +273,32 @@ add-zsh-hook chpwd chpwd_ls
 
 # mkdir and cd
 mkcd() {
-    if [[ -d $1 ]]; then
-        echi "$1 already exists!"
-        cd $1
-    else
-        mkdir -p $1 && cd $1
-    fi
+  if [[ -d $1 ]]; then
+    echo "$1 already exists!"
+    cd $1
+  else
+    mkdir -p $1 && cd $1
+  fi
 }
 
 
 # grep を除いて任意のプロセスを表示
 pss() {
-    ps aux | grep -E "PID|$1" | grep -v grep
+  ps aux | grep -E "PID|$1" | grep -v grep
 }
 
 
 # LESS man page colors (makes Man pages more readable).
 man() {
-    env \
-        LESS_TERMCAP_mb=$'\E[01;31m' \
-        LESS_TERMCAP_md=$'\E[01;31m' \
-        LESS_TERMCAP_me=$'\E[0m' \
-        LESS_TERMCAP_se=$'\E[0m' \
-        LESS_TERMCAP_so=$'\E[00;44;37m' \
-        LESS_TERMCAP_ue=$'\E[0m' \
-        LESS_TERMCAP_us=$'\E[01;32m' \
-        man "$@"
+  env \
+    LESS_TERMCAP_mb=$'\E[01;31m' \
+    LESS_TERMCAP_md=$'\E[01;31m' \
+    LESS_TERMCAP_me=$'\E[0m' \
+    LESS_TERMCAP_se=$'\E[0m' \
+    LESS_TERMCAP_so=$'\E[00;44;37m' \
+    LESS_TERMCAP_ue=$'\E[0m' \
+    LESS_TERMCAP_us=$'\E[01;32m' \
+    man "$@"
 }
 
 
@@ -333,16 +333,16 @@ zstyle ':completion:*' recent-dirs-insert both
 
 # peco find file (https://k0kubun.hatenablog.com/entry/2014/07/06/033336)
 peco-find-file() {
-    if git rev-parse 2> /dev/null; then
-        source_files=$(git ls-files)
-    else
-        source_files=$(find . -type f)
-    fi
-    selected_files=$(echo $source_files | peco --prompt "[find file]" | tr '\n', ' ')
+  if git rev-parse 2> /dev/null; then
+    source_files=$(git ls-files)
+  else
+    source_files=$(find . -type f)
+  fi
+  selected_files=$(echo $source_files | peco --prompt "[find file]" | tr '\n', ' ')
 
-    BUFFER=${BUFFER}${selected_files}
-    CURSOR=$#BUFFER
-    zle redisplay
+  BUFFER=${BUFFER}${selected_files}
+  CURSOR=$#BUFFER
+  zle redisplay
 }
 zle -N peco-find-file
 bindkey '^_' peco-find-file  # works by ^/

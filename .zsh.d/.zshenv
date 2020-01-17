@@ -12,25 +12,25 @@ export LC_ALL=${LANG}
 ## -U: 重複したパスを登録しない
 typeset -U path
 path=(
-    $HOME/.local/bin(N-/)
-    $HOME/local/bin(N-/)
-    $HOME/usr/bin(N-/)
-    $HOME/scripts(N-/)
-    /usr/local/bin(N-/)
-    /usr/local/sbin(N-/)
-    /usr/bin(N-/)
-    /usr/sbin(N-/)
-    /bin(N-/)
-    /sbin(N-/)
-    $path
+  $HOME/.local/bin(N-/)
+  $HOME/local/bin(N-/)
+  $HOME/usr/bin(N-/)
+  $HOME/scripts(N-/)
+  /usr/local/bin(N-/)
+  /usr/local/sbin(N-/)
+  /usr/bin(N-/)
+  /usr/sbin(N-/)
+  /bin(N-/)
+  /sbin(N-/)
+  # $path
 )
 
 # PATH FOR MAN(MANUAL)
 typeset -U manpath
 manpath=(
-    /usr/local/share/man(N-/)
-    /usr/share/man(N-/)
-    $manpath
+  /usr/local/share/man(N-/)
+  /usr/share/man(N-/)
+  $manpath
 )
 
 
@@ -42,34 +42,34 @@ typeset -U sudo_path
 sudo_path=({,/usr/pkg,/usr/local,/usr}/sbin(N-/))
 
 if [[ $(id -u) -eq 0 ]]; then  # root user
-    path=($sudo_path $path)
+  path=($sudo_path $path)
 fi
 
 
 # Homebrew/Linuxbrew で prefix のパスが違う。
 # $(brew --prefix) は時間がかかる処理であるため、ここで判定して HOMEBREW_PREFIX に格納する。
 if [[ -d ${HOME}/.linuxbrew ]]; then
-    HOMEBREW_PREFIX="${HOME}/.linuxbrew"
+  HOMEBREW_PREFIX="${HOME}/.linuxbrew"
 elif [[ -x /usr/local/bin/brew ]]; then
-    HOMEBREW_PREFIX="/usr/local"
+  HOMEBREW_PREFIX="/usr/local"
 fi
 
 if [[ -n "$HOMEBREW_PREFIX" ]]; then
-    # Homebrew の PATH の解決をここで行う。
-    export HOMEBREW_PREFIX
-    export HOMEBREW_CELLAR="${HOMEBREW_PREFIX}/Cellar"
-    export HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}/Homebrew"
-    export PATH="${HOMEBREW_PREFIX}/bin:${HOMEBREW_PREFIX}/sbin${PATH+:$PATH}"
-    export MANPATH="${HOMEBREW_PREFIX}/share/man${MANPATH+:$MANPATH}:"
-    export INFOPATH="${HOMEBREW_PREFIX}/share/info${INFOPATH+:$INFOPATH}"
-    export XDG_DATA_DIRS="${HOMEBREW_PREFIX}/share:${XDG_DATA_DIRS}"
+  # Homebrew の PATH の解決をここで行う。
+  export HOMEBREW_PREFIX
+  export HOMEBREW_CELLAR="${HOMEBREW_PREFIX}/Cellar"
+  export HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}/Homebrew"
+  export PATH="${HOMEBREW_PREFIX}/bin:${HOMEBREW_PREFIX}/sbin${PATH+:$PATH}"
+  export MANPATH="${HOMEBREW_PREFIX}/share/man${MANPATH+:$MANPATH}:"
+  export INFOPATH="${HOMEBREW_PREFIX}/share/info${INFOPATH+:$INFOPATH}"
+  export XDG_DATA_DIRS="${HOMEBREW_PREFIX}/share:${XDG_DATA_DIRS}"
 fi
 
 
 # Golang
 if [[ -d ${HOME}/.go ]]; then
-    export GOPATH=${HOME}/.go
-    path=(${GOPATH}/bin(N-/) ${path})
+  export GOPATH=${HOME}/.go
+  path=(${GOPATH}/bin(N-/) ${path})
 fi
 
 
@@ -80,11 +80,11 @@ export LESS="-i -M -R -x4"
 # LESS="$LESS -X -F"
 export LESSCHARSET='utf-8'
 if [[ -e /usr/local/bin/src-hilite-lesspipe.sh ]]; then
-    export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
+  export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
 fi
 
 if [[ -e $HOME/usr/bin/src-hilite-lesspipe.sh ]]; then
-    export LESSOPEN="| $HOME/usr/bin/src-hilite-lesspipe.sh %s"
+  export LESSOPEN="| $HOME/usr/bin/src-hilite-lesspipe.sh %s"
 fi
 
 # PAGER
@@ -97,19 +97,19 @@ export EDITOR=emacsclient  # use emacs
 
 # PIPENV
 if [[ -d /mnt/berry_f/home ]]; then
-    export WORKON_HOME=/mnt/berry_f/home/ueda/.virtualenvs  # use cached directory for virtualenv
+  export WORKON_HOME=/mnt/berry_f/home/ueda/.virtualenvs  # use cached directory for virtualenv
 else
-    export PIPENV_VENV_IN_PROJECT=true  # pipenv で仮想環境をプロジェクト直下に作るように
+  export PIPENV_VENV_IN_PROJECT=true  # pipenv で仮想環境をプロジェクト直下に作るように
 fi
 
 
 case "${OSTYPE}" in
 linux*|cygwin*)
-    ZSHHOME="${HOME}/dotfiles/.zsh.d/linux"
-    ;;
+  ZSHHOME="${HOME}/dotfiles/.zsh.d/linux"
+  ;;
 freebsd*|darwin*)
-    ZSHHOME="${HOME}/dotfiles/.zsh.d/osx"
-    ;;
+  ZSHHOME="${HOME}/dotfiles/.zsh.d/osx"
+  ;;
 esac
 
 source ${ZSHHOME}/.zshenv
