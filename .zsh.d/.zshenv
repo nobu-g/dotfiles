@@ -102,6 +102,9 @@ else
   export PIPENV_VENV_IN_PROJECT=true  # pipenv で仮想環境をプロジェクト直下に作るように
 fi
 
+# PYTEST
+export PYTEST_ADDOPTS='-v -s --pdb --ff --doctest-modules'
+
 
 case "${OSTYPE}" in
 linux*|cygwin*)
