@@ -160,16 +160,14 @@ autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
 
 
-zplugin ice atclone"dircolors -b LS_COLORS > clrs.zsh" atpull'%atclone' pick"clrs.zsh" nocompile'!'
-zplugin light trapd00r/LS_COLORS
-zplugin ice wait"0c" lucid reset \
-    atclone"dircolors -b <(sed '/^LINK/c\LINK 35' LS_COLORS) > clrs.zsh" \
-    atpull'%atclone' pick"clrs.zsh" nocompile'!' \
-    atload'zstyle ":completion:*" list-colors “${(s.:.)LS_COLORS}”'
-zplugin light trapd00r/LS_COLORS
+# other themes: dircolors.ansi-dark, dircolors.ansi-light, dircolors.256dark
+zplugin ice atclone'setupsolarized dircolors.ansi-universal' atpull'%atclone' \
+            atload'zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"'
+zplugin light 'joel-porquet/zsh-dircolors-solarized'
 
 zplugin ice wait"1" lucid
 zplugin light zsh-users/zsh-history-substring-search
+
 # zplugin load zdharma/history-search-multi-word
 
 
