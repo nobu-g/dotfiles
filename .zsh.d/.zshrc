@@ -161,7 +161,7 @@ autoload -Uz _zplugin
 
 
 # other themes: dircolors.ansi-dark, dircolors.ansi-light, dircolors.256dark
-zplugin ice atclone'setupsolarized dircolors.ansi-universal' atpull'%atclone' \
+zplugin ice atload'[[ -e $HOME/.zsh-dircolors.config ]] || setupsolarized dircolors.ansi-universal' \
             atload'zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"'
 zplugin light 'joel-porquet/zsh-dircolors-solarized'
 
