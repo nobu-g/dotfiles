@@ -4,7 +4,7 @@
 unsetopt GLOBAL_RCS
 ## copied from /etc/zprofile
 ## system-wide environment settings for zsh
-if [ -x /usr/libexec/path_helper ]; then
+if [[ -x /usr/libexec/path_helper ]]; then
   eval `/usr/libexec/path_helper -s`
 fi
 
@@ -28,10 +28,12 @@ manpath=(
   ${manpath}
 )
 
-## texlive
-PATH=/usr/local/texlive/2018/bin/x86_64-darwin:$PATH
-## nodebrew
-PATH=$HOME/.nodebrew/current/bin:$PATH
+## other tool paths
+path=(
+  ${HOMEBREW_PREFIX}/texlive/2018/bin/x86_64-darwin(N-/)  # texlive
+  ${HOME}/.nodebrew/current/bin(N-/)  # nodebrew
+  /opt/X11/bin(N-/)  # X11
+)
 
 # pyenv
 export PYENV_ROOT=/usr/local/var/pyenv
