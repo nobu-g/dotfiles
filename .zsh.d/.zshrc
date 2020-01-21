@@ -106,9 +106,6 @@ zstyle ':completion:*:messages' format ' %F{blue}-- %d --%f'
 zstyle ':completion:*:warnings' format ' %F{red}-- No matches for: %d --%f'
 zstyle ':completion:*:default' list-prompt '%S%M matches%s'
 
-### color
-# zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-
 ## misc.
 ### Show selected candidate
 zstyle ':completion:*:default' menu select=2
@@ -154,26 +151,29 @@ unsetopt promptcr
 
 # debug mode
 # typeset -g ZPLG_MOD_DEBUG=1
+# typeset -g ZINIT_MOD_DEBUG=1
 
-source "$HOME/.zplugin/bin/zplugin.zsh"
-autoload -Uz _zplugin
-(( ${+_comps} )) && _comps[zplugin]=_zplugin
+# place above compinit
+source "$HOME/.zinit/bin/zinit.zsh"
+# if you sourced below compinit following two lines are needed
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
 
 
 # other themes: dircolors.ansi-dark, dircolors.ansi-light, dircolors.256dark
-zplugin ice atload'[[ -e $HOME/.zsh-dircolors.config ]] || setupsolarized dircolors.ansi-universal' \
+zinit ice atload'[[ -e $HOME/.zsh-dircolors.config ]] || setupsolarized dircolors.ansi-universal' \
             atload'zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"'
-zplugin light 'joel-porquet/zsh-dircolors-solarized'
+zinit light 'joel-porquet/zsh-dircolors-solarized'
 
-zplugin ice wait"1" lucid
-zplugin light zsh-users/zsh-history-substring-search
+zinit ice wait"1" lucid
+zinit light zsh-users/zsh-history-substring-search
 
-# zplugin load zdharma/history-search-multi-word
+# zinit load zdharma/history-search-multi-word
 
 
 ## zsh-autosuggestions
-zplugin ice wait lucid atload"_zsh_autosuggest_start"
-zplugin light zsh-users/zsh-autosuggestions
+zinit ice wait lucid atload"_zsh_autosuggest_start"
+zinit light zsh-users/zsh-autosuggestions
 # Widgets that accept the entire suggestion
 ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(
     end-of-line
@@ -199,27 +199,27 @@ ZSH_AUTOSUGGEST_EXECUTE_WIDGETS=(
 
 
 ## fast-syntax-highlighting
-# zplugin ice wait lucid atinit"ZPLGM[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay -q"
-zplugin light zdharma/fast-syntax-highlighting
+# zinit ice wait lucid atinit"ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay -q"
+zinit light zdharma/fast-syntax-highlighting
 
 
 ## completion
-zplugin ice wait lucid blockf atpull'zplugin creinstall -q .'
-zplugin light zsh-users/zsh-completions
+zinit ice wait lucid blockf atpull'zinit creinstall -q .'
+zinit light zsh-users/zsh-completions
 
 
 ## clipcopy and clippaste function
-zplugin ice wait"2" lucid
-zplugin snippet 'OMZ::lib/clipboard.zsh'
+zinit ice wait"2" lucid
+zinit snippet 'OMZ::lib/clipboard.zsh'
 
 # ogham/exa, replacement for ls
-zplugin ice wait lucid from"gh-r" as"program" mv"exa* -> exa"
-zplugin light ogham/exa
+zinit ice wait lucid from"gh-r" as"program" mv"exa* -> exa"
+zinit light ogham/exa
 
 # direnv
-zplugin ice as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
+zinit ice as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
     atpull'%atclone' pick"direnv" src"zhook.zsh"
-zplugin light direnv/direnv
+zinit light direnv/direnv
 p=$PWD
 while  [[ $p != '/' ]]
 do
@@ -231,36 +231,36 @@ do
 done
 
 # pyenv
-# zplugin ice wait'1' lucid atclone'./libexec/pyenv init - > zpyenv.zsh' atpull"%atclone" \
+# zinit ice wait'1' lucid atclone'./libexec/pyenv init - > zpyenv.zsh' atpull"%atclone" \
 #     as'command' pick'bin/pyenv' src"zpyenv.zsh" nocompile'!'
-# zplugin light pyenv/pyenv
+# zinit light pyenv/pyenv
 
 ## peco
-zplugin ice wait lucid from"gh-r" as"program" mv"peco* -> peco" pick"peco/peco"
-zplugin light peco/peco
+zinit ice wait lucid from"gh-r" as"program" mv"peco* -> peco" pick"peco/peco"
+zinit light peco/peco
 
 # sharkdp/fd, replacement for find
-zplugin ice wait"1" lucid as"command" from"gh-r" mv"fd* -> fd" pick"fd/fd"
-zplugin light sharkdp/fd
+zinit ice wait"1" lucid as"command" from"gh-r" mv"fd* -> fd" pick"fd/fd"
+zinit light sharkdp/fd
 
 # sharkdp/bat, replacement for cat
-zplugin ice wait"1" lucid as"command" from"gh-r" mv"bat* -> bat" pick"bat/bat"
-zplugin light sharkdp/bat
+zinit ice wait"1" lucid as"command" from"gh-r" mv"bat* -> bat" pick"bat/bat"
+zinit light sharkdp/bat
 
 ## comand line translation
-# zplugin ice as"program" atclone"rm -f src/auto/config.cache" atpull"%atclone" \
+# zinit ice as"program" atclone"rm -f src/auto/config.cache" atpull"%atclone" \
 #     make"TARGET=zsh -v" make"install PREFIX=$ZPFX -v" pick"$ZPFX/bin/trans"
-zplugin ice wait"1" lucid
-zplugin light soimort/translate-shell
+zinit ice wait"1" lucid
+zinit light soimort/translate-shell
 
 ## 一旦コメントアウト(あとでいいのを選ぶ)
 # prompt theme (1)
-# zplugin ice wait'!' lucid atload'source ~/.p10k.zsh; _p9k_precmd' nocd
-# zplugin light romkatv/powerlevel10k
+# zinit ice wait'!' lucid atload'source ~/.p10k.zsh; _p9k_precmd' nocd
+# zinit light romkatv/powerlevel10k
 # prompt theme (2)
-# zplugin ice pick"async.zsh" src"pure.zsh"
-# zplugin light sindresorhus/pure
-# zplugin snippet OMZ::themes/dstufft.zsh-theme
+# zinit ice pick"async.zsh" src"pure.zsh"
+# zinit light sindresorhus/pure
+# zinit snippet OMZ::themes/dstufft.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

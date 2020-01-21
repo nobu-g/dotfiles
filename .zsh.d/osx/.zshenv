@@ -33,6 +33,7 @@ path=(
   ${HOMEBREW_PREFIX}/texlive/2018/bin/x86_64-darwin(N-/)  # texlive
   ${HOME}/.nodebrew/current/bin(N-/)  # nodebrew
   /opt/X11/bin(N-/)  # X11
+  ${path}
 )
 
 # pyenv

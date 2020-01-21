@@ -20,6 +20,8 @@ update: ## Fetch changes for this repo
 
 install: update init deploy ## Run make update, init, deploy
 	@exec $$SHELL -l
+	@zinit self-update
+	@fast-theme XDG:overlay
 
 clean: ## Remove the dot files and this repo
 	# @echo 'Remove dot files in your home directory...'

@@ -13,7 +13,6 @@ ln -sf ~/dotfiles/.config/fsh ~/.config/
 
 case "${OSTYPE}" in
 linux* | cygwin*) ;;
-
 freebsd* | darwin*)
   ln -sf /usr/local/share/git-core/contrib/diff-highlight/diff-highlight /usr/local/bin
   ;;

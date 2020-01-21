@@ -19,7 +19,8 @@ if !(type brew &> /dev/null); then
   esac
 fi
 
-# install zplugin
-if ! [[ -d ${HOME}/.zplugin ]]; then
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)"
+# install zinit
+if ! [[ -d ${HOME}/.zinit ]]; then
+  mkdir ~/.zinit
+  git clone https://github.com/zdharma/zinit.git ~/.zinit/bin
 fi
