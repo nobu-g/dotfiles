@@ -14,7 +14,7 @@ add-zsh-hook precmd vcs_info
 RPROMPT='${vcs_info_msg_0_}'
 
 # pipenv
-eval "$(pipenv --completion)" # compinitが呼ばれていて起動が遅くなる原因になっているが、次バージョンで修正されそう
+# eval "$(pipenv --completion)" # compinitが呼ばれていて起動が遅くなる原因になっているが、次バージョンで修正されそう
 
 # direnv (after setting PROMPT)
 # eval "$(direnv hook zsh)"

@@ -156,8 +156,8 @@ unsetopt promptcr
 # place above compinit
 source "$HOME/.zinit/bin/zinit.zsh"
 # if you sourced below compinit following two lines are needed
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
+# autoload -Uz _zinit
+# (( ${+_comps} )) && _comps[zinit]=_zinit
 
 
 # other themes: dircolors.ansi-dark, dircolors.ansi-light, dircolors.256dark
@@ -199,7 +199,7 @@ ZSH_AUTOSUGGEST_EXECUTE_WIDGETS=(
 
 
 ## fast-syntax-highlighting
-# zinit ice wait lucid atinit"ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay -q"
+zinit ice wait'1' lucid atinit"ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay -q"
 zinit light zdharma/fast-syntax-highlighting
 
 

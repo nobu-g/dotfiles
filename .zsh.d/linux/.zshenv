@@ -26,3 +26,7 @@ fi
 # pyenv
 export PYENV_ROOT=$HOME/.pyenv
 path=($PYENV_ROOT/bin(N-/) $path)
+
+# Skip the not really helping Ubuntu global compinit
+# see /etc/zsh/zshrc
+skip_global_compinit=1
