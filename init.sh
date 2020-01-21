@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -exu
+set -xu
 
 mkdir -p ~/.emacs.d
 mkdir -p ~/.config
