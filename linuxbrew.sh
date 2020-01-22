@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
 # Install linuxbrew
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+git clone --depth 1 https://github.com/Homebrew/brew ~/.linuxbrew/Homebrew
+mkdir -p ~/.linuxbrew/bin
+ln -fs ~/.linuxbrew/Homebrew/bin/brew ~/.linuxbrew/bin
+eval $(~/.linuxbrew/bin/brew shellenv)
 
 # Install command-line tools using Linuxbrew.
 
