@@ -221,13 +221,12 @@ zinit ice as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
     atpull'%atclone' pick"direnv" src"zhook.zsh"
 zinit light direnv/direnv
 p=$PWD
-while  [[ $p != '/' ]]
-do
-    if [[ -f $p/.envrc ]]; then
-        direnv allow
-        break
-    fi
-    p=$(dirname $p)
+while  [[ $p != '/' ]]; do
+  if [[ -f $p/.envrc ]]; then
+    direnv allow
+    break
+  fi
+  p=$(dirname $p)
 done
 
 # pyenv
@@ -291,14 +290,14 @@ pss() {
 # LESS man page colors (makes Man pages more readable).
 man() {
   env \
-    LESS_TERMCAP_mb=$'\E[01;31m' \
-    LESS_TERMCAP_md=$'\E[01;31m' \
-    LESS_TERMCAP_me=$'\E[0m' \
-    LESS_TERMCAP_se=$'\E[0m' \
-    LESS_TERMCAP_so=$'\E[00;44;37m' \
-    LESS_TERMCAP_ue=$'\E[0m' \
-    LESS_TERMCAP_us=$'\E[01;32m' \
-    man "$@"
+  LESS_TERMCAP_mb=$'\E[01;31m' \
+  LESS_TERMCAP_md=$'\E[01;31m' \
+  LESS_TERMCAP_me=$'\E[0m' \
+  LESS_TERMCAP_se=$'\E[0m' \
+  LESS_TERMCAP_so=$'\E[00;44;37m' \
+  LESS_TERMCAP_ue=$'\E[0m' \
+  LESS_TERMCAP_us=$'\E[01;32m' \
+  man "$@"
 }
 
 
@@ -354,6 +353,18 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # if (type pyenv &> /dev/null); then
 #     eval "$(pyenv init -)"  # 自動補完機能
 # fi
+
+# unset all environment variables and restart shell
+resetenv() {
+  U=$USER
+  S=$SHELL
+  D=$DISPLAY
+  for v in $(env | awk -F"=" '{print $1}'); do unset $v; done
+  export USER=$U
+  export SHELL=$S
+  export DISPLAY=$D
+  exec $SHELL -l
+}
 
 # LOAD SETTING FILES
 source ${ZSHHOME}/.zshrc

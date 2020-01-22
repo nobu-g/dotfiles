@@ -17,7 +17,6 @@ RPROMPT='${vcs_info_msg_0_}'
 # eval "$(pipenv --completion)" # compinitが呼ばれていて起動が遅くなる原因になっているが、次バージョンで修正されそう
 
 # direnv (after setting PROMPT)
-# eval "$(direnv hook zsh)"
 show_virtual_env() {
   if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
     echo "($(basename ${DIRENV_DIR:1}))"

@@ -19,9 +19,9 @@ ld_library_path=(
 )
 
 path=(/share/usr-$(uname -m)/bin(N-/) $path)
-if [[ -f /mnt/orange/ubrew/brew.zsh ]] then
-  source /mnt/orange/ubrew/brew.zsh
-fi
+# if [[ -f /mnt/orange/ubrew/brew.zsh ]] then
+#   source /mnt/orange/ubrew/brew.zsh
+# fi
 
 # pyenv
 export PYENV_ROOT=$HOME/.pyenv
