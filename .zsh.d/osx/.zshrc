@@ -43,3 +43,7 @@ dotedit() {
   cd ~/dotfiles
   code .
 }
+
+dsdel() {
+  find $1 -name '.DS_Store' -type f -ls -delete
+}

@@ -49,7 +49,9 @@ fi
 # Homebrew/Linuxbrew で prefix のパスが違う。
 # $(brew --prefix) は時間がかかる処理であるため、ここで判定して HOMEBREW_PREFIX に格納する。
 if [[ -d ${HOME}/.linuxbrew ]]; then
-  HOMEBREW_PREFIX="${HOME}/.linuxbrew"
+  HOMEBREW_PREFIX=$(realpath ${HOME}/.linuxbrew)
+elif [[ -d /home/.linuxbrew ]]; then
+  HOMEBREW_PREFIX=$(realpath /home/.linuxbrew)
 elif [[ -x /usr/local/bin/brew ]]; then
   HOMEBREW_PREFIX="/usr/local"
 fi
