@@ -51,6 +51,7 @@ brew install python
 brew install zlib
 brew install st # statistics
 brew install go
+brew install peco
 
 # Remove outdated versions from the cellar.
 brew cleanup

@@ -1,10 +1,9 @@
 # prompt
-PROMPT="%F{green}local%f%F{yellow}(%~)%f
+PROMPT+="%F{green}local%f%F{yellow}(%~)%f
 $ "
 
 ## git (http://tkengo.github.io/blog/2013/05/12/zsh-vcs-info/)
 autoload -Uz vcs_info
-setopt prompt_subst
 zstyle ':vcs_info:git:*' check-for-changes true    # formats 設定項目で %c,%u が使用可
 zstyle ':vcs_info:git:*' stagedstr '%F{yellow}!'   # commit されていないファイルがある
 zstyle ':vcs_info:git:*' unstagedstr '%F{red}+'    # add されていないファイルがある
@@ -15,14 +14,6 @@ RPROMPT='${vcs_info_msg_0_}'
 
 # pipenv
 # eval "$(pipenv --completion)" # compinitが呼ばれていて起動が遅くなる原因になっているが、次バージョンで修正されそう
-
-# direnv (after setting PROMPT)
-show_virtual_env() {
-  if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
-    echo "($(basename ${DIRENV_DIR:1}))"
-  fi
-}
-PROMPT='$(show_virtual_env)'$PROMPT
 
 # search with google
 google() {

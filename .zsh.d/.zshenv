@@ -64,7 +64,6 @@ if [[ -n "$HOMEBREW_PREFIX" ]]; then
   export PATH="${HOMEBREW_PREFIX}/bin:${HOMEBREW_PREFIX}/sbin${PATH+:$PATH}"
   export MANPATH="${HOMEBREW_PREFIX}/share/man${MANPATH+:$MANPATH}:"
   export INFOPATH="${HOMEBREW_PREFIX}/share/info${INFOPATH+:$INFOPATH}"
-  export XDG_DATA_DIRS="${HOMEBREW_PREFIX}/share:${XDG_DATA_DIRS}"
 fi
 
 

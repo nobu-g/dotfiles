@@ -23,11 +23,18 @@ bindkey -d
 export TERM='xterm-256color'
 
 # PROMPT
-setopt prompt_subst  # PROMPT変数内で変数参照する
+setopt prompt_subst  # プロンプトを表示する度にPROMPT変数内で変数参照する
 setopt prompt_percent
 setopt transient_rprompt  # コマンド実行後に右プロンプトを消す(?)
 ## DISPLAY SETTING
 autoload -Uz colors && colors
+## direnv
+show_virtual_env() {
+  if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
+    echo "($(basename ${DIRENV_DIR:1}))"
+  fi
+}
+PROMPT='$(show_virtual_env)'
 
 ## DISPLAY
 # case ${UID} in
@@ -233,10 +240,6 @@ done
 # zinit ice wait'1' lucid atclone'./libexec/pyenv init - > zpyenv.zsh' atpull"%atclone" \
 #     as'command' pick'bin/pyenv' src"zpyenv.zsh" nocompile'!'
 # zinit light pyenv/pyenv
-
-## peco
-zinit ice wait lucid from"gh-r" as"program" mv"peco* -> peco" pick"peco/peco"
-zinit light peco/peco
 
 # sharkdp/fd, replacement for find
 zinit ice wait"1" lucid as"command" from"gh-r" mv"fd* -> fd" pick"fd/fd"
