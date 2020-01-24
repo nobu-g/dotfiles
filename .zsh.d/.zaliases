@@ -27,7 +27,7 @@ alias ekill='emacsclient -e "(kill-emacs)"'
 alias dpython='python -m ipdb -c continue'
 alias zshtime='for i in $(seq 1 10); do time zsh -i -c exit; done'
 
-if (type colordiff &>/dev/null); then
+if (type colordiff &> /dev/null); then
   alias diff='colordiff -u'
 else
   alias diff='diff -u'
@@ -63,5 +63,8 @@ globalias() {
 }
 zle -N globalias
 bindkey " " globalias
+
+# brew
+alias brew="PATH=${HOMEBREW_PREFIX}/bin:${HOMEBREW_PREFIX}/sbin:/usr/bin:/bin:/usr/sbin:/sbin brew"
 
 source ${ZSHHOME}/.zaliases
