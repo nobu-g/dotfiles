@@ -1,2 +1,2 @@
-PROMPT+="[%F{green}%m%f-%F{yellow}(%~)%f]
-$ "
+# PROMPT+="[%F{green}%m%f-%F{yellow}(%~)%f]
+# $ "

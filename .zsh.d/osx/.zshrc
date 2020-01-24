@@ -1,6 +1,6 @@
 # prompt
-PROMPT+="%F{green}local%f%F{yellow}(%~)%f
-$ "
+# PROMPT+="%F{green}local%f%F{yellow}(%~)%f %D{%Y-%m-%d %H:%M:%S}
+# $ "
 
 ## git (http://tkengo.github.io/blog/2013/05/12/zsh-vcs-info/)
 autoload -Uz vcs_info

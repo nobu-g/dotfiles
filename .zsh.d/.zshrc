@@ -1,9 +1,9 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block, everything else may go below.
-# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-# fi
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 
 # ALIAS
@@ -23,18 +23,18 @@ bindkey -d
 export TERM='xterm-256color'
 
 # PROMPT
-setopt prompt_subst  # プロンプトを表示する度にPROMPT変数内で変数参照する
+# setopt prompt_subst  # プロンプトを表示する度にPROMPT変数内で変数参照する
 setopt prompt_percent
 setopt transient_rprompt  # コマンド実行後に右プロンプトを消す(?)
 ## DISPLAY SETTING
 autoload -Uz colors && colors
 ## direnv
-show_virtual_env() {
-  if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
-    echo "($(basename ${DIRENV_DIR:1}))"
-  fi
-}
-PROMPT='$(show_virtual_env)'
+# show_virtual_env() {
+#   if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
+#     echo "($(basename ${DIRENV_DIR:1}))"
+#   fi
+# }
+# PROMPT='$(show_virtual_env)'
 
 ## DISPLAY
 # case ${UID} in
@@ -257,8 +257,8 @@ zinit light soimort/translate-shell
 
 ## 一旦コメントアウト(あとでいいのを選ぶ)
 # prompt theme (1)
-# zinit ice wait'!' lucid atload'source ~/.p10k.zsh; _p9k_precmd' nocd
-# zinit light romkatv/powerlevel10k
+zinit ice wait'!' lucid atload'source ~/.p10k.zsh; _p9k_precmd' nocd
+zinit light romkatv/powerlevel10k
 # prompt theme (2)
 # zinit ice pick"async.zsh" src"pure.zsh"
 # zinit light sindresorhus/pure
