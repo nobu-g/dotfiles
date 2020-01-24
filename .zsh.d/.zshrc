@@ -24,7 +24,7 @@ export TERM='xterm-256color'
 
 # PROMPT
 # setopt prompt_subst  # プロンプトを表示する度にPROMPT変数内で変数参照する
-setopt prompt_percent
+# setopt prompt_percent
 setopt transient_rprompt  # コマンド実行後に右プロンプトを消す(?)
 ## DISPLAY SETTING
 autoload -Uz colors && colors
@@ -257,7 +257,7 @@ zinit light soimort/translate-shell
 
 ## 一旦コメントアウト(あとでいいのを選ぶ)
 # prompt theme (1)
-zinit ice wait'!' lucid atload'source ~/.p10k.zsh; _p9k_precmd' nocd
+zinit ice depth=1 atload'source ~/.p10k.zsh' nocd
 zinit light romkatv/powerlevel10k
 # prompt theme (2)
 # zinit ice pick"async.zsh" src"pure.zsh"
