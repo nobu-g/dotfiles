@@ -369,6 +369,38 @@ resetenv() {
   exec $SHELL -l
 }
 
+# ssh and tmux -CC
+# https://gitlab.com/gnachman/iterm2/-/wikis/tmux-Integration-Best-Practices
+tssh() {
+  ssh -t $@ 'tmux -CC new -A -s main'
+}
+
+# set of set operations
+union() {
+  if [[ -p /dev/stdin ]]; then
+    cat - $@ | awk '!x[$0]++'
+  else
+    cat $@ | awk '!x[$0]++'
+  fi
+}
+isect() {
+  if [[ -p /dev/stdin ]]; then
+    cat - $@ | awk 'x[$0]++'
+  else
+    cat $@ | awk 'x[$0]++'
+  fi
+}
+ssub() {
+  if [[ -p /dev/stdin ]]; then
+    file1=/dev/stdin
+    file2=$1
+  else
+    file1=$1
+    file2=$2
+  fi
+  comm -23 <(sort $file1) <(sort $file2)
+}
+
 # LOAD SETTING FILES
 source ${ZSHHOME}/.zshrc
 
