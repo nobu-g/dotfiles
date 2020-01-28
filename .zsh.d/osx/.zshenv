@@ -30,12 +30,18 @@ manpath=(
 
 ## other tool paths
 path=(
-  ${HOMEBREW_PREFIX}/texlive/2018/bin/x86_64-darwin(N-/)  # texlive
   ${HOME}/.nodebrew/current/bin(N-/)  # nodebrew
   /opt/X11/bin(N-/)  # X11
   ${path}
 )
 
+## TexLive 2019
+if [ -e ${HOMEBREW_PREFIX}/texlive/2019/bin/x86_64-darwin ]; then
+  export PATH=${HOMEBREW_PREFIX}/texlive/2019/bin/x86_64-darwin:$PATH
+  export INFOPATH=${HOMEBREW_PREFIX}/texlive/2019/texmf-dist/doc/info:$INFOPATH
+  export MANPATH=${HOMEBREW_PREFIX}/texlive/2019/texmf-dist/doc/man:$MANPATH
+fi
+
 # pyenv
 export PYENV_ROOT=/usr/local/var/pyenv
-export PATH="$PYENV_ROOT/bin:$PATH"
+export PATH=$PYENV_ROOT/bin:$PATH
