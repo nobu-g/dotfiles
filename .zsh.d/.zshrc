@@ -162,6 +162,7 @@ unsetopt promptcr
 
 # place above compinit
 source "$HOME/.zinit/bin/zinit.zsh"
+ZINIT[COMPINIT_OPTS]=-C
 # if you sourced below compinit following two lines are needed
 # autoload -Uz _zinit
 # (( ${+_comps} )) && _comps[zinit]=_zinit
@@ -179,7 +180,7 @@ zinit light zsh-users/zsh-history-substring-search
 
 
 ## zsh-autosuggestions
-zinit ice wait lucid atload"_zsh_autosuggest_start"
+zinit ice wait"1" lucid atload"_zsh_autosuggest_start" atinit"zpcompinit; zpcdreplay -q"
 zinit light zsh-users/zsh-autosuggestions
 # Widgets that accept the entire suggestion
 ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(
@@ -206,8 +207,8 @@ ZSH_AUTOSUGGEST_EXECUTE_WIDGETS=(
 
 
 ## fast-syntax-highlighting
-zinit ice wait'1' lucid atinit"ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay -q"
-zinit light zdharma/fast-syntax-highlighting
+# zinit ice wait lucid atinit"zpcompinit; zpcdreplay -q"
+zinit light zdharma/fast-syntax-highlighting  # 遅延ロードすると autosuggestions のハイライトがおかしくなる
 
 
 ## completion
@@ -220,7 +221,7 @@ zinit ice wait"2" lucid
 zinit snippet 'OMZ::lib/clipboard.zsh'
 
 # ogham/exa, replacement for ls
-zinit ice wait lucid from"gh-r" as"program" mv"exa* -> exa"
+zinit ice wait"1" lucid from"gh-r" as"program" mv"exa* -> exa"
 zinit light ogham/exa
 
 # direnv
