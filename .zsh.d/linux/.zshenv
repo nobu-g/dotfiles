@@ -1,6 +1,3 @@
-# GXP3
-path=($HOME/gxp3(N-/) $path)
-
 # baracuda, moss, saffron 設定
 if [[ $(uname -n) =~ "^baracuda" ]] || [[ $(uname -n) =~ "^moss" ]] || [[ $(uname -n) = "saffron" ]]; then
   export CUDA_HOME=/usr/local/cuda
@@ -26,14 +23,25 @@ export XDG_CONFIG_DIRS=/etc/xdg
 export XDG_CACHE_HOME=$HOME/.cache
 # export XDG_RUNTIME_DIR=
 
-path=(/share/usr-$(uname -m)/bin(N-/) $path)
-# if [[ -f /mnt/orange/ubrew/brew.zsh ]] then
-#   source /mnt/orange/ubrew/brew.zsh
-# fi
-
 # pyenv
 export PYENV_ROOT=$HOME/.pyenv
-path=($PYENV_ROOT/bin(N-/) $path)
+
+path=(
+  ${HOME}/scripts(N-/)  # my scripts
+  ${HOME}/gxp3(N-/)  # GXP3
+  ${PYENV_ROOT}/bin(N-/)  # pyenv
+  /mnt/orange/ubrew/data/bin(N-/)  # ubrew
+  /share/usr-$(uname -m)/bin(N-/)
+  ${path}
+)
+
+# ubrew
+if [[ -e /mnt/orange/ubrew/data ]]; then
+  export PATH="/mnt/orange/ubrew/data/bin:$PATH"
+  export MANPATH="/mnt/orange/ubrew/data/share/man:$MANPATH"
+  export INFOPATH="/mnt/orange/ubrew/data/share/info:$INFOPATH"
+fi
+
 
 # Skip the not really helping Ubuntu global compinit
 # see /etc/zsh/zshrc

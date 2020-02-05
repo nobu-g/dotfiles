@@ -2,11 +2,6 @@
 
 ## ignore /etc/zprofile, /etc/zshrc, /etc/zlogin, and /etc/zlogout
 unsetopt GLOBAL_RCS
-## copied from /etc/zprofile
-## system-wide environment settings for zsh
-if [[ -x /usr/libexec/path_helper ]]; then
-  eval `/usr/libexec/path_helper -s`
-fi
 
 ## GNU/Linux 版コマンドを使えるように
 path=(
@@ -28,20 +23,21 @@ manpath=(
   ${manpath}
 )
 
+# pyenv
+export PYENV_ROOT=/usr/local/var/pyenv
+
 ## other tool paths
 path=(
+  ${HOME}/scripts(N-/)  # my scripts
   ${HOME}/.nodebrew/current/bin(N-/)  # nodebrew
   /opt/X11/bin(N-/)  # X11
+  ${PYENV_ROOT}/bin(N-/)
   ${path}
 )
 
-## TexLive 2019
-if [ -e ${HOMEBREW_PREFIX}/texlive/2019/bin/x86_64-darwin ]; then
-  export PATH=${HOMEBREW_PREFIX}/texlive/2019/bin/x86_64-darwin:$PATH
-  export INFOPATH=${HOMEBREW_PREFIX}/texlive/2019/texmf-dist/doc/info:$INFOPATH
-  export MANPATH=${HOMEBREW_PREFIX}/texlive/2019/texmf-dist/doc/man:$MANPATH
+## TexLive
+if [[ -e /Library/TeX ]]; then
+  export PATH=/Library/TeX/texbin:${PATH}
+  export INFOPATH=/Library/TeX/Documentation/texmf-dist-doc/info:${INFOPATH}
+  export MANPATH=/Library/TeX/Documentation/texmf-dist-doc/man:${MANPATH}
 fi
-
-# pyenv
-export PYENV_ROOT=/usr/local/var/pyenv
-export PATH=$PYENV_ROOT/bin:$PATH
