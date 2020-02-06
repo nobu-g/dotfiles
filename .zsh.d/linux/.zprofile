@@ -20,4 +20,9 @@ if [[ -z "$TMUX" && -z "$STY" ]]; then
   fi
 fi
 
+# 別のマシンに移動した時カレントディレクトリを維持
+if [[ -n "$LC_PWD" && "$(realpath $PWD)" != "$(realpath $LC_PWD)" && -e "$LC_PWD" ]]; then
+  cd "$LC_PWD"
+fi
+
 #eval $(/home/ueda/.linuxbrew/bin/brew shellenv)
