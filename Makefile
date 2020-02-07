@@ -1,4 +1,4 @@
-DOTPATH := $(realpath $(dir $(lastword $(MAKEFILE_LIST))))
+DOTPATH := $(readlink -f $(dir $(lastword $(MAKEFILE_LIST))))
 
 all: install
 
