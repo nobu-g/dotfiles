@@ -103,7 +103,7 @@ else
 fi
 
 # PYTEST
-export PYTEST_ADDOPTS='-v -s --pdb --ff --doctest-modules'
+export PYTEST_ADDOPTS='-v -s --ff'
 
 
 case "${OSTYPE}" in
