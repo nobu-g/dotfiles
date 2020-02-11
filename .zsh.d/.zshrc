@@ -124,7 +124,7 @@ zstyle ':completion:*:cd:*' tag-order local-directories path-directories
 zstyle ':completion:*' use-cache yes
 ### use sudo path
 zstyle ':completion:sudo:*' environ PATH="$SUDO_PATH:$PATH"
-setopt complete_in_word  # complete at cursor point
+setopt complete_in_word  # 語の途中でもカーソル位置で補完
 setopt glob_complete
 setopt hist_expand  # 補完時にヒストリを自動的に展開
 setopt no_beep
@@ -146,13 +146,13 @@ setopt pushd_silent          # pushd と popdでスタック表示を抑制
 setopt pushd_to_home         # 引数なしの pushd は pushd $HOME になる
 setopt sun_keyboard_hack     # 行の末尾がバッククォートでも無視する
 setopt print_eight_bit       # 日本語ファイル名を表示可能にする
-setopt complete_in_word      # 語の途中でもカーソル位置で補完
 setopt no_nomatch
 setopt share_history         # 同時に起動した zsh の間でヒストリを共有する
 setopt extended_history      # 履歴ファイルにzsh の開始・終了時刻を記録する
 setopt nohup
 # setopt correct
 setopt list_packed
+setopt combiningchars
 unsetopt promptcr
 
 

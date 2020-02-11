@@ -31,7 +31,7 @@ path=(
   ${HOME}/scripts(N-/)  # my scripts
   ${HOME}/.nodebrew/current/bin(N-/)  # nodebrew
   /opt/X11/bin(N-/)  # X11
-  ${PYENV_ROOT}/bin(N-/)
+  ${PYENV_ROOT}/shims(N-/)
   ${path}
 )
 
