@@ -23,6 +23,7 @@ fi
 # 別のマシンに移動した時カレントディレクトリを維持
 if [[ -n "$LC_PWD" && "$(readlink -f $PWD)" != "$(readlink -f $LC_PWD)" && -e "$LC_PWD" ]]; then
   cd "$LC_PWD"
+  unset LC_PWD
 fi
 
 #eval $(/home/ueda/.linuxbrew/bin/brew shellenv)
