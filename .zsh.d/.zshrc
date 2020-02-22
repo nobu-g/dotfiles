@@ -148,8 +148,8 @@ setopt sun_keyboard_hack     # 行の末尾がバッククォートでも無視�
 setopt print_eight_bit       # 日本語ファイル名を表示可能にする
 setopt no_nomatch
 setopt share_history         # 同時に起動した zsh の間でヒストリを共有する
-setopt extended_history      # 履歴ファイルにzsh の開始・終了時刻を記録する
-setopt nohup
+setopt extended_history      # 履歴ファイルに zsh の開始・終了時刻を記録する
+setopt nohup                 # シェルが終了しても SIGHUP を job に送らない
 # setopt correct
 setopt list_packed
 setopt combiningchars
