@@ -2,6 +2,14 @@
     "Keymap": {
         "M-v": "peco.ScrollPageUp",
         "C-v": "peco.ScrollPageDown",
-        "C-g": "peco.Cancel"
+        "C-g": "peco.Cancel",
+        "C-f": "peco.ForwardChar",
+        "C-b": "peco.BackwardChar",
+        "ArrowRight": "peco.ForwardChar",
+        "ArrowLeft": "peco.BackwardChar",
+        "C-a": "peco.BeginningOfLine",
+        "C-e": "peco.EndOfLine",
+        "C-u": "peco.DeleteAll",
+        "C-d": "peco.DeleteForwardChar"
     }
 }
