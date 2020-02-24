@@ -73,6 +73,10 @@ if [[ -d ${HOME}/.go ]]; then
 fi
 
 
+# Poetry
+path=(${HOME}/.poetry/bin(N-/) ${path})
+
+
 ## lv setting
 export LV="-c -l"
 ## less setting (https://qiita.com/delphinus/items/b04752bb5b64e6cc4ea9)
