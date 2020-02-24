@@ -43,8 +43,7 @@ brew install pv
 brew install colordiff
 brew install htop
 brew install readline
-brew install jumanpp
-brew install knp
+# brew install jumanpp  # old
 brew install pipenv
 brew install pyenv
 brew install python
@@ -52,6 +51,8 @@ brew install zlib
 brew install st # statistics
 brew install go
 brew install peco
+brew install ripgrep
+brew install openssh
 
 # Remove outdated versions from the cellar.
 brew cleanup

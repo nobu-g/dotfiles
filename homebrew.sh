@@ -49,7 +49,6 @@ brew install wget --with-iri
 brew install vim --with-override-system-vi
 brew install grep
 brew install openssh
-# brew install screen
 # brew install php
 # brew install gmp
 brew install zgip
@@ -64,7 +63,6 @@ brew install emacs
 # brew install woff2
 
 # Install other useful binaries.
-# brew install ack
 #brew install exiv2
 # brew install git-lfs
 # brew install gs
@@ -85,8 +83,7 @@ brew install docker
 brew install htop
 brew install readline
 brew install nkf
-brew install jumanpp
-brew install knp
+# brew install jumanpp  # old
 brew install pipenv
 brew install pyenv
 brew install python
@@ -95,6 +92,7 @@ brew install zlib
 brew install st # statistics
 brew install go
 brew install peco
+brew install ripgrep
 
 # Cask
 brew tap caskroom/cask
