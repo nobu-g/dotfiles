@@ -12,6 +12,7 @@ typeset -xT LD_LIBRARY_PATH ld_library_path  # LD_LIBRARY_PATH を unset する�
 typeset -U ld_library_path
 ld_library_path=(
   $HOME/usr/lib/x86_64-linux-gnu(N-/)
+  $HOME/usr/lib(N-/)
   $ld_library_path
 )
 
