@@ -16,7 +16,7 @@ if [[ -z "$TMUX" && -z "$STY" ]]; then
   client=$(tmux list-client 2>/dev/null)
   # セッションが存在し、まだ attach してなかったら attach
   if [[ $? -eq 0 && -z $client ]]; then
-    tmux -CC attach
+    tmux -CC new -A -s main
   fi
 fi
 
