@@ -93,6 +93,7 @@ brew install st # statistics
 brew install go
 brew install peco
 brew install ripgrep
+brew install procs  # alternative of ps
 
 # Cask
 brew tap caskroom/cask

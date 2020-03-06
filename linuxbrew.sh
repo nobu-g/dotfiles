@@ -53,6 +53,7 @@ brew install go
 brew install peco
 brew install ripgrep
 brew install openssh
+brew install procs  # alternative of ps
 
 # Remove outdated versions from the cellar.
 brew cleanup
