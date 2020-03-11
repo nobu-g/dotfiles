@@ -133,3 +133,7 @@ if [[ -n ${HOMEBREW_PREFIX} ]]; then
   export MANPATH="${HOMEBREW_PREFIX}/share/man${MANPATH+:$MANPATH}:"
   export INFOPATH="${HOMEBREW_PREFIX}/share/info${INFOPATH+:$INFOPATH}"
 fi
+
+
+# my scripts
+path=(${HOME}/scripts(N-/) ${path})
