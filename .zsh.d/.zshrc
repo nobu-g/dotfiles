@@ -403,6 +403,14 @@ ssub() {
   comm -23 <(sort $file1) <(sort $file2)
 }
 
+cd() {
+  if [[ $# -eq 1 && $1 = "--" ]]; then
+    pushd +2
+  else
+    builtin cd $@
+  fi
+}
+
 # LOAD SETTING FILES
 source ${ZSHHOME}/.zshrc
 

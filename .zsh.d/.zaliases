@@ -20,6 +20,7 @@ alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
 alias -- -='cd -'
+alias -- --='cd --'
 ## http://keisanbutsuriya.hateblo.jp/entry/2015/02/13/133858
 alias e='emacsclient -nw -a ""'
 alias emacs='emacsclient -nw -a ""'
@@ -65,6 +66,6 @@ zle -N globalias
 bindkey " " globalias
 
 # brew
-alias brew="PATH=${HOMEBREW_PREFIX}/bin:${HOMEBREW_PREFIX}/sbin:/usr/bin:/bin:/usr/sbin:/sbin brew"
+alias brew="env -u LD_LIBRARY_PATH PATH=${HOMEBREW_PREFIX}/bin:${HOMEBREW_PREFIX}/sbin:/usr/bin:/bin:/usr/sbin:/sbin brew"
 
 source ${ZSHHOME}/.zaliases
