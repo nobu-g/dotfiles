@@ -157,7 +157,6 @@ unsetopt promptcr
 
 
 # debug mode
-# typeset -g ZPLG_MOD_DEBUG=1
 # typeset -g ZINIT_MOD_DEBUG=1
 
 # place above compinit
@@ -256,17 +255,9 @@ zinit light sharkdp/bat
 zinit ice wait"1" lucid
 zinit light soimort/translate-shell
 
-## 一旦コメントアウト(あとでいいのを選ぶ)
-# prompt theme (1)
+
 zinit ice depth=1 atload'source ~/.p10k.zsh' nocd
 zinit light romkatv/powerlevel10k
-# prompt theme (2)
-# zinit ice pick"async.zsh" src"pure.zsh"
-# zinit light sindresorhus/pure
-# zinit snippet OMZ::themes/dstufft.zsh-theme
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 
 ## auto ls after changing directory
