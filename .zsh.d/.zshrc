@@ -124,6 +124,8 @@ zstyle ':completion:*:cd:*' tag-order local-directories path-directories
 zstyle ':completion:*' use-cache yes
 ### use sudo path
 zstyle ':completion:sudo:*' environ PATH="$SUDO_PATH:$PATH"
+# 今いるディレクトリを補完候補から外す
+zstyle ':completion:*' ignore-parents parent pwd ..
 setopt complete_in_word  # 語の途中でもカーソル位置で補完
 setopt glob_complete
 setopt hist_expand  # 補完時にヒストリを自動的に展開
@@ -153,6 +155,9 @@ setopt nohup                 # シェルが終了しても SIGHUP を job に送
 # setopt correct
 setopt list_packed
 setopt combiningchars
+setopt always_last_prompt    # カーソル位置は保持したままファイル名一覧を順次その場で表示
+setopt globdots              # 明確なドットの指定なしで.から始まるファイルをマッチ
+setopt brace_ccl             # 範囲指定できるように 例) mkdir {1-3} で フォルダ1,2,3を作れる
 unsetopt promptcr
 
 
