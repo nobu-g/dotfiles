@@ -96,6 +96,9 @@ fi
 # PYTEST
 export PYTEST_ADDOPTS='-v -s --ff'
 
+# zmv
+autoload -Uz zmv
+
 
 case "${OSTYPE}" in
 linux*|cygwin*)
