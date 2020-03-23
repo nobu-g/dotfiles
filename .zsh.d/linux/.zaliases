@@ -3,3 +3,8 @@ alias pbpaste='xsel --clipboard --output'
 alias -g C='| xsel --input --clipboard'
 alias gzcat='zcat'
 alias ssh='LC_PWD=$PWD ssh -o SendEnv=LC_PWD'
+
+# directory alias
+hash -d larch=/mnt/larch/ueda  # ~larch
+hash -d hinoki=/mnt/hinoki/ueda  # ~hinoki
+hash -d elm=/mnt/elm/ueda  # ~elm
