@@ -266,8 +266,7 @@ zinit light romkatv/powerlevel10k
 
 
 ## auto ls after changing directory
-chpwd_ls() { ls }
-add-zsh-hook chpwd chpwd_ls
+add-zsh-hook chpwd ls_abbrev
 
 
 # mkdir and cd
@@ -405,6 +404,27 @@ cd() {
   else
     builtin cd $@
   fi
+}
+
+# https://qiita.com/yuyuchu3333/items/b10542db482c3ac8b059
+ls_abbrev() {
+  local MAX_LINUM=6
+    if [[ ! -r $PWD ]]; then
+        return
+    fi
+    # -C : Force multi-column output.
+    # -F : Append indicator (one of */=>@|) to entries.
+    local ls_result=$(CLICOLOR_FORCE=1 COLUMNS=${COLUMNS} command ls -CF --color=always | sed $'/^\e\[[0-9;]*m$/d')
+    local ls_lines=$(echo "${ls_result}" | wc -l | tr -d ' ')
+
+    if [[ ${ls_lines} -gt ${MAX_LINUM} ]]; then
+        echo "${ls_result}" | head -n $((${MAX_LINUM} / 2))
+        echo '...'
+        echo "${ls_result}" | tail -n $((${MAX_LINUM} / 2))
+        echo "$(command ls -1A | wc -l | tr -d ' ') files exist"
+    else
+        echo "$ls_result"
+    fi
 }
 
 # LOAD SETTING FILES
