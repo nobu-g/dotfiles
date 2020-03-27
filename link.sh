@@ -11,6 +11,7 @@ ln -sf ~/dotfiles/.git.d/.gitconfig ~/.gitconfig
 ln -sf ~/dotfiles/.git.d/.gitignore_global ~/.config/git/ignore
 ln -sf ~/dotfiles/.peco/config.json ~/.config/peco/config.json
 ln -sf ~/dotfiles/.config/fsh ~/.config/
+ln -sf ~/dotfiles/.latexmkrc ~/.latexmkrc
 
 case "${OSTYPE}" in
 linux* | cygwin*) ;;
