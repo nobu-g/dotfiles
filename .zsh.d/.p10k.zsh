@@ -41,6 +41,7 @@
       my_direnv
       context_joined          # user@hostname
       dir                     # current directory
+      gxp3                    # gxp3 explored nodes
       command_execution_time  # duration of the last command
       # =========================[ Line #2 ]=========================
       newline
@@ -914,6 +915,12 @@
         local venv_name=${VIRTUAL_ENV:t}
       fi
       p10k segment -f white -t "(%F{green}$venv_name%f)"
+    fi
+  }
+  function prompt_gxp3() {
+    local prompt_gxp=$(gxpc prompt 2> /dev/null)
+    if [[ -n ${prompt_gxp} ]]; then
+      p10k segment -f white -t "${prompt_gxp}"
     fi
   }
 
