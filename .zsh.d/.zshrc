@@ -213,6 +213,7 @@ ZSH_AUTOSUGGEST_EXECUTE_WIDGETS=(
 ## fast-syntax-highlighting
 # zinit ice wait lucid atinit"zpcompinit; zpcdreplay -q"
 zinit light zdharma/fast-syntax-highlighting  # 遅延ロードすると autosuggestions のハイライトがおかしくなる
+# fast-theme XDG:overlay  # 初回はこれの実行を忘れずに
 
 
 ## completion
