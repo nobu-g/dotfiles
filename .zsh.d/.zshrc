@@ -92,11 +92,11 @@ bindkey -e
 
 ## Fuzzy match
 ### https://gihyo.jp/dev/serial/01/zsh-book/0005 を参考
-### 補完候補がなければより曖昧に候補を探す。
-### m:{a-z}={A-Z}: 小文字を大文字に変えたものでも補完する。
-### r:|[._-]=*: 「.」「_」「-」の前にワイルドカード「*」があるものとして補完する。
-### l:|=*: 入力文字の前にワイルドカード「*」があるものとして補完する。
-### r:|?=**: 各入力文字の前後に「*」があるものとして補完する(?)。
+### 補完候補がなければより曖昧に候補を探す
+### m:{a-z}={A-Z}: 小文字を大文字に変えたものでも補完する
+### r:|[._-]=*: 「.」「_」「-」の前にワイルドカード「*」があるものとして補完する
+### l:|=*: 入力文字の前にワイルドカード「*」があるものとして補完する
+### r:|?=**: 各入力文字の前後に「*」があるものとして補完する(?)
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}' '+r:|[-_.]=**' '+l:|=*' '+r:|?=**'
 #zstyle ':completion:*' completer _oldlist _complete _match _history _ignored _approximate _prefix
 zstyle ':completion:*' completer _oldlist _complete _match _ignored _approximate _prefix
@@ -156,7 +156,6 @@ setopt nohup                 # シェルが終了しても SIGHUP を job に送
 setopt list_packed
 setopt combiningchars
 setopt always_last_prompt    # カーソル位置は保持したままファイル名一覧を順次その場で表示
-setopt globdots              # 明確なドットの指定なしで.から始まるファイルをマッチ
 setopt brace_ccl             # 範囲指定できるように 例) mkdir {1-3} で フォルダ1,2,3を作れる
 unsetopt promptcr
 
