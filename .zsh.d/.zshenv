@@ -12,12 +12,9 @@ export LC_ALL=${LANG}
 ## -U: 重複したパスを登録しない
 typeset -U path
 path=(
-  /usr/local/bin(N-/)
-  /usr/local/sbin(N-/)
-  /usr/bin(N-/)
-  /usr/sbin(N-/)
-  /bin(N-/)
-  /sbin(N-/)
+  /usr/local/{bin,sbin}(N-/)
+  /usr/{bin,sbin}(N-/)
+  /{bin,sbin}(N-/)
 )
 
 # PATH FOR MAN(MANUAL)
@@ -88,7 +85,7 @@ export EDITOR=emacsclient
 
 # PIPENV
 if [[ -d /mnt/berry_f/home ]]; then
-  export WORKON_HOME=/mnt/berry_f/home/ueda/.virtualenvs  # use cached directory for virtualenv
+  export WORKON_HOME=/mnt/berry_f/home/${USER}/.virtualenvs  # use cached directory for virtualenv
 else
   export PIPENV_VENV_IN_PROJECT=true  # pipenv で仮想環境をプロジェクト直下に作るように
 fi

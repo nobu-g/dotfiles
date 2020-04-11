@@ -4,3 +4,9 @@ function set_iterm2_status_bar() {
 }
 
 add-zsh-hook preexec set_iterm2_status_bar
+
+# https://linuxfan.info/disable-ctrl-s
+if [[ -t 0 ]]; then
+  stty stop undef
+  stty start undef
+fi
