@@ -41,7 +41,7 @@
       my_direnv
       context_joined          # user@hostname
       dir                     # current directory
-      gxp3                    # gxp3 explored nodes
+      # gxp3                    # gxp3 explored nodes (uncomment here when using gxp3)
       command_execution_time  # duration of the last command
       # =========================[ Line #2 ]=========================
       newline
