@@ -15,6 +15,7 @@ path=(
   /usr/local/{bin,sbin}(N-/)
   /usr/{bin,sbin}(N-/)
   /{bin,sbin}(N-/)
+  ${path[@]}(N-/)
 )
 
 # PATH FOR MAN(MANUAL)
