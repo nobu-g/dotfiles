@@ -44,6 +44,11 @@ if [[ -d ${HOME}/.go ]]; then
   path=(${GOPATH}/bin(N-/) ${path})
 fi
 
+# Rust
+if [[ -d ${HOME}/.cargo ]]; then
+  path=(${HOME}/.cargo/bin(N-/) ${path})
+fi
+
 
 # Poetry
 path=(${HOME}/.poetry/bin(N-/) ${path})
