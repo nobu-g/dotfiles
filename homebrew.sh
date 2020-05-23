@@ -98,6 +98,10 @@ brew install procs  # alternative of ps
 # Cask
 brew tap caskroom/cask
 brew cask install osxfuse
+brew cask install google-chrome
+brew cask install google-japanese-ime
+brew cask install iterm2
+brew cask install clipy
 
 # Remove outdated versions from the cellar.
 brew cleanup
