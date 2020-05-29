@@ -28,7 +28,8 @@ alias emacs='emacsclient -nw -a ""'
 alias ekill='emacsclient -e "(kill-emacs)"'
 alias dpython='python -m ipdb -c continue'
 alias zshtime='for i in $(seq 1 10); do time zsh -i -c exit; done'
-alias rename="noglob zmv -W"  # rename **/*.xxx **/*.yyy
+alias rename='noglob zmv -W'  # rename **/*.xxx **/*.yyy
+alias x='exit'
 
 if (type colordiff &> /dev/null); then
   alias diff='colordiff -us'
