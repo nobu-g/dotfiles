@@ -55,6 +55,7 @@ brew install peco
 brew install ripgrep
 brew install openssh
 brew install procs  # alternative of ps
+brew install source-highlight
 
 # Remove outdated versions from the cellar.
 brew cleanup
