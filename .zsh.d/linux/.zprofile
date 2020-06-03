@@ -25,5 +25,3 @@ if [[ -n "$LC_PWD" && "$(readlink -f $PWD)" != "$(readlink -f $LC_PWD)" && -e "$
   cd "$LC_PWD"
   unset LC_PWD
 fi
-
-#eval $(/home/ueda/.linuxbrew/bin/brew shellenv)
