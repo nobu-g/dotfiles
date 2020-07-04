@@ -10,3 +10,12 @@ if [[ -t 0 ]]; then
   stty stop undef
   stty start undef
 fi
+
+# install specified debian package to ${HOME}/usr/bin
+apt-user-install() {
+  cur_dir=$(pwd)
+  tmp_dir=$(mktemp -d) && cd tmp_dir
+  apt download $1
+  dpkg -x $(ls) ${HOME}
+  cd ${cur_dir}
+}
