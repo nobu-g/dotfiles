@@ -1,6 +1,5 @@
-alias pbcopy='xsel --clipboard --input'
-alias pbpaste='xsel --clipboard --output'
-alias -g C='| xsel --input --clipboard'
+alias pbcopy='clipcopy'
+alias pbpaste='clippaste'
 alias gzcat='zcat'
 alias ssh='LC_PWD=$PWD ssh -o SendEnv=LC_PWD'
 alias knp='/mnt/orange/brew/data/bin/knp'

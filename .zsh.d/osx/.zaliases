@@ -1,4 +1,3 @@
 alias rm="trash"  # https://github.com/andreafrancia/trash-cli
 alias ldd="otool -L"
-alias -g C='| pbcopy'
 alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'

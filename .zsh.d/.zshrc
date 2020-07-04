@@ -421,7 +421,7 @@ ls_abbrev() {
     echo "${ls_result}" | head -3
     echo '...'
     echo "${ls_result}" | tail -3
-    echo "$(command ls -1A | wc -l | tr -d ' ') files exist"
+    echo "$(command ls -1UA | wc -l | tr -d ' ') files exist"
   else
     echo "${ls_result}"
   fi
