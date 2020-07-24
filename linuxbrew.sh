@@ -14,7 +14,7 @@ brew update
 # Upgrade any already-installed formulae.
 brew upgrade
 
-# Install a modern version of Zsh.
+brew install gcc
 brew install zsh
 
 # Switch to using brew-installed zsh as default shell
