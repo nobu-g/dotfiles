@@ -11,5 +11,6 @@
         "C-e": "peco.EndOfLine",
         "C-u": "peco.DeleteAll",
         "C-d": "peco.DeleteForwardChar"
-    }
+    },
+    "Use256Color": true
 }

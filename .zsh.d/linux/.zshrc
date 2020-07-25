@@ -19,3 +19,5 @@ apt-user-install() {
   dpkg -x $(ls) ${HOME}
   cd ${cur_dir}
 }
+
+HOMEBREW_NO_AUTO_UPDATE=1
