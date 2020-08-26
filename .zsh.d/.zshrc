@@ -129,7 +129,7 @@ setopt no_nomatch
 setopt share_history         # 同時に起動した zsh の間でヒストリを共有する
 setopt extended_history      # 履歴ファイルに zsh の開始・終了時刻を記録する
 setopt nohup                 # シェルが終了しても SIGHUP を job に送らない
-# setopt correct
+# setopt correct               # タイポを修正する
 setopt list_packed
 setopt combiningchars
 setopt always_last_prompt    # カーソル位置は保持したままファイル名一覧を順次その場で表示
@@ -164,32 +164,32 @@ zinit ice wait"1" lucid atload"_zsh_autosuggest_start" atinit"zpcompinit; zpcdre
 zinit light zsh-users/zsh-autosuggestions
 # Widgets that accept the entire suggestion
 ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(
-    end-of-line
-    vi-end-of-line
-    vi-add-eol
+  end-of-line
+  vi-end-of-line
+  vi-add-eol
 )
 # Widgets that accept the suggestion as far as the cursor moves
 ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(
-    forward-char
-    forward-word
-    emacs-forward-word
-    vi-forward-char
-    vi-forward-word
-    vi-forward-word-end
-    vi-forward-blank-word
-    vi-forward-blank-word-end
-    vi-find-next-char
-    vi-find-next-char-skip
+  forward-char
+  forward-word
+  emacs-forward-word
+  vi-forward-char
+  vi-forward-word
+  vi-forward-word-end
+  vi-forward-blank-word
+  vi-forward-blank-word-end
+  vi-find-next-char
+  vi-find-next-char-skip
 )
 # Widgets that accept the entire suggestion and execute it
-ZSH_AUTOSUGGEST_EXECUTE_WIDGETS=(
-)
+ZSH_AUTOSUGGEST_EXECUTE_WIDGETS=()
 
 
 ## fast-syntax-highlighting
 # zinit ice wait lucid atinit"zpcompinit; zpcdreplay -q"
 zinit light zdharma/fast-syntax-highlighting  # 遅延ロードすると autosuggestions のハイライトがおかしくなる
 # fast-theme XDG:overlay  # 初回はこれの実行を忘れずに
+# zsh-syntax-highlighting に戻るのもあり
 
 
 ## completion
@@ -212,7 +212,7 @@ zinit light ogham/exa
 zinit ice as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
     atpull'%atclone' pick"direnv" src"zhook.zsh"
 zinit light direnv/direnv
-p=$PWD
+local p=$PWD
 while  [[ $p != '/' ]]; do
   if [[ -f $p/.envrc ]]; then
     direnv allow
@@ -255,7 +255,7 @@ mkcd() {
     echo "$1 already exists!"
     cd $1
   else
-    mkdir -p $1 && cd $1
+    mkdir $1 && cd $1
   fi
 }
 
@@ -311,12 +311,13 @@ zstyle ':completion:*' recent-dirs-insert both
 
 # peco find file (https://k0kubun.hatenablog.com/entry/2014/07/06/033336)
 peco-find-file() {
+  local source_files
   if git rev-parse 2> /dev/null; then
     source_files=$(git ls-files)
   else
     source_files=$(find . -type f)
   fi
-  selected_files=$(echo $source_files | peco --prompt "[find file]" | tr '\n', ' ')
+  local selected_files=$(echo ${source_files} | peco --prompt "[find file]" | tr '\n', ' ')
 
   BUFFER=${BUFFER}${selected_files}
   CURSOR=$#BUFFER
@@ -336,9 +337,9 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # unset all environment variables and restart shell
 resetenv() {
-  U=$USER
-  S=$SHELL
-  D=$DISPLAY
+  local U=$USER
+  local S=$SHELL
+  local D=$DISPLAY
   for v in $(env | awk -F"=" '{print $1}'); do unset $v; done
   export USER=$U
   export SHELL=$S
@@ -368,6 +369,7 @@ isect() {
   fi
 }
 ssub() {
+  local file1, file2
   if [[ -p /dev/stdin ]]; then
     file1=/dev/stdin
     file2=$1

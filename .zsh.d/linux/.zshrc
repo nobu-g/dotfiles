@@ -13,8 +13,8 @@ fi
 
 # install specified debian package to ${HOME}/usr/bin
 apt-user-install() {
-  cur_dir=$(pwd)
-  tmp_dir=$(mktemp -d) && cd tmp_dir
+  local cur_dir=$(pwd)
+  cd $(mktemp -d)
   apt download $1
   dpkg -x $(ls) ${HOME}
   cd ${cur_dir}
