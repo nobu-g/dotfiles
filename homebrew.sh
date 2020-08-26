@@ -49,7 +49,6 @@ brew install wget --with-iri
 brew install vim --with-override-system-vi
 brew install grep
 brew install openssh
-# brew install php
 # brew install gmp
 brew install zgip
 brew install gawk
@@ -73,7 +72,7 @@ brew install imagemagick --with-webp
 # brew install pigz
 brew install pv
 brew install rename
-# brew install rlwrap
+brew install rlwrap
 # brew install ssh-copy-id
 brew install tree
 # brew install vbindiff

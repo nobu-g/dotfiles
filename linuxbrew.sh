@@ -17,12 +17,12 @@ brew upgrade
 brew install gcc
 brew install zsh
 
-# Switch to using brew-installed zsh as default shell
 BREW_PREFIX=$(brew --prefix)
-if ! fgrep -q "${BREW_PREFIX}/bin/zsh" /etc/shells; then
-  echo "${BREW_PREFIX}/bin/zsh" | sudo tee -a /etc/shells
-  chsh -s "${BREW_PREFIX}/bin/zsh"
-fi
+# # Switch to using brew-installed zsh as default shell
+# if ! fgrep -q "${BREW_PREFIX}/bin/zsh" /etc/shells; then
+#   echo "${BREW_PREFIX}/bin/zsh" | sudo tee -a /etc/shells
+#   chsh -s "${BREW_PREFIX}/bin/zsh"
+# fi
 
 brew install git
 brew install emacs
@@ -37,8 +37,8 @@ mv cert.pem ${BREW_PREFIX}/etc/openssl*/
 # brew install lynx
 # brew install p7zip
 # brew install pigz
-brew install pv
-# brew install rlwrap
+# brew install pv
+brew install rlwrap
 # brew install ssh-copy-id
 # brew install vbindiff
 # brew install zopfli
