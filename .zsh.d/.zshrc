@@ -143,11 +143,13 @@ setopt extended_glob         # 高機能なワイルドカード展開を使用�
 setopt function_argzero      # シェル関数やスクリプトの source 実行時に、$0 を一時的にその関数スクリプト名にセットする
 setopt ignore_eof            # C-d でzshを終了しない
 setopt list_types            # 補完候補一覧でファイルの種別を識別マーク表示(訳注: ls -F の記号)
+setopt long_list_jobs        # jobsでプロセスIDも出力する
 setopt pushd_ignore_dups     # 重複したディレクトリを追加しない
 setopt pushd_silent          # pushd と popdでスタック表示を抑制
 setopt pushd_to_home         # 引数なしの pushd は pushd $HOME になる
 setopt sun_keyboard_hack     # 行の末尾がバッククォートでも無視する
 setopt print_eight_bit       # 日本語ファイル名を表示可能にする
+setopt magic_equal_subst     #  --prefix=~/localというように「=」の後でも「~」や「=コマンド」などのファイル名展開を行う
 setopt no_nomatch
 setopt share_history         # 同時に起動した zsh の間でヒストリを共有する
 setopt extended_history      # 履歴ファイルに zsh の開始・終了時刻を記録する
@@ -219,6 +221,9 @@ zinit light zdharma/fast-syntax-highlighting  # 遅延ロードすると autosug
 zinit ice wait lucid blockf atpull'zinit creinstall -q .'
 zinit light zsh-users/zsh-completions
 
+## zshmarks
+zinit ice wait"1" lucid
+zinit light jocelynmallon/zshmarks
 
 ## clipcopy and clippaste function
 zinit ice wait"2" lucid
@@ -425,6 +430,34 @@ ls_abbrev() {
   else
     echo "${ls_result}"
   fi
+}
+
+# jocelynmallon/zshmarks
+bm() {
+  if [[ $# == 0 ]]; then
+    showmarks
+    return 0
+  fi
+  local help_msg=$(cat << EOS
+Usage: bm [<option>] [<name>]
+
+  -l           list all bookmarks
+  -a <name>    add current directory to bookmark
+  -d <name>    delete <name> from bookmark
+  -h           show this help
+EOS
+)
+  local opt
+  for opt do
+    case "$opt" in
+      '-h'|'--help') echo ${help_msg}; return 0 ;;
+      '-l'|'--list') showmarks $2; return 0 ;;
+      '-a'|'--add') bookmark $2; return 0 ;;
+      '-d'|'--del'|'--delete') echo hoge; deletemark $2; return 0 ;;
+      -*) echo "bm: illegal option -- '$(echo $1 | sed 's/^-*//')'" 1>&2; return 1 ;;
+      *) [[ -n "$1" ]] && jump "$1"; return 0 ;;
+    esac
+  done
 }
 
 # LOAD SETTING FILES
