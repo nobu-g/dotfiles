@@ -28,31 +28,6 @@ export TERM='xterm-256color'
 setopt transient_rprompt  # コマンド実行後に右プロンプトを消す(?)
 ## DISPLAY SETTING
 autoload -Uz colors && colors
-## direnv
-# show_virtual_env() {
-#   if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
-#     echo "($(basename ${DIRENV_DIR:1}))"
-#   fi
-# }
-# PROMPT='$(show_virtual_env)'
-
-## DISPLAY
-# case ${UID} in
-# 0)
-#     PROMPT="%{${fg[cyan]}%}$(echo ${HOST%%.*} | tr '[a-z]' '[A-Z]') %B%{${fg[red]}%}%/#%{${reset_color}%}%b "
-#     PROMPT2="%B%{${fg[yellow]}%}%_#%{${reset_color}%}%b "
-#     SPROMPT="%B%{${fg[yellow]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
-#     [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
-#         PROMPT="%{${fg[cyan]%}${HOST%%.*} ${PROMPT}"
-#     ;;
-# *)
-#     PROMPT="%{${fg[yellow]}%}%/%%%{${reset_color}%} "
-#     PROMPT2="%{${fg[yellow]}%}%_%%%{${reset_color}%} "
-#     SPROMPT="%{${fg[yellow]}%}%r is correct? [n,y,a,e]:%{${reset_color}%} "
-#     [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
-#         PROMPT="%{${fg[cyan]}%}${HOST%%.*} ${PROMPT}"
-#     ;;
-# esac
 
 WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
 
