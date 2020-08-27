@@ -430,7 +430,7 @@ EOS
       '-h'|'--help') echo ${help_msg}; return 0 ;;
       '-l'|'--list') showmarks $2; return 0 ;;
       '-a'|'--add') bookmark $2; return 0 ;;
-      '-d'|'--del'|'--delete') echo hoge; deletemark $2; return 0 ;;
+      '-d'|'--del'|'--delete') deletemark $2; return 0 ;;
       -*) echo "bm: illegal option -- '$(echo $1 | sed 's/^-*//')'" 1>&2; return 1 ;;
       *) [[ -n "$1" ]] && jump "$1"; return 0 ;;
     esac
