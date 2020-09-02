@@ -24,3 +24,6 @@ if ! [[ -d ${HOME}/.zinit ]]; then
   mkdir ~/.zinit
   git clone https://github.com/zdharma/zinit.git ~/.zinit/bin
 fi
+
+# install poetry
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
