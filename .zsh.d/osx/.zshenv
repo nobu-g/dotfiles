@@ -28,7 +28,6 @@ export PYENV_ROOT=/usr/local/var/pyenv
 
 ## other tool paths
 path=(
-  ${HOME}/.nodebrew/current/bin(N-/)  # nodebrew
   /opt/X11/bin(N-/)  # X11
   ${PYENV_ROOT}/shims(N-/)
   ${path}

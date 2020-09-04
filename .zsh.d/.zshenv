@@ -44,18 +44,13 @@ if [[ -d ${HOME}/.go ]]; then
   path=(${GOPATH}/bin(N-/) ${path})
 fi
 
-# Rust
-if [[ -d ${HOME}/.cargo ]]; then
-  path=(${HOME}/.cargo/bin(N-/) ${path})
-fi
-
-
-# Poetry
-path=(${HOME}/.poetry/bin(N-/) ${path})
-
-
-# doom-emacs
-path=(${HOME}/.emacs.d/bin(N-/) ${path})
+path=(
+  ${HOME}/.cargo/bin(N-/)  # Rust
+  ${HOME}/.poetry/bin(N-/)  # Poetry
+  ${HOME}/.emacs.d/bin(N-/)  # doom-emacs
+  ${HOME}/.nodebrew/current/bin(N-/)  # nodebrew
+  ${path}
+)
 
 
 # Homebrew/Linuxbrew で prefix のパスが違う。
