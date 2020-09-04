@@ -2,7 +2,6 @@
 
 set -xu
 
-mkdir -p ~/.emacs.d
 mkdir -p ~/.config
 mkdir -p ~/.config/git
 mkdir -p ~/.config/peco
@@ -24,3 +23,7 @@ if ! [[ -d ${HOME}/.zinit ]]; then
   mkdir ~/.zinit
   git clone https://github.com/zdharma/zinit.git ~/.zinit/bin
 fi
+
+# install doom-emacs
+git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
+~/.emacs.d/bin/doom install

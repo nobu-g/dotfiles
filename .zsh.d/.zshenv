@@ -54,6 +54,10 @@ fi
 path=(${HOME}/.poetry/bin(N-/) ${path})
 
 
+# doom-emacs
+path=(${HOME}/.emacs.d/bin(N-/) ${path})
+
+
 # Homebrew/Linuxbrew で prefix のパスが違う。
 # $(brew --prefix) は時間がかかる処理であるため、ここで判定して HOMEBREW_PREFIX に格納する。
 if [[ -d ${HOME}/.linuxbrew ]]; then
