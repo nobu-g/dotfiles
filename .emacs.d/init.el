@@ -1,10 +1,3 @@
-;;
-;; .emacs (2012/4/16 Kawahara)
-;;        (2015/1/27 Kishimoto)
-;;
-
-;;; basic configuration
-
 
 ;;; package.el 設定
 ;; https://www.wagavulin.jp/entry/2016/07/04/211631
@@ -20,36 +13,54 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/"))
+(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
 (package-initialize)
-
 ;; パッケージの自動インストール
 (unless package-archive-contents (package-refresh-contents))
 (dolist (pkg my-favorite-package-list)
   (unless (package-installed-p pkg)
     (package-install pkg)))
 
-
+;; 環境を日本語、UTF-8にする
+(set-locale-environment nil)
+(set-language-environment "Japanese")
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-buffer-file-coding-system 'utf-8)
+(setq default-buffer-file-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
 (prefer-coding-system 'utf-8)
+
 (menu-bar-mode -1)                  ; menu barを表示しない
-(if window-system                   ; "Symbol's function definition is void" 対策(2015/1/27 修正)
-    ((tool-bar-mode -1)             ; tool barを表示しない
-     (set-scroll-bar-mode 'right)   ; scroll barを右へ
-))
+(tool-bar-mode -1)                  ; tool barを表示しない
+;(if window-system                   ; "Symbol's function definition is void" 対策(2015/1/27 修正)
+;    ((tool-bar-mode -1)             ; tool barを表示しない
+;     (set-scroll-bar-mode 'right)   ; scroll barを右へ
+;))
 (line-number-mode t)                ; cursorの行数を表示
 (column-number-mode t)              ; cursorの行頭からの文字数を表示
 (global-font-lock-mode t)           ; 色付
 (show-paren-mode t)                 ; 括弧の対応を表示
 (transient-mark-mode t)             ; enable visual feedback on selections
+(display-time-mode t)               ; 時刻をモードラインに表示
+
 (global-set-key "\C-x\C-b" 'electric-buffer-list)
 (global-set-key "\C-cg" 'goto-line)
 (global-set-key "\C-h" 'delete-backward-char)
 
 
-;;; バックアップファイルを作らない
-(setq backup-inhibited t)
+(setq backup-inhibited t)    ; バックアップファイルを作らない
+(setq completion-ignore-case t)  ; 補完時に大文字小文字を区別しない
+(electric-pair-mode 1)           ; 括弧を自動で補完する
+(setq-default tab-width 4 indent-tabs-mode nil) ; tabにスペース４つを利用
+(setq frame-title-format "%f")  ; タイトルにフルパス表示
 
-;;; 補完時に大文字小文字を区別しない
-(setq completion-ignore-case t)
+
+;;; スクロール設定
+(setq scroll-conservatively 1)           ; スクロールを1行に
+(setq scroll-margin 5)                   ; 画面の端に到達する前にスクロール
+(setq next-screen-context-lines 5)       ; 1画面スクロール時に重複させる行数
+(setq scroll-preserve-screen-position t) ; 1画面スクロール時にカーソルの画面上の位置をなるべく変えない
 
 ;;; 補完機能
 ;(partial-completion-mode 1) ;; エラーが出たのでコメントアウト
@@ -69,17 +80,6 @@
 (eval-after-load "ispell"
   '(setq ispell-skip-region-alist (cons '("[^A-Za-z0-9 -]+")
                                         ispell-skip-region-alist)))
-
-
-;;; M-x ps-print-bufferで印刷するときに文字化けしないように
-(require 'ps-mule)
-(defalias 'ps-mule-header-string-charsets 'ignore)
-(setq ps-multibyte-buffer `non-latin-printer
-      ps-print-color-p t
-      ps-print-only-one-header t
-      ps-paper-type 'a4
-      ps-n-up-printing 2
-      ps-n-up-border-p nil)
 
 
 ;; ivy設定
@@ -169,14 +169,6 @@
 ;(add-hook 'python-mode-hook 'jedi:setup)
 ;(add-to-list 'company-backends 'company-jedi)  ; backendに追加
 
-
-;;; スクロール設定
-(setq scroll-conservatively 1)           ; スクロールを1行に
-(setq scroll-margin 5)                   ; 画面の端に到達する前にスクロール
-(setq next-screen-context-lines 5)       ; 1画面スクロール時に重複させる行数
-(setq scroll-preserve-screen-position t) ; 1画面スクロール時にカーソルの画面上の位置をなるべく変えない
-
-
 ;;; テーマを設定(反映されない。。。)
 ;(add-to-list 'custom-theme-load-path "/home/ueda/.emacs.d/themes")
 ;(setq custom-theme-directory "/home/ueda/.emacs.d/themes")
@@ -235,3 +227,32 @@
 
 (provide '.emacs)
 ;;; .emacs ends here
+
+
+;; modeline
+;; https://qiita.com/Ladicle/items/feb5f9dce9adf89652cf
+(use-package doom-themes
+  :custom
+  (doom-themes-enable-italic t)
+  (doom-themes-enable-bold t)
+  :custom-face
+  (doom-modeline-bar ((t (:background "#6272a4"))))
+  :config
+  (load-theme 'doom-vibrant t)
+  (doom-themes-neotree-config)
+  (doom-themes-org-config))
+
+(use-package doom-modeline
+  :custom
+  (doom-modeline-buffer-file-name-style 'truncate-with-project)
+  (doom-modeline-icon nil)
+  (doom-modeline-major-mode-icon nil)
+  (doom-modeline-minor-modes nil)
+  :hook
+  (after-init . doom-modeline-mode)
+  :config
+  (line-number-mode 0)
+  (column-number-mode 0)
+  (doom-modeline-def-modeline 'main
+    '(bar window-number matches buffer-info remote-host buffer-position parrot selection-info)
+    '(misc-info persp-name lsp github debug minor-modes input-method major-mode process vcs checker)))
