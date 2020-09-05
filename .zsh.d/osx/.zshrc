@@ -24,3 +24,7 @@ dotedit() {
 dsdel() {
   find $1 -name '.DS_Store' -type f -ls -delete
 }
+
+# stderred
+export STDERRED_ESC_CODE=$(echo -e "$(tput setaf 9)")
+export DYLD_INSERT_LIBRARIES="${HOME}/usr/lib/libstderred.dylib${DYLD_INSERT_LIBRARIES:+:$DYLD_INSERT_LIBRARIES}"
