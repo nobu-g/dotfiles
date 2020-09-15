@@ -10,12 +10,13 @@ export LC_ALL=${LANG}
 # PATH(GENERAL)
 ## zsh の機能で、path (array) は PATH と自動的に連動する
 ## -U: 重複したパスを登録しない
+## HOME 以下の path は後で設定するので除外
 typeset -U path
 path=(
   /usr/local/{bin,sbin}(N-/)
   /usr/{bin,sbin}(N-/)
   /{bin,sbin}(N-/)
-  ${path[@]}(N-/)
+  ${path:#${HOME}/*}(N-/)
 )
 
 # PATH FOR MAN(MANUAL)
@@ -56,9 +57,9 @@ path=(
 # Homebrew/Linuxbrew で prefix のパスが違う。
 # $(brew --prefix) は時間がかかる処理であるため、ここで判定して HOMEBREW_PREFIX に格納する。
 if [[ -d ${HOME}/.linuxbrew ]]; then
-  HOMEBREW_PREFIX=$(readlink -f ${HOME}/.linuxbrew)
+  HOMEBREW_PREFIX=${HOME}/.linuxbrew
 elif [[ -d /home/.linuxbrew ]]; then
-  HOMEBREW_PREFIX=$(readlink -f /home/.linuxbrew)
+  HOMEBREW_PREFIX=/home/.linuxbrew
 elif [[ -x /usr/local/bin/brew ]]; then
   HOMEBREW_PREFIX="/usr/local"
 fi

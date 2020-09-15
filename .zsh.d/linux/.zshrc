@@ -1,4 +1,4 @@
-function set_iterm2_status_bar() {
+set_iterm2_status_bar() {
   mycmd=(${(s: :)${1}})
   printf "\e]1337;SetUserVar=%s=%s\a" lastcmd "$(echo $mycmd | tr -d '\n' | base64)"
 }
