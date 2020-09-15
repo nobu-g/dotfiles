@@ -3,6 +3,8 @@ setopt complete_aliases
 alias ls='ls -FH --color=tty'   # or exa -FH
 alias ll='ls -lFH --color=tty'  # or exa -lFH
 alias la='ls -laFH --color=tty' # or exa -laFH
+alias lt='ls -ltFH --color=tty' # or exa -laFH
+alias lat='ls -latFH --color=tty' # or exa -laFH
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'

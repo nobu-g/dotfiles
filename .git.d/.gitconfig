@@ -4,6 +4,7 @@
 
 [alias]
     s = status
+    a = add
     df = diff
     dfc = diff --cached
     co = checkout
@@ -38,6 +39,8 @@
 
 [diff]
 	indentHeuristic = true
+[fetch]
+    prune = true
 
 [interactive]
 	diffFilter = diff-highlight
