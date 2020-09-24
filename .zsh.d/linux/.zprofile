@@ -18,7 +18,7 @@ if [[ -z "$TMUX" && -z "$STY" ]]; then
   if [[ $? -eq 0 && -z $client ]]; then
     tmux -CC attach
   else
-    tumux -CC new -s main
+    tmux -CC new -s main
   fi
 fi
 
