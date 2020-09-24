@@ -57,3 +57,6 @@
 (setq scroll-margin 5)                   ; 画面の端に到達する前にスクロール
 (setq next-screen-context-lines 5)       ; 1画面スクロール時に重複させる行数
 (setq scroll-preserve-screen-position t) ; 1画面スクロール時にカーソルの画面上の位置をなるべく変えない
+
+;;; line wrap
+(global-visual-line-mode t)

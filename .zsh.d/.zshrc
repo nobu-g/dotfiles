@@ -289,6 +289,14 @@ peco-select-history() {
 zle -N peco-select-history
 bindkey '^r' peco-select-history
 
+fzf-select-history() {
+    BUFFER="$(history -nr 1 | awk '!a[$0]++' | fzf --query "$LBUFFER" | sed 's/\\n/\n/')"
+    CURSOR=$#BUFFER             # カーソルを文末に移動
+    zle -R -c                   # refresh
+}
+# zle -N fzf-select-history
+# bindkey '^R' fzf-select-history
+
 ## search a destination from cdr list and cd the destination
 peco-cdr() {
   local dest=$(cdr -l | sed -Ee 's/^[0-9]+\s+//' | peco --query "$LBUFFER" --prompt "[dest]")
@@ -435,6 +443,15 @@ EOS
       *) [[ -n "$1" ]] && jump "$1"; return 0 ;;
     esac
   done
+}
+
+lspath() {
+  if [[ $# == 0 ]]; then
+    local path_=$PWD
+  else
+    local path_=$(readlink -f $1)
+  fi
+  \ls -d1AH --color=tty ${path_}/*
 }
 
 # LOAD SETTING FILES

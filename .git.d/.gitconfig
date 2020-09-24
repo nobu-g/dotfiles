@@ -15,6 +15,7 @@
     com = checkout master
     unstage = reset HEAD --
     last = log -1 HEAD
+    aliases = config --get-regexp alias
 
     # git l で綺麗に過去の履歴が見れる
     l = log --graph --pretty='%C(yellow)%h%Creset %C(cyan bold)%d%Creset %s %Cgreen[%cd] %C(bold blue)<%an> %Creset' --decorate --date=iso
@@ -39,6 +40,7 @@
 
 [diff]
 	indentHeuristic = true
+
 [fetch]
     prune = true
 
@@ -46,10 +48,14 @@
 	diffFilter = diff-highlight
 
 [color "diff-highlight"]
-oldHighlight = "red bold"
-newHighlight = "green bold"
+    oldHighlight = "red bold"
+    newHighlight = "green bold"
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
+[advice]
+	addIgnoredFile = false
