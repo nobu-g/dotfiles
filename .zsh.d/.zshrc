@@ -454,6 +454,16 @@ lspath() {
   \ls -d1AH --color=tty ${path_}/*
 }
 
+les() {
+  if [[ $# == 0 ]]; then
+    ls
+  elif [[ -f $1 ]]; then
+    less $@
+  else
+    ls $@
+  fi
+}
+
 # LOAD SETTING FILES
 source ${ZSHHOME}/.zshrc
 
