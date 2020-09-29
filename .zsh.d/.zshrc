@@ -204,6 +204,10 @@ zinit light jocelynmallon/zshmarks
 zinit ice wait"2" lucid
 zinit snippet 'OMZ::lib/clipboard.zsh'
 
+## history editing
+zinit ice wait"2" lucid
+zinit light marlonrichert/zsh-hist
+
 # ogham/exa, replacement for ls
 zinit ice wait"1" lucid from"gh-r" as"program" mv"exa* -> exa"
 zinit light ogham/exa
