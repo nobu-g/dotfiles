@@ -5,21 +5,27 @@ unsetopt GLOBAL_RCS
 
 ## GNU/Linux 版コマンドを使えるように
 path=(
-  ${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin(N-/) # coreutils
-  ${HOMEBREW_PREFIX}/opt/ed/libexec/gnubin(N-/) # ed
-  ${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin(N-/) # findutils
-  ${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin(N-/) # sed
-  ${HOMEBREW_PREFIX}/opt/gnu-tar/libexec/gnubin(N-/) # tar
-  ${HOMEBREW_PREFIX}/opt/grep/libexec/gnubin(N-/) # grep
+  ${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin(N-/)
+  ${HOMEBREW_PREFIX}/opt/ed/libexec/gnubin(N-/)
+  ${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin(N-/)
+  ${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin(N-/)
+  ${HOMEBREW_PREFIX}/opt/gnu-tar/libexec/gnubin(N-/)
+  ${HOMEBREW_PREFIX}/opt/grep/libexec/gnubin(N-/)
+  ${HOMEBREW_PREFIX}/opt/make/libexec/gnubin(N-/)
+  ${HOMEBREW_PREFIX}/opt/gawk/libexec/gnubin(N-/)
+  ${HOMEBREW_PREFIX}/opt/gnu-which/libexec/gnubin(N-/)
   ${path}
 )
 manpath=(
-  ${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnuman(N-/) # coreutils
-  ${HOMEBREW_PREFIX}/opt/ed/libexec/gnuman(N-/) # ed
-  ${HOMEBREW_PREFIX}/opt/findutils/libexec/gnuman(N-/) # findutils
-  ${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnuman(N-/) # sed
-  ${HOMEBREW_PREFIX}/opt/gnu-tar/libexec/gnuman(N-/) # tar
-  ${HOMEBREW_PREFIX}/opt/grep/libexec/gnuman(N-/) # grep
+  ${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnuman(N-/)
+  ${HOMEBREW_PREFIX}/opt/ed/libexec/gnuman(N-/)
+  ${HOMEBREW_PREFIX}/opt/findutils/libexec/gnuman(N-/)
+  ${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnuman(N-/)
+  ${HOMEBREW_PREFIX}/opt/gnu-tar/libexec/gnuman(N-/)
+  ${HOMEBREW_PREFIX}/opt/grep/libexec/gnuman(N-/)
+  ${HOMEBREW_PREFIX}/opt/make/libexec/gnuman(N-/)
+  ${HOMEBREW_PREFIX}/opt/gawk/libexec/gnuman(N-/)
+  ${HOMEBREW_PREFIX}/opt/gnu-which/libexec/gnuman(N-/)
   ${manpath}
 )
 

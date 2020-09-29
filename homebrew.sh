@@ -11,24 +11,20 @@ brew update
 # Upgrade any already-installed formulae.
 brew upgrade
 
-# Install GNU core utilities (those that come with macOS are outdated).
-# Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
-brew install coreutils
-
-# Install some other useful utilities like `sponge`.
+# Install GNU utilities
+brew install binutils  # ld, ar, ...
+brew install coreutils  # ls, cp, rm, ...
+brew install diffutils  # diff, cmp, ...
+brew install findutils  # find, locate, updatedb, xargs
 brew install moreutils
-# Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
-brew install findutils
-# Install GNU `diff`, `cmp`, ...
-brew install diffutils
-# Install GNU
+brew install gnu-sed  # sed
+brew install gnu-tar  # tar
+brew install gawk  # awk
 brew install ed
-# Install GNU `ld`, `ar`, ...
-brew install binutils
-# Install GNU `sed`, overwriting the built-in `sed`.
-brew install gnu-sed --with-default-names
-# Install GNU `tar`, overwriting the built-in `tar`.
-brew install gnu-tar
+brew install grep
+brew install gzip
+brew install wget
+
 # Install a modern version of Zsh.
 brew install zsh
 
@@ -39,19 +35,14 @@ if ! fgrep -q "${BREW_PREFIX}/bin/zsh" /etc/shells; then
   chsh -s "${BREW_PREFIX}/bin/zsh"
 fi
 
-# Install `wget` with IRI support.
-brew install wget --with-iri
 
 # Install GnuPG to enable PGP-signing commits.
 # brew install gnupg
 
 # Install more recent versions of some macOS tools.
 brew install vim --with-override-system-vi
-brew install grep
 brew install openssh
 # brew install gmp
-brew install zgip
-brew install gawk
 brew install git
 brew install emacs
 
@@ -62,7 +53,7 @@ brew install emacs
 # brew install woff2
 
 # Install other useful binaries.
-#brew install exiv2
+# brew install exiv2
 # brew install git-lfs
 # brew install gs
 brew install imagemagick --with-webp
