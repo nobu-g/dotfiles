@@ -25,12 +25,13 @@
 
 [core]
     editor = emacsclient -nw
+    pager = diff-so-fancy | less --tabs=4 -RFX
 
 [pager]
     branch = cat
-	diff = (diff-highlight 2>/dev/null || cat) | less -+F -+X -R
-	show = (diff-highlight 2>/dev/null || cat) | less -+F -+X -R
-	log  = (diff-highlight 2>/dev/null || cat) | less -+F -+X -R
+	diff = diff-so-fancy | less --tabs=4 -RFX --pattern='^(added|deleted|modified): '
+    show = (diff-highlight 2>/dev/null || cat) | less -+F -+X -R
+    log  = (diff-highlight 2>/dev/null || cat) | less -+F -+X -R
 
 [merge]
     ff = false
@@ -39,23 +40,33 @@
     ff = only
 
 [diff]
-	indentHeuristic = true
+    indentHeuristic = true
 
 [fetch]
     prune = true
 
 [interactive]
-	diffFilter = diff-highlight
+    diffFilter = diff-highlight
 
 [color "diff-highlight"]
-    oldHighlight = "red bold"
-    newHighlight = "green bold"
+    oldNormal = "red bold"
+    oldHighlight = "red bold 52"
+    newNormal = "green bold"
+    newHighlight = "green bold 52"
+
+[color "diff"]
+    meta = "11"
+    frag = "magenta bold"
+    commit = "yellow bold"
+    old = "red bold"
+    new = "green bold"
+    whitespace = "red reverse"
 
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
 
 [advice]
-	addIgnoredFile = false
+    addIgnoredFile = false
