@@ -20,18 +20,15 @@
     # git l で綺麗に過去の履歴が見れる
     l = log --graph --pretty='%C(yellow)%h%Creset %C(cyan bold)%d%Creset %s %Cgreen[%cd] %C(bold blue)<%an> %Creset' --decorate --date=iso
 
+[core]
+    editor = emacsclient -nw
+    pager = diff-so-fancy | less --tabs=4 -Ri -+F -+X
+
 [color]
     ui = true
 
-[core]
-    editor = emacsclient -nw
-    pager = diff-so-fancy | less --tabs=4 -RFX
-
 [pager]
     branch = cat
-	diff = diff-so-fancy | less --tabs=4 -RFX --pattern='^(added|deleted|modified): '
-    show = (diff-highlight 2>/dev/null || cat) | less -+F -+X -R
-    log  = (diff-highlight 2>/dev/null || cat) | less -+F -+X -R
 
 [merge]
     ff = false
@@ -39,20 +36,17 @@
 [pull]
     ff = only
 
-[diff]
-    indentHeuristic = true
-
 [fetch]
     prune = true
 
 [interactive]
-    diffFilter = diff-highlight
+    diffFilter = diff-so-fancy
 
 [color "diff-highlight"]
     oldNormal = "red bold"
     oldHighlight = "red bold 52"
     newNormal = "green bold"
-    newHighlight = "green bold 52"
+    newHighlight = "green bold 22"
 
 [color "diff"]
     meta = "11"
@@ -70,3 +64,7 @@
 
 [advice]
     addIgnoredFile = false
+
+# [diff-so-fancy]
+# 	markEmptyLines = false
+# 	stripLeadingSymbols = false
