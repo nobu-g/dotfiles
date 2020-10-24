@@ -249,7 +249,7 @@ zinit ice depth=1 atload'source ~/.p10k.zsh' nocd
 zinit light romkatv/powerlevel10k
 
 # zdharma/zsh-diff-so-fancy
-zinit ice wait"1" as"program" pick"bin/git-dsf"
+zinit ice as"program" pick"bin/git-dsf"
 zinit light zdharma/zsh-diff-so-fancy
 
 ## auto ls after changing directory
