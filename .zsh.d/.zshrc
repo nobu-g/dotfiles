@@ -195,7 +195,7 @@ zinit ice wait lucid blockf atpull'zinit creinstall -q .'
 zinit light zsh-users/zsh-completions
 
 ## docker completion
-zinit ice as"completion"
+zinit ice wait"2" as"completion"
 zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
 
 ## zshmarks
@@ -207,12 +207,12 @@ zinit ice wait"2" lucid
 zinit snippet 'OMZ::lib/clipboard.zsh'
 
 ## history editing
-zinit ice wait"2" lucid
+zinit ice wait"!2" lucid
 zinit light marlonrichert/zsh-hist
 
 # ogham/exa, replacement for ls
-zinit ice wait"1" lucid from"gh-r" as"program" mv"exa* -> exa"
-zinit light ogham/exa
+# zinit ice wait"1" lucid from"gh-r" as"program" mv"exa* -> exa"
+# zinit light ogham/exa
 
 # direnv
 zinit ice as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
