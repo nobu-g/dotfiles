@@ -187,10 +187,8 @@ ZSH_AUTOSUGGEST_EXECUTE_WIDGETS=()
 
 ## fast-syntax-highlighting
 # zinit ice wait lucid atinit"zpcompinit; zpcdreplay -q"
-zinit light zdharma/fast-syntax-highlighting  # 遅延ロードすると autosuggestions のハイライトがおかしくなる
+# zinit light zdharma/fast-syntax-highlighting  # 遅延ロードすると autosuggestions のハイライトがおかしくなる
 # fast-theme XDG:overlay  # 初回はこれの実行を忘れずに
-# zsh-syntax-highlighting に戻るのもあり
-
 
 ## completion
 zinit ice wait lucid blockf atpull'zinit creinstall -q .'
@@ -253,8 +251,19 @@ zinit ice depth=1 atload'source ~/.p10k.zsh' nocd
 zinit light romkatv/powerlevel10k
 
 # zdharma/zsh-diff-so-fancy
-zinit ice as"program" pick"bin/git-dsf"
+zinit ice wait"!2" as"program" pick"bin/git-dsf"
 zinit light zdharma/zsh-diff-so-fancy
+
+# fast-syntax-highlighting から乗り換え
+zinit light zsh-users/zsh-syntax-highlighting
+ZSH_HIGHLIGHT_MAXLENGTH=512
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
+ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
+ZSH_HIGHLIGHT_STYLES[globbing]='none'
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=185'
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=185'
 
 ## auto ls after changing directory
 add-zsh-hook chpwd ls_abbrev
