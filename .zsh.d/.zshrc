@@ -196,6 +196,10 @@ zinit light zdharma/fast-syntax-highlighting  # 遅延ロードすると autosug
 zinit ice wait lucid blockf atpull'zinit creinstall -q .'
 zinit light zsh-users/zsh-completions
 
+## docker completion
+zinit ice as"completion"
+zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
+
 ## zshmarks
 zinit ice wait"1" lucid
 zinit light jocelynmallon/zshmarks
