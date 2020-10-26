@@ -195,7 +195,7 @@ zinit ice wait lucid blockf atpull'zinit creinstall -q .'
 zinit light zsh-users/zsh-completions
 
 ## docker completion
-zinit ice wait"2" as"completion"
+zinit ice wait"2" lucid as"completion"
 zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
 
 ## zshmarks
@@ -207,7 +207,7 @@ zinit ice wait"2" lucid
 zinit snippet 'OMZ::lib/clipboard.zsh'
 
 ## history editing
-zinit ice wait"!2" lucid
+zinit ice wait"2" lucid
 zinit light marlonrichert/zsh-hist
 
 # ogham/exa, replacement for ls
@@ -251,7 +251,7 @@ zinit ice depth=1 atload'source ~/.p10k.zsh' nocd
 zinit light romkatv/powerlevel10k
 
 # zdharma/zsh-diff-so-fancy
-zinit ice wait"!2" as"program" pick"bin/git-dsf"
+zinit ice wait"2" lucid as"program" pick"bin/git-dsf"
 zinit light zdharma/zsh-diff-so-fancy
 
 # fast-syntax-highlighting から乗り換え
