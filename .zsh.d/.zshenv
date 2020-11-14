@@ -53,7 +53,7 @@ path=(
 
 
 # Homebrew/Linuxbrew で prefix のパスが違う。
-# $(brew --prefix) は時間がかかる処理であるため、ここで判定して HOMEBREW_PREFIX に格納する。
+# $(brew --prefix) は時間がかかる処理のため、ここで判定して HOMEBREW_PREFIX に格納する。
 if [[ -d ${HOME}/.linuxbrew ]]; then
   HOMEBREW_PREFIX=${HOME}/.linuxbrew
 elif [[ -d /home/.linuxbrew ]]; then
@@ -117,6 +117,7 @@ if [[ -n ${HOMEBREW_PREFIX} ]]; then
   export PATH="${HOMEBREW_PREFIX}/bin:${HOMEBREW_PREFIX}/sbin${PATH+:$PATH}"
   export MANPATH="${HOMEBREW_PREFIX}/share/man${MANPATH+:$MANPATH}:"
   export INFOPATH="${HOMEBREW_PREFIX}/share/info${INFOPATH+:$INFOPATH}"
+  fpath=(${HOMEBREW_PREFIX}/share/zsh/site-functions(N-/) ${fpath})
 fi
 
 
