@@ -2,7 +2,6 @@ alias pbcopy='clipcopy'
 alias pbpaste='clippaste'
 alias gzcat='zcat'
 alias ssh='LC_PWD=$PWD ssh -o SendEnv=LC_PWD'
-alias knp='/mnt/orange/brew/data/bin/knp'
 
 # directory alias
 hash -d larch=/mnt/larch/ueda  # ~larch
