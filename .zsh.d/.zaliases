@@ -30,12 +30,6 @@ alias brew="env -u LD_LIBRARY_PATH PATH=${HOMEBREW_PREFIX}/bin:${HOMEBREW_PREFIX
 # alias du="du -h"
 # alias df="df -h"
 
-if (type colordiff &> /dev/null); then
-  alias diff='colordiff -us'
-else
-  alias diff='diff -u'
-fi
-
 # global alias
 alias -g A='| awk'
 alias -g H='| head'

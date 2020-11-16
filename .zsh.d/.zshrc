@@ -488,6 +488,16 @@ les() {
   fi
 }
 
+if (type colordiff &> /dev/null); then
+  diff() {
+    colordiff -us $@ | diff-highlight
+  }
+else
+  diff() {
+    diff -u $@
+  }
+fi
+
 # LOAD SETTING FILES
 source ${ZSHHOME}/.zshrc
 
