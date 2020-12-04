@@ -41,7 +41,7 @@
 
 [interactive]
     # https://github.com/so-fancy/diff-so-fancy/issues/35#issuecomment-578188120
-    diffFilter = (echo && diff-so-fancy)
+    diffFilter = (cat && diff-so-fancy)
 
 [color "diff-highlight"]
     oldNormal = "red bold"

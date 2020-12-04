@@ -27,6 +27,7 @@ alias zshtime='for i in $(seq 1 10); do time zsh -i -c exit; done'
 alias rename='noglob zmv -W'  # rename **/*.xxx **/*.yyy
 alias x='exit'
 alias brew="env -u LD_LIBRARY_PATH PATH=${HOMEBREW_PREFIX}/bin:${HOMEBREW_PREFIX}/sbin:/usr/bin:/bin:/usr/sbin:/sbin brew"
+alias d='docker'
 # alias du="du -h"
 # alias df="df -h"
 
