@@ -31,7 +31,6 @@ export PYENV_ROOT=$HOME/.pyenv
 path=(
   ${HOME}/gxp3(N-/)  # GXP3
   ${PYENV_ROOT}/bin(N-/)  # pyenv
-  /share/usr-$(uname -m)/bin(N-/)
   ${path}
 )
 
