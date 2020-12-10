@@ -401,7 +401,8 @@ isect() {
   fi
 }
 ssub() {
-  local file1, file2
+  local file1
+  local file2
   if [[ -p /dev/stdin ]]; then
     file1=/dev/stdin
     file2=$1
