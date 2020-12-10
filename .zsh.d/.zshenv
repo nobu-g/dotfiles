@@ -37,21 +37,6 @@ if [[ $(id -u) -eq 0 ]]; then  # root user
 fi
 
 
-# Golang
-if [[ -d ${HOME}/.go ]]; then
-  export GOPATH=${HOME}/.go
-  path=(${GOPATH}/bin(N-/) ${path})
-fi
-
-path=(
-  ${HOME}/.cargo/bin(N-/)  # Rust
-  ${HOME}/.poetry/bin(N-/)  # Poetry
-  ${HOME}/.emacs.d/bin(N-/)  # doom-emacs
-  ${HOME}/.nodebrew/current/bin(N-/)  # nodebrew
-  ${path}
-)
-
-
 # Homebrew/Linuxbrew で prefix のパスが違う。
 # $(brew --prefix) は時間がかかる処理のため、ここで判定して HOMEBREW_PREFIX に格納する。
 if [[ -d ${HOME}/.linuxbrew ]]; then
@@ -119,6 +104,21 @@ if [[ -n ${HOMEBREW_PREFIX} ]]; then
   export INFOPATH="${HOMEBREW_PREFIX}/share/info${INFOPATH+:$INFOPATH}"
   fpath=(${HOMEBREW_PREFIX}/share/zsh/site-functions(N-/) ${fpath})
 fi
+
+
+# Golang
+if [[ -d ${HOME}/.go ]]; then
+  export GOPATH=${HOME}/.go
+  path=(${GOPATH}/bin(N-/) ${path})
+fi
+
+path=(
+  ${HOME}/.cargo/bin(N-/)  # Rust
+  ${HOME}/.poetry/bin(N-/)  # Poetry
+  ${HOME}/.emacs.d/bin(N-/)  # doom-emacs
+  ${HOME}/.nodebrew/current/bin(N-/)  # nodebrew
+  ${path}
+)
 
 
 path=(
