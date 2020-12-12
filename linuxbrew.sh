@@ -32,7 +32,6 @@ wget http://curl.haxx.se/ca/cacert.pem -O cert.pem
 mv cert.pem ${BREW_PREFIX}/etc/openssl*/
 
 # Install other useful binaries.
-# brew install exiv2
 # brew install gs
 # brew install lynx
 # brew install p7zip
@@ -44,19 +43,24 @@ brew install rlwrap
 # brew install zopfli
 brew install colordiff
 brew install htop
+brew install openssh
 brew install readline
+brew install zlib
 brew install pipenv
 brew install pyenv
+brew install python@3.8
 brew install python
-brew install zlib
 brew install st # statistics
-brew install go
 brew install peco
 brew install ripgrep
-brew install openssh
+brew install rga  # ripgrep-all
 brew install procs  # alternative of ps
+brew install fd  # alternative of find
+brew install sd  # alternative of sed
 brew install source-highlight
 brew install xclip
+brew install go
+brew install rust
 
 # Remove outdated versions from the cellar.
 brew cleanup
