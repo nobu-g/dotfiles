@@ -239,6 +239,7 @@ zinit light sharkdp/fd
 # sharkdp/bat, replacement for cat
 zinit ice wait"1" lucid as"command" from"gh-r" mv"bat* -> bat" pick"bat/bat"
 zinit light sharkdp/bat
+# export BAT_STYLE="auto"
 
 ## comand line translation
 # zinit ice as"program" atclone"rm -f src/auto/config.cache" atpull"%atclone" \

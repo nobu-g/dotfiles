@@ -1,0 +1,11 @@
+--pager='less -RF'
+
+--theme='Dracula'
+
+# Show line numbers, Git modifications and file header (but no grid)
+--style='numbers,changes,header'
+
+# Use italic texts on the terminal (not supported on all terminals)
+--italic-text=always
+
+--map-syntax='*.zaliases:Bourne Again Shell (bash)'
