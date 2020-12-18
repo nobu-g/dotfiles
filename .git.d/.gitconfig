@@ -16,9 +16,12 @@
     unstage = reset HEAD --
     last = log -1 HEAD
     aliases = config --get-regexp alias
+    remotes = remote -v
+    tags = tag
 
     # git l で綺麗に過去の履歴が見れる
     l = log --graph --pretty='%C(yellow)%h%Creset %C(cyan bold)%d%Creset %s %Cgreen[%cd] %C(bold blue)<%an> %Creset' --decorate --date=iso
+	tree = log --graph --all --format=format:\"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)? %an%C(reset)%C(bold yellow)%d%C(reset)\" --abbrev-commit --date=relative
 
 [core]
     editor = emacsclient -nw
@@ -38,6 +41,10 @@
 
 [fetch]
     prune = true
+
+[push]
+    # Always push tags, see https://git-scm.com/docs/git-config#git-config-pushfollowTags.
+    followTags = true
 
 [interactive]
     # https://github.com/so-fancy/diff-so-fancy/issues/35#issuecomment-578188120

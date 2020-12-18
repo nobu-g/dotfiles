@@ -33,8 +33,8 @@ WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
 
 # COMMAND HISTORY
 HISTFILE=$HOME/.zsh_history
-HISTSIZE=100000
-SAVEHIST=$HISTSIZE
+HISTSIZE=200000
+SAVEHIST=100000
 setopt hist_ignore_dups     # 直前と同じコマンドをヒストリに残さない
 setopt hist_ignore_all_dups # 過去に同じ履歴が存在する場合、古い履歴を削除する
 setopt hist_ignore_space    # コマンドの先頭がスペースの場合履歴に追加しない
@@ -499,6 +499,14 @@ else
     diff -u $@
   }
 fi
+
+g() {
+  if [[ $# > 0 ]]; then
+    git $@
+  else
+    git status
+  fi
+}
 
 # LOAD SETTING FILES
 source ${ZSHHOME}/.zshrc
