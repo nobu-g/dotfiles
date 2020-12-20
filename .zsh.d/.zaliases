@@ -1,10 +1,10 @@
-setopt complete_aliases
+setopt complete_aliases # don't expand aliases _before_ completion has finished
 
-alias ls='ls -FH --color=tty'   # or exa -FH
-alias ll='ls -lFH --color=tty'  # or exa -lFH
-alias la='ls -laFH --color=tty' # or exa -laFH
-alias lt='ls -ltFH --color=tty' # or exa -laFH
-alias lat='ls -latFH --color=tty' # or exa -laFH
+alias ls='ls -FH --color=tty'      # or exa -FH
+alias ll='ls -lFHh --color=tty'    # or exa -lFH
+alias la='ls -laFHh --color=tty'   # or exa -laFH
+alias lt='ls -ltFHh --color=tty'   # or exa -laFH
+alias lat='ls -latFHh --color=tty' # or exa -laFH
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
@@ -24,7 +24,7 @@ alias ekill='emacsclient -e "(kill-emacs)"'
 alias dpython='python -m ipdb -c continue'
 alias ppython='python -m cProfile -s tottime'
 alias zshtime='for i in $(seq 1 10); do time zsh -i -c exit; done'
-alias rename='noglob zmv -W'  # rename **/*.xxx **/*.yyy
+alias rename='noglob zmv -W' # rename **/*.xxx **/*.yyy
 alias x='exit'
 alias brew="env -u LD_LIBRARY_PATH PATH=${HOMEBREW_PREFIX}/bin:${HOMEBREW_PREFIX}/sbin:/usr/bin:/bin:/usr/sbin:/sbin brew"
 alias d='docker'
@@ -41,12 +41,16 @@ alias -g C='| clipcopy'
 alias -g X='| xargs'
 alias -g XS='| xargs -I{} bash -exuc'
 alias -g J='| jumanpp'
+alias -g K='| knp'
+alias -g Kt='| knp -tab'
 alias -g JK='| jumanpp | knp'
+alias -g JKt='| jumanpp | knp -tab'
 alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
 
 # suffix alias
+alias -s {md,txt}="$EDITOR"
 alias -s zip='zipinfo'
 alias -s {gz,tgz}='gzcat'
 alias -s xz='xzcat'
@@ -63,6 +67,5 @@ globalias() {
 }
 zle -N globalias
 bindkey " " globalias
-
 
 source ${ZSHHOME}/.zaliases

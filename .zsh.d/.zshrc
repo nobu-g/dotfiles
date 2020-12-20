@@ -33,8 +33,8 @@ WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
 
 # COMMAND HISTORY
 HISTFILE=$HOME/.zsh_history
-HISTSIZE=100000
-SAVEHIST=$HISTSIZE
+HISTSIZE=200000
+SAVEHIST=100000
 setopt hist_ignore_dups     # 直前と同じコマンドをヒストリに残さない
 setopt hist_ignore_all_dups # 過去に同じ履歴が存在する場合、古い履歴を削除する
 setopt hist_ignore_space    # コマンドの先頭がスペースの場合履歴に追加しない
@@ -147,6 +147,12 @@ ZINIT[COMPINIT_OPTS]=-C
 # autoload -Uz _zinit
 # (( ${+_comps} )) && _comps[zinit]=_zinit
 
+zicompdef g='git'
+zicompdef gti='git'
+zicompdef ll='ls'
+zicompdef la='ls'
+zicompdef lt='ls'
+zicompdef lat='ls'
 
 # other themes: dircolors.ansi-dark, dircolors.ansi-light, dircolors.256dark
 zinit ice atload'[[ -e $HOME/.zsh-dircolors.config ]] || setupsolarized dircolors.ansi-universal' \
@@ -160,7 +166,7 @@ zinit light zsh-users/zsh-history-substring-search
 
 
 ## zsh-autosuggestions
-zinit ice wait"1" lucid atload"_zsh_autosuggest_start" atinit"zpcompinit; zpcdreplay -q"
+zinit ice wait"1" lucid atload"_zsh_autosuggest_start" atinit"zicompinit; zicdreplay -q"
 zinit light zsh-users/zsh-autosuggestions
 # Widgets that accept the entire suggestion
 ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(
@@ -197,6 +203,10 @@ zinit light zsh-users/zsh-completions
 ## docker completion
 zinit ice wait"2" lucid as"completion"
 zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
+
+# ## zsh-autocomplete
+# zinit ice wait"1" lucid
+# zinit light marlonrichert/zsh-autocomplete
 
 ## zshmarks
 zinit ice wait"1" lucid
@@ -256,6 +266,7 @@ zinit ice wait"2" lucid as"program" pick"bin/git-dsf"
 zinit light zdharma/zsh-diff-so-fancy
 
 # fast-syntax-highlighting から乗り換え
+# zinit ice wait"1" lucid
 zinit light zsh-users/zsh-syntax-highlighting
 ZSH_HIGHLIGHT_MAXLENGTH=512
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
@@ -496,9 +507,17 @@ if (type colordiff &> /dev/null); then
   }
 else
   diff() {
-    diff -u $@
+    command diff -u $@
   }
 fi
+
+git() {
+  if [[ $# > 0 ]]; then
+    command git $@
+  else
+    command git status
+  fi
+}
 
 # LOAD SETTING FILES
 source ${ZSHHOME}/.zshrc
