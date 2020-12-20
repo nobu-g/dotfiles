@@ -69,3 +69,5 @@
 # [diff-so-fancy]
 # 	markEmptyLines = false
 # 	stripLeadingSymbols = false
+[http]
+	sslCAInfo = /mnt/berry/home/ueda/.linuxbrew/etc/openssl@1.1/cert.pem
