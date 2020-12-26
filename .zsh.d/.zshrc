@@ -282,7 +282,7 @@ ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=185'
 ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=185'
 
 ## auto ls after changing directory
-add-zsh-hook chpwd ls_abbrev
+add-zsh-hook chpwd _ls_abbrev
 
 
 # mkdir and cd
@@ -434,7 +434,7 @@ cd() {
 }
 
 # https://qiita.com/yuyuchu3333/items/b10542db482c3ac8b059
-ls_abbrev() {
+_ls_abbrev() {
   local MAX_LINUM=20
   if [[ ! -r $PWD ]]; then
     return
@@ -495,29 +495,27 @@ les() {
   if [[ $# == 0 ]]; then
     ls
   elif [[ -f $1 ]]; then
-    less $@
+    bat $@
   else
     ls $@
   fi
 }
 
-if (type colordiff &> /dev/null); then
-  diff() {
+diff() {
+  if (type colordiff &> /dev/null); then
     colordiff -us $@ | diff-highlight
-  }
-else
-  diff() {
-    command diff -u $@
-  }
-fi
-
-git() {
-  if [[ $# > 0 ]]; then
-    command git $@
   else
-    command git status
+    command diff -u $@
   fi
 }
+
+# git() {
+#   if [[ $# > 0 ]]; then
+#     command git $@
+#   else
+#     command git status
+#   fi
+# }
 
 # LOAD SETTING FILES
 source ${ZSHHOME}/.zshrc

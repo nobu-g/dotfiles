@@ -1,5 +1,7 @@
-# profiling (remove comment out below to profile)
-# zmodload zsh/zprof && zprof
+# profiling (set ZPROF environment variable to profile)
+if (( ${+ZPROF} )); then
+  zmodload zsh/zprof && zprof
+fi
 
 # LANG
 export LANG=ja_JP.UTF-8
