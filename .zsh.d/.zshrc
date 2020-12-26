@@ -331,7 +331,7 @@ fzf-select-history() {
     zle -R -c                   # refresh
 }
 # zle -N fzf-select-history
-# bindkey '^R' fzf-select-history
+# bindkey '^r' fzf-select-history
 
 ## search a destination from cdr list and cd the destination
 peco-cdr() {

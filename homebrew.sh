@@ -13,13 +13,13 @@ brew upgrade
 
 # Install GNU utilities
 brew install binutils  # ld, ar, ...
-brew install coreutils  # ls, cp, rm, ...
-brew install diffutils  # diff, cmp, ...
-brew install findutils  # find, locate, updatedb, xargs
+brew install coreutils # ls, cp, rm, ...
+brew install diffutils # diff, cmp, ...
+brew install findutils # find, locate, updatedb, xargs
 brew install moreutils
-brew install gnu-sed  # sed
-brew install gnu-tar  # tar
-brew install gawk  # awk
+brew install gnu-sed # sed
+brew install gnu-tar # tar
+brew install gawk    # awk
 brew install ed
 brew install grep
 brew install gzip
@@ -34,7 +34,6 @@ if ! fgrep -q "${BREW_PREFIX}/bin/zsh" /etc/shells; then
   echo "${BREW_PREFIX}/bin/zsh" | sudo tee -a /etc/shells
   chsh -s "${BREW_PREFIX}/bin/zsh"
 fi
-
 
 # Install GnuPG to enable PGP-signing commits.
 # brew install gnupg
@@ -77,8 +76,9 @@ brew install go
 brew install rust
 brew install peco
 brew install ripgrep
-brew install procs  # alternative of ps
-brew install sd  # alternative of sed
+brew install procs # alternative of ps
+brew install sd    # alternative of sed
+brew install ghq
 
 # Cask
 brew tap caskroom/cask
