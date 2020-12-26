@@ -28,9 +28,9 @@ dsdel() {
 # ghq+peco
 # https://qiita.com/strsk/items/9151cef7e68f0746820d
 peco-src() {
-  local selected_dir=$(ghq list -p | peco --query "$LBUFFER" --prompt "[ghq]")
-  if [[ -n "${selected_dir}" ]]; then
-    BUFFER="cd ${selected_dir}"
+  local dest=$(ghq list -p | peco --query "$BUFFER" --prompt "[ghq]" --print-query | tail -1)
+  if [[ -n "${dest}" ]]; then
+    BUFFER="cd ${dest}"
     zle accept-line
   fi
   # zle clear-screen

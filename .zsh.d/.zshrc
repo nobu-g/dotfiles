@@ -318,26 +318,26 @@ man() {
 
 ## peco
 peco-select-history() {
-  BUFFER=$(\history -n -r 1 | peco --query "$LBUFFER" --prompt "[hist]" --print-query | tail -n 1)
-  CURSOR=$#BUFFER
+  BUFFER=$(\history -n -r 1 | peco --query "$BUFFER" --prompt "[hist]" --print-query | tail -1)
+  CURSOR=${#BUFFER}
 #  zle clear-screen
 }
 zle -N peco-select-history
 bindkey '^r' peco-select-history
 
 fzf-select-history() {
-    BUFFER="$(history -nr 1 | awk '!a[$0]++' | fzf --query "$LBUFFER" | sed 's/\\n/\n/')"
-    CURSOR=$#BUFFER             # カーソルを文末に移動
-    zle -R -c                   # refresh
+    BUFFER="$(history -nr 1 | awk '!a[$0]++' | fzf --query "$BUFFER" | sed 's/\\n/\n/')"
+    CURSOR=${#BUFFER}  # カーソルを文末に移動
+    zle -R -c          # refresh
 }
 # zle -N fzf-select-history
 # bindkey '^r' fzf-select-history
 
 ## search a destination from cdr list and cd the destination
 peco-cdr() {
-  local dest=$(cdr -l | sed -Ee 's/^[0-9]+\s+//' | peco --query "$LBUFFER" --prompt "[dest]")
-  if [[ -n "$dest" ]]; then
-    BUFFER="cd $dest"
+  local dest=$(cdr -l | sed -Ee 's/^[0-9]+\s+//' | peco --query "$BUFFER" --prompt "[dest]")
+  if [[ -n "${dest}" ]]; then
+    BUFFER="cd ${dest}"
     zle accept-line
   else
     zle reset-prompt
@@ -361,10 +361,10 @@ peco-find-file() {
   else
     source_files=$(find . -type f)
   fi
-  local selected_files=$(echo ${source_files} | peco --prompt "[find file]" | tr '\n', ' ')
+  local selected_files=$(echo ${source_files} | peco --prompt "[file]" | tr '\n', ' ')
 
   BUFFER=${BUFFER}${selected_files}
-  CURSOR=$#BUFFER
+  CURSOR=${#BUFFER}
   zle redisplay
 }
 zle -N peco-find-file
@@ -509,6 +509,7 @@ diff() {
   fi
 }
 
+# git add などの補完が効かなくなるのでコメントアウト
 # git() {
 #   if [[ $# > 0 ]]; then
 #     command git $@
