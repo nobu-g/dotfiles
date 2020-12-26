@@ -73,9 +73,12 @@
 [advice]
     addIgnoredFile = false
 
-[ghq]
-    root = ~/Projects
+# [ghq]
+#     root = ~/Projects
 
 # [diff-so-fancy]
 # 	markEmptyLines = false
 # 	stripLeadingSymbols = false
+
+[url "git@github.com:"]
+	insteadOf = https://github.com/

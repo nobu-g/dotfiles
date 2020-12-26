@@ -45,3 +45,6 @@ if [[ -e /Library/TeX ]]; then
   export INFOPATH=/Library/TeX/Documentation/texmf-dist-doc/info:${INFOPATH}
   export MANPATH=/Library/TeX/Documentation/texmf-dist-doc/man:${MANPATH}
 fi
+
+## ghq
+export GHQ_ROOT=${HOME}/Projects
