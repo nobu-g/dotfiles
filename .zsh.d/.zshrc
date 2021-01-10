@@ -145,7 +145,7 @@ setopt transient_rprompt     # コマンド実行後に右プロンプトを消�
 # setopt inc_append_history_time # コマンド終了時に、履歴ファイルに書き込む
 #                                # つまりコマンドの経過時間が正しく記録される
 #                                # 逆に言うと `INC_APPEND_HISTORY` × `EXTENDED_HISTORY` の併用では**経過時間が全て0で記録される**
-setopt share_history　         # 各端末で履歴(ファイル)を共有する = 履歴ファイルに対して参照と書き込みを行う。
+setopt share_history          # 各端末で履歴(ファイル)を共有する = 履歴ファイルに対して参照と書き込みを行う。
                               # 書き込みは 時刻(タイムスタンプ) 付き
 
 
@@ -159,12 +159,25 @@ ZINIT[COMPINIT_OPTS]=-C
 # autoload -Uz _zinit
 # (( ${+_comps} )) && _comps[zinit]=_zinit
 
+#--------------------------------#
+# zinit extension
+#--------------------------------#
+zinit light-mode for \
+  @zinit-zsh/z-a-readurl \
+  @zinit-zsh/z-a-bin-gem-node
+  #@zinit-zsh/z-a-patch-dl \
+  #@zinit-zsh/z-a-unscope \
+  #@zinit-zsh/z-a-default-ice \
+  #@zinit-zsh/z-a-submods
+  #@zinit-zsh/z-a-man # -> require gem
+
 zicompdef g='git'
 zicompdef gti='git'
 zicompdef ll='ls'
 zicompdef la='ls'
 zicompdef lt='ls'
 zicompdef lat='ls'
+zicompdef d='docker'
 
 # other themes: dircolors.ansi-dark, dircolors.ansi-light, dircolors.256dark
 zinit ice atload'[[ -e $HOME/.zsh-dircolors.config ]] || setupsolarized dircolors.ansi-universal' \
@@ -176,10 +189,12 @@ zinit light zsh-users/zsh-history-substring-search
 
 # zinit load zdharma/history-search-multi-word
 
-
+#--------------------------------#
+# completion
+#--------------------------------#
 ## zsh-autosuggestions
-zinit ice wait"1" lucid atload"_zsh_autosuggest_start" atinit"zicompinit; zicdreplay -q"
-zinit light zsh-users/zsh-autosuggestions
+zinit wait"1" lucid atload"_zsh_autosuggest_start" atinit"zicompinit; zicdreplay -q" \
+  light-mode for @zsh-users/zsh-autosuggestions
 # Widgets that accept the entire suggestion
 ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(
   end-of-line
@@ -202,23 +217,24 @@ ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(
 # Widgets that accept the entire suggestion and execute it
 ZSH_AUTOSUGGEST_EXECUTE_WIDGETS=()
 
+zinit wait lucid blockf atpull'zinit creinstall -q .' \
+  light-mode for @zsh-users/zsh-completions
 
-## fast-syntax-highlighting
-# zinit ice wait lucid atinit"zpcompinit; zpcdreplay -q"
-# zinit light zdharma/fast-syntax-highlighting  # 遅延ロードすると autosuggestions のハイライトがおかしくなる
-# fast-theme XDG:overlay  # 初回はこれの実行を忘れずに
-
-## completion
-zinit ice wait lucid blockf atpull'zinit creinstall -q .'
-zinit light zsh-users/zsh-completions
+## zsh-autocomplete
+# zinit ice wait"1" lucid
+# zinit light marlonrichert/zsh-autocomplete
 
 ## docker completion
 zinit ice wait"2" lucid as"completion"
 zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
 
-# ## zsh-autocomplete
-# zinit ice wait"1" lucid
-# zinit light marlonrichert/zsh-autocomplete
+## fast-syntax-highlighting
+# zinit wait lucid \  # 遅延ロードすると autosuggestions のハイライトがおかしくなる
+#   if"(( ${ZSH_VERSION%%.*} > 4.4))" \
+#   atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+#   light-mode for @zdharma/fast-syntax-highlighting
+# # fast-theme XDG:overlay  # 初回はこれの実行を忘れずに
+
 
 ## zshmarks
 zinit ice wait"1" lucid
@@ -237,9 +253,9 @@ zinit light marlonrichert/zsh-hist
 # zinit light ogham/exa
 
 # direnv
-zinit ice as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
-    atpull'%atclone' pick"direnv" src"zhook.zsh"
-zinit light direnv/direnv
+zinit lucid from"gh-r" as"program" mv"direnv* -> direnv" pick"direnv" \
+  atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
+  src="zhook.zsh" light-mode for @direnv/direnv
 local p=$PWD
 while  [[ $p != '/' ]]; do
   if [[ -f $p/.envrc ]]; then
@@ -249,33 +265,39 @@ while  [[ $p != '/' ]]; do
   p=$(dirname $p)
 done
 
-# pyenv
-# zinit ice wait'1' lucid atclone'./libexec/pyenv init - > zpyenv.zsh' atpull"%atclone" \
-#     as'command' pick'bin/pyenv' src"zpyenv.zsh" nocompile'!'
-# zinit light pyenv/pyenv
+zinit wait"1" lucid blockf nocompletions \
+  from"gh-r" as"program" mv"ripgrep* -> ripgrep" sbin'ripgrep/rg' \
+  atclone'zinit creinstall -q BurntSushi/ripgrep' atpull'%atclone' \
+  light-mode for @BurntSushi/ripgrep
 
-# sharkdp/fd, replacement for find
-zinit ice wait"1" lucid as"command" from"gh-r" mv"fd* -> fd" pick"fd/fd"
-zinit light sharkdp/fd
+zinit wait"1" lucid blockf nocompletions \
+  from"gh-r" as"program" mv"fd* -> fd" sbin'fd/fd' \
+  atclone'zinit creinstall -q sharkdp/fd' atpull'%atclone' \
+  light-mode for @sharkdp/fd
 
-# sharkdp/bat, replacement for cat
-zinit ice wait"1" lucid as"command" from"gh-r" mv"bat* -> bat" pick"bat/bat"
-zinit light sharkdp/bat
-# export BAT_STYLE="auto"
+zinit wait"1" lucid \
+  from"gh-r" as"program" mv"bat* -> bat" sbin"bat/bat" \
+  atload"alias cat=bat" \
+  light-mode for @sharkdp/bat
 
-## comand line translation
-# zinit ice as"program" atclone"rm -f src/auto/config.cache" atpull"%atclone" \
-#     make"TARGET=zsh -v" make"install PREFIX=$ZPFX -v" pick"$ZPFX/bin/trans"
-zinit ice wait"1" lucid
-zinit light soimort/translate-shell
+zinit wait"1" lucid \
+  from"gh-r" as"program" mv"exa* -> exa" sbin"exa/exa" \
+  light-mode for @ogham/exa
+
+zinit wait'1' lucid \
+  light-mode for @soimort/translate-shell
+
+# zinit wait'1' lucid \
+#   from"gh-r" as"program" bpick'*lnx*' \
+#   light-mode for @dalance/procs
 
 # romkatv/powerlevel10k
 zinit ice depth=1 atload'source ~/.p10k.zsh' nocd
 zinit light romkatv/powerlevel10k
 
 # zdharma/zsh-diff-so-fancy
-zinit ice wait"2" lucid as"program" pick"bin/git-dsf"
-zinit light zdharma/zsh-diff-so-fancy
+zinit wait"2" lucid as"program" sbin"bin/git-dsf" \
+  light-mode for @zdharma/zsh-diff-so-fancy
 
 # fast-syntax-highlighting から乗り換え
 # zinit ice wait"1" lucid
@@ -385,11 +407,6 @@ bindkey '^_' peco-find-file  # works by ^/
 # shell integration 設定
 export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-# pyenv
-# if (type pyenv &> /dev/null); then
-#     eval "$(pyenv init -)"  # 自動補完機能
-# fi
 
 # unset all environment variables and restart shell
 resetenv() {

@@ -8,7 +8,7 @@ alias lat='ls -latFHh --color=tty' # or exa -laFH
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
-alias cat='bat'
+# alias cat='bat'  # batのロード時に設定される
 alias g='git'
 alias gti='git'
 alias grep='grep --color=auto'
