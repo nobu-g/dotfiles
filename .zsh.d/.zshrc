@@ -295,9 +295,14 @@ zinit wait'1' lucid \
 zinit ice depth=1 atload'source ~/.p10k.zsh' nocd
 zinit light romkatv/powerlevel10k
 
-# zdharma/zsh-diff-so-fancy
-zinit wait"2" lucid as"program" sbin"bin/git-dsf" \
-  light-mode for @zdharma/zsh-diff-so-fancy
+# # zdharma/zsh-diff-so-fancy
+# zinit wait"2" lucid as"program" sbin"bin/git-dsf" \
+#   light-mode for @zdharma/zsh-diff-so-fancy
+
+# diff-so-fancy から乗り換え
+zinit wait'1' lucid \
+  from"gh-r" as"program" mv"delta* -> delta" sbin"delta/delta" \
+  light-mode for @dandavison/delta
 
 # fast-syntax-highlighting から乗り換え
 # zinit ice wait"1" lucid

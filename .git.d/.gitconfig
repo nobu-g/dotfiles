@@ -25,7 +25,7 @@
 
 [core]
     editor = emacsclient -nw
-    pager = diff-so-fancy | less --tabs=4 -Ri -+F -+X
+    pager = delta
 
 [color]
     ui = true
@@ -46,23 +46,29 @@
     # Always push tags, see https://git-scm.com/docs/git-config#git-config-pushfollowTags.
     followTags = true
 
+[delta]
+    features = line-numbers
+    plus-style = syntax "#003800"
+    minus-style = syntax "#3f0001"
+    syntax-theme = Dracula
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = yellow
+    hunk-header-style = cyan
+    hunk-header-decoration-style = cyan ul
+
+[delta "line-numbers"]
+    line-numbers = true
+    line-numbers-left-style = cyan
+    line-numbers-right-style = cyan
+    line-numbers-minus-style = 124
+    line-numbers-plus-style = 28
+
+[diff]
+    colorMoved = default
+
 [interactive]
-    # https://github.com/so-fancy/diff-so-fancy/issues/35#issuecomment-578188120
-    diffFilter = (cat && diff-so-fancy)
-
-[color "diff-highlight"]
-    oldNormal = "red bold"
-    oldHighlight = "red bold 52"
-    newNormal = "green bold"
-    newHighlight = "green bold 22"
-
-[color "diff"]
-    meta = "11"
-    frag = "magenta bold"
-    commit = "yellow bold"
-    old = "red bold"
-    new = "green bold"
-    whitespace = "red reverse"
+    diffFilter = delta --color-only
 
 [filter "lfs"]
     clean = git-lfs clean -- %f
@@ -75,10 +81,6 @@
 
 # [ghq]
 #     root = ~/Projects
-
-# [diff-so-fancy]
-# 	markEmptyLines = false
-# 	stripLeadingSymbols = false
 
 [url "git@github.com:"]
 	insteadOf = https://github.com/
