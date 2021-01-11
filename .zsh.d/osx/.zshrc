@@ -38,6 +38,19 @@ peco-src() {
 zle -N peco-src
 bindkey '^]' peco-src
 
+copy-line-as-kill() {
+  zle kill-line
+  print -rn $CUTBUFFER | pbcopy
+}
+zle -N copy-line-as-kill
+bindkey '^k' copy-line-as-kill
+
+paste-as-yank() {
+  LBUFFER="${LBUFFER}$(pbpaste)"
+}
+zle -N paste-as-yank
+bindkey '^y' paste-as-yank
+
 # stderred
 export STDERRED_ESC_CODE=$(echo -e "$(tput setaf 9)")
 export DYLD_INSERT_LIBRARIES="${HOME}/usr/lib/libstderred.dylib${DYLD_INSERT_LIBRARIES:+:$DYLD_INSERT_LIBRARIES}"
