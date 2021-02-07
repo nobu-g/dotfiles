@@ -48,8 +48,12 @@
 
 [delta]
     features = line-numbers
-    plus-style = syntax "#003800"
-    minus-style = syntax "#3f0001"
+    plus-style = bold green
+    plus-non-emph-style = brightgreen
+    plus-emph-style = bold green 22
+    minus-style = bold red
+    minus-non-emph-style = brightred
+    minus-emph-style = bold red 52
     syntax-theme = Dracula
     commit-decoration-style = bold yellow box ul
     file-style = bold yellow ul
