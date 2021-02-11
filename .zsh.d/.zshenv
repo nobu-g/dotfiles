@@ -7,10 +7,11 @@ fi
 export LANG=ja_JP.UTF-8
 export LANGUAGE=en_US
 
-# PATH(GENERAL)
-## zsh の機能で、path (array) は PATH と自動的に連動する
+# PATH の設定
+## zsh の機能で、path,manpath,fpath は PATH,MANPATH,FPATH と自動的に連動する
 ## -U: 重複したパスを登録しない
 ## HOME 以下の path は後で設定するので除外
+# PATH
 typeset -U path
 path=(
   /usr/local/{bin,sbin}(N-/)
@@ -18,16 +19,22 @@ path=(
   /{bin,sbin}(N-/)
   ${path:#${HOME}/*}(N-/)
 )
-
-# PATH FOR MAN(MANUAL)
+# MANPATH
 typeset -U manpath
 manpath=(
   /usr/local/share/man(N-/)
   /usr/share/man(N-/)
+  ${manpath:#${HOME}/*}(N-/)
+)
+# FPATH
+typeset -U fpath
+fpath=(
+  /usr/local/share/zsh/site-functions(N-/)
+  /usr/share/zsh/site-functions(N-/)
+  ${fpath:#${HOME}/*}(N-/)
 )
 
-
-# PATH(SUDO)
+# PATH (SUDO)
 ## -x: export SUDO_PATHも一緒に行う。
 ## -T: SUDO_PATHとsudo_pathを連動する。
 typeset -xT SUDO_PATH sudo_path
@@ -101,9 +108,9 @@ if [[ -n ${HOMEBREW_PREFIX} ]]; then
   export HOMEBREW_PREFIX
   export HOMEBREW_CELLAR="${HOMEBREW_PREFIX}/Cellar"
   export HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}/Homebrew"
-  export PATH="${HOMEBREW_PREFIX}/bin:${HOMEBREW_PREFIX}/sbin${PATH+:$PATH}"
-  export MANPATH="${HOMEBREW_PREFIX}/share/man${MANPATH+:$MANPATH}:"
   export INFOPATH="${HOMEBREW_PREFIX}/share/info${INFOPATH+:$INFOPATH}"
+  path=(${HOMEBREW_PREFIX}/{bin,sbin}(N-/) ${path})
+  manpath=(${HOMEBREW_PREFIX}/share/man(N-/) ${manpath})
   fpath=(${HOMEBREW_PREFIX}/share/zsh/site-functions(N-/) ${fpath})
 fi
 
@@ -122,7 +129,7 @@ path=(
   ${path}
 )
 
-
+# general paths under $HOME
 path=(
   ${HOME}/.local/bin(N-/)
   ${HOME}/local/bin(N-/)
@@ -134,6 +141,12 @@ manpath=(
   ${HOME}/local/share/man(N-/)
   ${HOME}/usr/share/man(N-/)
   ${manpath}
+)
+fpath=(
+  ${HOME}/.local/share/zsh/site-functions(N-/)
+  ${HOME}/local/share/zsh/site-functions(N-/)
+  ${HOME}/usr/share/zsh/site-functions(N-/)
+  ${fpath}
 )
 
 
