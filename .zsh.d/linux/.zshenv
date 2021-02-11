@@ -1,5 +1,5 @@
 # baracuda, moss, saffron 設定
-if [[ $(uname -n) =~ "^baracuda" ]] || [[ $(uname -n) =~ "^moss" ]] || [[ $(uname -n) = "saffron" ]]; then
+if [[ $(uname -n) =~ "^baracuda" ]] || [[ $(uname -n) =~ "^moss" ]] || [[ $(uname -n) =~ "^saffron" ]]; then
   export CUDA_HOME=/usr/local/cuda
   export CUDA_PATH=/usr/local/cuda
   export PATH=/usr/local/bin:$CUDA_HOME/bin:$PATH
