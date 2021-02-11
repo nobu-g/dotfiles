@@ -177,7 +177,9 @@ zicompdef ll='ls'
 zicompdef la='ls'
 zicompdef lt='ls'
 zicompdef lat='ls'
-zicompdef d='docker'
+if (type docker &> /dev/null); then
+  zicompdef d='docker'
+fi
 
 # other themes: dircolors.ansi-dark, dircolors.ansi-light, dircolors.256dark
 zinit ice atload'[[ -e $HOME/.zsh-dircolors.config ]] || setupsolarized dircolors.ansi-universal' \
