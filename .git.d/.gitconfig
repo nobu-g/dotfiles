@@ -5,6 +5,8 @@
 [alias]
     s = status
     a = add
+    ps = push
+    pl = pull
     df = diff
     dfc = diff --cached
     co = checkout
