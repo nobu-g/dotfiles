@@ -22,6 +22,7 @@ alias -- --='cd --'
 alias e='emacsclient -nw -a ""'
 alias emacs='emacsclient -nw -a ""'
 alias ekill='emacsclient -e "(kill-emacs)"'
+alias py='python'
 alias dpython='python -m ipdb -c continue'
 alias ppython='python -m cProfile -s tottime'
 alias zshtime='for i in $(seq 1 10); do time zsh -i -c exit; done'
@@ -29,14 +30,19 @@ alias rename='noglob zmv -W' # rename **/*.xxx **/*.yyy
 alias x='exit'
 alias brew="env -u LD_LIBRARY_PATH PATH=${HOMEBREW_PREFIX}/bin:${HOMEBREW_PREFIX}/sbin:/usr/bin:/bin:/usr/sbin:/sbin brew"
 alias d='docker'
+alias l='les'
+alias b='bat'
 # alias du="du -h"
 # alias df="df -h"
 
 # global alias
 alias -g A='| awk'
 alias -g H='| head'
+alias -g Hn='| head -n'
 alias -g T='| tail'
+alias -g Tn='| tail -n'
 alias -g G='| grep'
+alias -g Gv='| grep -v'
 alias -g L='| wc -l'
 alias -g C='| clipcopy'
 alias -g X='| xargs'

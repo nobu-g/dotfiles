@@ -5,6 +5,7 @@ alias ssh='LC_PWD=$PWD ssh -o SendEnv=LC_PWD'
 alias nv='nvidia-smi'
 
 # directory alias
-hash -d larch=/mnt/larch/ueda   # ~larch
-hash -d hinoki=/mnt/hinoki/ueda # ~hinoki
-hash -d elm=/mnt/elm/ueda       # ~elm
+hash -d larch=/mnt/larch/${USER}   # ~larch
+hash -d hinoki=/mnt/hinoki/${USER} # ~hinoki
+hash -d elm=/mnt/elm/${USER}       # ~elm
+hash -d zamia=/mnt/zamia/${USER}   # ~zamia
