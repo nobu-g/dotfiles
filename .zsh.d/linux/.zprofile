@@ -1,5 +1,5 @@
 # ssh-agent
-SSH_AUTH_SOCK_LINK=/tmp/ueda_ssh_sock/ssh_auth_sock # symlink を貼る場所
+SSH_AUTH_SOCK_LINK="/tmp/${USER}_ssh_sock/ssh_auth_sock"  # symlink を貼る場所
 ## -n : SSH_AUTH_SOCK がないときは symlink を貼らない
 ## != : SSH_AUTH_SOCK が既に SSH_AUTH_SOCK_LINK のときは貼らない
 if [[ -n "$SSH_AUTH_SOCK" && "$SSH_AUTH_SOCK" != "$SSH_AUTH_SOCK_LINK" ]]; then # 接続ごとに symlink の向き先を新しくする
