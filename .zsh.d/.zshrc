@@ -173,6 +173,7 @@ zinit light-mode for \
 
 zicompdef g='git'
 zicompdef gti='git'
+zicompdef l='ls'
 zicompdef ll='ls'
 zicompdef la='ls'
 zicompdef lt='ls'
