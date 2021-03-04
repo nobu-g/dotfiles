@@ -187,7 +187,7 @@
 (global-set-key (kbd "M-/") 'undo-tree-redo)
 
 
-(require 'esup)
+;(require 'esup)  ;; profile
 
 
 ;;; flycheck
