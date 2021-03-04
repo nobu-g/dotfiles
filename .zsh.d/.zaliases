@@ -16,6 +16,7 @@ alias wl='wc -l'
 alias gomi='rm -f *~'
 alias jk='jumanpp | knp'
 alias relogin='exec $SHELL -l'
+alias re='exec $SHELL -l'
 alias -- -='cd -'
 alias -- --='cd --'
 ## http://keisanbutsuriya.hateblo.jp/entry/2015/02/13/133858
