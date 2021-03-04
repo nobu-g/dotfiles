@@ -2,6 +2,7 @@
 
 set -xu
 
+mkdir -p ~/.emacs.d
 mkdir -p ~/.config
 mkdir -p ~/.config/git
 mkdir -p ~/.config/peco
@@ -14,6 +15,9 @@ if !(type brew &> /dev/null); then
     ;;
   freebsd* | darwin*)
     bash ${DOTPATH}/homebrew.sh
+    # install doom-emacs
+    git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
+    ~/.emacs.d/bin/doom install
     ;;
   esac
 fi
@@ -26,7 +30,3 @@ fi
 
 # install poetry
 curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
-
-# install doom-emacs
-git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
-~/.emacs.d/bin/doom install
