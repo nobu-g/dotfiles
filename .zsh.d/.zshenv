@@ -74,7 +74,7 @@ export PAGER="less"
 
 # EDITOR
 export EDITOR=emacsclient
-
+export EMACS_SERVER_SOCKET=${TMPDIR:-/tmp}/emacs$(id -u)/server
 
 # PIPENV
 if [[ -d /mnt/berry_f/home ]]; then
