@@ -8,13 +8,15 @@
     ps = push
     pl = pull
     df = diff
+    pus = push
+    pul = pull
     dfc = diff --cached
     co = checkout
     cob = checkout -b
+    com = checkout master
     bra = branch
     cm = commit -m
     cam = commit -a -m
-    com = checkout master
     unstage = reset HEAD --
     last = log -1 HEAD
     aliases = config --get-regexp alias
