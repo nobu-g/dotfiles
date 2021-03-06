@@ -1,0 +1,90 @@
+name: CI
+
+on: [push]
+
+jobs:
+  ubuntu:
+    runs-on: ubuntu-latest
+    container: ubuntu:latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install required packages
+        run: apt-get update && apt-get install -y git sudo
+      - name: Install dotfiles
+        run: install_scripts/dotsinstaller.sh install
+
+  centos:
+    runs-on: ubuntu-latest
+    container: centos:latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install required packages
+        run: yum install -y git sudo
+      - name: Install dotfiles
+        run: install_scripts/dotsinstaller.sh install
+
+  fedora:
+    runs-on: ubuntu-latest
+    container: fedora:latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install required packages
+        run: dnf clean all && dnf install -y git sudo
+      - name: Install dotfiles
+        run: install_scripts/dotsinstaller.sh install
+
+  alpine:
+    runs-on: ubuntu-latest
+    container: alpine:latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install required packages
+        run: apk add git sudo bash
+      - name: Install dotfiles
+        run: install_scripts/dotsinstaller.sh install
+
+  arch:
+    runs-on: ubuntu-latest
+    container: archlinux/base:latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Update packages
+        run: pacman -Syyu --noconfirm
+      - name: Install required packages
+        run: pacman -S --noconfirm git sudo
+      - name: Install vimspector required packages
+        run: pacman -S --noconfirm tcl
+      - name: Install dotfiles
+        run: install_scripts/dotsinstaller.sh install
+      - name: Add user
+        run: useradd builduser -m
+      - name: Add sudoer
+        run: echo 'builduser ALL=(ALL) ALL' >> /etc/sudoers
+      - name: Change password
+        run: passwd -d builduser
+      - name: Install arch software
+        run: sudo -u builduser bash -c 'install_scripts/arch-extra-setup.sh'
+      - name: Install zsh plugins
+        run: zsh
+        shell: zsh -li --rcs {0}
+        env:
+          TERM: screen-256color
+          ZSHRC_CI_TEST: "true"
+
+  lint:
+    runs-on: ubuntu-latest
+    container: ubuntu:latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Update packages
+        run: apt-get update
+      - name: Install packages for install repository
+        run: DEBIAN_FRONTEND=noninteractive apt-get install -y git sudo software-properties-common python3-pip
+      - name: Install required repository
+        run: apt-add-repository "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted universe"
+      - name: Install required packages
+        run: apt-get update; apt-get install -y shellcheck
+      - name: Execute shellcheck(zsh)
+        run: test $(shellcheck -f gcc ~/.zshrc ~/.zsh/rc/* | grep -v "SC1036\|SC1056\|SC1070\|SC1072\|SC1073\|SC1083\|SC2034\|SC2139\|SC2148\|SC1090\|SC1117\|SC2206\|SC1009\|SC2016\|SC2046\|SC2154" | tee -a /dev/stderr | wc -l) -le 1
+      - name: Execute shellcheck(installer)
+        run: test $(git ls-files | grep "\.sh$" | xargs shellcheck -f gcc | grep -v "SC2086\|SC2046\|SC1090\|SC2034\|SC2005\|SC2154" | tee -a /dev/stderr | wc -l) -le 0
