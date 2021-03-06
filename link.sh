@@ -24,7 +24,7 @@ freebsd* | darwin*)
 esac
 
 if [[ -e ${HOME}/.linuxbrew/share/git-core/contrib/diff-highlight/diff-highlight ]]; then
-  ln -sf ${HOME}/.linuxbrew/share/git-core/contrib/diff-highlight/diff-highlight ${HOME}/.linuxbrew/bin
+  ln -sf "${HOME}"/.linuxbrew/share/git-core/contrib/diff-highlight/diff-highlight "${HOME}"/.linuxbrew/bin
 fi
 if [[ -e /home/.linuxbrew/share/git-core/contrib/diff-highlight/diff-highlight ]]; then
   ln -sf /home/.linuxbrew/share/git-core/contrib/diff-highlight/diff-highlight /home/.linuxbrew/bin
