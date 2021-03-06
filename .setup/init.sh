@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -xu
 
@@ -11,10 +11,11 @@ mkdir -p ~/.config/peco
 if ! (type brew &> /dev/null); then
   case "${OSTYPE}" in
   linux* | cygwin*)
-    bash "${DOTPATH}"/linuxbrew.sh
+    bash "${DOTPATH}"/.setup/linuxbrew.sh
     ;;
   freebsd* | darwin*)
-    bash "${DOTPATH}"/homebrew.sh
+    bash "${DOTPATH}"/.setup/homebrew.sh
+    bash "${DOTPATH}"/.setup/setup-defaults.sh
     # install doom-emacs
     git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
     ~/.emacs.d/bin/doom install
@@ -29,10 +30,4 @@ if ! [[ -d ${HOME}/.zinit ]]; then
 fi
 
 # install poetry
-curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
-
-# sudoでTouchIDが使えるようにする
-# /etc/pam.d/sudo の最初に以下の１行を追加
-# ```
-# auth       sufficient     pam_tid.so
-# ```
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3

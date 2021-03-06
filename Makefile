@@ -7,10 +7,10 @@ list: ## Show dot files in this repo
 	@$(foreach val, $(DOTFILES), /bin/ls -dF $(val);)
 
 deploy: ## Create symlink to home directory
-	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/link.sh
+	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/.setup/link.sh
 
 init: ## Setup environment settings
-	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/init.sh
+	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/.setup/init.sh
 
 # test: ## Test dotfiles and init scripts
 # 	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/test/test.sh
