@@ -261,7 +261,7 @@ zinit snippet 'OMZ::lib/clipboard.zsh'
 zinit lucid from"gh-r" as"program" mv"direnv* -> direnv" pick"direnv" \
   atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
   src="zhook.zsh" light-mode for @direnv/direnv
-local p=$PWD
+p=$PWD
 while  [[ $p != '/' ]]; do
   if [[ -f $p/.envrc ]]; then
     direnv allow
@@ -466,9 +466,9 @@ ssub() {
 
 cd() {
   if [[ $# -eq 1 && $1 = "--" ]]; then
-    pushd +2
+    pushd +2 || exit
   else
-    builtin cd $@
+    builtin cd $@ || exit
   fi
 }
 

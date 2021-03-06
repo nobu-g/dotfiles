@@ -3,7 +3,7 @@
 
 # search with google
 google() {
-  if [[ $(echo $1 | egrep "^-[nt]$") ]]; then
+  if [[ $(echo $1 | grep -E "^-[nt]$") ]]; then
     local opt="$1"
     shift
   fi
@@ -17,7 +17,7 @@ google() {
 }
 
 dotedit() {
-  cd ~/dotfiles
+  cd ~/dotfiles || exit
   code .
 }
 

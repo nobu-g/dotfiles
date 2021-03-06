@@ -29,7 +29,7 @@ alias ppython='python -m cProfile -s tottime'
 alias zshtime='for i in $(seq 1 10); do time zsh -i -c exit; done'
 alias rename='noglob zmv -W' # rename **/*.xxx **/*.yyy
 alias x='exit'
-alias brew="env -u LD_LIBRARY_PATH PATH=${HOMEBREW_PREFIX}/bin:${HOMEBREW_PREFIX}/sbin:/usr/bin:/bin:/usr/sbin:/sbin brew"
+alias brew='env -u LD_LIBRARY_PATH PATH=${HOMEBREW_PREFIX}/bin:${HOMEBREW_PREFIX}/sbin:/usr/bin:/bin:/usr/sbin:/sbin brew'
 alias d='docker'
 alias l='les'
 alias b='bat'
@@ -68,7 +68,7 @@ alias -s txt='less'
 alias -s {html,pdf}='open'
 
 globalias() {
-  if [[ $LBUFFER =~ ' [A-Z0-9]+$' ]]; then
+  if [[ $LBUFFER =~ \s[A-Z0-9]+$ ]]; then
     zle _expand_alias
     # zle expand-word
   fi
