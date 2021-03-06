@@ -11,7 +11,7 @@ jobs:
       - name: Install required packages
         run: apt-get update && apt-get install -y git sudo
       - name: Install dotfiles
-        run: install_scripts/dotsinstaller.sh install
+        run: make install
 
   centos:
     runs-on: ubuntu-latest
@@ -21,7 +21,7 @@ jobs:
       - name: Install required packages
         run: yum install -y git sudo
       - name: Install dotfiles
-        run: install_scripts/dotsinstaller.sh install
+        run: make install
 
   fedora:
     runs-on: ubuntu-latest
@@ -31,7 +31,7 @@ jobs:
       - name: Install required packages
         run: dnf clean all && dnf install -y git sudo
       - name: Install dotfiles
-        run: install_scripts/dotsinstaller.sh install
+        run: make install
 
   alpine:
     runs-on: ubuntu-latest
@@ -41,7 +41,7 @@ jobs:
       - name: Install required packages
         run: apk add git sudo bash
       - name: Install dotfiles
-        run: install_scripts/dotsinstaller.sh install
+        run: make install
 
   arch:
     runs-on: ubuntu-latest
@@ -75,7 +75,7 @@ jobs:
     runs-on: ubuntu-latest
     container: ubuntu:latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: Update packages
         run: apt-get update
       - name: Install packages for install repository
