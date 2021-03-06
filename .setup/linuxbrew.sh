@@ -42,7 +42,7 @@ brew install openssh
 brew install readline
 brew install zlib
 brew install pipenv
-brew install pyenv
+# brew install pyenv
 brew install python@3.8
 brew install python
 brew install st # statistics

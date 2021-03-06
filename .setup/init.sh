@@ -2,10 +2,7 @@
 
 set -xu
 
-mkdir -p ~/.emacs.d
-mkdir -p ~/.config
-mkdir -p ~/.config/git
-mkdir -p ~/.config/peco
+mkdir -p ~/.emacs.d ~/.config
 
 # install Homebrew/Linuxbrew if not installed
 if ! (type brew &> /dev/null); then
@@ -24,6 +21,8 @@ if ! (type brew &> /dev/null); then
     ;;
   esac
 fi
+
+bash "${DOTPATH}"/.setup/setup-shell.sh
 
 # install zinit
 if ! [[ -d ${HOME}/.zinit ]]; then
