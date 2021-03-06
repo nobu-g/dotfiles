@@ -13,6 +13,7 @@ $ make install
 ```
 
 ## Requirements
+- gcc
 - git
 - curl
 - make

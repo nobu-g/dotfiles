@@ -63,6 +63,7 @@ brew install source-highlight
 brew install xclip
 brew install go
 brew install rust
+brew install shellcheck
 
 # Remove outdated versions from the cellar.
 brew cleanup

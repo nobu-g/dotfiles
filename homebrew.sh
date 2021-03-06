@@ -79,6 +79,7 @@ brew install ripgrep
 brew install procs # alternative of ps
 brew install sd    # alternative of sed
 brew install ghq
+brew install shellcheck
 
 # Cask
 brew tap caskroom/cask

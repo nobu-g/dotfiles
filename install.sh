@@ -31,33 +31,6 @@ success() {
   echo -e "${COLOR_GREEN}$1${COLOR_NONE}"
 }
 
-# backup() {
-#     BACKUP_DIR=$HOME/dotfiles-backup
-
-#     echo "Creating backup directory at $BACKUP_DIR"
-#     mkdir -p "$BACKUP_DIR"
-
-#     for file in $(get_linkables); do
-#         filename=".$(basename "$file" '.symlink')"
-#         target="$HOME/$filename"tvs
-#         if [ -f "$target" ]; then
-#             echo "backing up $filename"
-#             cp "$target" "$BACKUP_DIR"
-#         else
-#             warning "$filename does not exist at this location or is a symlink"
-#         fi
-#     done
-
-#     for filename in "$HOME/.config/nvim" "$HOME/.vim" "$HOME/.vimrc"; do
-#         if [ ! -L "$filename" ]; then
-#             echo "backing up $filename"
-#             cp -rf "$filename" "$BACKUP_DIR"
-#         else
-#             warning "$filename does not exist at this location or is a symlink"
-#         fi
-#     done
-# }
-
 setup_symlinks() {
   title "Creating symlinks"
 
@@ -161,16 +134,6 @@ setup_shell() {
   fi
 }
 
-setup_terminfo() {
-  title "Configuring terminfo"
-
-  info "adding tmux.terminfo"
-  tic -x "$DOTFILES/resources/tmux.terminfo"
-
-  info "adding xterm-256color-italic.terminfo"
-  tic -x "$DOTFILES/resources/xterm-256color-italic.terminfo"
-}
-
 setup_macos() {
   title "Configuring macOS"
   if [[ "$(uname)" == "Darwin" ]]; then
@@ -229,9 +192,6 @@ setup_macos() {
 }
 
 case "$1" in
-backup)
-  backup
-  ;;
 link)
   setup_symlinks
   ;;
@@ -244,22 +204,18 @@ homebrew)
 shell)
   setup_shell
   ;;
-terminfo)
-  setup_terminfo
-  ;;
 macos)
   setup_macos
   ;;
 all)
   setup_symlinks
-  setup_terminfo
   setup_homebrew
   setup_shell
   setup_git
   setup_macos
   ;;
 *)
-  echo -e $"\nUsage: $(basename "$0") {backup|link|git|homebrew|shell|terminfo|macos|all}\n"
+  echo -e $"\nUsage: $(basename "$0") {link|git|homebrew|shell|macos|all}\n"
   exit 1
   ;;
 esac
