@@ -11,10 +11,12 @@ eval $(~/.linuxbrew/bin/brew shellenv)
 # Make sure we’re using the latest Linuxbrew.
 brew update
 
+# some fomulae need to be built from source and require gcc
+brew install gcc
+
 # Upgrade any already-installed formulae.
 brew upgrade
 
-brew install gcc
 brew install zsh
 
 BREW_PREFIX=$(brew --prefix)
