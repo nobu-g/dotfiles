@@ -7,8 +7,8 @@ ln -sf ~/dotfiles/.zsh.d/.zprofile ~/.zprofile
 ln -sf ~/dotfiles/.zsh.d/.zshrc ~/.zshrc
 ln -sf ~/dotfiles/.zsh.d/.p10k.zsh ~/.p10k.zsh
 ln -sf ~/dotfiles/.git.d/.gitconfig ~/.gitconfig
-ln -sf ~/dotfiles/.git.d/.gitignore_global ~/.config/git/ignore
-ln -sf ~/dotfiles/.peco/config.json ~/.config/peco/config.json
+ln -sf ~/dotfiles/.config/git ~/.config/
+ln -sf ~/dotfiles/.config/peco ~/.config/
 ln -sf ~/dotfiles/.config/fsh ~/.config/
 ln -sf ~/dotfiles/.config/bat ~/.config/
 ln -sf ~/dotfiles/.latexmkrc ~/.latexmkrc
