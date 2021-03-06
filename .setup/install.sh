@@ -112,11 +112,6 @@ setup_homebrew() {
 
   # install brew dependencies from Brewfile
   brew bundle
-
-  # install fzf
-  echo -e
-  info "Installing fzf"
-  "$(brew --prefix)"/opt/fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish
 }
 
 setup_shell() {

@@ -12,9 +12,11 @@ if ! (type brew &> /dev/null); then
   case "${OSTYPE}" in
   linux* | cygwin*)
     bash "${DOTPATH}"/.setup/linuxbrew.sh
+    eval "$(~/.linuxbrew/bin/brew shellenv)"
     ;;
   freebsd* | darwin*)
     bash "${DOTPATH}"/.setup/homebrew.sh
+    eval "$(/usr/local/bin/brew shellenv)"
     bash "${DOTPATH}"/.setup/setup-defaults.sh
     # install doom-emacs
     git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d

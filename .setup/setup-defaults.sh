@@ -14,10 +14,6 @@ defaults write com.hegenberg.BetterTouchTool BTTDisableSecureInputLookup YES
 defaults write com.apple.dt.Xcode ShowBuildOperationDuration YES
 defaults write org.python.python ApplePersistenceIgnoreState NO
 
-# Finder のタブバーにフルパスを表示
-defaults write com.apple.finder _FXShowPosixPathInTitle -boolean true;
-
-
 echo "Finder: show all filename extensions"
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
@@ -59,7 +55,7 @@ defaults write NSGlobalDomain KeyRepeat -int 1
 echo "Set a shorter Delay until key repeat"
 defaults write NSGlobalDomain InitialKeyRepeat -int 15
 
-# echo "Enable tap to click (Trackpad)"
+# echo "Trackpad: Enable tap to click"
 # defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 
 echo "Safari: enable debug menu"

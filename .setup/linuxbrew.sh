@@ -4,34 +4,27 @@
 git clone --depth 1 https://github.com/Homebrew/brew ~/.linuxbrew/Homebrew
 mkdir -p ~/.linuxbrew/bin
 ln -fs ~/.linuxbrew/Homebrew/bin/brew ~/.linuxbrew/bin
-eval $(~/.linuxbrew/bin/brew shellenv)
+eval "$(~/.linuxbrew/bin/brew shellenv)"
 
 # Install command-line tools using Linuxbrew.
 
 # Make sure we’re using the latest Linuxbrew.
 brew update
 
-# some fomulae need to be built from source and require gcc
-brew install gcc
-
 # Upgrade any already-installed formulae.
 brew upgrade
 
+brew install gcc
 brew install zsh
 
 BREW_PREFIX=$(brew --prefix)
-# # Switch to using brew-installed zsh as default shell
-# if ! fgrep -q "${BREW_PREFIX}/bin/zsh" /etc/shells; then
-#   echo "${BREW_PREFIX}/bin/zsh" | sudo tee -a /etc/shells
-#   chsh -s "${BREW_PREFIX}/bin/zsh"
-# fi
 
 brew install git
 brew install emacs
 brew install curl
 # https://qiita.com/aical/items/5b3ebee3840aae741283
 wget http://curl.haxx.se/ca/cacert.pem -O cert.pem
-mv cert.pem ${BREW_PREFIX}/etc/openssl*/
+mv cert.pem "${BREW_PREFIX}"/etc/openssl*/
 
 # Install other useful binaries.
 # brew install gs
