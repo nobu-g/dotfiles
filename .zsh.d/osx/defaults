@@ -18,3 +18,6 @@ defaults write com.hegenberg.BetterTouchTool BTTDisableSecureInputLookup YES
 defaults write com.apple.dt.Xcode ShowBuildOperationDuration YES
 defaults write com.apple.desktopservices DSDontWriteNetworkStores True
 defaults write org.python.python ApplePersistenceIgnoreState NO
+
+# Finder のタブバーにフルパスを表示
+defaults write com.apple.finder _FXShowPosixPathInTitle -boolean true;

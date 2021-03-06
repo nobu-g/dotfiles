@@ -88,6 +88,19 @@ brew install --cask google-japanese-ime
 brew install --cask iterm2
 brew install --cask clipy
 brew install --cask docker
+brew install --cask dozer  # hide menu bar icons
+
+# AppStore系
+brew install mas # AppStore系アプリのCLI管理ツール、リストは mas list で取れる
+mas install 497799835 # XCode
+mas install 425424353 # The Unarchiver
+mas install 803453959 # Slack
+mas install 539883307 # LINE
+mas install 405399194 # Kindle
+mas install 409201541 # Pages
+mas install 409183694 # Keynote
+mas install 409203825 # Numbers
+
 
 # Remove outdated versions from the cellar.
 brew cleanup

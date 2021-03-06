@@ -30,3 +30,9 @@ fi
 
 # install poetry
 curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+
+# sudoでTouchIDが使えるようにする
+# /etc/pam.d/sudo の最初に以下の１行を追加
+# ```
+# auth       sufficient     pam_tid.so
+# ```
