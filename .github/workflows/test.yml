@@ -46,6 +46,16 @@ jobs:
   #     - name: Install dotfiles
   #       run: make install
 
+  macos:
+    runs-on: macos-latest
+    steps:
+    # - uses: actions/checkout@v2
+    - name: Clone this repo
+      run: git clone --depth 1 https://github.com/nobu-g/dotfiles.git
+    - name: Install dotfiles
+      run: make install
+      working-directory: ./dotfiles
+
   lint:
     runs-on: ubuntu-latest
     container: ubuntu:latest

@@ -1,9 +1,9 @@
 # dotfiles
 
+![License](http://img.shields.io/badge/license-MIT-blue.svg)
+[![test](https://github.com/nobu-g/dotfiles/actions/workflows/test.yml/badge.svg)](https://github.com/nobu-g/dotfiles/actions/workflows/test.yml)
+
 My dotfiles.
-
-![init script test](https://github.com/nobu-g/dotfiles/workflows/test/badge.svg)
-
 
 ## Setup
 ```bash
@@ -18,6 +18,7 @@ $ make install
 - curl
 - make
 - sudo
+- zsh
 
 ## License
 
