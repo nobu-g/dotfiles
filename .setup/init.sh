@@ -2,27 +2,35 @@
 
 set -xu
 
+here=$(dirname "${BASH_SOURCE[0]:-$0}")
+
+bash "$here"/install-basic-packages.sh
+
 mkdir -p ~/.emacs.d ~/.config ~/scripts
 
 # install Homebrew/Linuxbrew if not installed
 if ! (type brew &> /dev/null); then
   case "${OSTYPE}" in
   linux* | cygwin*)
-    bash "${DOTPATH}"/.setup/linuxbrew.sh
-    eval "$(~/.linuxbrew/bin/brew shellenv)"
+    bash "$here"/linuxbrew.sh
+    BREW_PREFIX=$HOME/.linuxbrew
     ;;
   freebsd* | darwin*)
-    bash "${DOTPATH}"/.setup/homebrew.sh
-    eval "$(/usr/local/bin/brew shellenv)"
-    bash "${DOTPATH}"/.setup/setup-defaults.sh
+    bash "$here"/homebrew.sh
+    BREW_PREFIX=/usr/local
+    bash "$here"/setup-defaults.sh
     # install doom-emacs
     git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
     ~/.emacs.d/bin/doom install
     ;;
   esac
+else
+  BREW_PREFIX=$(brew --prefix)
 fi
 
-bash "${DOTPATH}"/.setup/setup-shell.sh
+eval "$BREW_PREFIX/bin/brew shellenv"
+
+bash "$here"/setup-shell.sh
 
 # install zinit
 if ! [[ -d ${HOME}/.zinit ]]; then
