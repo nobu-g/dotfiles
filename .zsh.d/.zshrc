@@ -333,16 +333,19 @@ add-zsh-hook chpwd _ls_abbrev
 mkcd() {
   if [[ -d $1 ]]; then
     echo "$1 already exists!"
-    cd $1
+    cd $1 || exit
   else
-    mkdir $1 && cd $1
+    mkdir $1 && cd $1 || exit
   fi
 }
 
 
-# grep を除いて任意のプロセスを表示
+# search process by command name
 pss() {
-  ps aux | grep -E "PID|$1" | grep -v grep
+  ps -o pid,tty,time,command | head -1
+  for pid in $(pgrep $1); do
+    ps -p "$pid" -o pid=,tty=,time=,command=
+  done
 }
 
 

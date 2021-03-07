@@ -3,7 +3,7 @@
 
 # search with google
 google() {
-  if [[ $(echo $1 | grep -E "^-[nt]$") ]]; then
+  if echo $1 | grep -qE "^-[nt]$"; then
     local opt="$1"
     shift
   fi
@@ -28,7 +28,8 @@ dsdel() {
 # ghq+peco
 # https://qiita.com/strsk/items/9151cef7e68f0746820d
 peco-src() {
-  local dest=$(ghq list -p | peco --query "$BUFFER" --prompt "[ghq]" --print-query | tail -1)
+  local dest
+  dest=$(ghq list -p | peco --query "$BUFFER" --prompt "[ghq]" --print-query | tail -1)
   if [[ -n "${dest}" ]]; then
     BUFFER="cd ${dest}"
     zle accept-line
@@ -52,5 +53,5 @@ zle -N paste-as-yank
 bindkey '^y' paste-as-yank
 
 # stderred
-export STDERRED_ESC_CODE=$(echo -e "$(tput setaf 9)")
+export STDERRED_ESC_CODE=$(tput setaf 9)
 export DYLD_INSERT_LIBRARIES="${HOME}/usr/lib/libstderred.dylib${DYLD_INSERT_LIBRARIES:+:$DYLD_INSERT_LIBRARIES}"

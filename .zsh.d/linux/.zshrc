@@ -14,10 +14,10 @@ fi
 # install specified debian package to ${HOME}/usr/bin
 apt-user-install() {
   local cur_dir=$(pwd)
-  cd $(mktemp -d)
+  cd "$(mktemp -d)" || exit
   apt download $1
-  dpkg -x $(ls) ${HOME}
-  cd ${cur_dir}
+  dpkg -x "$(ls)" "${HOME}"
+  cd "${cur_dir}" || exit
 }
 
 export HOMEBREW_NO_AUTO_UPDATE=1

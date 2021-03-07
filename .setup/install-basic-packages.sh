@@ -2,7 +2,7 @@
 
 set -ue
 
-source $(dirname "${BASH_SOURCE[0]:-$0}")/utils.sh
+source "$(dirname "${BASH_SOURCE[0]:-$0}")/utils.sh"
 
 distro=$(whichdistro)
 if [[ $distro == "redhat" ]]; then
@@ -10,7 +10,7 @@ if [[ $distro == "redhat" ]]; then
 elif [[ $distro == "debian" ]]; then
   checkinstall sudo make zsh git tmux bc curl wget gawk python3-pip unzip sqlite gettext jq
 else
-  checkinstall sudo make zsh git tmux bc curl wget xsel gawk python-pip unzip sqlite gettext jq
+  checkinstall sudo zsh git tmux bc curl wget xsel gawk python-pip unzip sqlite gettext jq
 fi
 
 if [[ $distro == "redhat" ]]; then

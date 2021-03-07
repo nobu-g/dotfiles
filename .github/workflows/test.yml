@@ -70,8 +70,8 @@ jobs:
       - name: Install required packages
         run: apt-get update && apt-get install -y shellcheck
       - name: Execute shellcheck (zsh)
-        run: test $(shellcheck -f gcc ./.zsh.d/* --exclude=SC2148,SC1090 | tee -a /dev/stderr | wc -l) -le 1
+        run: test $(find ./.zsh.d/ -type f | xargs shellcheck -f gcc --exclude=SC1036,SC1056,SC1072,SC1073,SC1090,SC2139,SC2206,SC2034,SC2148,SC2016,SC2086,SC2128,SC2068,SC2155,SC2001 | tee -a /dev/stderr | wc -l) -le 1
         working-directory: ./dotfiles
       - name: Execute shellcheck (installer)
-        run: test $(git ls-files | grep "\.sh$" | xargs shellcheck -f gcc --exclude=SC2148,SC1090 | tee -a /dev/stderr | wc -l) -le 0
+        run: test $(git ls-files | grep "\.sh$" | xargs shellcheck -f gcc --exclude=SC1090,SC2086 | tee -a /dev/stderr | wc -l) -le 0
         working-directory: ./dotfiles
