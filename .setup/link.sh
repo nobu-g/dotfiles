@@ -20,7 +20,7 @@ linux* | cygwin*)
   ;;
 freebsd* | darwin*)
   ln -sf /usr/local/share/git-core/contrib/diff-highlight/diff-highlight /usr/local/bin
-  ln -sfT ~/dotfiles/.doom.d ~/.doom.d
+  ln -sf ~/dotfiles/.doom.d ~/.doom.d
   ;;
 esac
 
