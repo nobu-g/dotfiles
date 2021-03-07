@@ -4,7 +4,7 @@ set -xu
 
 here=$(dirname "${BASH_SOURCE[0]:-$0}")
 id
-
+cat /etc/passwd
 bash "$here"/install-basic-packages.sh
 
 mkdir -p ~/.emacs.d ~/.config ~/scripts
