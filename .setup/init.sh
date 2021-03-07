@@ -3,6 +3,7 @@
 set -xu
 
 here=$(dirname "${BASH_SOURCE[0]:-$0}")
+id
 
 bash "$here"/install-basic-packages.sh
 
