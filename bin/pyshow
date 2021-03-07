@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+
+show_version() {
+  for p in $(where $1); do
+    echo "${p}  $(${p} --version 2>&1 | sed -E 's/Python\s//')"
+  done
+}
+
+echo 'python:'
+show_version python
+echo '\npython2:'
+show_version python2
+echo '\npython3:'
+show_version python3
