@@ -12,6 +12,7 @@ ln -sf ~/dotfiles/.config/peco ~/.config/
 ln -sf ~/dotfiles/.config/fsh ~/.config/
 ln -sf ~/dotfiles/.config/bat ~/.config/
 ln -sf ~/dotfiles/.latexmkrc ~/.latexmkrc
+ln -sf ~/dotfiles/bin/line ~/scripts/
 
 case "${OSTYPE}" in
 linux* | cygwin*)

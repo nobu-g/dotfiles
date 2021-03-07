@@ -2,7 +2,7 @@
 
 set -xu
 
-mkdir -p ~/.emacs.d ~/.config
+mkdir -p ~/.emacs.d ~/.config ~/scripts
 
 # install Homebrew/Linuxbrew if not installed
 if ! (type brew &> /dev/null); then
