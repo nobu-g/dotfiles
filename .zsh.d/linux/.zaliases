@@ -1,7 +1,7 @@
 alias pbcopy='clipcopy'
 alias pbpaste='clippaste'
 alias gzcat='zcat'
-alias ssh='LC_PWD=$PWD ssh -o SendEnv=LC_PWD'
+alias ssh='LC_PWD=$PWD /usr/bin/ssh -o SendEnv=LC_PWD'
 alias nv='nvidia-smi'
 
 # directory alias
