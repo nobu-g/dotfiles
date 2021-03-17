@@ -9,7 +9,7 @@ jobs:
     steps:
       # - uses: actions/checkout@v2
       - name: Install required packages
-        run: apt-get update && apt-get upgrade && apt-get install -y gcc git sudo make curl zsh
+        run: apt-get update && apt-get -y upgrade && apt-get install -y gcc git sudo make curl zsh
       - name: Clone this repo
         run: git clone --depth 1 https://github.com/nobu-g/dotfiles.git
       - name: Install dotfiles
