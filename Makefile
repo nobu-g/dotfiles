@@ -20,6 +20,7 @@ update: ## Fetch changes for this repo
 
 install: update init deploy ## Run make update, init, deploy
 	@env
+	@tree /Users/runner/work/dotfiles
 	@exec zsh -l
 	@zinit self-update
 	@fast-theme XDG:overlay
