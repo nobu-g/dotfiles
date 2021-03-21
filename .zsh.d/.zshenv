@@ -49,7 +49,7 @@ fi
 if (type realpath &> /dev/null); then
   RESOLVE="realpath"
 else
-  RESOLVE="readlink -f"
+  RESOLVE=("readlink" "-f")
 fi
 
 # Homebrew/Linuxbrew で prefix のパスが違う。
