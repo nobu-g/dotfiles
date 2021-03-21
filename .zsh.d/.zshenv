@@ -45,13 +45,19 @@ if [[ $(id -u) -eq 0 ]]; then  # root user
   path=(${sudo_path} ${path})
 fi
 
+# realpath or readlink -f
+if (type realpath &> /dev/null); then
+  RESOLVE="realpath"
+else
+  RESOLVE="readlink -f"
+fi
 
 # Homebrew/Linuxbrew で prefix のパスが違う。
 # $(brew --prefix) は時間がかかる処理のため、ここで判定して HOMEBREW_PREFIX に格納する。
 if [[ -d ${HOME}/.linuxbrew ]]; then
-  HOMEBREW_PREFIX=$(readlink -f ${HOME}/.linuxbrew)
+  HOMEBREW_PREFIX=$(${RESOLVE} ${HOME}/.linuxbrew)
 elif [[ -d /home/.linuxbrew ]]; then
-  HOMEBREW_PREFIX=$(readlink -f /home/.linuxbrew)
+  HOMEBREW_PREFIX=$(${RESOLVE} /home/.linuxbrew)
 elif [[ -x /usr/local/bin/brew ]]; then
   HOMEBREW_PREFIX="/usr/local"
 fi
@@ -89,7 +95,7 @@ export PYTEST_ADDOPTS='-v -s --ff'
 # zmv
 autoload -Uz zmv
 
-BASE_DIR="$(cd "$(dirname "$(dirname "$0")")"; pwd)"
+BASE_DIR="$(dirname "$(dirname "$(${RESOLVE} "${(%):-%N}")")")"
 case "${OSTYPE}" in
 linux*|cygwin*)
   ZSHHOME="$BASE_DIR/.zsh.d/linux"

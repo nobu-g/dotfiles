@@ -19,10 +19,7 @@ update: ## Fetch changes for this repo
 	git pull origin master
 
 install: update init deploy ## Run make update, init, deploy
-	@env
-	@exec zsh -l
-	@zinit self-update
-	@fast-theme XDG:overlay
+	zsh -l -c 'exit'
 
 clean: ## Remove the dot files and this repo
 	# @echo 'Remove dot files in your home directory...'
