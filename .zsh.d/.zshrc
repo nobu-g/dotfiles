@@ -501,6 +501,6 @@ diff() {
 # LOAD SETTING FILES
 source ${ZSHHOME}/.zshrc
 
-if (which zprof > /dev/null 2>&1) ;then
+if (type zprof &> /dev/null) ;then
   zprof
 fi
