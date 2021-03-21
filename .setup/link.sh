@@ -2,32 +2,31 @@
 
 set -exu
 
-DOTDIR=$(
-  cd "$(dirname "$(dirname "$0")")"
+BASE_DIR=$(
+  cd "$(dirname "$(dirname "${BASH_SOURCE[0]:-$0}")")"
   pwd
 )
-cd "$DOTDIR"
+cd "$BASE_DIR"
 
-ZDOTDIR=${DOTDIR%/}/.zsh.d
-for f in "${ZDOTDIR%/}"/{.zshenv,.zprofile,.zshrc,.p10k.zsh}; do
+for f in "${BASE_DIR%/}"/.zsh.d/{.zshenv,.zprofile,.zshrc,.p10k.zsh}; do
   ln -snfv "$f" "$HOME"
 done
 
-for f in "${DOTDIR%/}"/.config/*; do
+for f in "${BASE_DIR%/}"/.config/*; do
   ln -snfv "$f" "$HOME/.config"
 done
 
-ln -sf "${DOTDIR%/}"/.git.d/.gitconfig "$HOME/.gitconfig"
-ln -sf "${DOTDIR%/}"/.latexmkrc "$HOME/.latexmkrc"
-ln -sf "${DOTDIR%/}"/bin/line "$HOME/scripts/"
+ln -sf "${BASE_DIR%/}"/.git.d/.gitconfig "$HOME/.gitconfig"
+ln -sf "${BASE_DIR%/}"/.latexmkrc "$HOME/.latexmkrc"
+ln -sf "${BASE_DIR%/}"/bin/line "$HOME/scripts/"
 
 case "${OSTYPE}" in
 linux* | cygwin*)
-  ln -sf "${DOTDIR%/}"/.emacs.d/init.el "$HOME/.emacs.d/init.el"
+  ln -sf "${BASE_DIR%/}"/.emacs.d/init.el "$HOME/.emacs.d/init.el"
   ;;
 freebsd* | darwin*)
   ln -sf /usr/local/share/git-core/contrib/diff-highlight/diff-highlight /usr/local/bin
-  ln -sf "${DOTDIR%/}"/.doom.d "$HOME/.doom.d"
+  ln -sf "${BASE_DIR%/}"/.doom.d "$HOME/.doom.d"
   ;;
 esac
 

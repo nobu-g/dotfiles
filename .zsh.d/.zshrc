@@ -7,8 +7,8 @@ fi
 
 
 # ALIAS
-if [[ -f $HOME/dotfiles/.zsh.d/.zaliases ]]; then
-  source $HOME/dotfiles/.zsh.d/.zaliases
+if [[ -f $BASE_DIR/.zsh.d/.zaliases ]]; then
+  source "$BASE_DIR/.zsh.d/.zaliases"
 fi
 
 autoload -Uz add-zsh-hook
