@@ -53,10 +53,10 @@ jobs:
     - name: debug print pwd
       run: pwd; env
     - name: Clone this repo
-      run: git clone --depth 1 https://github.com/nobu-g/dotfiles.git
+      run: git clone --depth 1 https://github.com/nobu-g/dotfiles.git "$HOME/dotfiles"
     - name: Install dotfiles
       run: make install
-      working-directory: ./dotfiles
+      working-directory: "$HOME/dotfiles"
 
   lint:
     runs-on: ubuntu-latest
