@@ -48,6 +48,8 @@ fi
 # realpath or readlink -f
 if (type realpath &> /dev/null); then
   RESOLVE="realpath"
+elif (type greadlink &> /dev/null); then
+  RESOLVE=("greadlink" "-f")
 else
   RESOLVE=("readlink" "-f")
 fi

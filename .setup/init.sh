@@ -11,25 +11,22 @@ bash "$here"/install-basic-packages.sh
 
 mkdir -p ~/.emacs.d ~/.config ~/scripts
 
-# install Homebrew/Linuxbrew if not installed
-if ! (type brew &> /dev/null); then
-  case "${OSTYPE}" in
-  linux* | cygwin*)
-    bash "$here"/linuxbrew.sh
-    BREW_PREFIX=$HOME/.linuxbrew
-    ;;
-  freebsd* | darwin*)
-    bash "$here"/homebrew.sh
-    BREW_PREFIX=/usr/local
-    bash "$here"/setup-defaults.sh
-    # install doom-emacs
-    git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
-    ~/.emacs.d/bin/doom install
-    ;;
-  esac
-else
-  BREW_PREFIX=$(brew --prefix)
-fi
+# install Homebrew/Linuxbrew
+case "${OSTYPE}" in
+linux* | cygwin*)
+  bash "$here/linuxbrew.sh"
+  BREW_PREFIX="$HOME/.linuxbrew"
+  ;;
+freebsd* | darwin*)
+  bash "$here/homebrew.sh"
+  BREW_PREFIX=/usr/local
+  bash "$here/setup-defaults.sh"
+  # install doom-emacs
+  rm -rf ~/.emacs.d && \
+  git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d && \
+  ~/.emacs.d/bin/doom install
+  ;;
+esac
 
 eval "$("$BREW_PREFIX/bin/brew" shellenv)"
 
