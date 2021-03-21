@@ -58,6 +58,7 @@ brew install go
 brew install rust
 brew install shellcheck
 brew install whois
+brew install jq
 
 # Remove outdated versions from the cellar.
 brew cleanup
