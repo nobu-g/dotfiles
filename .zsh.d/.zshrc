@@ -14,16 +14,10 @@ fi
 autoload -Uz add-zsh-hook
 autoload -Uz colors && colors
 
-# RESET KEY BINDINGS
-bindkey -d
-
 # COLOR
 # export LS_COLORS=':no=00:fi=00:di=36:ln=35:pi=33:so=32:bd=34;46:cd=34;43:ex=31:'
 # export LSCOLORS=gxfxcxdxbxegexabagacad  # GNU系の LS_COLORS に相当
 export TERM='xterm-256color'
-
-# PROMPT
-## DISPLAY SETTING
 
 WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
 
@@ -40,7 +34,8 @@ fi
 # カレントディレクトリ中にサブディレクトリが無い場合に cd が検索するディレクトリのリスト
 cdpath=("$HOME" .. $HOME/*)
 
-
+# RESET KEY BINDINGS
+bindkey -d
 # KEY SETTING FOR COMMAND HISTORY
 autoload -Uz history-search-end
 zle -N history-beginning-search-backward-end history-search-end
@@ -68,7 +63,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}' '+r:|[-_.]=
 #zstyle ':completion:*' completer _oldlist _complete _match _history _ignored _approximate _prefix
 zstyle ':completion:*' completer _oldlist _complete _match _ignored _approximate _prefix
 
-# Format
+## Format
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*' format '%F{magenta}-- %d --%f'
 zstyle ':completion:*' group-name ''
@@ -326,19 +321,11 @@ ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=185'
 ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=185'
 
 ## auto ls after changing directory
+autoload -Uz _ls_abbrev
 add-zsh-hook chpwd _ls_abbrev
 
-
 # mkdir and cd
-mkcd() {
-  if [[ -d $1 ]]; then
-    echo "$1 already exists!"
-    cd $1 || exit
-  else
-    mkdir $1 && cd $1 || exit
-  fi
-}
-
+autoload -Uz mkcd
 
 # search process by command name
 pss() {
@@ -422,16 +409,7 @@ export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # unset all environment variables and restart shell
-resetenv() {
-  local U=$USER
-  local S=$SHELL
-  local D=$DISPLAY
-  for v in $(env | awk -F"=" '{print $1}'); do unset $v; done
-  export USER=$U
-  export SHELL=$S
-  export DISPLAY=$D
-  exec $SHELL -l
-}
+autoload -Uz resetenv
 
 # ssh and tmux -CC
 # https://gitlab.com/gnachman/iterm2/-/wikis/tmux-Integration-Best-Practices
@@ -439,33 +417,10 @@ tssh() {
   ssh -t $@ 'tmux -CC new -A -s main'
 }
 
-# set of set operations
-union() {
-  if [[ -p /dev/stdin ]]; then
-    cat - $@ | awk '!x[$0]++'
-  else
-    cat $@ | awk '!x[$0]++'
-  fi
-}
-isect() {
-  if [[ -p /dev/stdin ]]; then
-    cat - $@ | awk 'x[$0]++'
-  else
-    cat $@ | awk 'x[$0]++'
-  fi
-}
-ssub() {
-  local file1
-  local file2
-  if [[ -p /dev/stdin ]]; then
-    file1=/dev/stdin
-    file2=$1
-  else
-    file1=$1
-    file2=$2
-  fi
-  comm -23 <(sort $file1) <(sort $file2)
-}
+# set operations
+autoload -Uz union
+autoload -Uz isect
+autoload -Uz difference
 
 cd() {
   if [[ $# -eq 1 && $1 = "--" ]]; then
@@ -475,29 +430,12 @@ cd() {
   fi
 }
 
-# https://qiita.com/yuyuchu3333/items/b10542db482c3ac8b059
-_ls_abbrev() {
-  local MAX_LINUM=20
-  if [[ ! -r $PWD ]]; then
-    return
-  fi
-  # -C : Force multi-column output.
-  # -F : Append indicator (one of */=>@|) to entries.
-  local ls_result=$(CLICOLOR_FORCE=1 COLUMNS=${COLUMNS} command ls -ACF --color=always | sed $'/^\e\[[0-9;]*m$/d')
-  local ls_lines=$(echo "${ls_result}" | wc -l | tr -d ' ')
-
-  if [[ ${ls_lines} -gt ${MAX_LINUM} ]]; then
-    echo "${ls_result}" | head -3
-    echo '...'
-    echo "${ls_result}" | tail -3
-    echo "$(command ls -1UA | wc -l | tr -d ' ') files exist"
-  else
-    echo "${ls_result}"
-  fi
-}
-
 # jocelynmallon/zshmarks
 bm() {
+  if ! (type showmarks &> /dev/null); then
+    echo "bm: jocelynmallon/zshmarks not found" 1>&2
+    return 1;
+  fi
   if [[ $# == 0 ]]; then
     showmarks
     return 0

@@ -1,0 +1,8 @@
+# mkdir and cd
+
+if [[ -d $1 ]]; then
+  echo "$1 already exists!"
+  cd $1 || exit
+else
+  mkdir $1 && cd $1 || exit
+fi

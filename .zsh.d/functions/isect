@@ -1,0 +1,10 @@
+# intersection set of two files
+# usage:
+# $ isect file1 file2
+# $ cat file1 | isect file2
+
+if [[ -p /dev/stdin ]]; then
+  cat - $@ | awk 'x[$0]++'
+else
+  cat $@ | awk 'x[$0]++'
+fi

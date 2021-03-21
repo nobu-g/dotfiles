@@ -1,0 +1,15 @@
+# unset all environment variables and restart shell
+
+local U S D
+
+U=$USER
+S=$SHELL
+D=$DISPLAY
+
+for v in $(env | awk -F"=" '{print $1}'); do unset $v; done
+
+export USER=$U
+export SHELL=$S
+export DISPLAY=$D
+
+exec $SHELL -l

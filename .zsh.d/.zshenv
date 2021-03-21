@@ -150,5 +150,6 @@ fpath=(
 )
 
 
-# my scripts
+# my scripts and functions
 path=(${HOME}/scripts(N-/) ${path})
+fpath=(${HOME}/dotfiles/.zsh.d/functions(N-/) ${fpath})

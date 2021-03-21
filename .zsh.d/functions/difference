@@ -1,0 +1,15 @@
+# difference set of two files
+# usage:
+# $ difference file1 file2
+# $ cat file1 | difference file2
+
+local file1
+local file2
+if [[ -p /dev/stdin ]]; then
+  file1=/dev/stdin
+  file2=$1
+else
+  file1=$1
+  file2=$2
+fi
+comm -23 <(sort $file1) <(sort $file2)
