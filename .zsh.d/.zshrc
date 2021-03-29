@@ -6,11 +6,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 
-# ALIAS
-if [[ -f $BASE_DIR/.zsh.d/.zaliases ]]; then
-  source "$BASE_DIR/.zsh.d/.zaliases"
-fi
-
 autoload -Uz add-zsh-hook
 autoload -Uz colors && colors
 
@@ -497,6 +492,11 @@ diff() {
 #     command git status
 #   fi
 # }
+
+# ALIAS
+if [[ -f $BASE_DIR/.zsh.d/.zaliases ]]; then
+  source "$BASE_DIR/.zsh.d/.zaliases"
+fi
 
 # LOAD SETTING FILES
 source ${ZSHHOME}/.zshrc

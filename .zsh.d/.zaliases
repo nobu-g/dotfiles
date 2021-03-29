@@ -67,14 +67,14 @@ alias -s {tbz,bz2}='bzcat'
 alias -s txt='less'
 alias -s {html,pdf}='open'
 
-globalias() {
-  if [[ $LBUFFER =~ \s[A-Z0-9]+$ ]]; then
+expand-global-alias() {
+  if [[ "$LBUFFER" =~ " [A-Z0-9][^ ]+$" ]]; then
     zle _expand_alias
     # zle expand-word
   fi
   zle self-insert
 }
-zle -N globalias
-bindkey " " globalias
+zle -N expand-global-alias
+bindkey " " expand-global-alias
 
 source ${ZSHHOME}/.zaliases
