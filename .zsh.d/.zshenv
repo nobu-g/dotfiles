@@ -103,7 +103,7 @@ linux*|cygwin*)
   ZSHHOME="$BASE_DIR/.zsh.d/linux"
   ;;
 freebsd*|darwin*)
-  ZSHHOME="$BASE_DIR/.zsh.d/osx"
+  ZSHHOME="$BASE_DIR/.zsh.d/macos"
   ;;
 esac
 
