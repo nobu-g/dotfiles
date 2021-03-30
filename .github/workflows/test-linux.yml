@@ -1,0 +1,47 @@
+name: test-linux
+
+on: [push]
+
+jobs:
+  ubuntu:
+    runs-on: ubuntu-latest
+    container: ubuntu:latest
+    steps:
+      # - uses: actions/checkout@v2
+      - name: Install required packages
+        run: apt-get update && apt-get -y upgrade && apt-get install -y gcc git sudo make curl zsh
+      - name: Clone this repo
+        run: git clone --depth 1 https://github.com/nobu-g/dotfiles.git
+      - name: Install dotfiles
+        run: make install
+        working-directory: ./dotfiles
+
+  # centos:
+  #   runs-on: ubuntu-latest
+  #   container: centos:latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: Install required packages
+  #       run: yum install -y git sudo make
+  #     - name: Install dotfiles
+  #       run: make install
+
+  # fedora:
+  #   runs-on: ubuntu-latest
+  #   container: fedora:latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: Install required packages
+  #       run: dnf clean all && dnf install -y git sudo make
+  #     - name: Install dotfiles
+  #       run: make install
+
+  # alpine:
+  #   runs-on: ubuntu-latest
+  #   container: alpine:latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: Install required packages
+  #       run: apk add git sudo bash make
+  #     - name: Install dotfiles
+  #       run: make install
