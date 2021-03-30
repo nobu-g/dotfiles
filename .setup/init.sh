@@ -3,10 +3,6 @@
 set -xu
 
 here=$(dirname "${BASH_SOURCE[0]:-$0}")
-ls /usr/local/bin
-id
-cat /etc/passwd
-cat /etc/sudoers
 bash "$here"/install-basic-packages.sh
 
 mkdir -p ~/.emacs.d ~/.config ~/scripts
