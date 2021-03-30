@@ -32,7 +32,7 @@ brew install zsh
 # brew install gnupg
 
 # Install more recent versions of some macOS tools.
-brew install vim --with-override-system-vi
+brew install vim
 brew install openssh
 # brew install gmp
 brew install git
@@ -75,17 +75,17 @@ brew install ghq
 brew install shellcheck
 
 # Cask
-brew tap caskroom/cask
+brew tap homebrew/cask
 brew install --cask osxfuse
 brew install --cask google-chrome
 brew install --cask google-japanese-ime
 brew install --cask iterm2
 brew install --cask clipy
 brew install --cask docker
-brew install --cask dozer  # hide menu bar icons
+brew install --cask dozer # hide menu bar icons
 
 # AppStore系
-brew install mas # AppStore系アプリのCLI管理ツール、リストは mas list で取れる
+brew install mas      # AppStore系アプリのCLI管理ツール、リストは mas list で取れる
 mas install 497799835 # XCode
 mas install 425424353 # The Unarchiver
 mas install 803453959 # Slack
@@ -94,7 +94,6 @@ mas install 405399194 # Kindle
 mas install 409201541 # Pages
 mas install 409183694 # Keynote
 mas install 409203825 # Numbers
-
 
 # Remove outdated versions from the cellar.
 brew cleanup
