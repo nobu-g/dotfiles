@@ -18,9 +18,9 @@ freebsd* | darwin*)
   BREW_PREFIX=/usr/local
   bash "$here/setup-defaults.sh"
   # install doom-emacs
-  rm -rf ~/.emacs.d && \
-  git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d && \
-  ~/.emacs.d/bin/doom install
+  rm -rf ~/.emacs.d &&
+    git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d &&
+    ~/.emacs.d/bin/doom install
   ;;
 esac
 
@@ -35,6 +35,6 @@ if ! [[ -d ${HOME}/.zinit ]]; then
 fi
 
 # install poetry
-if ! (type poetry &> /dev/null); then
+if ! (type poetry &>/dev/null); then
   curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
 fi
