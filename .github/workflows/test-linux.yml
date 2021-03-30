@@ -21,7 +21,7 @@ jobs:
     container: centos:latest
     steps:
       - name: Install required packages
-        run: yum install -y gcc git sudo make curl zsh which
+        run: yum install -y gcc git sudo make curl zsh which perl-ExtUtils-MakeMaker
       - name: Clone this repo
         run: git clone --depth 1 https://github.com/nobu-g/dotfiles.git
       - name: Install dotfiles
