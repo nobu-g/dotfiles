@@ -341,6 +341,7 @@ man() {
   LESS_TERMCAP_so=$'\E[00;44;37m' \
   LESS_TERMCAP_ue=$'\E[0m' \
   LESS_TERMCAP_us=$'\E[01;32m' \
+  -u LD_PRELOAD \
   man "$@"
 }
 
