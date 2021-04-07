@@ -2,14 +2,17 @@
     name = nobu-g
     email = ueda-n127@hotmail.co.jp
 
+[init]
+    defaultBranch = main
+
 [alias]
     s = status
     a = add
     ps = push
     pl = pull
-    df = diff
     pus = push
     pul = pull
+    df = diff
     dfc = diff --cached
     co = checkout
     cob = checkout -b
@@ -22,8 +25,6 @@
     aliases = config --get-regexp alias
     remotes = remote -v
     tags = tag
-
-    # git l で綺麗に過去の履歴が見れる
     l = log --graph --pretty='%C(yellow)%h%Creset %C(cyan bold)%d%Creset %s %Cgreen[%cd] %C(bold blue)<%an> %Creset' --decorate --date=iso
 	tree = log --graph --all --format=format:\"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)? %an%C(reset)%C(bold yellow)%d%C(reset)\" --abbrev-commit --date=relative
 
