@@ -334,6 +334,7 @@ pss() {
 # LESS man page colors (makes Man pages more readable).
 man() {
   env \
+  -u LD_PRELOAD \
   LESS_TERMCAP_mb=$'\E[01;31m' \
   LESS_TERMCAP_md=$'\E[01;31m' \
   LESS_TERMCAP_me=$'\E[0m' \
@@ -341,7 +342,6 @@ man() {
   LESS_TERMCAP_so=$'\E[00;44;37m' \
   LESS_TERMCAP_ue=$'\E[0m' \
   LESS_TERMCAP_us=$'\E[01;32m' \
-  -u LD_PRELOAD \
   man "$@"
 }
 
