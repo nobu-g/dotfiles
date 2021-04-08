@@ -16,7 +16,7 @@ init: ## Setup environment settings
 # 	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/test/test.sh
 
 update: ## Fetch changes for this repo
-	git pull origin master
+	git pull origin main
 
 install: update init deploy ## Run make update, init, deploy
 	zsh -l -c 'exit'
