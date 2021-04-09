@@ -315,6 +315,16 @@ ZSH_HIGHLIGHT_STYLES[globbing]='none'
 ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=185'
 ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=185'
 
+# https://itchyny.hatenablog.com/entry/2017/06/12/090000
+# requires `go get github.com/itchyny/fillin`
+# usage:
+# $ fillin echo {{foo}} {{bar}}
+# foo: Hello,
+# bar: world
+# Hello, world
+zinit wait'1' lucid \
+  light-mode for @itchyny/zsh-auto-fillin
+
 ## auto ls after changing directory
 autoload -Uz _ls_abbrev
 add-zsh-hook chpwd _ls_abbrev
