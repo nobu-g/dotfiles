@@ -46,9 +46,9 @@ if [[ $(id -u) -eq 0 ]]; then  # root user
 fi
 
 # realpath or readlink -f
-if (type realpath &> /dev/null); then
+if (( $+commands[realpath] )); then
   RESOLVE="realpath"
-elif (type greadlink &> /dev/null); then
+elif (( $+commands[greadlink] )); then
   RESOLVE=("greadlink" "-f")
 else
   RESOLVE=("readlink" "-f")

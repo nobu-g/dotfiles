@@ -168,7 +168,7 @@ zicompdef ll='ls'
 zicompdef la='ls'
 zicompdef lt='ls'
 zicompdef lat='ls'
-if (type docker &> /dev/null); then
+if (( $+commands[docker] )); then
   zicompdef d='docker'
 fi
 
@@ -438,7 +438,7 @@ cd() {
 
 # jocelynmallon/zshmarks
 bm() {
-  if ! (type showmarks &> /dev/null); then
+  if ! (( $+commands[showmarks] )); then
     echo "bm: jocelynmallon/zshmarks not found" 1>&2
     return 1;
   fi
@@ -488,7 +488,7 @@ les() {
 }
 
 diff() {
-  if (type colordiff &> /dev/null); then
+  if (( $+commands[colordiff] )); then
     colordiff -us $@ | diff-highlight
   else
     command diff -u $@
@@ -512,6 +512,6 @@ fi
 # LOAD SETTING FILES
 source ${ZSHHOME}/.zshrc
 
-if (type zprof &> /dev/null) ;then
+if (( $+commands[zprof] )) ;then
   zprof
 fi
