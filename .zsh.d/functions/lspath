@@ -1,0 +1,24 @@
+# show full path to specified file or directory
+
+if [[ $# == 0 ]]; then
+  command ls -d1AH --color=tty $PWD/*
+  return 0
+fi
+
+if ! [[ -e $1 ]]; then
+  echo "lspath: cannot access '$1': Not such file or directory" 1>&2
+  return 1
+fi
+
+# convert to absolute path without resolving symlinks
+if [[ -d $1 ]]; then
+  local path_
+  path_=$(
+    cd "$1" &>/dev/null || return
+    pwd
+  )
+  command ls -d1AH --color=tty ${path_}/*
+else
+  cd "$(dirname "$1")" &>/dev/null || return
+  command ls -1AH --color=tty "$(pwd)/$(basename "$1")"
+fi

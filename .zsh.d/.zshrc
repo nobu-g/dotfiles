@@ -468,14 +468,7 @@ EOS
   done
 }
 
-lspath() {
-  if [[ $# == 0 ]]; then
-    local path_=$PWD
-  else
-    local path_=$(readlink -f $1)
-  fi
-  \ls -d1AH --color=tty ${path_}/*
-}
+autoload -Uz lspath
 
 les() {
   if [[ $# == 0 ]]; then
