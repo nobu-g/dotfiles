@@ -436,38 +436,7 @@ cd() {
   fi
 }
 
-# jocelynmallon/zshmarks
-bm() {
-  if ! (( $+commands[showmarks] )); then
-    echo "bm: jocelynmallon/zshmarks not found" 1>&2
-    return 1;
-  fi
-  if [[ $# == 0 ]]; then
-    showmarks
-    return 0
-  fi
-  local help_msg=$(cat << EOS
-Usage: bm [<option>] [<name>]
-
-  -l           list all bookmarks
-  -a <name>    add current directory to bookmark
-  -d <name>    delete <name> from bookmark
-  -h           show this help
-EOS
-)
-  local opt
-  for opt do
-    case "$opt" in
-      '-h'|'--help') echo ${help_msg}; return 0 ;;
-      '-l'|'--list') showmarks $2; return 0 ;;
-      '-a'|'--add') bookmark $2; return 0 ;;
-      '-d'|'--del'|'--delete') deletemark $2; return 0 ;;
-      -*) echo "bm: illegal option -- '$(echo $1 | sed 's/^-*//')'" 1>&2; return 1 ;;
-      *) [[ -n "$1" ]] && jump "$1"; return 0 ;;
-    esac
-  done
-}
-
+autoload -Uz bm
 autoload -Uz lspath
 
 les() {
