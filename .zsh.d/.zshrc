@@ -297,6 +297,7 @@ zinit light romkatv/powerlevel10k
 # diff-so-fancy から乗り換え
 zinit wait'1' lucid \
   from"gh-r" as"program" mv"delta* -> delta" sbin"delta/delta" \
+  atload"alias diff=delta" \
   light-mode for @dandavison/delta
 
 # fast-syntax-highlighting から乗り換え
@@ -446,14 +447,6 @@ les() {
     bat $@
   else
     ls $@
-  fi
-}
-
-diff() {
-  if (( $+commands[colordiff] )); then
-    colordiff -us $@ | diff-highlight
-  else
-    command diff -u $@
   fi
 }
 
