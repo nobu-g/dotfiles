@@ -26,7 +26,7 @@ esac
 
 eval "$("$BREW_PREFIX/bin/brew" shellenv)"
 
-bash "$here"/setup-shell.sh
+bash "$here/setup-shell.sh"
 
 # install zinit
 if ! [[ -d ${HOME}/.zinit ]]; then
@@ -37,4 +37,9 @@ fi
 # install poetry
 if ! (type poetry &>/dev/null); then
   curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
+fi
+
+# install python packages
+if ! (type pip3 &>/dev/null); then
+  bash "$here/python-packages.sh"
 fi
