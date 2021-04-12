@@ -84,6 +84,9 @@ export PAGER="less"
 export EDITOR=emacsclient
 export EMACS_SERVER_SOCKET=${TMPDIR:-/tmp}/emacs$(id -u)/server
 
+# Python
+export PYTHONUSERBASE="$HOME/.local"
+
 # PIPENV
 if [[ -d /mnt/berry_f/home ]]; then
   export WORKON_HOME=/mnt/berry_f/home/${USER}/.virtualenvs  # use cached directory for virtualenv
