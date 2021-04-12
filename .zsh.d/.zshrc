@@ -444,11 +444,11 @@ autoload -Uz lspath
 
 les() {
   if [[ $# == 0 ]]; then
-    ls
+    ls -FH --color=tty
   elif [[ -f $1 ]]; then
     bat $@
   else
-    ls $@
+    ls -FH --color=tty $@
   fi
 }
 
