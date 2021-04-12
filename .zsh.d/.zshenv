@@ -64,26 +64,6 @@ elif [[ -x /usr/local/bin/brew ]]; then
   HOMEBREW_PREFIX="/usr/local"
 fi
 
-
-## lv setting
-export LV="-c -l"
-
-## less setting (https://qiita.com/delphinus/items/b04752bb5b64e6cc4ea9)
-export LESS="-i -M -R -x4"
-# LESS="$LESS -X -F"
-export LESSCHARSET='utf-8'
-if [[ -e ${HOMEBREW_PREFIX}/bin/src-hilite-lesspipe.sh ]]; then
-  export LESSOPEN="| ${HOMEBREW_PREFIX}/bin/src-hilite-lesspipe.sh %s"
-fi
-
-# PAGER
-export PAGER="less"
-
-
-# EDITOR
-export EDITOR=emacsclient
-export EMACS_SERVER_SOCKET=${TMPDIR:-/tmp}/emacs$(id -u)/server
-
 # Python
 export PYTHONUSERBASE="$HOME/.local"
 
