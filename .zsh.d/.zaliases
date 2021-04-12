@@ -8,7 +8,6 @@ alias lat='ls -latFHh --color=tty' # or exa -laFH
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
-# alias cat='bat'  # batのロード時に設定される
 alias g='git'
 alias gti='git'
 alias grep='grep --color=auto'
@@ -77,4 +76,4 @@ expand-global-alias() {
 zle -N expand-global-alias
 bindkey " " expand-global-alias
 
-source ${ZSHHOME}/.zaliases
+source "${ZSHHOME}/.zaliases"
