@@ -41,9 +41,9 @@ path=(
 
 ## TexLive
 if [[ -e /Library/TeX ]]; then
-  export PATH=/Library/TeX/texbin:${PATH}
-  export INFOPATH=/Library/TeX/Documentation/texmf-dist-doc/info:${INFOPATH}
-  export MANPATH=/Library/TeX/Documentation/texmf-dist-doc/man:${MANPATH}
+  path=(/Library/TeX/texbin(N-/) ${path})
+  manpath=(/Library/TeX/Documentation/texmf-dist-doc/man(N-/) ${manpath})
+  infopath=(/Library/TeX/Documentation/texmf-dist-doc/info(N-/) ${infopath})
 fi
 
 ## ghq
