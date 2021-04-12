@@ -25,6 +25,33 @@ export XDG_CONFIG_DIRS=/etc/xdg
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_RUNTIME_DIR=/run/user/$(id -u)  # https://serverfault.com/a/887298
 
+if [[ -n ${HOMEBREW_PREFIX} ]]; then
+  export HOMEBREW_PREFIX
+  export HOMEBREW_CELLAR="${HOMEBREW_PREFIX}/Cellar"
+  export HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}/Homebrew"
+  path=(${HOMEBREW_PREFIX}/{bin,sbin}(N-/) ${path})
+  manpath=(${HOMEBREW_PREFIX}/share/man(N-/) ${manpath})
+  infopath=(${HOMEBREW_PREFIX}/share/info(N-/) ${infopath})
+  fpath=(${HOMEBREW_PREFIX}/share/zsh/site-functions(N-/) ${fpath})
+fi
+
+# Shared Programs
+if [[ -e /home/linuxbrew/.linuxbrew ]]; then
+  prefix="/home/linuxbrew/.linuxbrew"
+  path=(${prefix}/{bin,sbin}(N-/) ${path})
+  manpath=(${prefix}/share/man(N-/) ${manpath})
+  infopath=(${prefix}/share/info(N-/) ${infopath})
+  fpath=(${prefix}/share/zsh/site-functions(N-/) ${fpath})
+fi
+if [[ -e /home/linuxbrew/usr ]]; then
+  prefix="/home/linuxbrew/usr"
+  path=(${prefix}/{bin,sbin}(N-/) ${path})
+  manpath=(${prefix}/share/man(N-/) ${manpath})
+  infopath=(${prefix}/share/info(N-/) ${infopath})
+  fpath=(${prefix}/share/zsh/site-functions(N-/) ${fpath})
+fi
+
+
 # pyenv
 export PYENV_ROOT=$HOME/.pyenv
 
