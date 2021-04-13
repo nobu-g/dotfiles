@@ -26,9 +26,6 @@ if [[ $UID == 0 ]]; then
   export SAVEHIST=0
 fi
 
-# カレントディレクトリ中にサブディレクトリが無い場合に cd が検索するディレクトリのリスト
-cdpath=("$HOME" .. $HOME/*)
-
 # RESET KEY BINDINGS
 bindkey -d
 # KEY SETTING FOR COMMAND HISTORY
