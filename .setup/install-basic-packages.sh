@@ -18,7 +18,7 @@ if [[ $distro == "redhat" ]]; then
 elif [[ $distro == "arch" ]]; then
   sudo pacman -S --noconfirm --needed tar
 elif [[ $distro == "alpine" ]]; then
-  sudo apk add g++ procps
+  sudo apk add g++ procps coreutils
 elif [[ $distro == "debian" ]]; then
   :
 else
