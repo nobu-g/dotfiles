@@ -459,11 +459,11 @@ les() {
 # }
 
 # ALIAS
-if [[ -f $BASE_DIR/.zsh.d/.zaliases ]]; then
-  source "$BASE_DIR/.zsh.d/.zaliases"
+if [[ -f $ZBASEDIR/.zaliases ]]; then
+  source "$ZBASEDIR/.zaliases"
 fi
 
-# LOAD SETTING FILES
+# Load environment-specific settings
 source ${ZSHHOME}/.zshrc
 
 if (( $+commands[zprof] )) ;then

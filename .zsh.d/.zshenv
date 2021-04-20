@@ -84,13 +84,13 @@ export PYTEST_ADDOPTS='-v -s --ff'
 # zmv
 autoload -Uz zmv
 
-BASE_DIR="$(dirname "$(dirname "$(${RESOLVE} "${(%):-%N}")")")"
+ZBASEDIR="$(dirname "$(${RESOLVE} "${(%):-%N}")")"
 case "${OSTYPE}" in
 linux*|cygwin*)
-  ZSHHOME="$BASE_DIR/.zsh.d/linux"
+  ZSHHOME="$ZBASEDIR/linux"
   ;;
 freebsd*|darwin*)
-  ZSHHOME="$BASE_DIR/.zsh.d/macos"
+  ZSHHOME="$ZBASEDIR/macos"
   ;;
 esac
 
@@ -144,4 +144,4 @@ fpath=(
 
 # my scripts and functions
 path=(${HOME}/scripts(N-/) ${path})
-fpath=(${BASE_DIR}/.zsh.d/functions(N-/) ${fpath})
+fpath=(${ZBASEDIR}/functions(N-/) ${fpath})
