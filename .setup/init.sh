@@ -7,15 +7,33 @@ bash "$here"/install-basic-packages.sh
 
 mkdir -p ~/.emacs.d ~/.config ~/scripts
 
-# install Homebrew/Linuxbrew
 case "${OSTYPE}" in
 linux* | cygwin*)
-  bash "$here/linuxbrew.sh"
   BREW_PREFIX="$HOME/.linuxbrew"
+  BREW_SETUP_DIR="$here/linuxbrew"
   ;;
 freebsd* | darwin*)
-  bash "$here/homebrew.sh"
   BREW_PREFIX=/usr/local
+  BREW_SETUP_DIR="$here/homebrew"
+  ;;
+esac
+
+# install Homebrew/Linuxbrew
+if ! [[ -e ${BREW_PREFIX}/bin/brew ]]; then
+  bash "$BREW_SETUP_DIR/init.sh"
+fi
+eval "$("$BREW_PREFIX/bin/brew" shellenv)"
+brew bundle install --file "$BREW_SETUP_DIR/Brewfile"
+
+bash "$here/setup-shell.sh"
+
+case "${OSTYPE}" in
+linux* | cygwin*)
+  # https://qiita.com/aical/items/5b3ebee3840aae741283
+  wget http://curl.haxx.se/ca/cacert.pem -O cert.pem
+  mv cert.pem "${BREW_PREFIX}"/etc/openssl*/
+  ;;
+freebsd* | darwin*)
   bash "$here/setup-defaults.sh"
   # install doom-emacs
   rm -rf ~/.emacs.d &&
@@ -23,10 +41,6 @@ freebsd* | darwin*)
     ~/.emacs.d/bin/doom install
   ;;
 esac
-
-eval "$("$BREW_PREFIX/bin/brew" shellenv)"
-
-bash "$here/setup-shell.sh"
 
 # install zinit
 if ! [[ -d ${HOME}/.zinit ]]; then

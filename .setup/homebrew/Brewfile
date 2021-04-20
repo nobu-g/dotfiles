@@ -1,0 +1,125 @@
+brew "gcc"
+
+#
+# Shells
+#
+brew "zsh"
+
+#
+# GNU utilities
+#
+brew "binutils"   # ld, ar, ...
+brew "coreutils"  # ls, cp, rm, ...
+brew "diffutils"  # diff, cmp, ...
+brew "findutils"  # find, locate, updatedb, xargs
+brew "moreutils"
+brew "gnu-sed"
+brew "gnu-tar"
+brew "gnu-which"
+brew "gawk"
+brew "ed"
+brew "grep"
+brew "gzip"
+brew "wget"
+
+#
+# Editors
+#
+brew "emacs"
+brew "vim"
+brew "neovim"
+
+#
+# Programming languages
+#
+brew "python"
+brew "python@3.9"
+brew "python@3.8"
+brew "python@3.7"
+brew "perl"
+brew "ruby"
+brew "go"
+brew "java"
+
+#
+# Basic CLI tools
+#
+brew "curl"
+brew "cmake"
+brew "gdb"
+
+#
+# Modern alternatives to CLI tools
+#
+brew "git"        # git
+brew "ssh"        # ssh
+brew "tmux"       # tmux
+brew "htop"       # top
+brew "fd"         # find
+brew "ripgrep"    # grep
+brew "rga"        # ripgrep-all
+brew "procs"      # ps
+brew "colordiff"  # diff
+brew "sd"         # sed/awk
+
+#
+# Misc
+#
+brew "jq"      # command-line JSON processor
+brew "xsv"     # command-line CSV processor
+brew "st"      # command-line statistics calculator
+# brew "pipenv"  # package manager for python
+# brew "poetry"  # package manager for python
+brew "sshfs"  # requires osxfuse
+brew "ghq"
+brew "gh"  # GitHub CLI
+brew "source-highlight"
+brew "xclip"
+brew "shellcheck"
+brew "cling"
+brew "tokei"
+brew "tree"
+brew "rename"
+brew "nkf"
+brew "pwgen"  # password generator
+brew "imagemagick"
+brew "ffmpeg"
+brew "carthage"
+brew "latexdiff"
+
+#
+# System
+#
+brew "ansible"
+brew "vmtouch"
+brew "whois"
+brew "nmap"
+brew "fswatch"
+
+#
+# CASK
+#
+cask "osxfuse"
+cask "google-chrome"
+cask "google-japanese-ime"
+cask "docker"
+cask "visual-studio-code"
+cask "iterm2"
+cask "clipy"
+cask "dozer"  # hide menu bar icons
+cask "karabiner-elements"
+cask "blu-ray-player-pro"
+cask "gimp"
+cask "mactex-no-gui"
+
+#
+# MAS
+#
+mas "XCode", id: 497799835
+mas "Slack", id: 803453959
+mas "LINE", id: 539883307
+mas "Kindle", id: 405399194
+# mas "Pages", id: 409201541
+mas "Keynote", id: 409183694
+mas "Numbers", id: 409203825
+# mas "The Unarchiver", id: 425424353
