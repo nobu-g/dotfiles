@@ -464,7 +464,7 @@ if [[ -f $ZBASEDIR/.zaliases ]]; then
 fi
 
 # Load environment-specific settings
-source ${ZSHHOME}/.zshrc
+source "${ZENVDIR}/.zshrc"
 
 if (( $+commands[zprof] )) ;then
   zprof

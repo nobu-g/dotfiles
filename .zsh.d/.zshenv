@@ -87,15 +87,15 @@ autoload -Uz zmv
 ZBASEDIR="$(dirname "$(${RESOLVE} "${(%):-%N}")")"
 case "${OSTYPE}" in
 linux*|cygwin*)
-  ZSHHOME="$ZBASEDIR/linux"
+  ZENVDIR="${ZBASEDIR}/linux"
   ;;
 freebsd*|darwin*)
-  ZSHHOME="$ZBASEDIR/macos"
+  ZENVDIR="${ZBASEDIR}/macos"
   ;;
 esac
 
 # load environment specific configurations
-source "${ZSHHOME}/.zshenv"
+source "${ZENVDIR}/.zshenv"
 
 
 if [[ -n ${HOMEBREW_PREFIX} ]]; then

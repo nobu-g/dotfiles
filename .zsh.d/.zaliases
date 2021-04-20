@@ -76,4 +76,4 @@ expand-global-alias() {
 zle -N expand-global-alias
 bindkey " " expand-global-alias
 
-source "${ZSHHOME}/.zaliases"
+source "${ZENVDIR}/.zaliases"

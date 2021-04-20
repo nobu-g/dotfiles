@@ -1,2 +1,2 @@
-# LOAD SETTING FILES
-source ${ZSHHOME}/.zprofile
+# Load environment-specific settings
+source "${ZENVDIR}/.zprofile"
