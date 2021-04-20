@@ -27,12 +27,15 @@ brew "wget"
 #
 brew "emacs"
 brew "vim"
+brew "neovim"
 
 #
 # Programming languages
 #
 brew "python"
 brew "python@3.9"
+brew "python@3.8"
+brew "python@3.7"
 brew "perl"
 brew "ruby"
 brew "go"
@@ -43,6 +46,7 @@ brew "java"
 #
 brew "curl"
 brew "cmake"
+brew "gdb"
 
 #
 # Modern alternatives to CLI tools
@@ -53,6 +57,7 @@ brew "tmux"       # tmux
 brew "htop"       # top
 brew "fd"         # find
 brew "ripgrep"    # grep
+brew "rga"        # ripgrep-all
 brew "procs"      # ps
 brew "colordiff"  # diff
 brew "sd"         # sed/awk
@@ -71,9 +76,16 @@ brew "gh"  # GitHub CLI
 brew "source-highlight"
 brew "xclip"
 brew "shellcheck"
+brew "cling"
+brew "tokei"
 brew "tree"
 brew "rename"
 brew "nkf"
+brew "pwgen"  # password generator
+brew "imagemagick"
+brew "ffmpeg"
+brew "carthage"
+brew "latexdiff"
 
 #
 # System
@@ -96,6 +108,8 @@ cask "iterm2"
 cask "clipy"
 cask "dozer"  # hide menu bar icons
 cask "karabiner-elements"
+cask "blu-ray-player-pro"
+cask "gimp"
 cask "mactex-no-gui"
 
 #
