@@ -430,9 +430,9 @@ autoload -Uz difference
 
 cd() {
   if [[ $# -eq 1 && $1 = "--" ]]; then
-    pushd +2 || exit
+    pushd +2 || return 1
   else
-    builtin cd $@ || exit
+    builtin cd $@ || return 1
   fi
 }
 

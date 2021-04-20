@@ -17,7 +17,7 @@ google() {
 }
 
 dotedit() {
-  cd "$(dirname "$(dirname "$(readlink -f "${ZDOTDIR:-$HOME}/.zshrc")")")" || exit
+  cd "$(dirname "$(dirname "$(readlink -f "${ZDOTDIR:-$HOME}/.zshrc")")")" || return 1
   code .
 }
 

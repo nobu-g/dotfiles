@@ -2,7 +2,7 @@
 
 if [[ -d $1 ]]; then
   echo "$1 already exists!"
-  cd $1 || exit
+  cd $1 || return 1
 else
-  mkdir $1 && cd $1 || exit
+  mkdir $1 && cd $1 || return 1
 fi
