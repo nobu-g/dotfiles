@@ -1,0 +1,6 @@
+# search process by command name
+
+ps -o pid,tty,time,command | head -1
+for pid in $(pgrep $1); do
+  ps -p "$pid" -o pid=,tty=,time=,command=
+done

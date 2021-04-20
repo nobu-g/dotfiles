@@ -340,22 +340,6 @@ export EDITOR='emacsclient -s ${EMACS_SERVER_SOCKET}'
 export EMACS_SERVER_SOCKET=${TMPDIR:-/tmp}/emacs$(id -u)/server
 
 
-## auto ls after changing directory
-autoload -Uz _ls_abbrev
-add-zsh-hook chpwd _ls_abbrev
-
-# mkdir and cd
-autoload -Uz mkcd
-
-# search process by command name
-pss() {
-  ps -o pid,tty,time,command | head -1
-  for pid in $(pgrep $1); do
-    ps -p "$pid" -o pid=,tty=,time=,command=
-  done
-}
-
-
 ## peco
 peco-select-history() {
   BUFFER=$(\history -n -r 1 | peco --query "$BUFFER" --prompt "[hist]" --print-query | tail -1)
@@ -410,9 +394,15 @@ peco-find-file() {
 zle -N peco-find-file
 bindkey '^_' peco-find-file  # works by ^/
 
-# shell integration 設定
-export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+## auto ls after changing directory
+autoload -Uz _ls_abbrev
+add-zsh-hook chpwd _ls_abbrev
+
+# mkdir and cd
+autoload -Uz mkcd
+
+# search process by command name
+autoload -Uz pss
 
 # unset all environment variables and restart shell
 autoload -Uz resetenv
@@ -457,6 +447,12 @@ les() {
 #     command git status
 #   fi
 # }
+
+
+# shell integration 設定
+export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
 
 # ALIAS
 if [[ -f $ZBASEDIR/.zaliases ]]; then
