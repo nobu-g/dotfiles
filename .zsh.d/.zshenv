@@ -61,9 +61,9 @@ fi
 # Homebrew/Linuxbrew で prefix のパスが違う
 # $(brew --prefix) は時間がかかる処理のため、ここで判定して HOMEBREW_PREFIX に格納する
 if [[ -d ${HOME}/.linuxbrew ]]; then
-  HOMEBREW_PREFIX=$(${RESOLVE} ${HOME}/.linuxbrew)
+  HOMEBREW_PREFIX="$(${RESOLVE} ${HOME}/.linuxbrew)"
 elif [[ -d /home/.linuxbrew ]]; then
-  HOMEBREW_PREFIX=$(${RESOLVE} /home/.linuxbrew)
+  HOMEBREW_PREFIX="$(${RESOLVE} /home/.linuxbrew)"
 elif [[ -x /usr/local/bin/brew ]]; then
   HOMEBREW_PREFIX="/usr/local"
 fi
@@ -73,13 +73,13 @@ export PYTHONUSERBASE="$HOME/.local"
 
 # PIPENV
 if [[ -d /mnt/berry_f/home ]]; then
-  export WORKON_HOME=/mnt/berry_f/home/${USER}/.virtualenvs  # use cached directory for virtualenv
+  export WORKON_HOME="/mnt/berry_f/home/${USER}/.virtualenvs"  # use cached directory for virtualenv
 else
   export PIPENV_VENV_IN_PROJECT=true  # pipenv で仮想環境をプロジェクト直下に作るように
 fi
 
 # PYTEST
-export PYTEST_ADDOPTS='-v -s --ff'
+export PYTEST_ADDOPTS="-v -s --ff"
 
 # zmv
 autoload -Uz zmv
@@ -95,7 +95,7 @@ freebsd*|darwin*)
 esac
 
 # load environment specific configurations
-source ${ZSHHOME}/.zshenv
+source "${ZSHHOME}/.zshenv"
 
 
 if [[ -n ${HOMEBREW_PREFIX} ]]; then
@@ -111,7 +111,7 @@ fi
 
 # Golang
 if [[ -d ${HOME}/.go ]]; then
-  export GOPATH=${HOME}/.go
+  export GOPATH="${HOME}/.go"
   path=(${GOPATH}/bin(N-/) ${path})
 fi
 
