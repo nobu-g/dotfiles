@@ -426,18 +426,9 @@ cd() {
   fi
 }
 
-autoload -Uz bm
-autoload -Uz lspath
-
-les() {
-  if [[ $# == 0 ]]; then
-    ls -FH --color=tty
-  elif [[ -f $1 ]]; then
-    bat $@
-  else
-    ls -FH --color=tty $@
-  fi
-}
+autoload -Uz bm  # bookmark directories
+autoload -Uz lspath  # list paths
+autoload -Uz les  # less or ls
 
 # git add などの補完が効かなくなるのでコメントアウト
 # git() {
