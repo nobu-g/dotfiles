@@ -323,6 +323,9 @@ ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=185'
 zinit wait'1' lucid \
   light-mode for @itchyny/zsh-auto-fillin
 
+zinit wait'1' lucid \
+  light-mode for @paulirish/git-open
+
 
 ## less setting (https://qiita.com/delphinus/items/b04752bb5b64e6cc4ea9)
 export LESS="-i -M -R -x4"
