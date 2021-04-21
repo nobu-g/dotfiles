@@ -22,7 +22,7 @@ brew "python@3.7"
 brew "perl"
 brew "ruby"
 brew "go"
-brew "java"
+brew "openjdk"
 
 #
 # Basic CLI tools

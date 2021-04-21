@@ -39,7 +39,7 @@ brew "python@3.7"
 brew "perl"
 brew "ruby"
 brew "go"
-brew "java"
+brew "openjdk"
 
 #
 # Basic CLI tools
@@ -101,15 +101,17 @@ brew "fswatch"
 cask "osxfuse"
 cask "google-chrome"
 cask "google-japanese-ime"
+cask "google-cloud-sdk"
 cask "docker"
 cask "visual-studio-code"
 cask "iterm2"
 cask "clipy"
-cask "dozer"  # hide menu bar icons
 cask "karabiner-elements"
 cask "blu-ray-player-pro"
 cask "gimp"
 cask "mactex-no-gui"
+cask "latexit"
+cask "xquartz"
 
 #
 # MAS
@@ -122,3 +124,11 @@ mas "Kindle", id: 405399194
 mas "Keynote", id: 409183694
 mas "Numbers", id: 409203825
 # mas "The Unarchiver", id: 425424353
+mas "Trello", id: 1278508951
+mas "Effortless", id: 1368722917
+mas "Evernote", id: 406056744
+mas "Hidden Bar", id: 1452453066
+mas "Apple Configurator 2", id: 1037126344
+mas "BetterSnapTool", id: 417375580
+mas "DaisyDisk", id: 411643860
+mas "Key Codes", id: 414568915

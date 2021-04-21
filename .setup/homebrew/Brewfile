@@ -36,7 +36,7 @@ brew "python@3.9"
 brew "perl"
 brew "ruby"
 brew "go"
-brew "java"
+brew "openjdk"
 
 #
 # Basic CLI tools
@@ -96,6 +96,7 @@ cask "clipy"
 cask "dozer"  # hide menu bar icons
 cask "karabiner-elements"
 cask "mactex-no-gui"
+cask "xquartz"
 
 #
 # MAS
