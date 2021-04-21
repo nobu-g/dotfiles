@@ -52,7 +52,7 @@ brew "gdb"
 # Modern alternatives to CLI tools
 #
 brew "git"        # git
-brew "ssh"        # ssh
+brew "openssh"    # ssh
 brew "tmux"       # tmux
 brew "htop"       # top
 brew "fd"         # find
@@ -70,7 +70,6 @@ brew "xsv"     # command-line CSV processor
 brew "st"      # command-line statistics calculator
 # brew "pipenv"  # package manager for python
 # brew "poetry"  # package manager for python
-brew "sshfs"  # requires osxfuse
 brew "ghq"
 brew "gh"  # GitHub CLI
 brew "source-highlight"
