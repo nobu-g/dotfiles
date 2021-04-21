@@ -8,7 +8,7 @@ brew "zsh"
 #
 # Editors
 #
-brew "emacs"
+# brew "emacs"
 brew "vim"
 
 #
