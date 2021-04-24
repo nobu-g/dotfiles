@@ -94,6 +94,7 @@ brew "vmtouch"
 brew "whois"
 brew "nmap"
 brew "fswatch"
+brew "pstree"
 
 #
 # CASK
