@@ -37,8 +37,14 @@ bindkey "^n" history-beginning-search-forward-end
 
 # EMACS-LIKE KEYBINDINGS
 bindkey -e
-# bindkey "^[[1;5D" backward-word
-# bindkey "^[[1;5C" forward-word
+bindkey '^h' backward-delete-char
+bindkey '^w' backward-kill-word
+# allow ctrl-a and ctrl-e to move to beginning/end of line
+bindkey '^a' beginning-of-line
+bindkey '^e' end-of-line
+# allow ctrl-z, ctrl-y for undo redo
+bindkey '^z' undo
+# bindkey '^y' redo
 
 # COMPLETION
 ## initialize
