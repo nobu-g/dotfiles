@@ -292,6 +292,7 @@ zinit wait'1' lucid \
 # romkatv/powerlevel10k
 zinit ice depth=1 atload'source ~/.p10k.zsh' nocd
 zinit light romkatv/powerlevel10k
+ZLE_RPROMPT_INDENT=0
 
 # # zdharma/zsh-diff-so-fancy
 # zinit wait"2" lucid as"program" sbin"bin/git-dsf" \
