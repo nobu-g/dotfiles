@@ -32,7 +32,7 @@ if [[ -n ${HOMEBREW_PREFIX} ]]; then
   path=(${HOMEBREW_PREFIX}/{bin,sbin}(N-/) ${path})
   manpath=(${HOMEBREW_PREFIX}/share/man(N-/) ${manpath})
   infopath=(${HOMEBREW_PREFIX}/share/info(N-/) ${infopath})
-  fpath=(${HOMEBREW_PREFIX}/share/zsh/site-functions(N-/) ${fpath})
+  fpath=(${HOMEBREW_PREFIX}/share/zsh/{functions,site-functions}(N-/) ${fpath})
 fi
 
 # Shared Programs
@@ -48,7 +48,7 @@ if [[ -e /home/linuxbrew/usr ]]; then
   path=(${prefix}/{bin,sbin}(N-/) ${path})
   manpath=(${prefix}/share/man(N-/) ${manpath})
   infopath=(${prefix}/share/info(N-/) ${infopath})
-  fpath=(${prefix}/share/zsh/site-functions(N-/) ${fpath})
+  fpath=(${prefix}/share/zsh/{functions,site-functions}(N-/) ${fpath})
 fi
 
 
