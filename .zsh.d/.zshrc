@@ -463,6 +463,6 @@ fi
 # Load environment-specific settings
 source "${ZENVDIR}/.zshrc"
 
-if (( $+commands[zprof] )) ;then
+if (type zprof &> /dev/null) ;then
   zprof
 fi
