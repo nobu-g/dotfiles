@@ -455,14 +455,12 @@ export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 
-# ALIAS
-if [[ -f $ZBASEDIR/.zaliases ]]; then
-  source "$ZBASEDIR/.zaliases"
-fi
+# Alias
+[[ -f ${ZBASEDIR}/.zaliases ]] && source "${ZBASEDIR}/.zaliases"
 
 # Load environment-specific settings
-source "${ZENVDIR}/.zshrc"
+[[ -f ${ZENVDIR}/.zshrc ]] && source "${ZENVDIR}/.zshrc"
 
-if (type zprof &> /dev/null) ;then
+if (type zprof &> /dev/null); then
   zprof
 fi
