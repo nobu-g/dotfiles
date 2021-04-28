@@ -113,6 +113,8 @@ cask "gimp"
 cask "mactex-no-gui"
 cask "latexit"
 cask "xquartz"
+cask "font-hack-nerd-font"
+cask "audacity"
 
 #
 # MAS
