@@ -1,16 +1,23 @@
 {
-    "Keymap": {
-        "M-v": "peco.ScrollPageUp",
-        "C-v": "peco.ScrollPageDown",
-        "C-g": "peco.Cancel",
-        "C-f": "peco.ForwardChar",
-        "C-b": "peco.BackwardChar",
-        "ArrowRight": "peco.ForwardChar",
-        "ArrowLeft": "peco.BackwardChar",
-        "C-a": "peco.BeginningOfLine",
-        "C-e": "peco.EndOfLine",
-        "C-u": "peco.DeleteAll",
-        "C-d": "peco.DeleteForwardChar"
-    },
-    "Use256Color": true
+  "Keymap": {
+    "M-v": "peco.ScrollPageUp",
+    "C-v": "peco.ScrollPageDown",
+    "C-g": "peco.Cancel",
+    "C-f": "peco.ForwardChar",
+    "C-b": "peco.BackwardChar",
+    "ArrowRight": "peco.ForwardChar",
+    "ArrowLeft": "peco.BackwardChar",
+    "C-a": "peco.BeginningOfLine",
+    "C-e": "peco.EndOfLine",
+    "C-u": "peco.DeleteAll",
+    "C-d": "peco.DeleteForwardChar"
+  },
+  "Style": {
+    "Basic": ["on_default", "default"],
+    "SavedSelection": ["bold", "on_83", "white"],
+    "Selected": ["on_204", "white"],
+    "Query": ["37", "bold"],
+    "Matched": ["37"]
+  },
+  "Use256Color": true
 }
