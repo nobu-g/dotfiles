@@ -54,11 +54,11 @@ if ! (type poetry &>/dev/null); then
 fi
 
 # install python packages
-if ! (type pip3 &>/dev/null); then
+if (type pip3 &>/dev/null); then
   bash "$here/python-packages.sh"
 fi
 
 # install golang packages
-if ! (type go &>/dev/null); then
+if (type go &>/dev/null); then
   bash "$here/go-packages.sh"
 fi

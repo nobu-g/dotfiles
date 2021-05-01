@@ -21,7 +21,7 @@ jobs:
     container: centos:latest
     steps:
       - name: Install required packages
-        run: yum install -y sudo make zsh git bc curl wget gawk python-pip unzip sqlite gettext jq
+        run: yum install -y sudo make zsh git bc curl wget gawk unzip sqlite gettext jq
       - name: Clone this repo
         run: git clone --depth 1 https://github.com/nobu-g/dotfiles.git
       - name: Install dotfiles
@@ -45,7 +45,7 @@ jobs:
     container: alpine:latest
     steps:
       - name: Install required packages
-        run: apk add --no-cache 'bash bc coreutils curl file g++ gawk gcc gettext git grep libc-dev make procps python-pip ruby ruby-bigdecimal ruby-etc ruby-fiddle ruby-irb ruby-json ruby-test-unit sqlite sudo unzip wget zsh'
+        run: apk add --no-cache bash bc coreutils curl file g++ gawk gcc gettext git grep libc-dev make procps python-pip ruby ruby-bigdecimal ruby-etc ruby-fiddle ruby-irb ruby-json ruby-test-unit sqlite sudo unzip wget zsh
       - name: Clone this repo
         run: git clone --depth 1 https://github.com/nobu-g/dotfiles.git
       - name: Install dotfiles
