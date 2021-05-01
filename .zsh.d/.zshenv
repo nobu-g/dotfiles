@@ -96,6 +96,7 @@ esac
 
 # load environment specific configurations
 source "${ZENVDIR}/.zshenv"
+fpath=(${ZENVDIR}/functions(N-/) ${fpath})
 
 
 if [[ -n ${HOMEBREW_PREFIX} ]]; then

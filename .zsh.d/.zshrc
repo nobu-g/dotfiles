@@ -439,6 +439,7 @@ cd() {
 autoload -Uz bm  # bookmark directories
 autoload -Uz lspath  # list paths
 autoload -Uz les  # less or ls
+autoload -Uz fs  # determine size of a file or total size of a directory
 
 # git add などの補完が効かなくなるのでコメントアウト
 # git() {

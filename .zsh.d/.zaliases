@@ -11,6 +11,8 @@ alias rm='rm -i'
 alias g='git'
 alias gti='git'
 alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 alias wl='wc -l'
 alias gomi='rm -f *~'
 alias jk='jumanpp | knp'
@@ -33,8 +35,13 @@ alias brew='env -u LD_LIBRARY_PATH PATH=${HOMEBREW_PREFIX}/bin:${HOMEBREW_PREFIX
 alias d='docker'
 alias l='les'
 alias b='bat'
-# alias du="du -h"
-# alias df="df -h"
+alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
+# Show active network interfaces
+alias ifactive="ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active'"
+# Print each PATH entry on a separate line
+alias path='echo -e ${PATH//:/\\n}'
+# Enable aliases to be sudo’ed
+alias sudo='sudo '
 
 # global alias
 alias -g A='| awk'

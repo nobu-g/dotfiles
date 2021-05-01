@@ -12,7 +12,9 @@
     pl = pull
     pus = push
     pul = pull
+    d = diff
     df = diff
+    dc = diff --cached
     dfc = diff --cached
     co = checkout
     cob = checkout -b
@@ -71,6 +73,10 @@
 
 [diff]
     colorMoved = default
+
+[diff "bin"]
+	# Use `hexdump` to diff binary files.
+	textconv = hexdump -v -C
 
 [interactive]
     diffFilter = delta --color-only
