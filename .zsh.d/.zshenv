@@ -96,8 +96,6 @@ esac
 
 # load environment specific configurations
 source "${ZENVDIR}/.zshenv"
-fpath=(${ZENVDIR}/functions(N-/) ${fpath})
-
 
 if [[ -n ${HOMEBREW_PREFIX} ]]; then
   export HOMEBREW_PREFIX
@@ -108,7 +106,6 @@ if [[ -n ${HOMEBREW_PREFIX} ]]; then
   infopath=(${HOMEBREW_PREFIX}/share/info(N-/) ${infopath})
   fpath=(${HOMEBREW_PREFIX}/share/zsh/{functions,site-functions}(N-/) ${fpath})
 fi
-
 
 # Golang
 if [[ -d ${HOME}/.go ]]; then
@@ -142,7 +139,10 @@ fpath=(
   ${fpath}
 )
 
-
 # my scripts and functions
 path=(${HOME}/scripts(N-/) ${path})
-fpath=(${ZBASEDIR}/functions(N-/) ${fpath})
+fpath=(
+  ${ZENVDIR}/functions(N-/)
+  ${ZBASEDIR}/functions(N-/)
+  ${fpath}
+)
