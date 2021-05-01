@@ -1,13 +1,20 @@
 # Git
 
-Git関係の設定ファイル
+Git settings
 
-## 初期設定
+## Init
 
-以下を実行する:
+Run following commands:
 
 ```
 git config --global user.name "First-name Family-name"
 git config --global user.email "username@example.com"
+```
 
+If you edit `~/.gitconfig` and add `# gitignore` to the end of user.name or user.email field, git ignores these lines.
+
+```
+[user]
+	name = First-name Family-name  # gitignore
+	email = username@example.com  # gitignore
 ```
