@@ -408,25 +408,11 @@ bindkey '^_' peco-find-file  # works by ^/
 autoload -Uz _ls_abbrev
 add-zsh-hook chpwd _ls_abbrev
 
-# mkdir and cd
-autoload -Uz mkcd
-
-# search process by command name
-autoload -Uz pss
-
-# unset all environment variables and restart shell
-autoload -Uz resetenv
-
 # ssh and tmux -CC
 # https://gitlab.com/gnachman/iterm2/-/wikis/tmux-Integration-Best-Practices
 tssh() {
   ssh -t $@ 'tmux -CC new -A -s main'
 }
-
-# set operations
-autoload -Uz union
-autoload -Uz isect
-autoload -Uz difference
 
 cd() {
   if [[ $# -eq 1 && $1 = "--" ]]; then
@@ -436,6 +422,14 @@ cd() {
   fi
 }
 
+# set operations
+autoload -Uz union
+autoload -Uz isect
+autoload -Uz difference
+
+autoload -Uz mkcd  # mkdir and cd
+autoload -Uz pss  # search process by command name
+autoload -Uz resetenv  # unset all environment variables and restart shell
 autoload -Uz bm  # bookmark directories
 autoload -Uz lspath  # list paths
 autoload -Uz les  # less or ls
