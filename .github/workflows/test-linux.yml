@@ -9,7 +9,7 @@ jobs:
     steps:
       # - uses: actions/checkout@v2
       - name: Install required packages
-        run: apt-get update && apt-get -y upgrade && apt-get install -y gcc git sudo make curl zsh
+        run: apt-get update && apt-get -y upgrade && apt-get install -y sudo make zsh git bc curl wget gawk python3-pip unzip sqlite gettext
       - name: Clone this repo
         run: git clone --depth 1 https://github.com/nobu-g/dotfiles.git
       - name: Install dotfiles
@@ -21,7 +21,7 @@ jobs:
     container: centos:latest
     steps:
       - name: Install required packages
-        run: yum install -y gcc git sudo make curl zsh which perl-ExtUtils-MakeMaker
+        run: yum install -y sudo make zsh git bc curl wget gawk python-pip unzip sqlite gettext jq
       - name: Clone this repo
         run: git clone --depth 1 https://github.com/nobu-g/dotfiles.git
       - name: Install dotfiles
@@ -33,7 +33,7 @@ jobs:
     container: fedora:latest
     steps:
       - name: Install required packages
-        run: dnf clean all && dnf install -y gcc git sudo make curl zsh which
+        run: dnf clean all && dnf install -y sudo make zsh git bc curl wget gawk python3-pip unzip sqlite sqlite-devel gettext
       - name: Clone this repo
         run: git clone --depth 1 https://github.com/nobu-g/dotfiles.git
       - name: Install dotfiles
@@ -45,7 +45,7 @@ jobs:
     container: alpine:latest
     steps:
       - name: Install required packages
-        run: apk add gcc git sudo make curl zsh bash
+        run: apk add --no-cache 'bash bc coreutils curl file g++ gawk gcc gettext git grep libc-dev make procps python-pip ruby ruby-bigdecimal ruby-etc ruby-fiddle ruby-irb ruby-json ruby-test-unit sqlite sudo unzip wget zsh'
       - name: Clone this repo
         run: git clone --depth 1 https://github.com/nobu-g/dotfiles.git
       - name: Install dotfiles
