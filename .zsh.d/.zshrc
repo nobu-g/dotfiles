@@ -275,7 +275,7 @@ zinit wait"1" lucid blockf nocompletions \
 
 zinit wait"1" lucid \
   from"gh-r" as"program" mv"bat* -> bat" sbin"bat/bat" \
-  atload"alias cat=bat" \
+  atload"alias cat='bat -p'" \
   light-mode for @sharkdp/bat
 
 zinit wait"1" lucid \
