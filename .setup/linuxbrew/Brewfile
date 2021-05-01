@@ -30,7 +30,6 @@ brew "curl"
 # Modern alternatives to Liunx CLI tools
 #
 brew "git"        # git
-brew "openssh"    # ssh
 brew "tmux"       # tmux
 brew "htop"       # top
 # brew "bat"        # cat
