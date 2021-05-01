@@ -73,8 +73,8 @@
     colorMoved = default
 
 [diff "bin"]
-	# Use `hexdump` to diff binary files.
-	textconv = hexdump -v -C
+    # Use `hexdump` to diff binary files.
+    textconv = hexdump -v -C
 
 [interactive]
     diffFilter = delta --color-only
@@ -98,4 +98,4 @@
 #     root = ~/Projects
 
 [url "git@github.com:"]
-	insteadOf = https://github.com/
+    insteadOf = https://github.com/
