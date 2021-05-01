@@ -42,6 +42,7 @@ alias ifactive="ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active'
 alias path='echo -e ${PATH//:/\\n}'
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
+alias sum='paste -sd+ | bc'
 
 # global alias
 alias -g A='| awk'
