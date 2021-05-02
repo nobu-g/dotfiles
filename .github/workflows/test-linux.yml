@@ -38,7 +38,7 @@ jobs:
     steps:
       - name: Install required packages
         run: |
-          yum groupinstall 'Development Tools'
+          dnf group install 'Development Tools'
           dnf clean all && dnf install -y procps-ng curl file git gcc sudo make zsh wget python3-pip unzip gettext libxcrypt-compat
       - name: Clone this repo
         run: git clone --depth 1 https://github.com/nobu-g/dotfiles.git
