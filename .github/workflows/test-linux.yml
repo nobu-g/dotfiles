@@ -45,7 +45,7 @@ jobs:
       - name: Install required packages
         run: |
           dnf group install -y 'Development Tools'
-          dnf clean all && dnf install -y procps-ng curl file git gcc sudo make zsh wget python3-pip unzip gettext libxcrypt-compat perl-ExtUtils-MakeMaker perl-FindBin
+          dnf clean all && dnf install -y procps-ng curl file git gcc g++  sudo make zsh wget python3-pip unzip gettext libxcrypt-compat perl-ExtUtils-MakeMaker perl-FindBin
       - name: Clone this repo
         run: git clone --depth 1 https://github.com/nobu-g/dotfiles.git
       - name: Install dotfiles
