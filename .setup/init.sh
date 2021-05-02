@@ -66,4 +66,6 @@ fi
 # install libstderred (https://github.com/sickill/stderred)
 git clone git://github.com/sickill/stderred.git && cd stderred || exit
 make
-ln -s "$(pwd)/build/libstderred.so" ~/usr/lib/
+mkdir -p "$HOME/usr"
+mkdir -p "$HOME/usr/lib"
+ln -s "$(pwd)/build/libstderred.so" "$HOME/usr/lib/"

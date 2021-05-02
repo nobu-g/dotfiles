@@ -11,7 +11,7 @@ jobs:
       - name: Install required packages
         run: apt-get update && apt-get -y upgrade && apt-get install -y build-essential procps curl file git gcc sudo make zsh wget python3-pip unzip gettext
       - name: Install packages for libstderred
-        run: dnf install -y cmake
+        run: apt-get install -y cmake
       - name: Clone this repo
         run: git clone --depth 1 https://github.com/nobu-g/dotfiles.git
       - name: Install dotfiles
