@@ -21,7 +21,7 @@ jobs:
     container: centos:latest
     steps:
       - name: Install required packages
-        run: yum install -y gcc sudo make zsh git bc curl wget gawk unzip sqlite gettext jq
+        run: yum install -y gcc sudo make zsh git bc curl wget gawk unzip sqlite gettext
       - name: Clone this repo
         run: git clone --depth 1 https://github.com/nobu-g/dotfiles.git
       - name: Install dotfiles
