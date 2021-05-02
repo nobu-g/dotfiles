@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-set -ue
-
-source "$(dirname "${BASH_SOURCE[0]:-$0}")/utils.sh"
+set -ux
 
 pip3 install --user autopep8
 pip3 install --user trash-cli
