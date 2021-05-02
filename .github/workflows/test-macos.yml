@@ -14,3 +14,6 @@ jobs:
     - name: Install dotfiles
       run: make install
       working-directory: ./dotfiles
+    - name: Test commands
+      run: make test
+      working-directory: ./dotfiles
