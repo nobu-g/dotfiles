@@ -55,17 +55,17 @@ jobs:
         run: make test
         working-directory: ./dotfiles
 
-  alpine:
-    runs-on: ubuntu-latest
-    container: alpine:latest
-    steps:
-      - name: Install required packages
-        run: apk add --no-cache bash bc coreutils curl file g++ gawk gcc gettext git grep libc-dev make procps ruby ruby-bigdecimal ruby-etc ruby-fiddle ruby-irb ruby-json ruby-test-unit sqlite sudo unzip wget zsh
-      - name: Clone this repo
-        run: git clone --depth 1 https://github.com/nobu-g/dotfiles.git
-      - name: Install dotfiles
-        run: make install
-        working-directory: ./dotfiles
-      - name: Test commands
-        run: make test
-        working-directory: ./dotfiles
+  # alpine:
+  #   runs-on: ubuntu-latest
+  #   container: alpine:latest
+  #   steps:
+  #     - name: Install required packages
+  #       run: apk add --no-cache bash bc coreutils curl file g++ gawk gcc gettext git grep libc-dev make procps ruby ruby-bigdecimal ruby-etc ruby-fiddle ruby-irb ruby-json ruby-test-unit sqlite sudo unzip wget zsh
+  #     - name: Clone this repo
+  #       run: git clone --depth 1 https://github.com/nobu-g/dotfiles.git
+  #     - name: Install dotfiles
+  #       run: make install
+  #       working-directory: ./dotfiles
+  #     - name: Test commands
+  #       run: make test
+  #       working-directory: ./dotfiles
