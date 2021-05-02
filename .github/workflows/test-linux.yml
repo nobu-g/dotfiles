@@ -23,7 +23,7 @@ jobs:
     container: centos:latest
     steps:
       - name: Install required packages
-        run: yum install -y build-essential procps-ng curl file git gcc sudo make zsh wget unzip gettext perl-ExtUtils-MakeMaker
+        run: yum install -y procps-ng curl file git gcc sudo make zsh wget unzip gettext perl-ExtUtils-MakeMaker
       - name: Clone this repo
         run: git clone --depth 1 https://github.com/nobu-g/dotfiles.git
       - name: Install dotfiles
@@ -35,7 +35,7 @@ jobs:
     container: fedora:latest
     steps:
       - name: Install required packages
-        run: dnf clean all && dnf install -y build-essential procps-ng curl file git gcc sudo make zsh wget python3-pip unzip gettext libxcrypt-compat
+        run: dnf clean all && dnf install -y procps-ng curl file git gcc sudo make zsh wget python3-pip unzip gettext libxcrypt-compat
       - name: Clone this repo
         run: git clone --depth 1 https://github.com/nobu-g/dotfiles.git
       - name: Install dotfiles
