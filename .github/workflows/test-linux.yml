@@ -9,7 +9,7 @@ jobs:
     steps:
       # - uses: actions/checkout@v2
       - name: Install required packages
-        run: apt-get update && apt-get -y upgrade && apt-get install -y gcc sudo make zsh git bc curl wget gawk python3-pip unzip sqlite gettext
+        run: apt-get update && apt-get -y upgrade && apt-get install -y build-essential procps curl file git gcc sudo make zsh wget python3-pip unzip gettext
       - name: Clone this repo
         run: git clone --depth 1 https://github.com/nobu-g/dotfiles.git
       - name: Install dotfiles
@@ -23,7 +23,7 @@ jobs:
     container: centos:latest
     steps:
       - name: Install required packages
-        run: yum install -y gcc sudo make zsh git bc curl wget gawk unzip sqlite gettext
+        run: yum install -y build-essential procps-ng curl file git gcc sudo make zsh wget unzip gettext perl-ExtUtils-MakeMaker
       - name: Clone this repo
         run: git clone --depth 1 https://github.com/nobu-g/dotfiles.git
       - name: Install dotfiles
@@ -35,7 +35,7 @@ jobs:
     container: fedora:latest
     steps:
       - name: Install required packages
-        run: dnf clean all && dnf install -y gcc sudo make zsh git bc curl wget gawk python3-pip unzip sqlite sqlite-devel gettext
+        run: dnf clean all && dnf install -y build-essential procps-ng curl file git gcc sudo make zsh wget python3-pip unzip gettext libxcrypt-compat
       - name: Clone this repo
         run: git clone --depth 1 https://github.com/nobu-g/dotfiles.git
       - name: Install dotfiles
