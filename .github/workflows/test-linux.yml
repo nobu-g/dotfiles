@@ -15,6 +15,8 @@ jobs:
       - name: Install dotfiles
         run: make install
         working-directory: ./dotfiles
+    env:
+      DEBIAN_FRONTEND: noninteractive
 
   centos:
     runs-on: ubuntu-latest
