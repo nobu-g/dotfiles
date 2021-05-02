@@ -62,3 +62,8 @@ fi
 if (type go &>/dev/null); then
   bash "$here/go-packages.sh"
 fi
+
+# install libstderred (https://github.com/sickill/stderred)
+git clone git://github.com/sickill/stderred.git && cd stderred || exit
+make
+ln -s "$(pwd)/build/libstderred.so" ~/usr/lib/
