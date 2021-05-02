@@ -9,11 +9,11 @@ mkdir -p ~/.emacs.d ~/.config ~/scripts
 
 case "${OSTYPE}" in
 linux* | cygwin*)
-  BREW_PREFIX="$HOME/.linuxbrew"
+  export BREW_PREFIX="$HOME/.linuxbrew"
   BREW_SETUP_DIR="$here/linuxbrew"
   ;;
 freebsd* | darwin*)
-  BREW_PREFIX=/usr/local
+  export BREW_PREFIX="/usr/local"
   BREW_SETUP_DIR="$here/homebrew"
   ;;
 esac
@@ -24,6 +24,9 @@ if ! [[ -e ${BREW_PREFIX}/bin/brew ]]; then
 fi
 eval "$("$BREW_PREFIX/bin/brew" shellenv)"
 brew bundle install --file "$BREW_SETUP_DIR/Brewfile"
+# https://github.com/googlefonts/pyfontaine/issues/109#issuecomment-604872347
+export PATH="$BREW_PREFIX/opt/icu4c/{bin,sbin}:$PATH"
+export PKG_CONFIG_PATH="$BREW_PREFIX/opt/icu4c/lib/pkgconfig"
 
 bash "$here/setup-shell.sh"
 
