@@ -24,9 +24,6 @@ if ! [[ -e ${BREW_PREFIX}/bin/brew ]]; then
 fi
 eval "$("$BREW_PREFIX/bin/brew" shellenv)"
 brew bundle install --file "$BREW_SETUP_DIR/Brewfile"
-# https://github.com/googlefonts/pyfontaine/issues/109#issuecomment-604872347
-export PATH="$BREW_PREFIX/opt/icu4c/{bin,sbin}:$PATH"
-export PKG_CONFIG_PATH="$BREW_PREFIX/opt/icu4c/lib/pkgconfig"
 
 bash "$here/setup-shell.sh"
 
