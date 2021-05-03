@@ -5,7 +5,7 @@ set -xu
 here=$(dirname "${BASH_SOURCE[0]:-$0}")
 # bash "$here"/install-basic-packages.sh
 
-mkdir -p ~/.emacs.d ~/.config ~/scripts
+mkdir -p ~/.emacs.d ~/.config ~/scripts ~/.local
 
 case "${OSTYPE}" in
 linux* | cygwin*)
@@ -24,6 +24,8 @@ if ! [[ -e ${BREW_PREFIX}/bin/brew ]]; then
 fi
 eval "$("$BREW_PREFIX/bin/brew" shellenv)"
 brew bundle install --file "$BREW_SETUP_DIR/Brewfile"
+echo "Installed formulae and casks:"
+brew list
 
 bash "$here/setup-shell.sh"
 
