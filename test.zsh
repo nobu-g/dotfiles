@@ -12,6 +12,11 @@ check() {
     return 1
   fi
 }
+env
+ls "$HOMEBREW_PREFIX/bin"
+ls "$HOME/.linuxbrew/bin"
+brew list
+brew doctor
 
 # test built-in commands
 check "cd"
