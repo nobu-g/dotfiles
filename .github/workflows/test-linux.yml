@@ -30,7 +30,7 @@ jobs:
       - name: Install required packages
         run: |
           yum groupinstall -y 'Development Tools'
-          yum install -y procps-ng curl file git gcc sudo make zsh wget unzip gettext perl-ExtUtils-MakeMaker
+          yum install -y procps-ng curl file git gcc sudo make zsh wget unzip gettext perl-ExtUtils-MakeMaker glibc-devel
       - name: Install packages for libstderred
         run: dnf install -y cmake gcc-c++
       - name: Clone this repo
@@ -49,7 +49,7 @@ jobs:
       - name: Install required packages
         run: |
           dnf group install -y 'Development Tools'
-          dnf clean all && dnf install -y procps-ng curl file git gcc g++ sudo make zsh wget python3-pip unzip gettext libxcrypt-compat perl-ExtUtils-MakeMaker perl-FindBin
+          dnf clean all && dnf install -y procps-ng curl file git gcc g++ sudo make zsh wget unzip gettext libxcrypt-compat perl-ExtUtils-MakeMaker perl-FindBin glibc-devel
       - name: Install packages for libstderred
         run: dnf install -y cmake gcc-c++
       - name: Clone this repo
