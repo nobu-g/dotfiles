@@ -1,4 +1,6 @@
 [user]
+    name = nobu-g  # gitignore
+    email = ueda-n127@hotmail.co.jp  # gitignore
 
 [init]
     defaultBranch = main

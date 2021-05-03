@@ -16,7 +16,6 @@ for f in "${BASE_DIR%/}"/.config/*; do
   ln -snfv "$f" "$HOME/.config"
 done
 
-ln -sf "${BASE_DIR%/}"/.git.d/.gitconfig "$HOME/.gitconfig"
 ln -sf "${BASE_DIR%/}"/.latexmkrc "$HOME/.latexmkrc"
 ln -sf "${BASE_DIR%/}"/bin/line "$HOME/scripts/"
 
