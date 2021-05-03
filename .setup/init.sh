@@ -13,6 +13,7 @@ linux* | cygwin*)
   BREW_SETUP_DIR="$here/linuxbrew"
   ;;
 freebsd* | darwin*)
+  xcode-select --install
   export BREW_PREFIX="/usr/local"
   BREW_SETUP_DIR="$here/homebrew"
   ;;

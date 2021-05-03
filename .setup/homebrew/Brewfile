@@ -101,7 +101,6 @@ cask "xquartz"
 #
 # MAS
 #
-mas "XCode", id: 497799835
 mas "Slack", id: 803453959
 mas "LINE", id: 539883307
 mas "Kindle", id: 405399194
