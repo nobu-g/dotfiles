@@ -71,4 +71,4 @@ git clone git://github.com/sickill/stderred.git && cd stderred || exit
 make
 mkdir -p "$HOME/usr"
 mkdir -p "$HOME/usr/lib"
-ln -s "$(pwd)/build/libstderred.*" "$HOME/usr/lib/"
+ln -s "$(pwd)"/build/libstderred.* "$HOME/usr/lib/"
