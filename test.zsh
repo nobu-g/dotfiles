@@ -14,8 +14,6 @@ check() {
 }
 env
 ls "$HOMEBREW_PREFIX/bin"
-ls "$HOME/.linuxbrew/bin"
-brew list
 brew doctor
 
 # test built-in commands
