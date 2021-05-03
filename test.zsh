@@ -26,7 +26,7 @@ check "cp"
 check "mv"
 
 # test brew packages
-check "python"
+check "python3"
 check "perl"
 check "ruby"
 check "go"
