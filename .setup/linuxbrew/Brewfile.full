@@ -28,6 +28,7 @@ brew "openjdk"
 # Basic CLI tools
 #
 brew "curl"
+brew "cmake"
 
 #
 # Modern alternatives to Liunx CLI tools
