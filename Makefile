@@ -1,5 +1,7 @@
 DOTPATH := $(shell cd $(dir $(lastword $(MAKEFILE_LIST))); pwd)
 
+.PHONY: all list deploy init update install test clean help
+
 all: install
 
 list: ## Show dot files in this repo
@@ -22,7 +24,7 @@ install: update init deploy ## Run make update, init, deploy
 	zsh -l -c 'exit'
 
 test:
-	zsh -i $(DOTPATH)/test.zsh
+	zsh -i $(DOTPATH)/test/main.zsh
 
 clean: ## Remove the dot files and this repo
 	# @echo 'Remove dot files in your home directory...'
