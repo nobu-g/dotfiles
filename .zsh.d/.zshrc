@@ -174,6 +174,7 @@ zicompdef lat='ls'
 if (( $+commands[docker] )); then
   zicompdef d='docker'
 fi
+zicompdef zi='zinit'
 
 # other themes: dircolors.ansi-dark, dircolors.ansi-light, dircolors.256dark
 zinit ice atload'[[ -e $HOME/.zsh-dircolors.config ]] || setupsolarized dircolors.ansi-universal' \
@@ -221,8 +222,9 @@ zinit wait lucid blockf atpull'zinit creinstall -q .' \
 # zinit light marlonrichert/zsh-autocomplete
 
 ## docker completion
-zinit ice wait"2" lucid as"completion"
-zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
+zinit wait lucid blockf has'docker' for \
+  as'completion' is-snippet \
+  'https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker'
 
 ## fast-syntax-highlighting
 # zinit wait lucid \  # 遅延ロードすると autosuggestions のハイライトがおかしくなる
@@ -245,10 +247,6 @@ zinit snippet 'OMZ::lib/clipboard.zsh'
 # などとすると文字化けしてしまうのでコメントアウト
 # zinit ice wait"2" lucid
 # zinit light marlonrichert/zsh-hist
-
-# ogham/exa, replacement for ls
-# zinit ice wait"1" lucid from"gh-r" as"program" mv"exa* -> exa"
-# zinit light ogham/exa
 
 # direnv
 zinit lucid from"gh-r" as"program" mv"direnv* -> direnv" pick"direnv" \
@@ -293,10 +291,6 @@ zinit wait'1' lucid \
 zinit ice depth=1 atload'source ~/.p10k.zsh' nocd
 zinit light romkatv/powerlevel10k
 ZLE_RPROMPT_INDENT=0
-
-# # zdharma/zsh-diff-so-fancy
-# zinit wait"2" lucid as"program" sbin"bin/git-dsf" \
-#   light-mode for @zdharma/zsh-diff-so-fancy
 
 # diff-so-fancy から乗り換え
 zinit wait'1' lucid \
