@@ -142,7 +142,7 @@ fpath=(
 # my scripts and functions
 path=(${HOME}/scripts(N-/) ${path})
 fpath=(
-  ${ZENVDIR}/functions(N-/)
-  ${ZBASEDIR}/functions(N-/)
+  ${ZENVDIR}/.zfunc(N-/)
+  ${ZBASEDIR}/.zfunc(N-/)
   ${fpath}
 )
