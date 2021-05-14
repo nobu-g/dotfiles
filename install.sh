@@ -4,30 +4,11 @@ set -eu
 
 export DOTFILES_GITHUB="https://github.com/nobu-g/dotfiles.git"
 export DOTFILES_TARBALL="https://github.com/nobu-g/dotfiles/archive/master.tar.gz"
+DOTPATH="$HOME/dotfiles"
 
 #
 # copied from https://github.com/b4b4r07/dotfiles/blob/66dddda6803ada50a0ab879e5db784afea72b7be/etc/install
 #
-
-# DOTPATH=$HOME/dotfiles
-
-# BRANCH="${1:-master}"
-# echo "Bootstrap with branch '${BRANCH}'"
-
-# if [ ! -d "$DOTPATH" ]; then
-#   git clone -b "$BRANCH" https://github.com/ikuwow/dotfiles.git "$DOTPATH"
-# else
-#   echo "$DOTPATH already downloaded. Updating..."
-#   cd "$DOTPATH"
-#   git stash
-#   git checkout "$BRANCH"
-#   git pull origin "$BRANCH"
-#   echo
-# fi
-
-# cd "$DOTPATH"
-
-# ./bootstrap/main.sh
 
 # has returns true if executable $1 exists in $PATH
 has() {
@@ -72,8 +53,6 @@ dotfiles_download() {
 }
 
 dotfiles_download
-
-DOTPATH="$HOME/dotfiles"
 
 # move to $DOTPATH
 cd "$DOTPATH" || die "not found: $DOTPATH"
