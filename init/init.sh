@@ -4,7 +4,7 @@ set -xu
 
 here=$(dirname "${BASH_SOURCE[0]:-$0}")
 
-mkdir -p ~/.emacs.d ~/.config ~/scripts ~/.local
+mkdir -p "$HOME"/{.emacs.d,.config,scripts,.local}
 
 case "${OSTYPE}" in
 linux* | cygwin*)
