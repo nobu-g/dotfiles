@@ -9,22 +9,21 @@ BASE_DIR=$(
 cd "$BASE_DIR"
 
 for f in "${BASE_DIR%/}"/.zsh.d/{.zshenv,.zprofile,.zshrc,.p10k.zsh}; do
-  ln -snfv "$f" "$HOME"
+  ln -snfv "$f" "$HOME/"
 done
 
 for f in "${BASE_DIR%/}"/.config/*; do
-  ln -snfv "$f" "$HOME/.config"
+  ln -snfv "$f" "$HOME/.config/"
 done
 
-ln -sf "${BASE_DIR%/}"/.latexmkrc "$HOME/.latexmkrc"
-ln -sf "${BASE_DIR%/}"/bin/line "$HOME/scripts/"
+ln -snfv "${BASE_DIR%/}/.latexmkrc" "$HOME/"
+ln -snfv "${BASE_DIR%/}/bin/line" "$HOME/scripts/"
 
 case "${OSTYPE}" in
 linux* | cygwin*)
-  ln -sf "${BASE_DIR%/}"/.emacs.d/init.el "$HOME/.emacs.d/init.el"
+  ln -snfv "${BASE_DIR%/}/.emacs.d/init.el" "$HOME/.emacs.d/"
   ;;
 freebsd* | darwin*)
-  ln -sf /usr/local/share/git-core/contrib/diff-highlight/diff-highlight /usr/local/bin
-  ln -sf "${BASE_DIR%/}"/.doom.d "$HOME/.doom.d"
+  ln -snfv "${BASE_DIR%/}/.doom.d" "$HOME/"
   ;;
 esac
