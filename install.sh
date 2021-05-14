@@ -71,7 +71,7 @@ dotfiles_download() {
   fi
 }
 
-dotfiles-download
+dotfiles_download
 
 DOTPATH="$HOME/dotfiles"
 
