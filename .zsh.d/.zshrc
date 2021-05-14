@@ -265,6 +265,7 @@ zinit wait"1" lucid blockf nocompletions \
   from"gh-r" as"program" mv"ripgrep* -> ripgrep" sbin'ripgrep/rg' \
   atclone'zinit creinstall -q BurntSushi/ripgrep' atpull'%atclone' \
   light-mode for @BurntSushi/ripgrep
+export RIPGREP_CONFIG_PATH="${XDG_CONFIG_HOME:-$HOME/.config}/ripgrep/config"
 
 zinit wait"1" lucid blockf nocompletions \
   from"gh-r" as"program" mv"fd* -> fd" sbin'fd/fd' \
