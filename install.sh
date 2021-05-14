@@ -10,8 +10,8 @@ DOTPATH="$HOME/dotfiles"
 # copied from https://github.com/b4b4r07/dotfiles/blob/66dddda6803ada50a0ab879e5db784afea72b7be/etc/install
 #
 
-# has returns true if executable $1 exists in $PATH
-has() {
+# is_exists returns true if executable $1 exists in $PATH
+is_exists() {
   type "$1" >/dev/null 2>&1
   return $?
 }
