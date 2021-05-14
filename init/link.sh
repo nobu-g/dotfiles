@@ -18,6 +18,7 @@ done
 
 ln -snfv "${BASE_DIR%/}/.latexmkrc" "$HOME/"
 ln -snfv "${BASE_DIR%/}/bin/line" "$HOME/scripts/"
+ln -snfv "${BASE_DIR%/}/bin/line-msg" "$HOME/scripts/"
 ln -snfv "${BASE_DIR%/}/bin/pyshow" "$HOME/scripts/"
 
 case "${OSTYPE}" in
