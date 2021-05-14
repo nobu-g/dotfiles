@@ -18,23 +18,24 @@ alias gomi='rm -f *~'
 alias jk='jumanpp | knp'
 alias relogin='exec $SHELL -l'
 alias re='exec $SHELL -l'
-alias -- -='cd -'
-alias -- --='cd --'
-## http://keisanbutsuriya.hateblo.jp/entry/2015/02/13/133858
-alias e='emacsclient --tty -a "" -s ${EMACS_SERVER_SOCKET}'
-alias emacs='emacsclient --tty -a "" -s ${EMACS_SERVER_SOCKET}'
-alias ekill='emacsclient -e "(kill-emacs)"'
+alias wh='which -a'
 alias py='python'
 alias py3='python3'
 alias dpython='python -m ipdb -c continue'
+alias dpy='python -m ipdb -c continue'
 alias ppython='python -m cProfile -s tottime'
-alias zshtime='for i in $(seq 1 10); do time zsh -i -c exit; done'
+alias ppy='python -m cProfile -s tottime'
 alias rename='noglob zmv -W' # rename **/*.xxx **/*.yyy
 alias x='exit'
 alias brew='env -u LD_LIBRARY_PATH PATH=${HOMEBREW_PREFIX}/bin:${HOMEBREW_PREFIX}/sbin:/usr/bin:/bin:/usr/sbin:/sbin brew'
 alias d='docker'
 alias l='les'
 alias b='bat'
+## http://keisanbutsuriya.hateblo.jp/entry/2015/02/13/133858
+alias e='emacsclient --tty -a "" -s ${EMACS_SERVER_SOCKET}'
+alias emacs='emacsclient --tty -a "" -s ${EMACS_SERVER_SOCKET}'
+alias ekill='emacsclient -e "(kill-emacs)"'
+alias zshtime='for i in $(seq 1 10); do time zsh -i -c exit; done'
 alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
 # Show active network interfaces
 alias ifactive="ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active'"
@@ -43,6 +44,8 @@ alias path='echo -e ${PATH//:/\\n}'
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
 alias sum='paste -sd+ | bc'
+alias -- -='cd -'
+alias -- --='cd --'
 
 # global alias
 alias -g A='| awk'
