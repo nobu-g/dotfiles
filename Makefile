@@ -4,10 +4,6 @@ DOTPATH := $(shell cd $(dir $(lastword $(MAKEFILE_LIST))); pwd)
 
 all: install
 
-list: ## Show dot files in this repo
-	@echo $(CANDIDATES)
-	@$(foreach val, $(DOTFILES), /bin/ls -dF $(val);)
-
 deploy: ## Create symlink to home directory
 	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/init/link.sh
 
@@ -26,10 +22,10 @@ install: update init deploy ## Run make update, init, deploy
 test:
 	zsh -i $(DOTPATH)/test/main.zsh
 
-clean: ## Remove the dot files and this repo
-	# @echo 'Remove dot files in your home directory...'
-	# @-$(foreach val, $(DOTFILES), rm -vrf $(HOME)/$(val);)
-	# -rm -rf $(DOTPATH)
+# clean: ## Remove the dot files and this repo
+# 	@echo 'Remove dot files in your home directory...'
+# 	@-$(foreach val, $(DOTFILES), rm -vrf $(HOME)/$(val);)
+# 	-rm -rf $(DOTPATH)
 
 help: ## Self-documented Makefile
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
