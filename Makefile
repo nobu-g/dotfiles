@@ -1,4 +1,5 @@
 DOTPATH := $(shell cd $(dir $(lastword $(MAKEFILE_LIST))); pwd)
+HOMEBREW_PREFIX :=
 
 .PHONY: all list deploy init update install test clean help
 
@@ -8,7 +9,7 @@ deploy: ## Create symlink to home directory
 	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/init/link.sh
 
 init: ## Setup environment settings
-	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/init/init.sh
+	@DOTPATH=$(DOTPATH) HOMEBREW_PREFIX=$(HOMEBREW_PREFIX) bash $(DOTPATH)/init/init.sh
 
 # test: ## Test dotfiles and init scripts
 # 	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/test/test.sh

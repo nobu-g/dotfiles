@@ -8,21 +8,21 @@ mkdir -p "$HOME"/{.emacs.d,.config,scripts,.local}
 
 case "${OSTYPE}" in
 linux* | cygwin*)
-  export BREW_PREFIX="$HOME/.linuxbrew"
+  export HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-"$HOME/.linuxbrew"}
   BREW_SETUP_DIR="$here/linuxbrew"
   ;;
 freebsd* | darwin*)
   xcode-select --install
-  export BREW_PREFIX="/usr/local"
+  export HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-"/usr/local"}
   BREW_SETUP_DIR="$here/homebrew"
   ;;
 esac
 
 # install Homebrew/Linuxbrew
-if ! [[ -e ${BREW_PREFIX}/bin/brew ]]; then
+if ! [[ -e ${HOMEBREW_PREFIX}/bin/brew ]]; then
   bash "$BREW_SETUP_DIR/init.sh"
 fi
-eval "$("$BREW_PREFIX/bin/brew" shellenv)"
+eval "$("$HOMEBREW_PREFIX/bin/brew" shellenv)"
 brew bundle install --file "$BREW_SETUP_DIR/Brewfile"
 echo "Installed formulae and casks:"
 brew list
@@ -33,7 +33,7 @@ case "${OSTYPE}" in
 linux* | cygwin*)
   # https://qiita.com/aical/items/5b3ebee3840aae741283
   wget http://curl.haxx.se/ca/cacert.pem -O cert.pem
-  mv cert.pem "${BREW_PREFIX}"/etc/openssl*/
+  mv cert.pem "${HOMEBREW_PREFIX}"/etc/openssl*/
   ;;
 freebsd* | darwin*)
   bash "$here/setup-defaults.sh"
