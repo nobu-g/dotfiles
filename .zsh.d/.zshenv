@@ -107,6 +107,11 @@ if [[ -n ${HOMEBREW_PREFIX} ]]; then
   fpath=(${HOMEBREW_PREFIX}/share/zsh/{functions,site-functions}(N-/) ${fpath})
 fi
 
+# Ruby
+if [[ -n ${HOMEBREW_PREFIX} ]]; then
+  path=(${HOMEBREW_PREFIX}/opt/ruby/bin ${path})
+fi
+
 # Golang
 if [[ -d ${HOME}/.go ]]; then
   export GOPATH="${HOME}/.go"
