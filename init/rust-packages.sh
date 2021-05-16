@@ -10,13 +10,13 @@ set -ux
 cargo install lsd       # replacement for `ls` (like `exa`)
 cargo install hyperfine # comman-line benchmark tool
 cargo install xsv
-cargo install bandwidth # Terminal bandwidth utilization tool
-cargo install gping     # Ping, but with a graph
-cargo install dog       # Command-line DNS client
-cargo install hexyl     # A command-line hex viewer
-cargo install broot     # A new way to see and navigate directory trees
-cargo install pastel    # color manipulation
-cargo install watchexec # monitor file change
-cargo install du-dust   # A more intuitive version of du in rust
-cargo install pueue     # process queue
+cargo install bandwidth     # Terminal bandwidth utilization tool
+cargo install gping         # Ping, but with a graph
+cargo install dog           # Command-line DNS client
+cargo install hexyl         # A command-line hex viewer
+cargo install broot         # A new way to see and navigate directory trees
+cargo install pastel        # color manipulation
+cargo install watchexec-cli # monitor file change
+cargo install du-dust       # A more intuitive version of du in rust
+cargo install pueue         # process queue
 # cargo install mcfly     # better history search
