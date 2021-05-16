@@ -27,5 +27,7 @@ linux* | cygwin*)
   ;;
 freebsd* | darwin*)
   ln -snfv "${BASE_DIR%/}/.doom.d" "$HOME/.doom.d"
+  ln -snfv "${BASE_DIR%/}/.mackup" "$HOME"
+  ln -snfv "${BASE_DIR%/}/.mackup.cfg" "$HOME"
   ;;
 esac

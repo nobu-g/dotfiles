@@ -73,6 +73,7 @@ brew "shellcheck"
 brew "tree"
 brew "rename"
 brew "nkf"
+brew "mackup"
 
 #
 # System

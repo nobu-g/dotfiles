@@ -80,6 +80,7 @@ brew "tokei"
 brew "tree"
 brew "rename"
 brew "nkf"
+brew "mackup"
 brew "pwgen"  # password generator
 brew "imagemagick"
 brew "ffmpeg"
