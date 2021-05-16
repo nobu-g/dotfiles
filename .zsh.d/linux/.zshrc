@@ -24,4 +24,4 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 
 # stderred
 export STDERRED_ESC_CODE=$(echo -e "$(tput setaf 9)")
-export LD_PRELOAD="${HOME}/usr/lib/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+export LD_PRELOAD="${HOME}/.local/lib/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
