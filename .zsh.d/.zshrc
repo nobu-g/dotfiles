@@ -278,7 +278,7 @@ zinit wait"1" lucid \
   light-mode for @sharkdp/bat
 
 zinit wait"1" lucid \
-  from"gh-r" as"program" mv"exa* -> exa" sbin"exa" \
+  from"gh-r" as"program" sbin"bin/exa" \
   light-mode for @ogham/exa
 
 zinit wait'1' lucid \
