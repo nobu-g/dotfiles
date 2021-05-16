@@ -50,11 +50,6 @@ if ! [[ -d ${HOME}/.zinit ]]; then
   git clone https://github.com/zdharma/zinit.git ~/.zinit/bin
 fi
 
-# install poetry
-if ! (type poetry &>/dev/null); then
-  curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
-fi
-
 # install python packages
 if (type pip3 &>/dev/null); then
   bash "$here/python-packages.sh"
