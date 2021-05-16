@@ -26,6 +26,6 @@ linux* | cygwin*)
   ln -snfv "${BASE_DIR%/}/.emacs.d/init.el" "$HOME/.emacs.d"
   ;;
 freebsd* | darwin*)
-  ln -snfv "${BASE_DIR%/}/.doom.d" "$HOME"
+  ln -snfv "${BASE_DIR%/}/.doom.d" "$HOME/.doom.d"
   ;;
 esac
