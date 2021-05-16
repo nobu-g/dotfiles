@@ -41,15 +41,8 @@ if [[ -e /home/linuxbrew/usr ]]; then
   fpath=(${prefix}/share/zsh/{functions,site-functions}(N-/) ${fpath})
 fi
 
-
-# pyenv
-export PYENV_ROOT=$HOME/.pyenv
-
-path=(
-  ${HOME}/gxp3(N-/)  # GXP3
-  ${PYENV_ROOT}/bin(N-/)  # pyenv
-  ${path}
-)
+# GXP3
+path=(${HOME}/gxp3(N-/) ${path})
 
 # Skip the not really helping Ubuntu global compinit
 # see /etc/zsh/zshrc
