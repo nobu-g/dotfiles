@@ -44,6 +44,13 @@ freebsd* | darwin*)
   ;;
 esac
 
+# install Rust and its packages
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
+export PATH="$HOME/.cargo/bin:$PATH"
+if (type cargo &>/dev/null); then
+  bash "$here/rust-packages.sh"
+fi
+
 # install zinit
 if ! [[ -d ${HOME}/.zinit ]]; then
   mkdir ~/.zinit
