@@ -405,8 +405,34 @@ add-zsh-hook chpwd _ls_abbrev
 
 # ssh and tmux -CC
 # https://gitlab.com/gnachman/iterm2/-/wikis/tmux-Integration-Best-Practices
+# usage: tssh <host-name> <session-name>
 tssh() {
-  ssh -t $@ 'tmux -CC new -A -s main'
+  cmds=$(cat <<-"EOD"
+_tmux() {
+  if [[ -n "$TMUX" || -n "$STY" ]]; then
+    return
+  fi
+  local att=$(tmux ls -f "#{==:#S,$1}" -F "#{session_attached}" 2> /dev/null)
+  if [[ -n "$att" ]]; then
+    if [[ "$att" -eq 0 ]]; then
+      tmux -CC attach -t $1
+    else
+      echo "Session: '$1' already attached. Starting standard shell..." 2>&1
+      exec $SHELL -l
+    fi
+  else
+    if read -q "?Session: '$1' does not exist. Create new one? (y/n) "; then
+      tmux -CC new -s $1
+    else
+      echo "\nStarting standard shell..." 2>&1
+      exec $SHELL -l
+    fi
+  fi
+}
+_tmux
+EOD
+  )
+  ssh -t $1 "${cmds} $2"
 }
 
 cd() {
