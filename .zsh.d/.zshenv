@@ -18,27 +18,22 @@ typeset -xUT INFOPATH infopath
 typeset -xUT SUDO_PATH sudo_path
 # PATH
 path=(
-  /usr/local/{bin,sbin}(N-/)
-  /usr/{bin,sbin}(N-/)
-  /{bin,sbin}(N-/)
+  {/usr{/local,},}/{bin,sbin}(N-/)
   ${path:#${HOME}/*}(N-/)
 )
 # MANPATH
 manpath=(
-  /usr/local/share/man(N-/)
-  /usr/share/man(N-/)
+  /usr{/local,}/share/man(N-/)
   ${manpath:#${HOME}/*}(N-/)
 )
 # INFOPATH
 infopath=(
-  /usr/local/share/info(N-/)
-  /usr/share/info(N-/)
+  /usr{/local,}/share/info(N-/)
   ${infopath:#${HOME}/*}(N-/)
 )
 # FPATH
 fpath=(
-  /usr/local/share/zsh/site-functions(N-/)
-  /usr/share/zsh/site-functions(N-/)
+  /usr{/local,}/share/zsh/{site-functions,vendor-completions}(N-/)
   ${fpath:#${HOME}/*}(N-/)
 )
 # PATH (SUDO)
