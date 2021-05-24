@@ -23,7 +23,11 @@ if ! [[ -e ${HOMEBREW_PREFIX}/bin/brew ]]; then
   bash "$BREW_SETUP_DIR/init.sh"
 fi
 eval "$("$HOMEBREW_PREFIX/bin/brew" shellenv)"
-brew bundle install --file "$BREW_SETUP_DIR/Brewfile"
+if [[ ${FULL_INSTALL} -eq 1 ]]; then
+  brew bundle install --file "$BREW_SETUP_DIR/Brewfile.full"
+else
+  brew bundle install --file "$BREW_SETUP_DIR/Brewfile"
+fi
 echo "Installed formulae and casks:"
 brew list
 
@@ -47,7 +51,7 @@ esac
 # install Rust and its packages
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
 export PATH="$HOME/.cargo/bin:$PATH"
-if (type cargo &>/dev/null); then
+if (type cargo &> /dev/null); then
   bash "$here/rust-packages.sh"
 fi
 
@@ -58,12 +62,12 @@ if ! [[ -d ${HOME}/.zinit ]]; then
 fi
 
 # install python packages
-if (type pip3 &>/dev/null); then
+if (type pip3 &> /dev/null); then
   bash "$here/python-packages.sh"
 fi
 
 # install golang packages
-if (type go &>/dev/null); then
+if (type go &> /dev/null); then
   bash "$here/go-packages.sh"
 fi
 
