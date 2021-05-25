@@ -3,7 +3,7 @@
 result=0
 
 check() {
-  if (type $1 &>/dev/null); then
+  if (type $1 &> /dev/null); then
     echo -e "\e[32m[PASSED]\e[m $1 "
     return 0
   else
@@ -12,8 +12,7 @@ check() {
     return 1
   fi
 }
-env
-ls "$HOMEBREW_PREFIX/bin"
+printenv
 brew doctor
 
 # test built-in commands
