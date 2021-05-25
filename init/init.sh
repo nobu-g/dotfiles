@@ -42,9 +42,11 @@ linux* | cygwin*)
 freebsd* | darwin*)
   bash "$here/setup-defaults.sh"
   # install doom-emacs
-  rm -rf ~/.emacs.d &&
-    git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d &&
-    ~/.emacs.d/bin/doom install
+  if ! (type ~/.emacs.d/bin/doom &> /dev/null); then
+    rm -rf ~/.emacs.d &&
+      git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d &&
+      ~/.emacs.d/bin/doom install
+  fi
   ;;
 esac
 
