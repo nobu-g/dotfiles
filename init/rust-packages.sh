@@ -7,7 +7,6 @@ set -ux
 # crates installed with zinit
 # ripgrep, fd, bat, exa, delta
 
-cargo install lsd       # replacement for `ls` (like `exa`)
 cargo install hyperfine # comman-line benchmark tool
 cargo install xsv
 cargo install bandwidth     # Terminal bandwidth utilization tool
