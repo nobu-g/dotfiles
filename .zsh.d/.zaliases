@@ -1,10 +1,10 @@
 setopt complete_aliases # don't expand aliases _before_ completion has finished
 
-alias ls='ls -FH --color=tty'      # or exa -FH
-alias ll='ls -lFHh --color=tty'    # or exa -lFH
-alias la='ls -laFHh --color=tty'   # or exa -laFH
-alias lt='ls -ltFHh --color=tty'   # or exa -laFH
-alias lat='ls -latFHh --color=tty' # or exa -laFH
+alias ls='ls -F --color=tty'
+alias ll='lsd -lFh'
+alias la='lsd -laFh'
+alias lt='lsd -ltFh'
+alias lat='lsd -latFh'
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'

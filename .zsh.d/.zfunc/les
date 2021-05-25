@@ -1,9 +1,9 @@
 # les: less or ls
 
 if [[ $# == 0 ]]; then
-  ls -FH --color=tty
+  lsd -F
 elif [[ -f $1 ]]; then
   bat $@
 else
-  ls -FH --color=tty $@
+  lsd -F
 fi
