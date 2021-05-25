@@ -104,7 +104,7 @@ fi
 
 # Ruby
 if [[ -n ${HOMEBREW_PREFIX} ]]; then
-  path=(${HOMEBREW_PREFIX}/opt/ruby/bin ${path})
+  path=(${HOMEBREW_PREFIX}/opt/ruby/bin(N-/) ${path})
 fi
 
 # Golang
