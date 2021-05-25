@@ -69,3 +69,4 @@ brew "imagemagick"
 brew "ansible"
 brew "vmtouch"
 brew "whois"
+brew "dog"  # Command-line DNS client

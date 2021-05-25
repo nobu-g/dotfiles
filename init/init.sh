@@ -18,20 +18,20 @@ freebsd* | darwin*)
   ;;
 esac
 
-# install Homebrew/Linuxbrew
-if ! [[ -e ${HOMEBREW_PREFIX}/bin/brew ]]; then
-  bash "$BREW_SETUP_DIR/init.sh"
-fi
-eval "$("$HOMEBREW_PREFIX/bin/brew" shellenv)"
-if [[ ${FULL_INSTALL} -eq 1 ]]; then
-  brew bundle install --file "$BREW_SETUP_DIR/Brewfile.full"
-else
-  brew bundle install --file "$BREW_SETUP_DIR/Brewfile"
-fi
-echo "Installed formulae and casks:"
-brew list
+# # install Homebrew/Linuxbrew
+# if ! [[ -e ${HOMEBREW_PREFIX}/bin/brew ]]; then
+#   bash "$BREW_SETUP_DIR/init.sh"
+# fi
+# eval "$("$HOMEBREW_PREFIX/bin/brew" shellenv)"
+# if [[ ${FULL_INSTALL} -eq 1 ]]; then
+#   brew bundle install --file "$BREW_SETUP_DIR/Brewfile.full"
+# else
+#   brew bundle install --file "$BREW_SETUP_DIR/Brewfile"
+# fi
+# echo "Installed formulae and casks:"
+# brew list
 
-bash "$here/setup-shell.sh"
+# bash "$here/setup-shell.sh"
 
 case "${OSTYPE}" in
 linux* | cygwin*)

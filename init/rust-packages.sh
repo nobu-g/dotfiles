@@ -11,7 +11,6 @@ cargo install hyperfine # comman-line benchmark tool
 cargo install xsv
 cargo install bandwidth     # Terminal bandwidth utilization tool
 cargo install gping         # Ping, but with a graph
-cargo install dog           # Command-line DNS client
 cargo install hexyl         # A command-line hex viewer
 cargo install broot         # A new way to see and navigate directory trees
 cargo install pastel        # color manipulation
