@@ -7,10 +7,10 @@ FULL_INSTALL := 0
 all: install
 
 deploy: ## Create symlink to home directory
-	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/init/link.sh
+	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/deploy/main.sh
 
 init: ## Setup environment settings
-	@DOTPATH=$(DOTPATH) HOMEBREW_PREFIX=$(HOMEBREW_PREFIX) FULL_INSTALL=$(FULL_INSTALL) bash $(DOTPATH)/init/init.sh
+	@DOTPATH=$(DOTPATH) HOMEBREW_PREFIX=$(HOMEBREW_PREFIX) FULL_INSTALL=$(FULL_INSTALL) bash $(DOTPATH)/init/main.sh
 
 # test: ## Test dotfiles and init scripts
 # 	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/test/test.sh
