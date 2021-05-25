@@ -94,7 +94,7 @@ cask "docker"
 cask "visual-studio-code"
 cask "iterm2"
 cask "clipy"
-cask "dozer"  # hide menu bar icons
+cask "hiddenbar"
 cask "karabiner-elements"
 cask "mactex-no-gui"
 cask "xquartz"
