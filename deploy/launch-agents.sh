@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -exu
+set -u
 
 here=$(dirname "${BASH_SOURCE[0]:-$0}")
 

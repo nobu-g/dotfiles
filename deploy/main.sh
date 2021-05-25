@@ -2,32 +2,32 @@
 
 set -exu
 
-BASE_DIR=$(
-  cd "$(dirname "$(dirname "${BASH_SOURCE[0]:-$0}")")"
-  pwd
-)
-cd "$BASE_DIR"
+if [[ -z ${DOTPATH} ]]; then
+  DOTPATH="$(dirname "$(dirname "${BASH_SOURCE[0]:-$0}")")"
+  export DOTPATH
+fi
 
-for f in "${BASE_DIR%/}"/.zsh.d/{.zshenv,.zprofile,.zshrc,.p10k.zsh}; do
+for f in "${DOTPATH%/}"/.zsh.d/{.zshenv,.zprofile,.zshrc,.p10k.zsh}; do
   ln -snfv "$f" "$HOME"
 done
 
-for f in "${BASE_DIR%/}"/.config/*; do
+for f in "${DOTPATH%/}"/.config/*; do
   ln -snfv "$f" "$HOME/.config"
 done
 
-ln -snfv "${BASE_DIR%/}/.latexmkrc" "$HOME"
-ln -snfv "${BASE_DIR%/}/bin/line" "$HOME/scripts"
-ln -snfv "${BASE_DIR%/}/bin/line-msg" "$HOME/scripts"
-ln -snfv "${BASE_DIR%/}/bin/pyshow" "$HOME/scripts"
+ln -snfv "${DOTPATH%/}/.latexmkrc" "$HOME"
+ln -snfv "${DOTPATH%/}/bin/line" "$HOME/scripts"
+ln -snfv "${DOTPATH%/}/bin/line-msg" "$HOME/scripts"
+ln -snfv "${DOTPATH%/}/bin/pyshow" "$HOME/scripts"
 
 case "${OSTYPE}" in
 linux* | cygwin*)
-  ln -snfv "${BASE_DIR%/}/.emacs.d/init.el" "$HOME/.emacs.d"
+  ln -snfv "${DOTPATH%/}/.emacs.d/init.el" "$HOME/.emacs.d"
   ;;
 freebsd* | darwin*)
-  ln -snfv "${BASE_DIR%/}/.doom.d" "$HOME/.doom.d"
-  ln -snfv "${BASE_DIR%/}/.mackup" "$HOME"
-  ln -snfv "${BASE_DIR%/}/.mackup.cfg" "$HOME"
+  ln -snfv "${DOTPATH%/}/.doom.d" "$HOME/.doom.d"
+  ln -snfv "${DOTPATH%/}/.mackup" "$HOME"
+  ln -snfv "${DOTPATH%/}/.mackup.cfg" "$HOME"
+  bash -ex "${DOTPATH%/}/deploy/launch-agents.sh"
   ;;
 esac
