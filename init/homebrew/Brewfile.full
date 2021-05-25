@@ -101,7 +101,7 @@ brew "dog"  # Command-line DNS client
 #
 # CASK
 #
-cask "osxfuse"
+cask "macfuse"
 cask "google-chrome"
 cask "google-japanese-ime"
 cask "google-cloud-sdk"
