@@ -6,10 +6,9 @@
         <string>com.user.CodeServer</string>
         <key>ProgramArguments</key>
         <array>
-            <string>/usr/local/bin/python3</string>
-            <string>/Users/NobuhiroUeda/scripts/code_server.py</string>
-            <string>--port</string>
-            <string>9607</string>
+            <string>/bin/bash</string>
+            <string>-c</string>
+            <string>exec $HOME/scripts/code_server.py --port 9607</string>
         </array>
         <key>KeepAlive</key>
         <dict>
