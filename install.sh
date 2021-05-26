@@ -3,7 +3,7 @@
 set -eu
 
 export DOTFILES_GITHUB="https://github.com/nobu-g/dotfiles.git"
-export DOTFILES_TARBALL="https://github.com/nobu-g/dotfiles/archive/master.tar.gz"
+export DOTFILES_TARBALL="https://github.com/nobu-g/dotfiles/archive/main.tar.gz"
 DOTPATH="$HOME/dotfiles"
 
 #
