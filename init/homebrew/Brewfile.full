@@ -97,6 +97,7 @@ brew "nmap"
 brew "fswatch"
 brew "pstree"
 brew "dog"  # Command-line DNS client
+brew "bandwhich"  # Terminal bandwidth utilization tool
 
 #
 # CASK

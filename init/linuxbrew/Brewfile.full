@@ -70,3 +70,4 @@ brew "ansible"
 brew "vmtouch"
 brew "whois"
 brew "dog"  # Command-line DNS client
+brew "bandwhich"  # Terminal bandwidth utilization tool
