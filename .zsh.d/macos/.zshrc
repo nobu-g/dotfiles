@@ -57,3 +57,7 @@ autoload -Uz o # open directory or file
 # stderred
 export STDERRED_ESC_CODE=$(tput setaf 9)
 export DYLD_INSERT_LIBRARIES="${HOME}/.local/lib/libstderred.dylib${DYLD_INSERT_LIBRARIES:+:$DYLD_INSERT_LIBRARIES}"
+
+# completions for google-cloud-sdk
+gc_completion="${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+[[ -f ${gc_completion} ]] && zinit snippet "${gc_completion}"
