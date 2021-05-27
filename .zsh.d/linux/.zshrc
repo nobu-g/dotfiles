@@ -23,5 +23,7 @@ apt-user-install() {
 export HOMEBREW_NO_AUTO_UPDATE=1
 
 # stderred
-export STDERRED_ESC_CODE=$(echo -e "$(tput setaf 9)")
-export LD_PRELOAD="${HOME}/.local/lib/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+if [[ -f "${HOME}/.local/lib/libstderred.so" ]]; then
+  export STDERRED_ESC_CODE=$(echo -e "$(tput setaf 9)")
+  export LD_PRELOAD="${HOME}/.local/lib/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+fi

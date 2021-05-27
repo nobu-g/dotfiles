@@ -74,7 +74,17 @@ if (type go &> /dev/null); then
 fi
 
 # install libstderred (https://github.com/sickill/stderred)
-git clone git://github.com/sickill/stderred.git && cd stderred || exit
-make
-mkdir -p "$HOME/.local/lib"
-ln -snfv "$(pwd)"/build/libstderred.* "$HOME/.local/lib/"
+case "${OSTYPE}" in
+linux* | cygwin*)
+  lib_name=libstderred.so
+  ;;
+freebsd* | darwin*)
+  lib_name=libstderred.dylib
+  ;;
+esac
+if ! [[ -f "${HOME}/.local/lib/${lib_name}" ]] && (type cmake &> /dev/null); then
+  git clone git://github.com/sickill/stderred.git && cd stderred || exit
+  make
+  mkdir -p "$HOME/.local/lib"
+  ln -snfv "$(pwd)/build/${lib_name}" "$HOME/.local/lib/"
+fi
