@@ -415,25 +415,31 @@ add-zsh-hook chpwd _ls_abbrev
 # usage: tssh <host-name> <session-name>
 tssh() {
   cmds=$(cat <<-"EOD"
+_new() { tmux -CC new -s "$1" }
+_attach() { tmux -CC attach -t "$1" }
+_shell() { echo "Starting a standard shell..." 2>&1 && exec ${SHELL} -l }
 _tmux() {
-  if [[ -n "$TMUX" || -n "$STY" ]]; then
-    return
+  [[ -n "$TMUX" || -n "$STY" ]] && echo "Already in a tmux session." 2>&1 && return 0
+  local sess
+  if [[ -n "$1" ]]; then
+    sess="$1"
+  elif (type peco &> /dev/null); then
+    typeset -Ua sessions=("${(@f)$(tmux ls)}" "<new>" "<continue>")
+    sess=$(IFS=$'\n'; echo "${sessions}" | peco --prompt "[session]" --print-query | tail -1 | cut -d':' -f1)
+    [[ ${sess} == "<continue>" ]] && _shell
+    if [[ ${sess} == "<new>" ]]; then
+      sess=$(read -E "?Enter a new session name: ")
+      is_new=1
+    fi
   fi
-  local att=$(tmux ls -f "#{==:#S,$1}" -F "#{session_attached}" 2> /dev/null)
-  if [[ -n "$att" ]]; then
-    if [[ "$att" -eq 0 ]]; then
-      tmux -CC attach -t $1
-    else
-      echo "Session: '$1' already attached. Starting standard shell..." 2>&1
-      exec $SHELL -l
-    fi
+  [[ -z ${sess} ]] && _shell
+  local att=$(tmux ls -f "#{==:#S,$sess}" -F "#{session_attached}" 2> /dev/null)
+  if [[ -n ${att} ]]; then
+    [[ ${att} == "0" ]] && _attach "$sess" || {echo "Session: '${sess}' already attached." 2>&1 && _shell}
+  elif [[ -n ${is_new} ]] || read -q "?Session: '${sess}' does not exist. Create new one? (y/n) "; then
+    _new "${sess}"
   else
-    if read -q "?Session: '$1' does not exist. Create new one? (y/n) "; then
-      tmux -CC new -s $1
-    else
-      echo "\nStarting standard shell..." 2>&1
-      exec $SHELL -l
-    fi
+    echo '' && _shell
   fi
 }
 _tmux
