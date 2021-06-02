@@ -1,6 +1,8 @@
 # ssh and tmux -CC
 # https://gitlab.com/gnachman/iterm2/-/wikis/tmux-Integration-Best-Practices
-# usage: tssh <host-name> <session-name>
+# usage:
+#     tssh <host-name> [session-name]
+
 cmds=$(
   cat <<- "EOD"
 _new() { tmux -CC new -s "$1" }
