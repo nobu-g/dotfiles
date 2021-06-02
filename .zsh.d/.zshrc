@@ -410,44 +410,6 @@ bindkey '^_' peco-find-file  # works by ^/
 autoload -Uz _ls_abbrev
 add-zsh-hook chpwd _ls_abbrev
 
-# ssh and tmux -CC
-# https://gitlab.com/gnachman/iterm2/-/wikis/tmux-Integration-Best-Practices
-# usage: tssh <host-name> <session-name>
-tssh() {
-  cmds=$(cat <<-"EOD"
-_new() { tmux -CC new -s "$1" }
-_attach() { tmux -CC attach -t "$1" }
-_shell() { echo "Starting a standard shell..." 2>&1 && exec ${SHELL} -l }
-_tmux() {
-  [[ -n "$TMUX" || -n "$STY" ]] && echo "Already in a tmux session." 2>&1 && return 0
-  local sess
-  if [[ -n "$1" ]]; then
-    sess="$1"
-  elif (type peco &> /dev/null); then
-    typeset -Ua sessions=("${(@f)$(tmux ls)}" "<new>" "<continue>")
-    sess=$(IFS=$'\n'; echo "${sessions}" | peco --prompt "[session]" --print-query | tail -1 | cut -d':' -f1)
-    [[ ${sess} == "<continue>" ]] && _shell
-    if [[ ${sess} == "<new>" ]]; then
-      sess=$(read -E "?Enter a new session name: ")
-      is_new=1
-    fi
-  fi
-  [[ -z ${sess} ]] && _shell
-  local att=$(tmux ls -f "#{==:#S,$sess}" -F "#{session_attached}" 2> /dev/null)
-  if [[ -n ${att} ]]; then
-    [[ ${att} == "0" ]] && _attach "$sess" || {echo "Session: '${sess}' already attached." 2>&1 && _shell}
-  elif [[ -n ${is_new} ]] || read -q "?Session: '${sess}' does not exist. Create new one? (y/n) "; then
-    _new "${sess}"
-  else
-    echo '' && _shell
-  fi
-}
-_tmux
-EOD
-  )
-  ssh -t $1 "${cmds} $2"
-}
-
 cd() {
   if [[ $# -eq 1 && $1 = "--" ]]; then
     pushd +2 || return 1
@@ -468,6 +430,7 @@ autoload -Uz bm  # bookmark directories
 autoload -Uz lspath  # list paths
 autoload -Uz les  # less or ls
 autoload -Uz fs  # determine size of a file or total size of a directory
+autoload -Uz tssh  # ssh and tmux, like tssh <host-name> <session-name>
 
 # git add などの補完が効かなくなるのでコメントアウト
 # git() {
