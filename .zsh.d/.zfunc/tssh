@@ -14,7 +14,8 @@ _tmux() {
   if [[ -n "$1" ]]; then
     sess="$1"
   elif (type peco &> /dev/null); then
-    typeset -Ua sessions=("${(@f)$(tmux ls)}" "<new>" "<continue>")
+    typeset -Ua sessions=("${(@f)$(tmux ls -F "#S: #{session_windows} windows #{?session_attached,(attached),}")}")
+    sessions+=("<new>" "<continue>")
     sess=$(IFS=$'\n'; echo "${sessions}" | peco --prompt "[session]" --print-query | tail -1 | cut -d':' -f1)
     [[ ${sess} == "<continue>" ]] && _shell
     if [[ ${sess} == "<new>" ]]; then
