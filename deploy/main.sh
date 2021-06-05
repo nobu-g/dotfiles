@@ -14,6 +14,10 @@ done
 for f in "${DOTPATH%/}"/.config/*; do
   ln -snfv "$f" "$HOME/.config"
 done
+# Reload bat syntaxes
+if (type bat &> /dev/null); then
+  bat cache --build
+fi
 
 ln -snfv "${DOTPATH%/}/.latexmkrc" "$HOME"
 ln -snfv "${DOTPATH%/}/bin/line" "$HOME/scripts"
