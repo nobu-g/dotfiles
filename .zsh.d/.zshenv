@@ -8,11 +8,15 @@ export LANG=ja_JP.UTF-8
 export LANGUAGE=en_US
 
 # PATH Settings
-## zsh の機能で、path,manpath,fpath は PATH,MANPATH,FPATH と自動的に連動する
-## -U: 重複したパスを登録しない
-## -x: export も一緒に行う
-## -T: SUDO_PATHとsudo_pathを連動する
-## HOME 以下の path は後で設定するので除外
+## Zsh synchronizes path, manpath, and fpath with PATH, MANPATH, and FPATH respectively
+## -U: keep array values unique
+## -x: export parameter
+## -T: tie scalar to array
+## Exclude the paths under $HOME since they will be added later.
+## (N-/): Glob Qualifiers
+### N: use NULL_GLOB
+### -: follow symlinks toggle
+### /: directories
 typeset -U path manpath fpath
 typeset -xUT INFOPATH infopath
 typeset -xUT SUDO_PATH sudo_path
