@@ -14,26 +14,24 @@ _tmux() {
   if [[ -n "$1" ]]; then
     sess="$1"
   elif (type peco &> /dev/null); then
-    typeset -Ua sessions=("${(@f)$(tmux ls -F "#S: #{session_windows} windows #{?session_attached,(attached),}")}")
+    typeset -Ua sessions
+    sessions=("${(@f)$(tmux ls -F "#S: #{session_windows} windows #{?session_attached,(attached),}" 2> /dev/null)}")
     sessions+=("<new>" "<continue>")
     sess=$(echo "${(@j.\n.)sessions:#}" | peco --prompt "[session]" --print-query | tail -1 | cut -d':' -f1)
     [[ ${sess} == "<continue>" ]] && _shell
-    if [[ ${sess} == "<new>" ]]; then
-      sess=$(read -E "?Enter a new session name: ")
-      is_new=1
-    fi
+    [[ ${sess} == "<new>" ]] && { sess=$(read -E "?Enter a new session name: "); is_new=1 }
   fi
   [[ -z ${sess} ]] && _shell
   local att=$(tmux ls -f "#{==:#S,$sess}" -F "#{session_attached}" 2> /dev/null)
   if [[ -n ${att} ]]; then
-    [[ ${att} == "0" ]] && _attach "$sess" || {echo "Session: '${sess}' already attached." 2>&1 && _shell}
+    [[ ${att} == "0" ]] && _attach "${sess}" || { echo "Session: '${sess}' already attached." 2>&1 && _shell }
   elif [[ -n ${is_new} ]] || read -q "?Session: '${sess}' does not exist. Create new one? (y/n) "; then
     _new "${sess}"
   else
-    echo '' && _shell
+    echo "" && _shell
   fi
 }
 _tmux
 EOD
 )
-ssh -t $1 "${cmds} $2"
+ssh -t "$1" "${cmds} $2"
