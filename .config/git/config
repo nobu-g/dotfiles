@@ -6,6 +6,40 @@
     defaultBranch = main
 
 [alias]
+    ## 'New' Commands
+	# Unstage the changes in a given file.
+	unstage = reset HEAD --
+	# View the current changes in the staging area.
+	staged = diff --cached
+	# Print the name of the current branch.
+	current-branch = symbolic-ref --short HEAD
+	# Print the name of the current upstream tracking branch.
+	upstream = !git config --get branch.$(git current-branch).remote || echo origin
+	# Push the current branch upstream to origin using the same branch name for the remote branch.
+	upstream-current-branch = !git push --set-upstream origin $(git current-branch)
+	# Create a pull request on GitHub using the `gh` command.
+	pull-request = !rm -f .git/PULLREQ_EDITMSG && gh pr create --web
+	# Upstream the current branch to origin and create a pull request on GitHub.
+	upstream-and-pull-request = !git upstream-current-branch && git pull-request
+	# Push the current branch and set it as the default upstream branch.
+	push-and-set-upstream = push --set-upstream
+	# Create a new branch by checking out another branch.
+	checkout-as-new-branch = checkout -b
+	# Rebase against origin/HEAD and prompt for what operations should be performed.
+	interactively-rebase-against-origin-head = !git rebase --interactive origin/HEAD
+	# Commit any changes to files, squash them into the last commit and update its date.
+	fix-up-previous-commit = !git commit --all --amend --reuse-message=HEAD --date=\"$(date)\" #"
+	# Commit a work-in-progress commit (to use with fix-up-previous-commit)
+	work-in-progress = commit -a -m 'WIP'
+	# Hard reset branch to the upstream version.
+	hard-reset = !git reset --hard $(git upstream)/$(git current-branch)
+	# Delete all non-master/main branches
+	delete-merged = !git branch --merged | grep -v 'master' | grep -v 'main' | grep -v '*' | xargs -n 1 git branch -D
+	# Get the merge-base compared to origin/HEAD
+	merge-base-head = merge-base origin/HEAD HEAD
+	# Diff against the current branch's merge-base
+	diff-merge-base = !git diff $(git merge-base-head)
+
     s = status
     a = add
     ps = push
@@ -22,7 +56,6 @@
     bra = branch
     cm = commit -m
     cam = commit -a -m
-    unstage = reset HEAD --
     last = log -1 HEAD
     aliases = config --get-regexp alias
     remotes = remote -v
