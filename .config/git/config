@@ -129,5 +129,10 @@
 [advice]
     addIgnoredFile = false
 
+[protocol]
+	# Use Git v2 protocol for better performance
+	# TODO: re-enable when more widely supported by Git versions
+	version = 2
+
 # [ghq]
 #     root = ~/Projects
