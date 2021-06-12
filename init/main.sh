@@ -7,7 +7,7 @@ here=$(dirname "${BASH_SOURCE[0]:-$0}")
 mkdir -p "$HOME"/{.emacs.d,.config,scripts,.local}
 
 # install Homebrew and its packages
-bash -x "$here/homebrew/init.sh"
+bash -x "$here/homebrew/main.sh"
 
 # set login shell to zsh
 bash -x "$here/setup-shell.sh"
