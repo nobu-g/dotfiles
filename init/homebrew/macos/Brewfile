@@ -1,3 +1,6 @@
+# TAP
+tap "homebrew/cask-fonts"
+
 # GNU utilities
 brew "binutils"   # ld, ar, ...
 brew "coreutils"  # ls, cp, rm, ...
