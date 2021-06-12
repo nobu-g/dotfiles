@@ -11,6 +11,7 @@ brew "fswatch"
 brew "pstree"
 
 # CASK
+cask_args appdir: "/Applications"
 cask "mactex-no-gui"
 cask "latexit"
 cask "blu-ray-player-pro"

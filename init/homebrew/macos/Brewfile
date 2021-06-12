@@ -22,6 +22,7 @@ brew "nkf"
 brew "mackup"
 
 # CASK
+cask_args appdir: "/Applications"
 cask "docker"
 cask "google-chrome"
 cask "dropbox"
