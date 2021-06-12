@@ -51,6 +51,7 @@ brew "git"        # git
 brew "openssh"    # ssh
 brew "tmux"       # tmux
 brew "htop"       # top
+brew "lsd"        # ls
 brew "fd"         # find
 brew "ripgrep"    # grep
 brew "procs"      # ps

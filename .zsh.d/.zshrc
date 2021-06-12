@@ -272,12 +272,6 @@ zinit wait"1" lucid blockf nocompletions \
   atclone'zinit creinstall -q sharkdp/fd' atpull'%atclone' \
   light-mode for @sharkdp/fd
 
-# lsd: replacement for `ls` (like `exa`)
-zinit wait lucid blockf nocompletions \
-  from"gh-r" as"program" mv"lsd* -> lsd" sbin"lsd/lsd" \
-  atclone'zinit creinstall -q Peltoche/lsd' atpull'%atclone' \
-  light-mode for @Peltoche/lsd
-
 zinit wait"1" lucid \
   from"gh-r" as"program" mv"bat* -> bat" sbin"bat/bat" \
   atload"alias cat='bat -p'" \

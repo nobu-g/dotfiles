@@ -33,10 +33,10 @@ brew "cmake"
 brew "git"        # git
 brew "tmux"       # tmux
 brew "htop"       # top
+brew "lsd"        # ls
 # brew "bat"        # cat
 brew "fd"         # find
-# brew "exa"        # ls
-brew "ripgrep"    # grep
+brew "ripgrep"    # grep -r
 brew "procs"      # ps
 brew "colordiff"  # diff
 brew "sd"         # sed/awk
