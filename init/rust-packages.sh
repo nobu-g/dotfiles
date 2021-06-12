@@ -15,3 +15,4 @@ cargo install broot         # A new way to see and navigate directory trees
 cargo install watchexec-cli # monitor file change
 cargo install pueue         # process queue
 # cargo install mcfly     # better history search
+cargo install cargo-cache # cargo cache cleaner
