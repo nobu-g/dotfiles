@@ -7,6 +7,9 @@ brew "openjdk"
 
 # Misc
 brew "rga"        # ripgrep-all
+brew "pandoc"     # recommended by rga
+brew "poppler"    # recommended by rga
+brew "tesseract"  # recommended by rga
 brew "xsv"        # command-line CSV processor
 brew "st"         # command-line statistics calculator
 brew "hyperfine"  # comman-line benchmark tool
