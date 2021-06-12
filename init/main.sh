@@ -6,39 +6,13 @@ here=$(dirname "${BASH_SOURCE[0]:-$0}")
 
 mkdir -p "$HOME"/{.emacs.d,.config,scripts,.local}
 
-case "${OSTYPE}" in
-linux* | cygwin*)
-  export HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-"$HOME/.linuxbrew"}
-  BREW_SETUP_DIR="$here/linuxbrew"
-  ;;
-freebsd* | darwin*)
-  xcode-select --install
-  export HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-"/usr/local"}
-  BREW_SETUP_DIR="$here/homebrew"
-  ;;
-esac
+# install Homebrew and its packages
+bash -x "$here/homebrew/init.sh"
 
-# install Homebrew/Linuxbrew
-if ! [[ -e ${HOMEBREW_PREFIX}/bin/brew ]]; then
-  bash -x "$BREW_SETUP_DIR/init.sh"
-fi
-eval "$("$HOMEBREW_PREFIX/bin/brew" shellenv)"
-if [[ ${FULL_INSTALL} -eq 1 ]]; then
-  brew bundle install --file "$BREW_SETUP_DIR/Brewfile.full"
-else
-  brew bundle install --file "$BREW_SETUP_DIR/Brewfile"
-fi
-echo "Installed formulae and casks:"
-brew list
-
+# set login shell to zsh
 bash -x "$here/setup-shell.sh"
 
 case "${OSTYPE}" in
-linux* | cygwin*)
-  # https://qiita.com/aical/items/5b3ebee3840aae741283
-  wget http://curl.haxx.se/ca/cacert.pem -O cert.pem
-  mv cert.pem "${HOMEBREW_PREFIX}"/etc/openssl*/
-  ;;
 freebsd* | darwin*)
   bash -x "$here/setup-defaults.sh"
   # install doom-emacs
