@@ -1,0 +1,23 @@
+# Editors
+brew "neovim"
+
+# Programming languages
+brew "python@3.7"
+brew "openjdk"
+
+# Misc
+brew "rga"  # ripgrep-all
+brew "xsv"  # command-line CSV processor
+brew "st"   # command-line statistics calculator
+brew "cling"
+brew "tokei"
+brew "rename"
+brew "shellcheck"
+brew "imagemagick"
+brew "ffmpeg"
+
+# System
+brew "vmtouch"
+brew "dog"  # Command-line DNS client
+brew "bandwhich"  # Terminal bandwidth utilization tool
+brew "nmap"

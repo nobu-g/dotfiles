@@ -1,13 +1,4 @@
-brew "gcc"
-
-#
-# Shells
-#
-brew "zsh"
-
-#
 # GNU utilities
-#
 brew "binutils"   # ld, ar, ...
 brew "coreutils"  # ls, cp, rm, ...
 brew "diffutils"  # diff, cmp, ...
@@ -22,90 +13,30 @@ brew "grep"
 brew "gzip"
 brew "wget"
 
-#
-# Editors
-#
-brew "emacs"
-brew "vim"
-
-#
-# Programming languages
-#
-brew "python"
-brew "python@3.9"
-brew "perl"
-brew "ruby"
-brew "go"
-brew "openjdk"
-
-#
-# Basic CLI tools
-#
-brew "curl"
-brew "cmake"
-
-#
-# Modern alternatives to CLI tools
-#
-brew "git"        # git
-brew "openssh"    # ssh
-brew "tmux"       # tmux
-brew "htop"       # top
-brew "lsd"        # ls
-brew "fd"         # find
-brew "ripgrep"    # grep
-brew "procs"      # ps
-brew "colordiff"  # diff
-brew "sd"         # sed/awk
-
-#
 # Misc
-#
-brew "jq"      # command-line JSON processor
-brew "xsv"     # command-line CSV processor
-brew "st"      # command-line statistics calculator
-# brew "pipenv"  # package manager for python
-# brew "poetry"  # package manager for python
 brew "ghq"
-brew "gh"  # GitHub CLI
-brew "source-highlight"
-brew "xclip"
-brew "shellcheck"
-brew "tree"
-brew "rename"
 brew "nkf"
 brew "mackup"
 
-#
-# System
-#
-brew "ansible"
-brew "whois"
-brew "fswatch"
-
-#
 # CASK
-#
-cask "macfuse"
-cask "google-chrome"
-cask "google-japanese-ime"
 cask "docker"
-cask "visual-studio-code"
+cask "google-chrome"
+cask "dropbox"
 cask "iterm2"
+cask "visual-studio-code"
+cask "google-japanese-ime"
+cask "xquartz"
+cask "macfuse"
 cask "clipy"
 cask "hiddenbar"
+cask "font-hack-nerd-font"
 cask "karabiner-elements"
-cask "mactex-no-gui"
-cask "xquartz"
-cask "dropbox"
 
-#
 # MAS
-#
-mas "Slack", id: 803453959
+# mas "Slack", id: 803453959  # seems to require being signed in
 mas "LINE", id: 539883307
 mas "Kindle", id: 405399194
 # mas "Pages", id: 409201541
 mas "Keynote", id: 409183694
 mas "Numbers", id: 409203825
-# mas "The Unarchiver", id: 425424353
+mas "The Unarchiver", id: 425424353

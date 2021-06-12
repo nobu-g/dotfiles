@@ -18,13 +18,14 @@ esac
 
 # install Homebrew/Linuxbrew
 if ! [[ -e ${HOMEBREW_PREFIX}/bin/brew ]]; then
-  bash -x "$BREW_SETUP_DIR/init.sh"
+  bash -x "${BREW_SETUP_DIR}/init.sh"
 fi
 eval "$("$HOMEBREW_PREFIX/bin/brew" shellenv)"
+brew bundle install --file "$here/Brewfile"
+brew bundle install --file "${BREW_SETUP_DIR}/Brewfile"
 if [[ ${FULL_INSTALL} -eq 1 ]]; then
-  brew bundle install --file "$BREW_SETUP_DIR/Brewfile.full"
-else
-  brew bundle install --file "$BREW_SETUP_DIR/Brewfile"
+  brew bundle install --file "$here/Brewfile.full"
+  brew bundle install --file "${BREW_SETUP_DIR}/Brewfile.full"
 fi
 echo "Installed formulae and casks:"
 brew list

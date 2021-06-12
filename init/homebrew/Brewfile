@@ -1,0 +1,46 @@
+# Basic CLI tools
+brew "gcc"
+brew "gcc@10"
+brew "curl"
+brew "cmake"
+
+# Shells
+brew "zsh"
+
+# Editors
+brew "emacs"
+brew "vim"
+
+# Programming languages
+brew "python"
+brew "python@3.9"
+brew "python@3.8"
+brew "perl"
+brew "ruby"
+brew "go"
+# Rust is installed via rustup
+
+# Modern alternatives to Liunx CLI tools
+brew "git"        # git
+brew "openssh"    # ssh
+brew "tmux"       # tmux
+brew "htop"       # top
+brew "lsd"        # ls
+brew "fd"         # find
+brew "ripgrep"    # grep -r
+brew "procs"      # ps
+brew "colordiff"  # diff
+brew "sd"         # sed/awk
+# bat is installed via zinit
+
+# Misc
+brew "jq"      # command-line JSON processor
+brew "source-highlight"
+brew "tree"
+brew "gh"  # GitHub CLI
+# brew "pipenv"  # package manager for python
+# brew "poetry"  # package manager for python
+
+# System
+brew "ansible"
+brew "whois"
