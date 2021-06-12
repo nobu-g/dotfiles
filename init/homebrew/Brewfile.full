@@ -6,9 +6,12 @@ brew "python@3.7"
 brew "openjdk"
 
 # Misc
-brew "rga"  # ripgrep-all
-brew "xsv"  # command-line CSV processor
-brew "st"   # command-line statistics calculator
+brew "rga"        # ripgrep-all
+brew "xsv"        # command-line CSV processor
+brew "st"         # command-line statistics calculator
+brew "hyperfine"  # comman-line benchmark tool
+brew "pastel"     # color manipulation
+brew "dust"       # A more intuitive version of du in rust
 brew "cling"
 brew "tokei"
 brew "rename"
