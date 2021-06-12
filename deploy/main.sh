@@ -32,6 +32,6 @@ freebsd* | darwin*)
   ln -snfv "${DOTPATH%/}/.doom.d" "$HOME/.doom.d"
   ln -snfv "${DOTPATH%/}/.mackup" "$HOME"
   ln -snfv "${DOTPATH%/}/.mackup.cfg" "$HOME"
-  bash -ex "${DOTPATH%/}/deploy/launch-agents.sh"
+  bash -x "${DOTPATH%/}/deploy/launch-agents.sh"
   ;;
 esac

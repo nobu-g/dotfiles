@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -ux
+set -u
 
 # https://wonderwall.hatenablog.com/entry/rust-command-line-tools
 

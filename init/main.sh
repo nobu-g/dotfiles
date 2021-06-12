@@ -20,7 +20,7 @@ esac
 
 # install Homebrew/Linuxbrew
 if ! [[ -e ${HOMEBREW_PREFIX}/bin/brew ]]; then
-  bash "$BREW_SETUP_DIR/init.sh"
+  bash -x "$BREW_SETUP_DIR/init.sh"
 fi
 eval "$("$HOMEBREW_PREFIX/bin/brew" shellenv)"
 if [[ ${FULL_INSTALL} -eq 1 ]]; then
@@ -31,7 +31,7 @@ fi
 echo "Installed formulae and casks:"
 brew list
 
-bash "$here/setup-shell.sh"
+bash -x "$here/setup-shell.sh"
 
 case "${OSTYPE}" in
 linux* | cygwin*)
@@ -40,7 +40,7 @@ linux* | cygwin*)
   mv cert.pem "${HOMEBREW_PREFIX}"/etc/openssl*/
   ;;
 freebsd* | darwin*)
-  bash "$here/setup-defaults.sh"
+  bash -x "$here/setup-defaults.sh"
   # install doom-emacs
   if ! (type ~/.emacs.d/bin/doom &> /dev/null); then
     rm -rf ~/.emacs.d &&
@@ -54,7 +54,7 @@ esac
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
 export PATH="$HOME/.cargo/bin:$PATH"
 if (type cargo &> /dev/null); then
-  bash "$here/rust-packages.sh"
+  bash -x "$here/rust-packages.sh"
 fi
 
 # install zinit
@@ -65,12 +65,12 @@ fi
 
 # install python packages
 if (type pip3 &> /dev/null); then
-  bash "$here/python-packages.sh"
+  bash -x "$here/python-packages.sh"
 fi
 
 # install golang packages
 if (type go &> /dev/null); then
-  bash "$here/go-packages.sh"
+  bash -x "$here/go-packages.sh"
 fi
 
 # install libstderred (https://github.com/sickill/stderred)

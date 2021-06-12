@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -ue
+set -u
 
 export GOPATH="${HOME}/.go"
 export PATH="${GOPATH}/bin:$PATH"
