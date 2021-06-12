@@ -7,7 +7,7 @@ set -u
 # crates installed via zinit:
 #   ripgrep, fd, bat, delta
 # crates installed via homebrew:
-#   xsv, lsd, fd, ripgrep, procs, sd, hyperfine, pastel, du-dust
+#   xsv, lsd, fd, ripgrep, ripgrep-all, procs, sd, hyperfine, pastel, du-dust
 
 cargo install gping         # Ping, but with a graph
 cargo install hexyl         # A command-line hex viewer
