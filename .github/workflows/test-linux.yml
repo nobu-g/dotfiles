@@ -13,7 +13,7 @@ jobs:
       - name: Install Linuxbrew requirements
         run: apt-get install -y gcc build-essential procps curl file git
       - name: Install Other requirements
-        run: apt-get install -y wget python3-pip unzip gettext
+        run: apt-get install -y python3-pip unzip gettext
       - name: Clone this repo
         run: git clone --depth 1 https://github.com/nobu-g/dotfiles.git
       - name: Install dotfiles
@@ -37,7 +37,7 @@ jobs:
           yum groupinstall -y 'Development Tools'
           yum install -y procps-ng curl file git
       - name: Install Other requirements
-        run: yum install -y wget unzip gettext perl-ExtUtils-MakeMaker glibc-devel
+        run: yum install -y unzip gettext perl-ExtUtils-MakeMaker glibc-devel
       - name: Clone this repo
         run: git clone --depth 1 https://github.com/nobu-g/dotfiles.git
       - name: Install dotfiles
@@ -59,7 +59,7 @@ jobs:
           dnf group install -y 'Development Tools'
           dnf clean all && dnf install -y gcc procps-ng curl file git libxcrypt-compat
       - name: Install Other requirements
-        run: dnf install -y g++ wget unzip gettext perl-ExtUtils-MakeMaker perl-FindBin glibc-devel
+        run: dnf install -y g++ unzip gettext perl-ExtUtils-MakeMaker perl-FindBin glibc-devel
       - name: Clone this repo
         run: git clone --depth 1 https://github.com/nobu-g/dotfiles.git
       - name: Install dotfiles
