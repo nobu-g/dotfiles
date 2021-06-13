@@ -7,7 +7,17 @@ here=$(dirname "${BASH_SOURCE[0]:-$0}")
 mkdir -p "$HOME"/{.emacs.d,.config,scripts,.local}
 
 # install Homebrew and its packages
+
+case "${OSTYPE}" in
+linux* | cygwin*)
+  HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-"$HOME/.linuxbrew"}
+  ;;
+freebsd* | darwin*)
+  HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-"/usr/local"}
+  ;;
+esac
 bash -x "$here/homebrew/main.sh"
+eval "$("${HOMEBREW_PREFIX}/bin/brew" shellenv)"
 
 # set login shell to zsh
 bash -x "$here/setup-shell.sh"
