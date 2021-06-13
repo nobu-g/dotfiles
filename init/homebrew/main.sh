@@ -29,11 +29,3 @@ if [[ ${FULL_INSTALL} -eq 1 ]]; then
 fi
 echo "Installed formulae and casks:"
 brew list
-
-case "${OSTYPE}" in
-linux* | cygwin*)
-  # https://qiita.com/aical/items/5b3ebee3840aae741283
-  wget http://curl.haxx.se/ca/cacert.pem -O cert.pem
-  mv cert.pem "${HOMEBREW_PREFIX}"/etc/openssl*/
-  ;;
-esac
