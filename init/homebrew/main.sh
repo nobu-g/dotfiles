@@ -18,7 +18,9 @@ esac
 if ! [[ -e ${HOMEBREW_PREFIX}/bin/brew ]]; then
   bash -x "${BREW_SETUP_DIR}/init.sh"
 fi
+eval "$("${HOMEBREW_PREFIX}/bin/brew" shellenv)"
 
+# install dependencies from Brewfile
 brew bundle install --file "$here/Brewfile"
 brew bundle install --file "${BREW_SETUP_DIR}/Brewfile"
 if [[ ${FULL_INSTALL} -eq 1 ]]; then
