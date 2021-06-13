@@ -11,7 +11,7 @@ jobs:
       - name: Install basic requirements
         run: apt-get update && apt-get -y upgrade && apt-get install -y sudo make zsh
       - name: Install Linuxbrew requirements
-        run: apt-get install -y gcc build-essential procps curl file git libxcrypt-compat
+        run: apt-get install -y gcc build-essential procps curl file git
       - name: Install Other requirements
         run: apt-get install -y wget python3-pip unzip gettext
       - name: Clone this repo
@@ -30,12 +30,12 @@ jobs:
     container: centos:latest
     steps:
       - name: Install basic requirements
-        run: yum update -y yum upgrade -y && yum install -y sudo make zsh
+        run: yum update -y && yum upgrade -y && yum install -y sudo make zsh
       - name: Install Linuxbrew requirements
         run: |
           yum install -y gcc
           yum groupinstall -y 'Development Tools'
-          yum install -y procps-ng curl file git libxcrypt-compat
+          yum install -y procps-ng curl file git
       - name: Install Other requirements
         run: yum install -y wget unzip gettext perl-ExtUtils-MakeMaker glibc-devel
       - name: Install packages for libstderred
@@ -54,7 +54,7 @@ jobs:
     container: fedora:latest
     steps:
       - name: Install basic requirements
-        run: dnf update -y dnf upgrade -y && dnf install -y sudo make zsh
+        run: dnf update -y && dnf upgrade -y && dnf install -y sudo make zsh
       - name: Install Linuxbrew requirements
         run: |
           dnf install -y gcc
