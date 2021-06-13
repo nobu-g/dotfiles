@@ -1,5 +1,6 @@
 DOTPATH := $(shell cd $(dir $(lastword $(MAKEFILE_LIST))); pwd)
 HOMEBREW_PREFIX :=
+SUDO := 0
 FULL_INSTALL := 0
 
 .PHONY: all list deploy init update install test clean help
@@ -10,10 +11,8 @@ deploy: ## Create symlink to home directory
 	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/deploy/main.sh
 
 init: ## Setup environment settings
-	@DOTPATH=$(DOTPATH) HOMEBREW_PREFIX=$(HOMEBREW_PREFIX) FULL_INSTALL=$(FULL_INSTALL) bash $(DOTPATH)/init/main.sh
-
-# test: ## Test dotfiles and init scripts
-# 	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/test/test.sh
+	HOMEBREW_PREFIX=$(HOMEBREW_PREFIX) SUDO=$(SUDO) FULL_INSTALL=$(FULL_INSTALL) \
+	bash $(DOTPATH)/init/main.sh
 
 update: ## Fetch changes for this repo
 	git pull origin main
@@ -21,7 +20,7 @@ update: ## Fetch changes for this repo
 install: update init deploy ## Run make update, init, deploy
 	zsh -l -c 'exit'
 
-test:
+test: ## Test if expected tools are installed
 	zsh -i $(DOTPATH)/test/main.zsh
 
 # clean: ## Remove the dot files and this repo

@@ -2,6 +2,11 @@
 
 set -xu
 
+# Environment variables:
+# - HOMEBREW_PREFIX: directory where Homebrew and its dependencies are installed
+# - SUDO: 1 if the user has sudo previledge and wants to exercise it
+# - FULL_INSTALL: 1 if the user wants to install all the Homebrew dependencies
+
 here=$(dirname "${BASH_SOURCE[0]:-$0}")
 
 mkdir -p "$HOME"/{.emacs.d,.config,scripts,.local}
@@ -19,8 +24,8 @@ esac
 bash -x "$here/homebrew/main.sh"
 eval "$("${HOMEBREW_PREFIX}/bin/brew" shellenv)"
 
-# set login shell to zsh
-bash -x "$here/setup-shell.sh"
+# set the login shell to zsh
+bash "$here/setup-shell.sh"
 
 case "${OSTYPE}" in
 freebsd* | darwin*)

@@ -8,8 +8,10 @@ set -u
 #sudo scutil --set LocalHostName "0x6D746873"
 #sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "0x6D746873"
 
-# Disable the sound effects on boot
-sudo nvram SystemAudioVolume=" "
+if [[ ${SUDO} -eq 1 ]]; then
+  # Disable the sound effects on boot
+  sudo nvram SystemAudioVolume=" "
+fi
 
 # Always show scrollbars
 defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
@@ -47,8 +49,10 @@ defaults write com.apple.finder ShowStatusBar -bool true
 echo "Finder: show the ~/Library folder"
 chflags nohidden ~/Library
 
-echo "Finder: show the /Volumes folder"
-sudo chflags nohidden /Volumes
+if [[ ${SUDO} -eq 1 ]]; then
+  echo "Finder: show the /Volumes folder"
+  sudo chflags nohidden /Volumes
+fi
 
 echo "Terminal: only use UTF-8"
 defaults write com.apple.terminal StringEncodings -array 4
@@ -134,4 +138,6 @@ defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
 defaults write com.apple.ActivityMonitor SortDirection -int 0
 
 echo "Kill affected applications"
-for app in Safari Finder Dock Mail SystemUIServer; do killall "$app" > /dev/null 2>&1; done
+for app in Safari Finder Dock Mail SystemUIServer; do
+  killall "$app" &> /dev/null
+done
