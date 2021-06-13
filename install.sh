@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 set -eu
 
@@ -12,7 +12,7 @@ DOTPATH="$HOME/dotfiles"
 
 # is_exists returns true if executable $1 exists in $PATH
 is_exists() {
-  type "$1" >/dev/null 2>&1
+  type "$1" > /dev/null 2>&1
   return $?
 }
 
@@ -27,7 +27,7 @@ die() {
 }
 
 dotfiles_download() {
-  if [[ -d "$DOTPATH" ]]; then
+  if [ -d "$DOTPATH" ]; then
     die "$DOTPATH: already exists"
   fi
 
@@ -43,7 +43,7 @@ dotfiles_download() {
       wget -O - "$DOTFILES_TARBALL"
 
     fi | tar xvz
-    if [[ ! -d dotfiles-master ]]; then
+    if [ ! -d dotfiles-master ]; then
       die "dotfiles-master: not found"
     fi
     command mv -f dotfiles-master "$DOTPATH"
