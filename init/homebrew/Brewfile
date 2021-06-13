@@ -1,5 +1,6 @@
 # Basic CLI tools
 brew "gcc"
+brew "wget"
 brew "curl"
 brew "cmake"
 
