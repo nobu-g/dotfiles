@@ -24,9 +24,10 @@ brew "rename"
 brew "shellcheck"
 brew "imagemagick"
 brew "ffmpeg"
+brew "gh"         # GitHub CLI
 
 # System
 brew "vmtouch"
-brew "dog"  # Command-line DNS client
+brew "dog"        # Command-line DNS client
 brew "bandwhich"  # Terminal bandwidth utilization tool
 brew "nmap"

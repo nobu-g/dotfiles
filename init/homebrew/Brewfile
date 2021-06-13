@@ -38,7 +38,6 @@ brew "sd"         # sed/awk
 brew "jq"      # command-line JSON processor
 brew "source-highlight"
 brew "tree"
-brew "gh"  # GitHub CLI
 # brew "pipenv"  # package manager for python
 # brew "poetry"  # package manager for python
 
