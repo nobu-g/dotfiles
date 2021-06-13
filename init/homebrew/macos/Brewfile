@@ -31,8 +31,6 @@ cask "visual-studio-code"
 cask "google-japanese-ime"
 cask "xquartz"
 cask "macfuse"
-cask "clipy"
-cask "hiddenbar"
 cask "font-hack-nerd-font"
 cask "karabiner-elements"
 

@@ -20,6 +20,9 @@ cask "audacity"
 cask "google-cloud-sdk"
 cask "alfred"
 cask "zoom"
+cask "notion"
+cask "clipy"
+cask "hiddenbar"
 
 # MAS
 mas "XCode", id: 497799835
