@@ -15,8 +15,9 @@ brew "st"         # command-line statistics calculator
 brew "hyperfine"  # comman-line benchmark tool
 brew "pastel"     # color manipulation
 brew "dust"       # A more intuitive version of du in rust
-brew "cling"
-brew "tokei"
+brew "cling"      # C++ interpreter
+brew "tokei"      # Program that allows you to count code, quickly
+brew "nginx"      # HTTP(S) server and reverse proxy, and IMAP/POP3 proxy server
 brew "rename"
 brew "shellcheck"
 brew "imagemagick"

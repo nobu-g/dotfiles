@@ -1,6 +1,5 @@
 # Basic CLI tools
 brew "gcc"
-brew "gcc@10"
 brew "curl"
 brew "cmake"
 
@@ -18,6 +17,7 @@ brew "python@3.8"
 brew "perl"
 brew "ruby"
 brew "go"
+brew "nodebrew"
 # Rust is installed via rustup
 
 # Modern alternatives to Liunx CLI tools
