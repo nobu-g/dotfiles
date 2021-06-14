@@ -63,7 +63,7 @@ if [[ -z ${zsh_path} ]]; then
     done
   fi
   if [[ ${SUDO} -eq 1 ]]; then
-    echo "Trying to add ${zsh_path} to /etc/shells, but it seems you don't have a sudo priviledge."
+    echo "Trying to add ${zsh_path} to /etc/shells, but it seems you don't have sudo privileges."
     echo "Try to install dotfiles specifying 'SUDO=1'"
     exit 1
   fi
@@ -72,7 +72,7 @@ if [[ -z ${zsh_path} ]]; then
 fi
 
 if [[ ${SUDO} -eq 1 ]]; then
-  echo "Trying to change your login shell to ${zsh_path}, but it seems you don't have a sudo priviledge."
+  echo "Trying to change your login shell to ${zsh_path}, but it seems you don't have sudo privileges."
   echo "Try to install dotfiles specifying 'SUDO=1'"
   exit 1
 fi
