@@ -55,7 +55,7 @@ jobs:
         run: |
           dnf install -y gcc
           dnf group install -y 'Development Tools'
-          dnf clean all && dnf install -y gcc procps-ng curl file git libxcrypt-compat
+          dnf clean all && dnf install -y procps-ng curl file git libxcrypt-compat
       - name: Install other requirements
         run: dnf install -y g++ perl-ExtUtils-MakeMaker perl-FindBin glibc-devel
       - name: Clone this repo
