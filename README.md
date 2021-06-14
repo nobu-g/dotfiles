@@ -8,8 +8,8 @@
 My dotfiles.
 
 ## Features
-- zsh
-- Homebrew/Linuxbrew
+- [zsh](https://zsh.sourceforge.io)
+- [Homebrew](https://brew.sh/) / [Linuxbrew](https://docs.brew.sh/Homebrew-on-Linux)
 - [zinit](https://github.com/zdharma/zinit)
 - [powerlevel10k](https://github.com/romkatv/powerlevel10k)
 - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
