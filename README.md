@@ -17,7 +17,7 @@ My dotfiles.
 
 ## Setup
 
-### Those who have sudo privileges
+### For those who have sudo privileges
 
 ```bash
 $ git clone https://github.com/nobu-g/dotfiles.git
@@ -25,7 +25,7 @@ $ cd dotfiles
 $ make install SUDO=1
 ```
 
-### Those who do not have sudo privileges
+### For those who do not have sudo privileges
 
 ```bash
 git clone https://github.com/nobu-g/dotfiles.git
@@ -38,12 +38,24 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/nobu-g/dotfiles/main/insta
 ```
 
 ## Requirements
-- make
-- gcc
-- git
-- curl
-- sudo
-- zsh
+
+### macOS
+Nothing (pre-installed).
+
+### Ubuntu
+- sudo, make, zsh
+- gcc, build-essential, procps, curl, file, git
+
+### CentOS
+- sudo, make, zsh
+- gcc, 'Development Tools', procps-ng curl file git
+- perl-ExtUtils-MakeMaker, glibc-devel
+
+### Fedora
+- sudo, make, zsh
+- gcc, 'Development Tools', procps-ng curl file git, libxcrypt-compat
+- g++, perl-ExtUtils-MakeMaker, perl-FindBin, glibc-devel
+
 
 ## License
 
