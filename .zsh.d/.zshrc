@@ -403,6 +403,10 @@ peco-find-file() {
 zle -N peco-find-file
 bindkey '^_' peco-find-file  # works by ^/
 
+# broot
+[[ -f ${XDG_CONFIG_HOME:-$HOME/.config}/broot/launcher/bash/br ]] && \
+  source ${XDG_CONFIG_HOME:-$HOME/.config}/broot/launcher/bash/br
+
 ## auto ls after changing directory
 autoload -Uz _ls_abbrev
 add-zsh-hook chpwd _ls_abbrev

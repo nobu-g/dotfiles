@@ -205,18 +205,18 @@
 
 		# A popular set of shortcuts for going up and down:
 		#
-		# {
-		# 	key: ctrl-k
-		# 	execution: ":line_up"
-		# }
-		# {
-		# 	key: ctrl-j
-		# 	execution: ":line_down"
-		# }
-		# {
-		# 	key: ctrl-u
-		# 	execution: ":page_up"
-		# }
+		{
+			key: ctrl-p
+			execution: ":line_up"
+		}
+		{
+			key: ctrl-n
+			execution: ":line_down"
+		}
+		{
+			key: ctrl-u
+			internal: ":input_clear"
+		}
 		# {
 		# 	key: ctrl-d
 		# 	execution: ":page_down"
