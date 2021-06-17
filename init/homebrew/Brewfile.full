@@ -25,6 +25,7 @@ brew "shellcheck"
 brew "imagemagick"
 brew "ffmpeg"
 brew "gh"         # GitHub CLI
+brew "choose-rust"  # Human-friendly and fast alternative to cut and (sometimes) awk
 
 # System
 brew "vmtouch"
