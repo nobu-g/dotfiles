@@ -457,5 +457,3 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 if (type zprof &> /dev/null); then
   zprof
 fi
-
-source /home/ueda/.config/broot/launcher/bash/br
