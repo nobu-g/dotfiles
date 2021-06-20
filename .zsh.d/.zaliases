@@ -1,6 +1,6 @@
 setopt complete_aliases # don't expand aliases _before_ completion has finished
 
-alias ls='ls -F --color=tty'
+alias ls='ls -FH --color=tty'
 alias ll='lsd -lFh'
 alias la='lsd -laFh'
 alias lt='lsd -ltFh'
