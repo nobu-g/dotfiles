@@ -140,6 +140,7 @@ infopath=(
   ${infopath}
 )
 fpath=(
+  ${HOME}/.zfunc(N-/)
   ${HOME}{/.local,/local,/usr}/share/zsh/{functions,site-functions}(N-/)
   ${fpath}
 )
