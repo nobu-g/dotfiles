@@ -6,19 +6,22 @@ if [[ $# == 0 ]]; then
 fi
 
 if ! [[ -e $1 ]]; then
-  echo "lspath: cannot access '$1': Not such file or directory" 1>&2
+  echo "lspath: cannot access '$1': No such file or directory" 1>&2
   return 1
 fi
 
 # convert to absolute path without resolving symlinks
+local path_
 if [[ -d $1 ]]; then
-  local path_
   path_=$(
-    cd "$1" &>/dev/null || return
+    cd "$1" &> /dev/null || exit
     pwd
   )
   command ls -d1AH --color=tty ${path_}/*
 else
-  cd "$(dirname "$1")" &>/dev/null || return
-  command ls -1AH --color=tty "$(pwd)/$(basename "$1")"
+  path_=$(
+    cd "$(dirname "$1")" &> /dev/null || exit
+    pwd
+  )
+  command ls -1AH --color=tty "${path_}/$(basename "$1")"
 fi
