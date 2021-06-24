@@ -35,7 +35,8 @@ brew "sd"         # sed/awk
 # bat is installed via zinit
 
 # Misc
-brew "jq"      # command-line JSON processor
+brew "moreutils"  # chronic, combine, ifne, sponge, ...
+brew "jq"         # command-line JSON processor
 brew "source-highlight"
 brew "tree"
 # brew "pipenv"  # package manager for python
