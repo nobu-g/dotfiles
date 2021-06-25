@@ -77,9 +77,9 @@ jobs:
         run: |
           dnf install -y gcc
           dnf group install -y 'Development Tools'
-          dnf clean all && dnf install -y procps-ng curl file git libxcrypt-compat
+          dnf clean all && dnf install -y procps-ng curl file git
       - name: Install other requirements
-        run: dnf install -y g++ perl-ExtUtils-MakeMaker perl-FindBin glibc-devel
+        run: dnf install -y perl-ExtUtils-MakeMaker glibc-devel
       - name: Clone this repo
         run: git clone --depth 1 https://github.com/nobu-g/dotfiles.git
       - name: Install dotfiles
