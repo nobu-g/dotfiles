@@ -14,7 +14,7 @@ jobs:
       - name: Create and start docker container
         run: docker run -td -u user -w /home/user local /bin/sh
       - name: Clone dotfiles
-        run: docker exec $(docker ps -lq) "git clone --depth 1 https://github.com/nobu-g/dotfiles"
+        run: docker exec $(docker ps -lq) git clone --depth 1 https://github.com/nobu-g/dotfiles
       - name: Install dotfiles
         run: docker exec -i $(docker ps -lq) -w /home/user/dotfiles make install
       - name: Test dotfiles
