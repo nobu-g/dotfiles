@@ -12,11 +12,13 @@ jobs:
       - name: Build docker image
         run: docker build . -t local
       - name: Create and start docker container
-        run: docker run -td -v $PWD:/app -w /app local /bin/bash
+        run: docker run -td -u user -w /home/user local /bin/bash
+      - name: Clone dotfiles
+        run: docker exec -i $(docker ps -lq) git clone --depth 1 https://github.com/nobu-g/dotfiles
       - name: Install dotfiles
-        run: docker exec -i -u user $(docker ps -lq) make install
+        run: docker exec -i $(docker ps -lq) -w /home/user/dotfiles make install
       - name: Test dotfiles
-        run: docker exec -i -u user $(docker ps -lq) make test
+        run: docker exec -i $(docker ps -lq) -w /home/user/dotfiles make test
     env:
       DEBIAN_FRONTEND: noninteractive
 
