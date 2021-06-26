@@ -12,6 +12,15 @@ jobs:
         run: apt-get update && apt-get -y upgrade && apt-get install -y sudo make zsh
       - name: Install Linuxbrew requirements
         run: apt-get install -y gcc build-essential procps curl file git
+      - name: Add sudo user
+        run: |
+          groupadd -g 1000 wheel
+          useradd -g wheel -G sudo -m -s /bin/bash user
+          echo 'user:hogehoge' | chpasswd
+          echo 'Defaults visiblepw'             >> /etc/sudoers
+          echo 'user ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+      - name: Switch user
+        run: su user
       - name: Clone this repo
         run: git clone --depth 1 https://github.com/nobu-g/dotfiles.git
       - name: Install dotfiles
