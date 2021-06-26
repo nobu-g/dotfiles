@@ -56,6 +56,10 @@ Nothing (pre-installed).
 - gcc, 'Development Tools', procps-ng curl file git, libxcrypt-compat
 - g++, perl-ExtUtils-MakeMaker, perl-FindBin, glibc-devel
 
+### Rocky Linux
+- sudo, make, zsh
+- gcc, 'Development Tools', procps-ng curl file git
+- perl-ExtUtils-MakeMaker, glibc-devel
 
 ## License
 
