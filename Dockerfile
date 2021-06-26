@@ -8,7 +8,7 @@ RUN groupadd -g 1000 wheel && \
     echo 'user:hogehoge' | chpasswd
 RUN echo 'Defaults visiblepw' >> /etc/sudoers && \
     echo 'user ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-
+# install dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     make \
     zsh \
@@ -21,10 +21,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-# RUN chsh -s /usr/bin/zsh
-# RUN git clone https://github.com/nobu-g/dotfiles
-
-# RUN git clone --depth 1 https://github.com/nobu-g/dotfiles.git
 
 # RUN echo y | sh -c "$(curl -fsSL https://raw.githubusercontent.com/nobu-g/dotfiles/main/install.sh)"
 
