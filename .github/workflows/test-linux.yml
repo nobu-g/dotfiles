@@ -19,27 +19,21 @@ jobs:
       - name: Test dotfiles
         run: docker exec -i -w /home/user/dotfiles $(docker ps -lq) make test
 
-  # centos:
-  #   runs-on: ubuntu-latest
-  #   container: centos:latest
-  #   steps:
-  #     - name: Install basic requirements
-  #       run: yum update -y && yum upgrade -y && yum install -y sudo make zsh
-  #     - name: Install Linuxbrew requirements
-  #       run: |
-  #         yum install -y gcc
-  #         yum groupinstall -y 'Development Tools'
-  #         yum install -y procps-ng curl file git
-  #     - name: Install other requirements
-  #       run: yum install -y perl-ExtUtils-MakeMaker glibc-devel
-  #     - name: Clone this repo
-  #       run: git clone --depth 1 https://github.com/nobu-g/dotfiles.git
-  #     - name: Install dotfiles
-  #       run: make install
-  #       working-directory: ./dotfiles
-  #     - name: Test commands
-  #       run: make test
-  #       working-directory: ./dotfiles
+  centos:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Build docker image
+        run: docker build . -f containers/centos.dockerfile -t dotfiles:centos
+      - name: Create and start docker container
+        run: docker run -td -u user -w /home/user dotfiles:centos /bin/sh
+      - name: Clone dotfiles
+        run: docker exec $(docker ps -lq) git clone --depth 1 https://github.com/nobu-g/dotfiles
+      - name: Install dotfiles
+        run: docker exec -i -w /home/user/dotfiles $(docker ps -lq) make install
+      - name: Test dotfiles
+        run: docker exec -i -w /home/user/dotfiles $(docker ps -lq) make test
 
   # fedora:
   #   runs-on: ubuntu-latest
