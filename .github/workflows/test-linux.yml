@@ -5,22 +5,19 @@ on: [push]
 jobs:
   ubuntu:
     runs-on: ubuntu-latest
-    # container: ubuntu:latest
     steps:
       - name: Check out code
         uses: actions/checkout@v2
       - name: Build docker image
-        run: docker build . -t local
+        run: docker build . -f containers/ubuntu.dockerfile -t dotfiles:ubuntu
       - name: Create and start docker container
-        run: docker run -td -u user -w /home/user local /bin/sh
+        run: docker run -td -u user -w /home/user dotfiles:ubuntu /bin/sh
       - name: Clone dotfiles
         run: docker exec $(docker ps -lq) git clone --depth 1 https://github.com/nobu-g/dotfiles
       - name: Install dotfiles
         run: docker exec -i -w /home/user/dotfiles $(docker ps -lq) make install
       - name: Test dotfiles
         run: docker exec -i -w /home/user/dotfiles $(docker ps -lq) make test
-    env:
-      DEBIAN_FRONTEND: noninteractive
 
   # centos:
   #   runs-on: ubuntu-latest
