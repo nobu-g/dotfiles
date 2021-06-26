@@ -35,27 +35,21 @@ jobs:
       - name: Test dotfiles
         run: docker exec -i -w /home/user/dotfiles $(docker ps -lq) make test
 
-  # fedora:
-  #   runs-on: ubuntu-latest
-  #   container: fedora:latest
-  #   steps:
-  #     - name: Install basic requirements
-  #       run: dnf update -y && dnf upgrade -y && dnf install -y sudo make zsh
-  #     - name: Install Linuxbrew requirements
-  #       run: |
-  #         dnf install -y gcc
-  #         dnf group install -y 'Development Tools'
-  #         dnf clean all && dnf install -y procps-ng curl file git libxcrypt-compat
-  #     - name: Install other requirements
-  #       run: dnf install -y g++ perl-ExtUtils-MakeMaker perl-FindBin glibc-devel
-  #     - name: Clone this repo
-  #       run: git clone --depth 1 https://github.com/nobu-g/dotfiles.git
-  #     - name: Install dotfiles
-  #       run: make install
-  #       working-directory: ./dotfiles
-  #     - name: Test commands
-  #       run: make test
-  #       working-directory: ./dotfiles
+  fedora:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Build docker image
+        run: docker build . -f containers/fedora.dockerfile -t dotfiles:fedora
+      - name: Create and start docker container
+        run: docker run -td -u user -w /home/user dotfiles:fedora /bin/sh
+      - name: Clone dotfiles
+        run: docker exec $(docker ps -lq) git clone --depth 1 https://github.com/nobu-g/dotfiles
+      - name: Install dotfiles
+        run: docker exec -i -w /home/user/dotfiles $(docker ps -lq) make install
+      - name: Test dotfiles
+        run: docker exec -i -w /home/user/dotfiles $(docker ps -lq) make test
 
   # rockylinux:
   #   runs-on: ubuntu-latest
