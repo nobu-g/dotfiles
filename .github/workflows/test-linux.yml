@@ -16,9 +16,9 @@ jobs:
       - name: Clone dotfiles
         run: docker exec $(docker ps -lq) git clone --depth 1 https://github.com/nobu-g/dotfiles
       - name: Install dotfiles
-        run: docker exec -i $(docker ps -lq) -w /home/user/dotfiles make install
+        run: docker exec -i -w /home/user/dotfiles $(docker ps -lq) make install
       - name: Test dotfiles
-        run: docker exec -i $(docker ps -lq) -w /home/user/dotfiles make test
+        run: docker exec -i -w /home/user/dotfiles $(docker ps -lq) make test
     env:
       DEBIAN_FRONTEND: noninteractive
 
