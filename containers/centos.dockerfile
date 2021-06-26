@@ -6,12 +6,13 @@ RUN useradd -m -s /bin/bash user && \
     echo 'user:hogehoge' | chpasswd && \
     echo 'user ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 # install dependencies
-RUN yum update && yum install -y \
+RUN yum update -y && yum install -y \
     make \
     zsh \
     gcc \
     && yum groupinstall -y 'Development Tools' \
-    && yum install -y procps-ng \
+    && yum install -y \
+    procps-ng \
     curl \
     file \
     git \
