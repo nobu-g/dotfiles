@@ -10,7 +10,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
       - name: Build docker image
-        run: docker build -t local < Dockerfile
+        run: docker build . -t local
       - name: Create and start docker container
         run: docker run -td -v $PWD:/app -w /app local /bin/bash
       - name: Install dotfiles
