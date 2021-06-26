@@ -28,4 +28,4 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # RUN echo y | sh -c "$(curl -fsSL https://raw.githubusercontent.com/nobu-g/dotfiles/main/install.sh)"
 
-# CMD [ "zsh" ]
+CMD [ "/bin/sh" ]
