@@ -5,61 +5,17 @@ on: [push]
 jobs:
   ubuntu:
     runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        dist: [ubuntu, centos, fedora, rockylinux]
     steps:
       - name: Check out code
         uses: actions/checkout@v2
       - name: Build docker image
-        run: docker build . -f containers/ubuntu.dockerfile -t dotfiles:ubuntu
+        run: docker build . -f containers/${{ matrix.dist }}.dockerfile -t dotfiles:${{ matrix.dist }}
       - name: Create and start docker container
-        run: docker run -td -u user -w /home/user dotfiles:ubuntu /bin/sh
-      - name: Clone dotfiles
-        run: docker exec $(docker ps -lq) git clone --depth 1 https://github.com/nobu-g/dotfiles
-      - name: Install dotfiles
-        run: docker exec -i -w /home/user/dotfiles $(docker ps -lq) make install
-      - name: Test dotfiles
-        run: docker exec -i -w /home/user/dotfiles $(docker ps -lq) make test
-
-  centos:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v2
-      - name: Build docker image
-        run: docker build . -f containers/centos.dockerfile -t dotfiles:centos
-      - name: Create and start docker container
-        run: docker run -td -u user -w /home/user dotfiles:centos /bin/sh
-      - name: Clone dotfiles
-        run: docker exec $(docker ps -lq) git clone --depth 1 https://github.com/nobu-g/dotfiles
-      - name: Install dotfiles
-        run: docker exec -i -w /home/user/dotfiles $(docker ps -lq) make install
-      - name: Test dotfiles
-        run: docker exec -i -w /home/user/dotfiles $(docker ps -lq) make test
-
-  fedora:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v2
-      - name: Build docker image
-        run: docker build . -f containers/fedora.dockerfile -t dotfiles:fedora
-      - name: Create and start docker container
-        run: docker run -td -u user -w /home/user dotfiles:fedora /bin/sh
-      - name: Clone dotfiles
-        run: docker exec $(docker ps -lq) git clone --depth 1 https://github.com/nobu-g/dotfiles
-      - name: Install dotfiles
-        run: docker exec -i -w /home/user/dotfiles $(docker ps -lq) make install
-      - name: Test dotfiles
-        run: docker exec -i -w /home/user/dotfiles $(docker ps -lq) make test
-
-  rockylinux:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v2
-      - name: Build docker image
-        run: docker build . -f containers/rockylinux.dockerfile -t dotfiles:rockylinux
-      - name: Create and start docker container
-        run: docker run -td -u user -w /home/user dotfiles:rockylinux /bin/sh
+        run: docker run -td -u user -w /home/user dotfiles:${{ matrix.dist }} /bin/sh
       - name: Clone dotfiles
         run: docker exec $(docker ps -lq) git clone --depth 1 https://github.com/nobu-g/dotfiles
       - name: Install dotfiles
