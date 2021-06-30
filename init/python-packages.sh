@@ -12,3 +12,4 @@ pipx install csvkit
 pipx install pipenv
 pipx install poetry
 poetry completions zsh > "${HOME}/.zfunc/_poetry"
+pipx install kyoto-reader
