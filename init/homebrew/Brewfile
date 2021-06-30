@@ -39,8 +39,7 @@ brew "moreutils"  # chronic, combine, ifne, sponge, ...
 brew "jq"         # command-line JSON processor
 brew "source-highlight"
 brew "tree"
-# brew "pipenv"  # package manager for python
-# brew "poetry"  # package manager for python
+brew "pipx"  # Execute binaries from Python packages in isolated environments
 
 # System
 brew "ansible"

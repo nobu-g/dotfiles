@@ -53,7 +53,7 @@ if ! [[ -d ${HOME}/.zinit ]]; then
 fi
 
 # install python packages
-if (type pip3 &> /dev/null); then
+if (type pipx &> /dev/null); then
   bash -x "$here/python-packages.sh"
 fi
 
