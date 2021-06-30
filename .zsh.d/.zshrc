@@ -190,7 +190,8 @@ zinit light zsh-users/zsh-history-substring-search
 # completion
 #--------------------------------#
 ## zsh-autosuggestions
-zinit wait"1" lucid atload"_zsh_autosuggest_start" atinit"zicompinit; zicdreplay -q" \
+zinit wait"1" lucid atload"unset ZSH_AUTOSUGGEST_USE_ASYNC; _zsh_autosuggest_start" \
+  atinit"zicompinit; zicdreplay -q" \
   light-mode for @zsh-users/zsh-autosuggestions
 # Widgets that accept the entire suggestion
 ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(
