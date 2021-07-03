@@ -52,6 +52,7 @@ autoload -Uz chpwd_recent_dirs cdr
 add-zsh-hook chpwd chpwd_recent_dirs
 zstyle ':chpwd:*' recent-dirs-max 2000
 zstyle ':chpwd:*' recent-dirs-default yes
+zstyle ':chpwd:*' recent-dirs-file "${XDG_DATA_HOME:-$HOME/.local/share}/shell/chpwd-recent-dirs"
 zstyle ':completion:*' recent-dirs-insert both
 
 # peco find file (https://k0kubun.hatenablog.com/entry/2014/07/06/033336)
