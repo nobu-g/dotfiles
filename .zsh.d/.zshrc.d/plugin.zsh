@@ -12,12 +12,12 @@ ZINIT[COMPINIT_OPTS]=-C
 #--------------------------------#
 zinit light-mode for \
   @zinit-zsh/z-a-readurl \
-  @zinit-zsh/z-a-bin-gem-node
-#@zinit-zsh/z-a-patch-dl \
-#@zinit-zsh/z-a-unscope \
-#@zinit-zsh/z-a-default-ice \
-#@zinit-zsh/z-a-submods
-#@zinit-zsh/z-a-man # -> require gem
+  # @zinit-zsh/z-a-bin-gem-node \
+  # @zinit-zsh/z-a-patch-dl \
+  # @zinit-zsh/z-a-unscope \
+  # @zinit-zsh/z-a-default-ice \
+  # @zinit-zsh/z-a-submods \
+  # @zinit-zsh/z-a-man # -> require gem
 
 zicompdef g='git'
 zicompdef gti='git'
@@ -116,24 +116,29 @@ while [[ $p != '/' ]]; do
   p=$(dirname $p)
 done
 
-zinit wait"1" lucid blockf nocompletions \
-  from"gh-r" as"program" mv"ripgrep* -> ripgrep" sbin'ripgrep/rg' \
+zinit wait'1' lucid blockf nocompletions \
+  from"gh-r" as"program" mv"ripgrep-* -> ripgrep" pick'ripgrep/rg' \
   atclone'zinit creinstall -q BurntSushi/ripgrep' atpull'%atclone' \
   light-mode for @BurntSushi/ripgrep
 export RIPGREP_CONFIG_PATH="${XDG_CONFIG_HOME:-$HOME/.config}/ripgrep/config"
 
-zinit wait"1" lucid blockf nocompletions \
-  from"gh-r" as"program" mv"fd* -> fd" sbin'fd/fd' \
+zinit wait'1' lucid blockf nocompletions \
+  from"gh-r" as"program" mv"fd-* -> fd" pick'fd/fd' \
   atclone'zinit creinstall -q sharkdp/fd' atpull'%atclone' \
   light-mode for @sharkdp/fd
 
-zinit wait"1" lucid \
-  from"gh-r" as"program" mv"bat* -> bat" sbin"bat/bat" \
+zinit wait lucid \
+  from"gh-r" as"program" mv"bat-* -> bat" cp"bat/autocomplete/bat.zsh -> _bat" pick"bat/bat" \
   atload"alias cat='bat -p'" \
   light-mode for @sharkdp/bat
 
-zinit wait"1" lucid \
-  from"gh-r" as"program" sbin"bin/exa" \
+zinit wait lucid blockf nocompletions \
+  from"gh-r" as"program" mv"lsd* -> lsd" pick"lsd/lsd" \
+  atclone'zinit creinstall -q Peltoche/lsd' atpull'%atclone' \
+  light-mode for @Peltoche/lsd
+
+zinit wait'1' lucid \
+  from"gh-r" as"program" mv"exa* -> exa" pick"bin/exa" \
   light-mode for @ogham/exa
 
 zinit wait'1' lucid \
@@ -148,9 +153,8 @@ zinit ice depth=1 atload'source ~/.p10k.zsh' nocd
 zinit light romkatv/powerlevel10k
 ZLE_RPROMPT_INDENT=0
 
-# diff-so-fancy から乗り換え
 zinit wait'1' lucid \
-  from"gh-r" as"program" mv"delta* -> delta" sbin"delta/delta" \
+  from"gh-r" as"program" mv"delta* -> delta" pick"delta/delta" \
   atload"alias diff=delta" \
   light-mode for @dandavison/delta
 
