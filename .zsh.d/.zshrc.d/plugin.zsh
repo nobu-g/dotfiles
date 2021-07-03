@@ -36,8 +36,8 @@ zinit ice atload'[[ -e $HOME/.zsh-dircolors.config ]] || setupsolarized dircolor
   atload'zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"'
 zinit light 'joel-porquet/zsh-dircolors-solarized'
 
-zinit ice wait"1" lucid
-zinit light zsh-users/zsh-history-substring-search
+# zinit ice wait"1" lucid
+# zinit light zsh-users/zsh-history-substring-search
 
 # zinit load zdharma/history-search-multi-word
 
