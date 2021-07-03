@@ -45,8 +45,10 @@ source "${ZRCDIR}/plugin.zsh"
 source "${ZRCDIR}/misc.zsh"
 
 
+#--------------------------------#
 # Alias
-source-safe "${ZBASEDIR}/.zaliases"
+#--------------------------------#
+source "${ZRCDIR}/alias.zsh"
 
 
 # Load environment-specific settings

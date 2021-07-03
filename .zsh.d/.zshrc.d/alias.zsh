@@ -1,3 +1,5 @@
+# ALIAS
+
 setopt complete_aliases # don't expand aliases _before_ completion has finished
 
 alias ls='ls -FH --color=tty'
@@ -87,5 +89,3 @@ expand-global-alias() {
 }
 zle -N expand-global-alias
 bindkey " " expand-global-alias
-
-[[ -f ${ZENVDIR}/.zaliases ]] && source "${ZENVDIR}/.zaliases"

@@ -27,3 +27,17 @@ if [[ -f "${HOME}/.local/lib/libstderred.so" ]]; then
   export STDERRED_ESC_CODE=$(echo -e "$(tput setaf 9)")
   export LD_PRELOAD="${HOME}/.local/lib/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
 fi
+
+# alias
+alias pbcopy='clipcopy'
+alias pbpaste='clippaste'
+alias gzcat='zcat'
+alias ssh='LC_PWD=$PWD /usr/bin/ssh -o SendEnv=LC_PWD'
+[[ -x /usr/bin/git ]] && alias git='/usr/bin/git'
+alias nv='nvidia-smi'
+
+# directory alias
+hash -d larch=/mnt/larch/${USER}   # ~larch
+hash -d hinoki=/mnt/hinoki/${USER} # ~hinoki
+hash -d elm=/mnt/elm/${USER}       # ~elm
+hash -d zamia=/mnt/zamia/${USER}   # ~zamia

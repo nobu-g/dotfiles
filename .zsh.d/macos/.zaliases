@@ -1,3 +1,0 @@
-alias rm="trash"  # https://github.com/andreafrancia/trash-cli
-alias ldd="otool -L"
-alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
