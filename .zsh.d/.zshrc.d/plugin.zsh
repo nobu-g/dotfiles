@@ -78,7 +78,7 @@ zinit wait lucid blockf atpull'zinit creinstall -q .' \
 # zinit light marlonrichert/zsh-autocomplete
 
 ## docker completion
-zinit wait lucid blockf has'docker' for \
+zinit wait lucid blockf atpull'zinit creinstall -q .' has'docker' for \
   as'completion' is-snippet \
   'https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker'
 
