@@ -72,6 +72,16 @@ peco-find-file() {
 zle -N peco-find-file
 bindkey '^_' peco-find-file # works by ^/
 
+# peco process kill (https://github.com/masutaka/dotfiles-public/blob/master/.zshrc)
+peco-pkill() {
+  for pid in $(ps aux | peco --prompt "[kill]" | awk '{ print $2 }'); do
+    kill $pid
+    echo "Killed ${pid}"
+	done
+}
+alias pk="peco-pkill"
+
+
 # broot
 [[ -f ${XDG_CONFIG_HOME:-$HOME/.config}/broot/launcher/bash/br ]] &&
   source ${XDG_CONFIG_HOME:-$HOME/.config}/broot/launcher/bash/br
