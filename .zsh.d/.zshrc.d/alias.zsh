@@ -55,8 +55,8 @@ alias -g H='| head'
 alias -g Hn='| head -n'
 alias -g T='| tail'
 alias -g Tn='| tail -n'
-alias -g G='| grep'
-alias -g Gv='| grep -v'
+alias -g G=' 2>&1 | grep'
+alias -g Gv=' 2>&1 | grep -v'
 alias -g L='| wc -l'
 alias -g C='| clipcopy'
 alias -g X='| xargs'
@@ -72,12 +72,11 @@ alias -g ....='../../..'
 alias -g .....='../../../..'
 
 # suffix alias
-alias -s {md,txt}="$EDITOR"
+alias -s {md,txt,tex,json}="bat"
 alias -s zip='zipinfo'
 alias -s {gz,tgz}='gzcat'
 alias -s xz='xzcat'
 alias -s {tbz,bz2}='bzcat'
-alias -s txt='less'
 alias -s {html,pdf}='open'
 
 expand-global-alias() {
