@@ -33,6 +33,7 @@ alias brew='env -u LD_LIBRARY_PATH PATH=${HOMEBREW_PREFIX}/bin:${HOMEBREW_PREFIX
 alias d='docker'
 alias l='les'
 alias b='bat'
+alias s='ssh'
 ## http://keisanbutsuriya.hateblo.jp/entry/2015/02/13/133858
 alias e='emacsclient --tty -a "" -s ${EMACS_SERVER_SOCKET}'
 alias emacs='emacsclient --tty -a "" -s ${EMACS_SERVER_SOCKET}'
