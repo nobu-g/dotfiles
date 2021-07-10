@@ -32,3 +32,5 @@ brew "vmtouch"
 brew "dog"        # Command-line DNS client
 brew "bandwhich"  # Terminal bandwidth utilization tool
 brew "nmap"
+brew "iperf3"     # Update of iperf: measures TCP, UDP, and SCTP bandwidth
+brew "netperf"    # Benchmarks performance of many different types of networking
