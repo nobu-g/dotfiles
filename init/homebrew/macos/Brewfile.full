@@ -1,5 +1,6 @@
 # Basic CLI tools
 brew "gdb"
+brew "rsync"  # Utility that provides fast incremental file transfer
 
 # Misc
 brew "pwgen"  # password generator
