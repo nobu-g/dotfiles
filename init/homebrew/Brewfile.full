@@ -22,10 +22,11 @@ brew "tokei"      # Program that allows you to count code, quickly
 brew "nginx"      # HTTP(S) server and reverse proxy, and IMAP/POP3 proxy server
 brew "rename"
 brew "shellcheck"
-brew "imagemagick"
-brew "ffmpeg"
 brew "gh"         # GitHub CLI
-brew "choose-rust"  # Human-friendly and fast alternative to cut and (sometimes) awk
+brew "choose-rust"     # Human-friendly and fast alternative to cut and (sometimes) awk
+brew "imagemagick"     # Tools and libraries to manipulate images in many formats
+brew "ffmpeg"          # Play, record, convert, and stream audio and video
+brew "blackhole-16ch"  # Virtual Audio Driver
 
 # System
 brew "vmtouch"
