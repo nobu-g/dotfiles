@@ -32,6 +32,7 @@ brew "ripgrep"    # grep -r
 brew "procs"      # ps
 brew "colordiff"  # diff
 brew "sd"         # sed/awk
+brew "rargs"      # Util like xargs + awk with pattern matching support
 # bat is installed via zinit
 
 # Misc
