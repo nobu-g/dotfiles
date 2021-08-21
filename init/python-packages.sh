@@ -2,6 +2,10 @@
 
 set -u
 
+# packages to import from everywhere
+pip3 --user install pyknp
+
+# command-line tools
 pipx install autopep8
 pipx install trash-cli
 pipx install speedtest-cli
