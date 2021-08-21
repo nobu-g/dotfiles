@@ -17,6 +17,13 @@ init: ## Setup environment settings
 update: ## Fetch changes for this repo
 	git pull origin main
 
+upgrade: ## Upgrade installed packages
+	brew update && brew upgrade
+	pipx upgrade-all
+	pip3 install --user --upgrade pip
+	pip3 list --user --outdated | tail -n +3 | awk '{ print $1 }' | xargs pip3 install --user -U
+	(type zinit &> /dev/null) && zinit update --all
+
 install: update init deploy ## Run make update, init, deploy
 	zsh -l -c 'exit'
 
