@@ -19,7 +19,7 @@ export PYTHONSTARTUP="${XDG_CONFIG_HOME:-$HOME/.config}/python/.pythonrc.py"
 
 ## peco
 peco-select-history() {
-  BUFFER=$(\history -n -r 1 | peco --query "$BUFFER" --prompt "[hist]" --print-query | tail -1)
+  BUFFER=$(\history -Endir 1 | peco --query "$BUFFER" --prompt "[hist]" --print-query | tail -1)
   CURSOR=${#BUFFER}
   #  zle clear-screen
 }
