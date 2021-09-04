@@ -23,4 +23,8 @@ fi
 
 msg="command: \"${*}\" exited with status: $?"
 
-curl -X POST -H "Authorization: Bearer ${token}" -F "message=${msg}" ${URL} &>/dev/null
+# use curl installed on local machine if possible
+curl_="curl"
+[[ -x /usr/bin/curl ]] && curl_="/usr/bin/curl"
+
+${curl_} -X POST -H "Authorization: Bearer ${token}" -F "message=${msg}" ${URL} &>/dev/null
