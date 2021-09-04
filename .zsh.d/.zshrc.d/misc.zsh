@@ -90,6 +90,11 @@ alias pk="peco-pkill"
 autoload -Uz _ls_abbrev
 add-zsh-hook chpwd _ls_abbrev
 
+# https://github.com/ajeetdsouza/zoxide
+export _ZO_DATA_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/zoxide"
+export _ZO_ECHO=1
+eval "$(zoxide init zsh)"
+
 cd() {
   if [[ $# -eq 1 && $1 = "--" ]]; then
     pushd +2 || return 1

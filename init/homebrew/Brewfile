@@ -42,6 +42,7 @@ brew "source-highlight"
 brew "tree"  # Display directories as trees (with optional color/HTML output)
 brew "pipx"  # Execute binaries from Python packages in isolated environments
 brew "atuin"  # Improved shell history for zsh and bash
+brew "zoxide"  # Shell extension to navigate your filesystem faster
 
 # System
 brew "ansible"
