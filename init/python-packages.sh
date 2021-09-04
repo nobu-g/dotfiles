@@ -3,7 +3,7 @@
 set -u
 
 # packages to import from everywhere
-pip3 --user install pyknp
+pip3 install --user pyknp
 
 # command-line tools
 pipx install autopep8
