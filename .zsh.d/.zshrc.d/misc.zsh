@@ -23,8 +23,8 @@ peco-select-history() {
   CURSOR=${#BUFFER}
   #  zle clear-screen
 }
-zle -N peco-select-history
-bindkey '^r' peco-select-history
+# zle -N peco-select-history
+# bindkey '^r' peco-select-history
 
 fzf-select-history() {
   BUFFER="$(history -nr 1 | awk '!a[$0]++' | fzf --query "$BUFFER" | sed 's/\\n/\n/')"

@@ -39,8 +39,9 @@ brew "rargs"      # Util like xargs + awk with pattern matching support
 brew "moreutils"  # chronic, combine, ifne, sponge, ...
 brew "jq"         # command-line JSON processor
 brew "source-highlight"
-brew "tree"
+brew "tree"  # Display directories as trees (with optional color/HTML output)
 brew "pipx"  # Execute binaries from Python packages in isolated environments
+brew "atuin"  # Improved shell history for zsh and bash
 
 # System
 brew "ansible"
