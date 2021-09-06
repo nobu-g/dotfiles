@@ -19,12 +19,12 @@ export PYTHONSTARTUP="${XDG_CONFIG_HOME:-$HOME/.config}/python/.pythonrc.py"
 
 ## peco
 peco-select-history() {
-  BUFFER=$(\history -Endir 1 | peco --query "$BUFFER" --prompt "[hist]" --print-query | tail -1)
+  BUFFER=$(\history -Endir 1 | peco --query "$BUFFER" --prompt "[hist]" --print-query | tail -1 | cut -d' ' -f4-)
   CURSOR=${#BUFFER}
   #  zle clear-screen
 }
-# zle -N peco-select-history
-# bindkey '^r' peco-select-history
+zle -N peco-select-history
+bindkey '^r' peco-select-history
 
 fzf-select-history() {
   BUFFER="$(history -nr 1 | awk '!a[$0]++' | fzf --query "$BUFFER" | sed 's/\\n/\n/')"
