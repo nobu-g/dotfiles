@@ -36,7 +36,7 @@ cask "karabiner-elements"
 # MAS
 # mas "Slack", id: 803453959  # seems to require being signed in
 # mas "LINE", id: 539883307  # seems to require being signed in
-mas "Kindle", id: 405399194
+# mas "Kindle", id: 405399194  # seems to require being signed in
 # mas "Pages", id: 409201541
 mas "Keynote", id: 409183694
 mas "Numbers", id: 409203825
