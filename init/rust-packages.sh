@@ -13,5 +13,4 @@ cargo install gping         # Ping, but with a graph
 cargo install watchexec-cli # monitor file change
 cargo install pueue         # process queue
 cargo install cargo-cache   # cargo cache cleaner
-cargo install tealdeer      # A very fast implementation of tldr in Rust.
 # cargo install mcfly     # better history search
