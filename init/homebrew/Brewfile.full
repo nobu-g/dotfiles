@@ -30,6 +30,8 @@ brew "dust"       # A more intuitive version of du in rust
 brew "hexyl"      # Command-line hex viewer
 brew "broot"      # New way to see and navigate directory trees
 brew "tealdeer"   # Very fast implementation of tldr in Rust
+brew "pueue"      # Command-line tool for managing long-running shell commands
+brew "watchexec"  # Execute commands when watched files change
 
 # System
 brew "vmtouch"    # Portable file system cache diagnostics and control
@@ -38,3 +40,4 @@ brew "bandwhich"  # Terminal bandwidth utilization tool
 brew "nmap"       # Port scanning utility for large networks
 brew "iperf3"     # Update of iperf: measures TCP, UDP, and SCTP bandwidth
 brew "netperf"    # Benchmarks performance of many different types of networking
+brew "gping"      # Ping, but with a graph
