@@ -6,6 +6,7 @@ brew "rsync"  # Utility that provides fast incremental file transfer
 brew "pwgen"  # password generator
 brew "carthage"
 brew "latexdiff"
+brew "blackhole-16ch"  # Virtual Audio Driver
 
 # System
 brew "fswatch"
