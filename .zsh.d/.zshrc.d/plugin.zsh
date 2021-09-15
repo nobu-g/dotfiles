@@ -188,8 +188,7 @@ zinit wait'1' lucid \
   light-mode for @paulirish/git-open
 
 # atuin
+export ATUIN_NOBIND="true"
 zinit lucid \
   light-mode for @ellie/atuin
-export ATUIN_NOBIND="true"
-eval "$(atuin init zsh)"
-bindkey '^r' _atuin_search_widget
+bindkey '^t' _atuin_search_widget
