@@ -80,6 +80,9 @@
     # Always push tags, see https://git-scm.com/docs/git-config#git-config-pushfollowTags.
     followTags = true
 
+[pager]
+	branch = less -FRX
+
 [delta]
     features = line-numbers
     plus-style = bold green
