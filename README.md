@@ -44,7 +44,7 @@ Nothing (requirements are pre-installed).
 
 ### Ubuntu
 - `apt install sudo, make, zsh`
-- `apt install gcc, build-essential, procps, curl, file, git`
+- `apt install gcc, build-essential, procps, curl, file, git python3-pip`
 
 ### CentOS
 - `yum install sudo, make, zsh`
