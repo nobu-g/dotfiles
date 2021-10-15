@@ -17,8 +17,9 @@ brew "nginx"       # HTTP(S) server and reverse proxy, and IMAP/POP3 proxy serve
 brew "rename"      # Perl-powered file rename script with many helpful built-ins
 brew "shellcheck"  # Static analysis and lint tool, for (ba)sh scripts
 brew "gh"          # GitHub CLI
-brew "imagemagick"     # Tools and libraries to manipulate images in many formats
-brew "ffmpeg"          # Play, record, convert, and stream audio and video
+brew "imagemagick"  # Tools and libraries to manipulate images in many formats
+brew "ffmpeg"      # Play, record, convert, and stream audio and video
+brew "glow"        # Render markdown on the CLI
 
 # Tools written in Rust
 brew "xsv"        # command-line CSV processor
