@@ -6,32 +6,32 @@ brew "python@3.7"
 brew "openjdk"
 
 # Misc
-brew "rga"         # ripgrep-all
-brew "pandoc"      # recommended by rga
-brew "poppler"     # recommended by rga
-brew "tesseract"   # recommended by rga
-brew "st"          # command-line statistics calculator
-brew "cling"       # C++ interpreter
-brew "tokei"       # Program that allows you to count code, quickly
-brew "nginx"       # HTTP(S) server and reverse proxy, and IMAP/POP3 proxy server
-brew "rename"      # Perl-powered file rename script with many helpful built-ins
-brew "shellcheck"  # Static analysis and lint tool, for (ba)sh scripts
-brew "gh"          # GitHub CLI
+brew "rga"          # ripgrep-all
+brew "pandoc"       # recommended by rga
+brew "poppler"      # recommended by rga
+brew "tesseract"    # recommended by rga
+brew "st"           # command-line statistics calculator
+brew "cling"        # C++ interpreter
+brew "tokei"        # Program that allows you to count code, quickly
+brew "nginx"        # HTTP(S) server and reverse proxy, and IMAP/POP3 proxy server
+brew "rename"       # Perl-powered file rename script with many helpful built-ins
+brew "shellcheck"   # Static analysis and lint tool, for (ba)sh scripts
+brew "gh"           # GitHub CLI
 brew "imagemagick"  # Tools and libraries to manipulate images in many formats
-brew "ffmpeg"      # Play, record, convert, and stream audio and video
-brew "glow"        # Render markdown on the CLI
+brew "ffmpeg"       # Play, record, convert, and stream audio and video
+brew "glow"         # Render markdown on the CLI
 
 # Tools written in Rust
-brew "xsv"        # command-line CSV processor
+brew "xsv"          # command-line CSV processor
 brew "choose-rust"  # Human-friendly and fast alternative to cut and (sometimes) awk
-brew "hyperfine"  # comman-line benchmark tool
-brew "pastel"     # color manipulation
-brew "dust"       # A more intuitive version of du in rust
-brew "hexyl"      # Command-line hex viewer
-brew "broot"      # New way to see and navigate directory trees
-brew "tealdeer"   # Very fast implementation of tldr in Rust
-brew "pueue"      # Command-line tool for managing long-running shell commands
-brew "watchexec"  # Execute commands when watched files change
+brew "hyperfine"    # comman-line benchmark tool
+brew "pastel"       # color manipulation
+brew "dust"         # A more intuitive version of du in rust
+brew "hexyl"        # Command-line hex viewer
+brew "broot"        # New way to see and navigate directory trees
+brew "tealdeer"     # Very fast implementation of tldr in Rust
+brew "pueue"        # Command-line tool for managing long-running shell commands
+brew "watchexec"    # Execute commands when watched files change
 
 # System
 brew "vmtouch"    # Portable file system cache diagnostics and control
