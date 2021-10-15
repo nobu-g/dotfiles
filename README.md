@@ -20,9 +20,9 @@ My dotfiles.
 ### For those who have sudo privileges
 
 ```bash
-$ git clone https://github.com/nobu-g/dotfiles.git
-$ cd dotfiles
-$ make install SUDO=1 [FULL_INSTALL=1]
+git clone https://github.com/nobu-g/dotfiles.git
+cd dotfiles
+make install SUDO=1 [FULL_INSTALL=1]
 ```
 
 ### For those who do not have sudo privileges
