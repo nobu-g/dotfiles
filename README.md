@@ -22,7 +22,7 @@ My dotfiles.
 ```bash
 $ git clone https://github.com/nobu-g/dotfiles.git
 $ cd dotfiles
-$ make install SUDO=1
+$ make install SUDO=1 [FULL_INSTALL=1]
 ```
 
 ### For those who do not have sudo privileges
@@ -30,7 +30,7 @@ $ make install SUDO=1
 ```bash
 git clone https://github.com/nobu-g/dotfiles.git
 cd dotfiles
-make install
+make install [FULL_INSTALL=1]
 ```
 or using installer:
 ```bash
@@ -40,26 +40,26 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/nobu-g/dotfiles/main/insta
 ## Requirements
 
 ### macOS
-Nothing (pre-installed).
+Nothing (requirements are pre-installed).
 
 ### Ubuntu
-- sudo, make, zsh
-- gcc, build-essential, procps, curl, file, git
+- `apt install sudo, make, zsh`
+- `apt install gcc, build-essential, procps, curl, file, git`
 
 ### CentOS
-- sudo, make, zsh
-- gcc, 'Development Tools', procps-ng curl file git
-- perl-ExtUtils-MakeMaker, glibc-devel
+- `yum install sudo, make, zsh`
+- `yum install gcc, 'Development Tools', procps-ng curl file git`
+- `yum install perl-ExtUtils-MakeMaker, glibc-devel`
 
 ### Fedora
-- sudo, make, zsh
-- gcc, 'Development Tools', procps-ng curl file git, libxcrypt-compat
-- g++, perl-ExtUtils-MakeMaker, perl-FindBin, glibc-devel
+- `dnf install sudo, make, zsh`
+- `dnf install gcc, 'Development Tools', procps-ng curl file git, libxcrypt-compat`
+- `dnf install g++, perl-ExtUtils-MakeMaker, perl-FindBin, glibc-devel`
 
 ### Rocky Linux
-- sudo, make, zsh
-- gcc, 'Development Tools', procps-ng curl file git
-- perl-ExtUtils-MakeMaker, glibc-devel
+- `dnf install sudo, make, zsh`
+- `dnf install gcc, 'Development Tools', procps-ng curl file git`
+- `dnf install perl-ExtUtils-MakeMaker, glibc-devel`
 
 ## License
 
