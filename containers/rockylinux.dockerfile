@@ -19,6 +19,7 @@ RUN dnf update -y && dnf install -y \
     && dnf install -y \
     perl-ExtUtils-MakeMaker \
     glibc-devel \
+    python3 \
     && dnf clean all \
     && rm -rf /var/cache/dnf/* /tmp/* /var/tmp/*
 

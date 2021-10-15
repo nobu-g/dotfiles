@@ -43,23 +43,24 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/nobu-g/dotfiles/main/insta
 Nothing (requirements are pre-installed).
 
 ### Ubuntu
-- `apt install sudo, make, zsh`
-- `apt install gcc, build-essential, procps, curl, file, git python3-pip`
+- `apt install sudo make zsh`
+- `apt install gcc build-essential procps curl file git`
+- `apt install python3-pip zlib-dev`
 
 ### CentOS
-- `yum install sudo, make, zsh`
-- `yum install gcc, 'Development Tools', procps-ng curl file git`
-- `yum install perl-ExtUtils-MakeMaker, glibc-devel`
+- `yum install sudo make zsh`
+- `yum install gcc 'Development Tools' procps-ng curl file git`
+- `yum install perl-ExtUtils-MakeMaker glibc-devel python3`
 
 ### Fedora
-- `dnf install sudo, make, zsh`
-- `dnf install gcc, 'Development Tools', procps-ng curl file git, libxcrypt-compat`
-- `dnf install g++, perl-ExtUtils-MakeMaker, perl-FindBin, glibc-devel`
+- `dnf install sudo make zsh`
+- `dnf install gcc 'Development Tools' procps-ng curl file git libxcrypt-compat`
+- `dnf install g++ perl-ExtUtils-MakeMaker perl-FindBin glibc-devel`
 
 ### Rocky Linux
-- `dnf install sudo, make, zsh`
-- `dnf install gcc, 'Development Tools', procps-ng curl file git`
-- `dnf install perl-ExtUtils-MakeMaker, glibc-devel`
+- `dnf install sudo make zsh`
+- `dnf install gcc 'Development Tools' procps-ng curl file git`
+- `dnf install perl-ExtUtils-MakeMaker glibc-devel python3`
 
 ## License
 
