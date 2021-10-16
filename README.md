@@ -45,7 +45,7 @@ Nothing (requirements are pre-installed).
 ### Ubuntu
 - `apt install sudo make zsh`
 - `apt install gcc build-essential procps curl file git`
-- `apt install python3-pip zlib-dev`
+- `apt install python3-pip zlib1g-dev`
 
 ### CentOS
 - `yum install sudo make zsh`
