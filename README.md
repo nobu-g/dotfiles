@@ -55,7 +55,7 @@ Nothing (requirements are pre-installed).
 ### Fedora
 - `dnf install sudo make zsh`
 - `dnf install gcc 'Development Tools' procps-ng curl file git libxcrypt-compat`
-- `dnf install g++ perl-ExtUtils-MakeMaker perl-FindBin glibc-devel`
+- `dnf install g++ perl-ExtUtils-MakeMaker perl-FindBin glibc-devel python3`
 
 ### Rocky Linux
 - `dnf install sudo make zsh`

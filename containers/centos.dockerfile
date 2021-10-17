@@ -18,6 +18,7 @@ RUN yum update -y && yum install -y \
     git \
     perl-ExtUtils-MakeMaker \
     glibc-devel \
+    python3 \
     && yum clean all \
     && rm -rf /var/cache/yum/* /tmp/* /var/tmp/*
 
