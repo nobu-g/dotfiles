@@ -30,8 +30,8 @@ linux* | cygwin*)
   ;;
 freebsd* | darwin*)
   ln -snfv "${DOTPATH%/}/.doom.d" "$HOME/.doom.d"
-  ln -snfv "${DOTPATH%/}/.mackup" "$HOME"
-  ln -snfv "${DOTPATH%/}/.mackup.cfg" "$HOME"
+  ln -snfv "${HOME}/.config/mackup/.mackup" "$HOME"
+  ln -snfv "${HOME}/.config/mackup/.mackup.cfg" "$HOME"
   bash -x "${DOTPATH%/}/deploy/launch-agents.sh"
   ;;
 esac
