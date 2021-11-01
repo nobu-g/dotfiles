@@ -20,9 +20,7 @@ if (type bat &> /dev/null); then
 fi
 
 ln -snfv "${HOME}/.config/latex/.latexmkrc" "$HOME"
-ln -snfv "${DOTPATH%/}/bin/line" "$HOME/scripts"
-ln -snfv "${DOTPATH%/}/bin/line-msg" "$HOME/scripts"
-ln -snfv "${DOTPATH%/}/bin/pyshow" "$HOME/scripts"
+ln -snfv "${DOTPATH%/}"/bin/{line,line-msg,pyshow} "$HOME/scripts"
 
 case "${OSTYPE}" in
 linux* | cygwin*)
@@ -30,8 +28,7 @@ linux* | cygwin*)
   ;;
 freebsd* | darwin*)
   ln -snfv "${DOTPATH%/}/.doom.d" "$HOME/.doom.d"
-  ln -snfv "${HOME}/.config/mackup/.mackup" "$HOME"
-  ln -snfv "${HOME}/.config/mackup/.mackup.cfg" "$HOME"
+  ln -snfv "${HOME}"/.config/mackup/{.mackup,.mackup.cfg} "$HOME"
   bash -x "${DOTPATH%/}/deploy/launch-agents.sh"
   ;;
 esac
