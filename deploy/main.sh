@@ -19,7 +19,7 @@ if (type bat &> /dev/null); then
   bat cache --build
 fi
 
-ln -snfv "${DOTPATH%/}/.latexmkrc" "$HOME"
+ln -snfv "${HOME}/.config/latex/.latexmkrc" "$HOME"
 ln -snfv "${DOTPATH%/}/bin/line" "$HOME/scripts"
 ln -snfv "${DOTPATH%/}/bin/line-msg" "$HOME/scripts"
 ln -snfv "${DOTPATH%/}/bin/pyshow" "$HOME/scripts"
