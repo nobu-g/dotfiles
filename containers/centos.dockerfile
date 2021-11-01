@@ -22,4 +22,4 @@ RUN yum update -y && yum install -y \
     && yum clean all \
     && rm -rf /var/cache/yum/* /tmp/* /var/tmp/*
 
-CMD [ "/bin/sh" ]
+CMD [ "/bin/zsh" ]

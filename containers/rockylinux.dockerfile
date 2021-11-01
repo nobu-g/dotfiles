@@ -23,4 +23,4 @@ RUN dnf update -y && dnf install -y \
     && dnf clean all \
     && rm -rf /var/cache/dnf/* /tmp/* /var/tmp/*
 
-CMD [ "/bin/sh" ]
+CMD [ "/bin/zsh" ]
