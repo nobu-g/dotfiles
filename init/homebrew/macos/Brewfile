@@ -38,7 +38,7 @@ cask "karabiner-elements"
 # mas "LINE", id: 539883307  # seems to require being signed in
 # mas "Kindle", id: 405399194  # seems to require being signed in
 # mas "Pages", id: 409201541
-mas "Keynote", id: 409183694
-mas "Numbers", id: 409203825
+# mas "Keynote", id: 409183694
+# mas "Numbers", id: 409203825
 mas "The Unarchiver", id: 425424353
 mas "OneDrive", id: 823766827
