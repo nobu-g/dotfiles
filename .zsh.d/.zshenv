@@ -121,7 +121,6 @@ path=(
   ${HOME}/.cargo/bin(N-/)  # Rust
   ${HOME}/.poetry/bin(N-/)  # Poetry
   ${HOME}/.emacs.d/bin(N-/)  # doom-emacs
-  ${HOME}/.nodebrew/current/bin(N-/)  # nodebrew
   ${HOME}/.gem/ruby/3.0.0/bin(N-/)  # gem
   ${path}
 )

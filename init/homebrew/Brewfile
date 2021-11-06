@@ -18,7 +18,8 @@ brew "python@3.8"
 brew "perl"
 brew "ruby"
 brew "go"
-brew "nodebrew"
+brew "node"
+brew "node@16"
 # Rust is installed via rustup
 
 # Modern alternatives to Liunx CLI tools
