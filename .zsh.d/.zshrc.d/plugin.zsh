@@ -39,7 +39,7 @@ zinit light 'joel-porquet/zsh-dircolors-solarized'
 # zinit ice wait"1" lucid
 # zinit light zsh-users/zsh-history-substring-search
 
-# zinit load zdharma/history-search-multi-word
+# zinit load zdharma-continuum/history-search-multi-word
 
 #--------------------------------#
 # completion
@@ -86,7 +86,7 @@ zinit wait lucid blockf atpull'zinit creinstall -q .' has'docker' for \
 # zinit wait lucid \  # 遅延ロードすると autosuggestions のハイライトがおかしくなる
 #   if"(( ${ZSH_VERSION%%.*} > 4.4))" \
 #   atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-#   light-mode for @zdharma/fast-syntax-highlighting
+#   light-mode for @zdharma-continuum/fast-syntax-highlighting
 # # fast-theme XDG:overlay  # 初回はこれの実行を忘れずに
 
 ## zshmarks

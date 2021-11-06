@@ -50,7 +50,7 @@ fi
 # install zinit
 if ! [[ -d ${HOME}/.zinit ]]; then
   mkdir ~/.zinit
-  git clone https://github.com/zdharma/zinit.git ~/.zinit/bin
+  git clone https://github.com/zdharma-continuum/zinit.git ~/.zinit/bin
 fi
 
 # install python packages

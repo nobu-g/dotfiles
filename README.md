@@ -10,7 +10,7 @@ My dotfiles.
 ## Features
 - [zsh](https://zsh.sourceforge.io)
 - [Homebrew](https://brew.sh/) / [Linuxbrew](https://docs.brew.sh/Homebrew-on-Linux)
-- [Zinit](https://github.com/zdharma/zinit)
+- [Zinit](https://github.com/zdharma-continuum/zinit)
 - [Powerlevel10k](https://github.com/romkatv/powerlevel10k)
 - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 - [Mackup](https://github.com/lra/mackup)
