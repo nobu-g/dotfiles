@@ -1,10 +1,10 @@
 # baracuda, moss, saffron 設定
-if [[ $(uname -n) =~ "^baracuda" ]] || [[ $(uname -n) =~ "^moss" ]] || [[ $(uname -n) =~ "^saffron" ]]; then
+if (( $+commands[nvidia-smi] )); then
   export CUDA_HOME=/usr/local/cuda
   export CUDA_PATH=/usr/local/cuda
-  export PATH=/usr/local/bin:$CUDA_HOME/bin:$PATH
-  export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$CUDA_HOME/lib64:$LD_LIBRARY_PATH
-  export CUDA_DEVICE_ORDER=PCI_BUS_ID
+  export PATH="$CUDA_HOME/bin:$PATH"
+  export LD_LIBRARY_PATH="$CUDA_HOME/lib64:$LD_LIBRARY_PATH"
+  export CUDA_DEVICE_ORDER="PCI_BUS_ID"
 fi
 
 # Boost
