@@ -35,6 +35,8 @@ brew "colordiff"  # diff
 brew "sd"         # sed/awk
 brew "rargs"      # Util like xargs + awk with pattern matching support
 # bat is installed via zinit
+tap "ko1nksm/getoptions"
+brew "getoptions"
 
 # Misc
 brew "moreutils"  # chronic, combine, ifne, sponge, ...
