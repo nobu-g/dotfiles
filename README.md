@@ -17,13 +17,24 @@ My dotfiles.
 
 ## Setup
 
-### For those who have sudo privileges
+### Using installer
+
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/nobu-g/dotfiles/main/install.sh)"
+```
+
+### Using GNU Make
 
 ```bash
 git clone https://github.com/nobu-g/dotfiles.git
 cd dotfiles
-make install SUDO=1 [FULL_INSTALL=1]
+make install [SUDO=1] [FULL_INSTALL=1]
 ```
+
+`Make` has a few options.
+- `SUDO=1`: specify this if you have sudo privileges
+- `FULL_INSTALL=1`: specify this if you want to install all the brew packages
+
 
 ### For those who do not have sudo privileges
 
@@ -32,10 +43,7 @@ git clone https://github.com/nobu-g/dotfiles.git
 cd dotfiles
 make install [FULL_INSTALL=1]
 ```
-or using installer:
-```bash
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/nobu-g/dotfiles/main/install.sh)"
-```
+
 
 ## Requirements
 
