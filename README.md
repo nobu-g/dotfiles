@@ -40,7 +40,7 @@ make install [SUDO=1] [FULL_INSTALL=1]
 ## Requirements
 
 ### macOS
-Nothing (requirements are pre-installed).
+Nothing (all the requirements are pre-installed).
 
 ### Ubuntu
 - `apt install sudo make zsh`
