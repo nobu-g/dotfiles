@@ -4,7 +4,7 @@ set -eu
 
 export DOTFILES_GITHUB="https://github.com/nobu-g/dotfiles.git"
 export DOTFILES_TARBALL="https://github.com/nobu-g/dotfiles/archive/main.tar.gz"
-DOTPATH="$HOME/dotfiles"
+DOTPATH="${DOTPATH:-"$HOME/dotfiles"}"
 
 #
 # copied from https://github.com/b4b4r07/dotfiles/blob/66dddda6803ada50a0ab879e5db784afea72b7be/etc/install
@@ -38,14 +38,14 @@ dotfiles_download() {
     # curl or wget
     if is_exists "curl"; then
       curl -L "$DOTFILES_TARBALL"
-
     elif is_exists "wget"; then
       wget -O - "$DOTFILES_TARBALL"
-
     fi | tar xvz
+
     if [ ! -d dotfiles-master ]; then
       die "dotfiles-master: not found"
     fi
+    mkdir -p "$(dirname "$DOTPATH")"
     command mv -f dotfiles-master "$DOTPATH"
   else
     die "curl or wget required"
