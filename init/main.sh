@@ -18,7 +18,12 @@ linux* | cygwin*)
   HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-"$HOME/.linuxbrew"}
   ;;
 freebsd* | darwin*)
-  HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-"/usr/local"}
+  if [[ $(uname -m) == "arm64" ]]; then
+    HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-"/opt/homebrew"}
+  else
+    # x86_64
+    HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-"/usr/local"}
+  fi
   ;;
 esac
 bash -x "$here/homebrew/main.sh"

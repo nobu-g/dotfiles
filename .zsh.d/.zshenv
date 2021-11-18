@@ -65,6 +65,8 @@ elif [[ -d /home/.linuxbrew ]]; then
   HOMEBREW_PREFIX="$(${RESOLVE} /home/.linuxbrew)"
 elif [[ -x /usr/local/bin/brew ]]; then
   HOMEBREW_PREFIX="/usr/local"
+elif [[ -x /opt/homebrew/bin/brew ]]; then
+  HOMEBREW_PREFIX="/opt/homebrew"
 fi
 
 # Python
