@@ -36,14 +36,6 @@ make install [SUDO=1] [FULL_INSTALL=1]
 - `FULL_INSTALL=1`: specify this if you want to install all the brew packages
 - `HOMEBREW_PREFIX=/somewhere`: specify this if you want to install Homebrew to a different directory
 
-### For those who do not have sudo privileges
-
-```bash
-git clone https://github.com/nobu-g/dotfiles.git
-cd dotfiles
-make install [FULL_INSTALL=1]
-```
-
 
 ## Requirements
 
