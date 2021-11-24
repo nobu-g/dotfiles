@@ -20,7 +20,7 @@ if (type bat &> /dev/null); then
 fi
 
 ln -snfv "${HOME}/.config/latex/.latexmkrc" "$HOME"
-ln -snfv "${DOTPATH%/}"/bin/{line,line-msg,pyshow} "$HOME/scripts"
+ln -snfv "${DOTPATH%/}"/bin/{line,line-msg,pyshow,readlinkf} "$HOME/.local/bin"
 
 case "${OSTYPE}" in
 linux* | cygwin*)
