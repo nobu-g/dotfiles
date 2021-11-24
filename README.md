@@ -40,7 +40,7 @@ make install [SUDO=1] [FULL_INSTALL=1]
 ## Requirements
 
 ### macOS
-Nothing (all the requirements are pre-installed).
+- `sudo xcode-select --install`
 
 ### Ubuntu
 - `apt install sudo make zsh`
