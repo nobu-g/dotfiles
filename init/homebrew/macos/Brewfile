@@ -13,7 +13,6 @@ brew "gawk"
 brew "ed"
 brew "grep"
 brew "gzip"
-brew "wget"
 
 # Misc
 brew "ghq"
