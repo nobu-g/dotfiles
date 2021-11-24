@@ -47,15 +47,7 @@ if [[ $(id -u) -eq 0 ]]; then  # root user
   path=(${sudo_path} ${path})
 fi
 
-
-# realpath or readlink -f
-if (( $+commands[realpath] )); then
-  RESOLVE="realpath"
-elif (( $+commands[greadlink] )); then
-  RESOLVE=("greadlink" "-f")
-else
-  RESOLVE=("readlink" "-f")
-fi
+RESOLVE="${HOME}/.local/bin/readlinkf"
 
 # Homebrew/Linuxbrew で prefix のパスが違う
 # $(brew --prefix) は時間がかかる処理のため、ここで判定して HOMEBREW_PREFIX に格納する
