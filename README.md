@@ -40,7 +40,8 @@ make install [SUDO=1] [FULL_INSTALL=1]
 ## Requirements
 
 ### macOS
-- `sudo xcode-select --install`
+- `sudo xcode-select --install`  # to use git
+- `softwareupdate --install-rosetta` (Apple M1 Mac)
 
 ### Ubuntu
 - `apt install sudo make zsh`
