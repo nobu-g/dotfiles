@@ -26,6 +26,9 @@ cask "discord"
 cask "notion"
 cask "clipy"
 cask "hiddenbar"
+cask "skim"
+cask "dash"
+cask "biscuit"
 
 # MAS
 mas "XCode", id: 497799835
