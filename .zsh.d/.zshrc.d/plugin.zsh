@@ -122,20 +122,10 @@ zinit wait'1' lucid blockf nocompletions \
   light-mode for @BurntSushi/ripgrep
 export RIPGREP_CONFIG_PATH="${XDG_CONFIG_HOME:-$HOME/.config}/ripgrep/config"
 
-zinit wait'1' lucid blockf nocompletions \
-  from"gh-r" as"program" mv"fd-* -> fd" pick'fd/fd' \
-  atclone'zinit creinstall -q sharkdp/fd' atpull'%atclone' \
-  light-mode for @sharkdp/fd
-
 zinit wait lucid \
   from"gh-r" as"program" mv"bat-* -> bat" cp"bat/autocomplete/bat.zsh -> _bat" pick"bat/bat" \
   atload"alias cat='bat -p'" \
   light-mode for @sharkdp/bat
-
-zinit wait lucid blockf nocompletions \
-  from"gh-r" as"program" mv"lsd* -> lsd" pick"lsd/lsd" \
-  atclone'zinit creinstall -q Peltoche/lsd' atpull'%atclone' \
-  light-mode for @Peltoche/lsd
 
 zinit wait'1' lucid \
   from"gh-r" as"program" mv"exa* -> exa" pick"bin/exa" \
