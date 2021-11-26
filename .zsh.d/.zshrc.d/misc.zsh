@@ -7,7 +7,6 @@ fi
 
 # PAGER
 export PAGER="less"
-export BAT_PAGER="less -irRSx4"                   # https://github.com/dandavison/delta/issues/58
 export MANPAGER="sh -c 'col -bx | bat -l man -p'" # https://github.com/sharkdp/bat#man
 
 # EDITOR

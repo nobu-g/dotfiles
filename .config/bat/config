@@ -1,4 +1,4 @@
---pager='less -RF'
+--pager='less -irRFLx4'
 
 --theme='Dracula'
 
