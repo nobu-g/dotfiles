@@ -27,8 +27,11 @@ cask "notion"
 cask "clipy"
 cask "hiddenbar"
 cask "skim"
+cask "pdf-expert"
 cask "dash"
 cask "biscuit"
+cask "font-jetbrains-mono"
+cask "font-noto-sans-cjk-jp"
 
 # MAS
 mas "XCode", id: 497799835
