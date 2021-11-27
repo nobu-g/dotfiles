@@ -32,6 +32,7 @@ cask "dash"
 cask "biscuit"
 cask "font-jetbrains-mono"
 cask "font-noto-sans-cjk-jp"
+cask "monitorcontrol"
 
 # MAS
 mas "XCode", id: 497799835
