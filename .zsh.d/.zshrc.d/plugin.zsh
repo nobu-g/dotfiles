@@ -165,9 +165,6 @@ ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=185'
 zinit wait'1' lucid \
   light-mode for @itchyny/zsh-auto-fillin
 
-zinit wait'1' lucid \
-  light-mode for @paulirish/git-open
-
 # atuin
 export ATUIN_NOBIND="true"
 zinit lucid \
