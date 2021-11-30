@@ -34,6 +34,7 @@ brew "broot"        # New way to see and navigate directory trees
 brew "tealdeer"     # Very fast implementation of tldr in Rust
 brew "pueue"        # Command-line tool for managing long-running shell commands
 brew "watchexec"    # Execute commands when watched files change
+brew "cargo-edit"   # Utility for managing cargo dependencies from the command-line
 
 # System
 brew "vmtouch"    # Portable file system cache diagnostics and control

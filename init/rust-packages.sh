@@ -8,5 +8,4 @@ set -u
 #   ripgrep, fd, bat, delta
 
 cargo install cargo-cache   # cargo cache cleaner
-cargo install cargo-edit    # Utility for managing cargo dependencies from the command-line
 # cargo install mcfly     # better history search
