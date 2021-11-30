@@ -3,6 +3,7 @@ brew "gcc"
 brew "wget"
 brew "curl"
 brew "cmake"
+brew "meson"
 
 # Shells
 brew "zsh"
