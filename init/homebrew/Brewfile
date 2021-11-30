@@ -34,17 +34,19 @@ brew "procs"      # ps
 brew "colordiff"  # diff
 brew "sd"         # sed/awk
 brew "rargs"      # Util like xargs + awk with pattern matching support
-# bat is installed via zinit
+brew "bat"        # cat
+brew "git-delta"  # diff
 tap "ko1nksm/getoptions"
 brew "getoptions"
 
 # Misc
 brew "moreutils"  # chronic, combine, ifne, sponge, ...
 brew "jq"         # command-line JSON processor
-brew "tree"  # Display directories as trees (with optional color/HTML output)
-brew "pipx"  # Execute binaries from Python packages in isolated environments
-brew "atuin"  # Improved shell history for zsh and bash
-brew "zoxide"  # Shell extension to navigate your filesystem faster
+brew "tree"       # Display directories as trees (with optional color/HTML output)
+brew "pipx"       # Execute binaries from Python packages in isolated environments
+brew "atuin"      # Improved shell history for zsh and bash
+brew "zoxide"     # Shell extension to navigate your filesystem faster
+brew "peco"       # Simplistic interactive filtering tool
 
 # System
 brew "ansible"
