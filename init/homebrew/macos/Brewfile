@@ -27,11 +27,13 @@ cask "google-chrome"
 cask "dropbox"
 cask "iterm2"
 cask "visual-studio-code"
+cask "pycharm"
 cask "google-japanese-ime"
 cask "xquartz"
 cask "macfuse"
 cask "font-hack-nerd-font"
 cask "karabiner-elements"
+cask "bettertouchtool"
 
 # MAS
 # mas "Slack", id: 803453959  # seems to require being signed in
