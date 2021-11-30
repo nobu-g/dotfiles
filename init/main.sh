@@ -63,11 +63,6 @@ if (type pipx &> /dev/null); then
   bash -x "$here/python-packages.sh"
 fi
 
-# install golang packages
-if (type go &> /dev/null); then
-  bash -x "$here/go-packages.sh"
-fi
-
 # install libstderred (https://github.com/sickill/stderred)
 case "${OSTYPE}" in
 linux* | cygwin*)

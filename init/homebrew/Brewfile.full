@@ -17,6 +17,7 @@ brew "tokei"        # Program that allows you to count code, quickly
 brew "nginx"        # HTTP(S) server and reverse proxy, and IMAP/POP3 proxy server
 brew "rename"       # Perl-powered file rename script with many helpful built-ins
 brew "shellcheck"   # Static analysis and lint tool, for (ba)sh scripts
+brew "shfmt"        # Autoformat shell script source code
 brew "gh"           # GitHub CLI
 brew "imagemagick"  # Tools and libraries to manipulate images in many formats
 brew "ffmpeg"       # Play, record, convert, and stream audio and video
