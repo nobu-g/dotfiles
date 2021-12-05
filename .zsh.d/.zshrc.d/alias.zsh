@@ -49,6 +49,7 @@ alias sudo='sudo '
 alias sum='paste -sd+ | bc'
 alias -- -='cd -'
 alias -- --='cd --'
+(($+commands[delta])) && alias diff='delta' || alias diff='diff -u'
 
 # global alias
 alias -g A='| awk'
