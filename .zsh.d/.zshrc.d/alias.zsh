@@ -3,10 +3,11 @@
 setopt complete_aliases # don't expand aliases _before_ completion has finished
 
 alias ls='ls -FH --color=tty'
-alias ll='lsd -lFh'
-alias la='lsd -laFh'
-alias lt='lsd -ltFh'
-alias lat='lsd -latFh'
+(($+commands[lsd])) && _ls='lsd -Fh' || _ls='ls'
+alias ll="$_ls -l"
+alias la="$_ls -la"
+alias lt="$_ls -lt"
+alias lat="$_ls -lat"
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
