@@ -123,10 +123,6 @@ zinit wait'1' lucid blockf nocompletions \
 export RIPGREP_CONFIG_PATH="${XDG_CONFIG_HOME:-$HOME/.config}/ripgrep/config"
 
 zinit wait'1' lucid \
-  from"gh-r" as"program" mv"exa* -> exa" pick"bin/exa" \
-  light-mode for @ogham/exa
-
-zinit wait'1' lucid \
   light-mode for @soimort/translate-shell
 
 # romkatv/powerlevel10k
