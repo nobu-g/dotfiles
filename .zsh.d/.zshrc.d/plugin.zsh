@@ -147,7 +147,7 @@ ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=185'
 ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=185'
 
 # https://itchyny.hatenablog.com/entry/2017/06/12/090000
-# requires `go get github.com/itchyny/fillin`
+# requires `go install github.com/itchyny/fillin@latest`
 # usage:
 # $ fillin echo {{foo}} {{bar}}
 # foo: Hello,
