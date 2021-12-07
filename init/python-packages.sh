@@ -6,6 +6,7 @@ set -u
 pip3 install --user pyknp
 
 # command-line tools
+pipx install virtualenv
 pipx install autopep8
 pipx install trash-cli
 pipx install speedtest-cli
