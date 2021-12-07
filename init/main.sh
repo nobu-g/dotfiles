@@ -79,8 +79,8 @@ freebsd* | darwin*)
   ;;
 esac
 if ! [[ -f "${HOME}/.local/lib/${lib_name}" ]] && (type cmake &> /dev/null); then
-  git clone https://github.com/sickill/stderred.git && cd stderred || exit
+  git clone https://github.com/sickill/stderred.git "${HOME}/.local/src/stderred"
+  cd "${HOME}/.local/src/stderred" || exit
   make
-  mkdir -p "$HOME/.local/lib"
   ln -snfv "$(pwd)/build/${lib_name}" "$HOME/.local/lib/"
 fi
