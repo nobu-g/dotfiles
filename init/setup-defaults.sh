@@ -14,22 +14,37 @@ if [[ ${SUDO} -eq 1 ]]; then
 fi
 
 # Always show scrollbars
-defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
 # Possible values: `WhenScrolling`, `Automatic` and `Always`
+defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
 
-ecoh "Dock: speed up showing and hiding"
+echo "Dock: speed up showing and hiding"
 defaults write com.apple.dock autohide-delay -float 0
 defaults write com.apple.dock autohide-time-modifier -float 1.0
 # back to original setting
 #defaults delete com.apple.dock autohide-delay
 #defaults delete com.apple.dock autohide-time-modifier
 
-echo "Suppress creating .DS_Store in external storage"
+echo "Dock: speed up moving apps across desktops"
+defaults write com.apple.dock workspaces-edge-delay -float 0.2
+# defaults delete com.apple.finder AnimateInfoPanes  # back to the original
+
+echo "Dock: set the icon on the Dock to semi-transparent after hiding the app"
+defaults write com.apple.dock showhidden -bool true
+
+echo "Mission Control: speed up animation"
+defaults write com.apple.dock expose-animation-duration -float 0.1
+
+echo "Finder: suppress creating .DS_Store in external storage"
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
+echo "Other apps"
 defaults write com.hegenberg.BetterTouchTool BTTDisableSecureInputLookup YES
 defaults write com.apple.dt.Xcode ShowBuildOperationDuration YES
 defaults write org.python.python ApplePersistenceIgnoreState NO
+
+echo "Finder: disble animations"
+defaults write com.apple.finder DisableAllAnimations -boolean true
+# defaults delete com.apple.finder DisableAllAnimations  # back to the original
 
 echo "Finder: show all filename extensions"
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
@@ -53,6 +68,10 @@ if [[ ${SUDO} -eq 1 ]]; then
   echo "Finder: show the /Volumes folder"
   sudo chflags nohidden /Volumes
 fi
+
+echo "Finder: Hide Quick Look when switching to other apps"
+defaults write com.apple.finder QLHidePanelOnDeactivate -bool true
+# defaults delete com.apple.finder QLHidePanelOnDeactivate  # back to the original
 
 echo "Terminal: only use UTF-8"
 defaults write com.apple.terminal StringEncodings -array 4
@@ -91,11 +110,18 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 15
 echo "Safari: enable debug menu"
 defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
 
-echo "Save screenshots to the desktop"
+echo "Screencapture: save screenshots to the desktop"
 defaults write com.apple.screencapture location -string "${HOME}/Desktop"
 
-echo "Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)"
+echo "Screencapture: save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)"
 defaults write com.apple.screencapture type -string "png"
+
+echo "Screencapture: remove shadows from screenshots"
+defaults write com.apple.screencapture disable-shadow -boolean true;killall SystemUIServer
+
+echo "speedup dialog display"
+defaults write -g NSWindowResizeTime 0.001
+# defaults delete -g NSWindowResizeTime  # back to the original
 
 # Hot corners
 # Possible values:
