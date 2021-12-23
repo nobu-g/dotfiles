@@ -35,7 +35,7 @@ alias x='exit'
 alias brew='env -u LD_LIBRARY_PATH PATH=${HOMEBREW_PREFIX}/bin:${HOMEBREW_PREFIX}/sbin:/usr/bin:/bin:/usr/sbin:/sbin brew'
 alias d='docker'
 alias l='les'
-alias cat='bat'
+alias cat='bat -p'
 alias b='bat'
 alias s='ssh'
 ## http://keisanbutsuriya.hateblo.jp/entry/2015/02/13/133858
