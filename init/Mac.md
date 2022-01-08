@@ -1,9 +1,9 @@
 ## Preliminary
-1. Preferences -> Software Update -> Make sure the system is up to date
+1. System Preferences -> Software Update -> Make sure the system is up to date
 1. Install Xcode
 2. Open Xcode and agree to the license
 3. `sudo xcode-select --install`
-4. Install dotfiles specifying a location
+4. Open Terminal.app and install dotfiles specifying a location
     ```shell
     DOTPATH=$HOME/Projects/github.com/nobu-g/dotfiles \
     FULL_INSTALL=1 \
@@ -57,6 +57,11 @@
 - Automatically rearrange Spaces based on most recent use: Off
 ### Displays
 - Display Settings -> Resolution: Scaled -> More Space
+
+## Finder
+- Preferences -> tab:Advanced -> Show all filename extensions: On
+- Preferences -> tab:Advanced -> Show warning before changing an extension: Off
+- Preferences -> tab:Advanced -> Show warning before removing from iCloud Drive: Off
 
 ## Docker Desktop
 - Log in using your Docker Hub account
