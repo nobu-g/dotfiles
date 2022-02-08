@@ -13,13 +13,9 @@ manpath=(
   ${manpath}
 )
 
-# pyenv
-export PYENV_ROOT=/usr/local/var/pyenv
-
 ## other tool paths
 path=(
   /opt/X11/bin(N-/)  # X11
-  ${PYENV_ROOT}/shims(N-/)
   /Library/Apple/usr/bin
   ${path}
 )
@@ -32,4 +28,4 @@ if [[ -e /Library/TeX ]]; then
 fi
 
 ## ghq
-export GHQ_ROOT=${HOME}/Projects
+export GHQ_ROOT="${HOME}/Projects"
