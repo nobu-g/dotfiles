@@ -103,19 +103,6 @@ zinit snippet 'OMZ::lib/clipboard.zsh'
 # zinit ice wait"2" lucid
 # zinit light marlonrichert/zsh-hist
 
-# direnv
-zinit lucid from"gh-r" as"program" mv"direnv* -> direnv" pick"direnv" \
-  atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
-  src="zhook.zsh" light-mode for @direnv/direnv
-p=$PWD
-while [[ $p != '/' ]]; do
-  if [[ -f $p/.envrc ]]; then
-    direnv allow
-    break
-  fi
-  p=$(dirname $p)
-done
-
 zinit wait'1' lucid \
   light-mode for @soimort/translate-shell
 

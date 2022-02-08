@@ -22,6 +22,17 @@ export PYTHONSTARTUP="${XDG_CONFIG_HOME:-$HOME/.config}/python/.pythonrc.py"
 # Node.js
 export NODE_REPL_HISTORY="${XDG_DATA_HOME:-$HOME/.local/share}/node/.node_repl_history"
 
+# direnv
+eval "$(direnv hook zsh)"
+p=$PWD
+while [[ $p != '/' ]]; do
+  if [[ -f $p/.envrc ]]; then
+    direnv allow
+    break
+  fi
+  p=$(dirname $p)
+done
+
 ## peco
 peco-select-history() {
   BUFFER=$(\history -Endir 1 | peco --query "$BUFFER" --prompt "[hist]" --print-query | tail -1 | cut -d' ' -f4-)

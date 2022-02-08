@@ -48,6 +48,7 @@ brew "pipx"       # Execute binaries from Python packages in isolated environmen
 brew "atuin"      # Improved shell history for zsh and bash
 brew "zoxide"     # Shell extension to navigate your filesystem faster
 brew "peco"       # Simplistic interactive filtering tool
+brew "direnv"     # Load/unload environment variables based on $PWD
 
 # System
 brew "ansible"
