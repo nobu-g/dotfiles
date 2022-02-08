@@ -20,7 +20,7 @@ export SSH_AUTH_SOCK="$SSH_AUTH_SOCK_LINK"
 # fi
 
 # 別のマシンに移動した時カレントディレクトリを維持
-if [[ -e "$LC_PWD" && "$(readlink -f $PWD)" != "$(readlink -f $LC_PWD)" ]]; then
+if [[ -e ${LC_PWD} && ${PWD:P} != ${LC_PWD:P} ]]; then
   cd "$LC_PWD"
   unset LC_PWD
 fi

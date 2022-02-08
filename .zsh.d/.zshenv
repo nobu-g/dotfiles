@@ -47,22 +47,21 @@ if [[ $(id -u) -eq 0 ]]; then  # root user
   path=(${sudo_path} ${path})
 fi
 
-RESOLVE="${HOME}/.local/bin/readlinkf"
+SELF="${(%):-%N}"
+DOTPATH="$(dirname "${SELF:A:h}")"
 
-# Homebrew/Linuxbrew で prefix が違う
-# $(brew --prefix) は時間がかかるため、ここで判定して HOMEBREW_PREFIX に格納する
-if [[ -d ${HOME}/.linuxbrew ]]; then
-  HOMEBREW_PREFIX="$(${RESOLVE} ${HOME}/.linuxbrew)"
-elif [[ -d /home/.linuxbrew ]]; then
-  HOMEBREW_PREFIX="$(${RESOLVE} /home/.linuxbrew)"
-elif [[ -x /usr/local/bin/brew ]]; then
-  HOMEBREW_PREFIX="/usr/local"
-elif [[ -x /opt/homebrew/bin/brew ]]; then
-  HOMEBREW_PREFIX="/opt/homebrew"
-fi
+# 環境によって HOMEBREW_PREFIX が異なるため候補の中から探索
+for prefix in "${HOME}/.linuxbrew", "/home/.linuxbrew", "/usr/local", "/opt/homebrew"; do
+  if [[ -x "${prefix}/bin/brew" ]]; then
+    export HOMEBREW_PREFIX="${prefix:P}"  # canonicalize
+    export HOMEBREW_CELLAR="${HOMEBREW_PREFIX}/Cellar"
+    export HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}/Homebrew"
+    break
+  fi
+done
 
 # Python
-export PYTHONUSERBASE="$HOME/.local"
+export PYTHONUSERBASE="${HOME}/.local"
 
 # PIPENV
 if [[ -d /mnt/berry_f/home ]]; then
@@ -77,7 +76,7 @@ export PYTEST_ADDOPTS="-v -s --ff"
 # zmv
 autoload -Uz zmv
 
-ZBASEDIR="$(dirname "$(${RESOLVE} "${(%):-%N}")")"
+ZBASEDIR="${DOTPATH}/.zsh.d"
 case "${OSTYPE}" in
 linux*|cygwin*)
   ZENVDIR="${ZBASEDIR}/linux"
@@ -91,9 +90,6 @@ esac
 source "${ZENVDIR}/.zshenv"
 
 if [[ -n ${HOMEBREW_PREFIX} ]]; then
-  export HOMEBREW_PREFIX
-  export HOMEBREW_CELLAR="${HOMEBREW_PREFIX}/Cellar"
-  export HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}/Homebrew"
   path=(${HOMEBREW_PREFIX}/{bin,sbin}(N-/) ${path})
   manpath=(${HOMEBREW_PREFIX}/share/man(N-/) ${manpath})
   infopath=(${HOMEBREW_PREFIX}/share/info(N-/) ${infopath})
