@@ -13,6 +13,9 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'" # https://github.com/sharkdp/b
 export EDITOR='emacsclient -s ${EMACS_SERVER_SOCKET}'
 export EMACS_SERVER_SOCKET="${TMPDIR:-/tmp}/emacs$(id -u)/server"
 
+# BurntSushi/ripgrep
+export RIPGREP_CONFIG_PATH="${XDG_CONFIG_HOME:-$HOME/.config}/ripgrep/config"
+
 # Python
 export PYTHONSTARTUP="${XDG_CONFIG_HOME:-$HOME/.config}/python/.pythonrc.py"
 

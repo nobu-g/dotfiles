@@ -116,12 +116,6 @@ while [[ $p != '/' ]]; do
   p=$(dirname $p)
 done
 
-zinit wait'1' lucid blockf nocompletions \
-  from"gh-r" as"program" mv"ripgrep-* -> ripgrep" pick'ripgrep/rg' \
-  atclone'zinit creinstall -q BurntSushi/ripgrep' atpull'%atclone' \
-  light-mode for @BurntSushi/ripgrep
-export RIPGREP_CONFIG_PATH="${XDG_CONFIG_HOME:-$HOME/.config}/ripgrep/config"
-
 zinit wait'1' lucid \
   light-mode for @soimort/translate-shell
 
