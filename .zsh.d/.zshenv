@@ -49,8 +49,8 @@ fi
 
 RESOLVE="${HOME}/.local/bin/readlinkf"
 
-# Homebrew/Linuxbrew で prefix のパスが違う
-# $(brew --prefix) は時間がかかる処理のため、ここで判定して HOMEBREW_PREFIX に格納する
+# Homebrew/Linuxbrew で prefix が違う
+# $(brew --prefix) は時間がかかるため、ここで判定して HOMEBREW_PREFIX に格納する
 if [[ -d ${HOME}/.linuxbrew ]]; then
   HOMEBREW_PREFIX="$(${RESOLVE} ${HOME}/.linuxbrew)"
 elif [[ -d /home/.linuxbrew ]]; then

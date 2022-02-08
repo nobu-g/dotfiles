@@ -20,6 +20,7 @@ export PYENV_ROOT=/usr/local/var/pyenv
 path=(
   /opt/X11/bin(N-/)  # X11
   ${PYENV_ROOT}/shims(N-/)
+  /Library/Apple/usr/bin
   ${path}
 )
 
