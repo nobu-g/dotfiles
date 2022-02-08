@@ -19,10 +19,10 @@ update: ## Fetch changes for this repo
 
 upgrade: ## Upgrade installed packages
 	brew update && brew upgrade
-	# pipx upgrade-all
+	(type pipx &> /dev/null) && pipx upgrade-all
 	pkgs="$(pip3 list --user -o | tail -n +3 | awk '{ print $$1 }')"; \
 	[[ -n $$pkgs ]] && pip3 install --user -U $$pkgs || true
-#	(type zinit &> /dev/null) && zinit update --all || true  # zinit is a shell function
+	(type zinit &> /dev/null) && zinit update --all || true
 
 install: update init deploy ## Run make update, init, deploy
 	zsh -l -c 'exit'
