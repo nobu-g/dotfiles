@@ -2,15 +2,15 @@
 
 ## Additional setup (Mac)
 
-### sudoでTouchIDが使えるようにする
+### Enable TouchID when running `sudo`
 
-`/etc/pam.d/sudo` の最初に以下の１行を追加
+Add the following line to the beginning of `/etc/pam.d/sudo`.
 
 ```text
 auth       sufficient     pam_tid.so
 ```
 
-### dotfiles で管理していない設定ファイルの同期
+### Synchronize configuration files that are not managed by dotfiles
 
 1. Login to Dropbox
 2. `mackup restore`
