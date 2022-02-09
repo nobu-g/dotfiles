@@ -32,8 +32,8 @@ if [[ -e /home/linuxbrew/.linuxbrew ]]; then
   infopath=(${prefix}/share/info(N-/) ${infopath})
   fpath=(${prefix}/share/zsh/site-functions(N-/) ${fpath})
 fi
-if [[ -e /home/linuxbrew/usr ]]; then
-  prefix="/home/linuxbrew/usr"
+if [[ -e /home/linuxbrew/.local ]]; then
+  prefix="/home/linuxbrew/.local"
   path=(${prefix}/{bin,sbin}(N-/) ${path})
   manpath=(${prefix}/share/man(N-/) ${manpath})
   infopath=(${prefix}/share/info(N-/) ${infopath})
