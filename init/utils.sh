@@ -1,41 +1,41 @@
 #!/usr/bin/env bash
 
-function print_default() {
+print_default() {
   echo -e "$*"
 }
 
-function print_info() {
+print_info() {
   echo -e "\e[1;36m$*\e[m" # cyan
 }
 
-function print_notice() {
+print_notice() {
   echo -e "\e[1;35m$*\e[m" # magenta
 }
 
-function print_success() {
+print_success() {
   echo -e "\e[1;32m$*\e[m" # green
 }
 
-function print_warning() {
+print_warning() {
   echo -e "\e[1;33m$*\e[m" # yellow
 }
 
-function print_error() {
+print_error() {
   echo -e "\e[1;31m$*\e[m" # red
 }
 
-function print_debug() {
+print_debug() {
   echo -e "\e[1;34m$*\e[m" # blue
 }
 
-function chkcmd() {
+chkcmd() {
   if ! builtin command -v "$1"; then
     print_error "${1} command not found"
     exit
   fi
 }
 
-function yes_or_no_select() {
+yes_or_no_select() {
   local answer
   print_notice "Are you ready? [yes/no]"
   read -r answer
@@ -52,7 +52,7 @@ function yes_or_no_select() {
   esac
 }
 
-function append_file_if_not_exist() {
+append_file_if_not_exist() {
   contents="$1"
   target_file="$2"
   if ! grep -q "${contents}" "${target_file}"; then
@@ -60,7 +60,7 @@ function append_file_if_not_exist() {
   fi
 }
 
-function whichdistro() {
+whichdistro() {
   #which yum > /dev/null && { echo redhat; return; }
   #which zypper > /dev/null && { echo opensuse; return; }
   #which apt-get > /dev/null && { echo debian; return; }
@@ -83,7 +83,7 @@ function whichdistro() {
   fi
 }
 
-function checkinstall() {
+checkinstall() {
   local distro
   distro=$(whichdistro)
   if [[ $distro == "redhat" ]]; then
@@ -100,15 +100,15 @@ function checkinstall() {
   local pkgs="$*"
   if [[ $distro == "debian" ]]; then
     pkgs=${pkgs//python-pip/python3-pip}
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install -y $pkgs
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install -y ${pkgs}
   elif [[ $distro == "redhat" ]]; then
-    sudo yum install -y $pkgs
+    sudo yum install -y ${pkgs}
   elif [[ $distro == "arch" ]]; then
-    sudo pacman -S --noconfirm --needed $pkgs
+    sudo pacman -S --noconfirm --needed ${pkgs}
   elif [[ $distro == "alpine" ]]; then
     sudo bash -c "$(declare -f append_file_if_not_exist); append_file_if_not_exist http://dl-3.alpinelinux.org/alpine/edge/testing/ /etc/apk/repositories"
     pkgs=${pkgs//python-pip/py-pip}
-    sudo apk add $pkgs
+    sudo apk add ${pkgs}
   else
     :
   fi
