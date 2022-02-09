@@ -20,8 +20,13 @@ My dotfiles.
 ### Using installer
 
 ```bash
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/nobu-g/dotfiles/main/install.sh)"
+[SUDO=1] [FULL_INSTALL=1] sh -c "$(curl -fsSL https://raw.githubusercontent.com/nobu-g/dotfiles/main/install.sh)"
 ```
+
+Options:
+- `SUDO=1`: specify this if you have sudo privileges
+- `FULL_INSTALL=1`: specify this if you want to install all the brew packages
+- `HOMEBREW_PREFIX=/somewhere`: specify this if you want to install Homebrew to a different directory
 
 ### Using GNU Make
 
@@ -30,12 +35,6 @@ git clone https://github.com/nobu-g/dotfiles.git
 cd dotfiles
 make install [SUDO=1] [FULL_INSTALL=1]
 ```
-
-`Make` has a few options.
-- `SUDO=1`: specify this if you have sudo privileges
-- `FULL_INSTALL=1`: specify this if you want to install all the brew packages
-- `HOMEBREW_PREFIX=/somewhere`: specify this if you want to install Homebrew to a different directory
-
 
 ## Requirements
 
