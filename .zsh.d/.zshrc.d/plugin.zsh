@@ -1,9 +1,10 @@
 # ZINIT SETTINGS
 
 # place above compinit
-source "$HOME/.zinit/bin/zinit.zsh"
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+source "${ZINIT_HOME}/zinit.zsh"
 ZINIT[COMPINIT_OPTS]=-C
-# if you sourced below compinit following two lines are needed
+# If you place the source below compinit, then add those two lines after the source:
 # autoload -Uz _zinit
 # (( ${+_comps} )) && _comps[zinit]=_zinit
 
