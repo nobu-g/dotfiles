@@ -19,3 +19,10 @@ bindkey '^e' end-of-line
 # allow ctrl-z, ctrl-y for undo redo
 bindkey '^z' undo
 # bindkey '^y' redo
+
+# For extended keyboard
+bindkey '^[[3~' delete-char  # Delete
+# bindkey -r '^[[5~'  # disable PageUp
+# bindkey -r '^[[6~'  # disable PageDown
+bindkey '^[OH' end-of-line  # End
+bindkey '^[OF' beginning-of-line  # Home
