@@ -16,7 +16,7 @@ mkdir -p "${HOME}"/.local/share/{node,shell}
 # install Homebrew and its packages
 case "${OSTYPE}" in
 linux* | cygwin*)
-  HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-"$HOME/.linuxbrew"}
+  HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-"${HOME}/.linuxbrew"}
   ;;
 freebsd* | darwin*)
   if [[ $(uname -m) == "arm64" ]]; then
@@ -56,25 +56,25 @@ if (type cargo &> /dev/null); then
   bash -x "$here/rust-packages.sh"
 fi
 
-# install zinit
+# install Zinit
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 if ! [[ -d ${ZINIT_HOME} ]]; then
   mkdir -p "$(dirname "${ZINIT_HOME}")"
   git clone https://github.com/zdharma-continuum/zinit.git "${ZINIT_HOME}"
 fi
 
-# install python packages
+# install Python packages
 if (type pipx &> /dev/null); then
   bash -x "$here/python-packages.sh"
 fi
 
-# install golang packages
+# install Go packages
 if (type go &> /dev/null); then
   go install github.com/itchyny/fillin@latest
   go install golang.org/x/tools/gopls@latest  # or brew install gopls
 fi
 
-# install libstderred (https://github.com/sickill/stderred)
+# https://github.com/sickill/stderred
 case "${OSTYPE}" in
 linux* | cygwin*)
   lib_ext=".so"
