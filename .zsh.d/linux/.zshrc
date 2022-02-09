@@ -20,8 +20,6 @@ apt-user-install() {
   cd "${cur_dir}" || exit
 }
 
-export HOMEBREW_NO_AUTO_UPDATE=1
-
 # stderred
 if [[ -f "${HOME}/.local/lib/libstderred.so" ]]; then
   export STDERRED_ESC_CODE=$(echo -e "$(tput setaf 9)")
