@@ -77,15 +77,16 @@ fi
 # install libstderred (https://github.com/sickill/stderred)
 case "${OSTYPE}" in
 linux* | cygwin*)
-  lib_name=libstderred.so
+  lib_ext=".so"
   ;;
 freebsd* | darwin*)
-  lib_name=libstderred.dylib
+  lib_ext=".dylib"
   ;;
 esac
-if ! [[ -f "${HOME}/.local/lib/${lib_name}" ]] && (type cmake &> /dev/null); then
-  git clone https://github.com/sickill/stderred.git "${HOME}/.local/src/stderred"
-  cd "${HOME}/.local/src/stderred" || exit
+prefix="${HOME}/.local"
+if ! [[ -f "${prefix}/lib/libstderred${lib_ext}" ]] && (type cmake &> /dev/null); then
+  git clone https://github.com/sickill/stderred.git "${prefix}/src/stderred"
+  cd "${prefix}/src/stderred" || exit
   make
-  ln -snfv "$(pwd)/build/${lib_name}" "$HOME/.local/lib/"
+  ln -snfv "$(pwd)/build/libstderred${lib_ext}" "${prefix}/lib/"
 fi

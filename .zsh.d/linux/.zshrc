@@ -32,12 +32,12 @@ fi
 alias pbcopy='clipcopy'
 alias pbpaste='clippaste'
 alias gzcat='zcat'
-alias ssh='LC_PWD=$PWD /usr/bin/ssh -o SendEnv=LC_PWD'
+alias ssh='LC_PWD="${PWD}" /usr/bin/ssh -o SendEnv=LC_PWD'
 [[ -x /usr/bin/git ]] && alias git='/usr/bin/git'
 alias nv='nvidia-smi'
 
 # directory alias
-hash -d larch=/mnt/larch/${USER}   # ~larch
-hash -d hinoki=/mnt/hinoki/${USER} # ~hinoki
-hash -d elm=/mnt/elm/${USER}       # ~elm
-hash -d zamia=/mnt/zamia/${USER}   # ~zamia
+hash -d larch="/mnt/larch/${USER}"   # ~larch
+hash -d hinoki="/mnt/hinoki/${USER}" # ~hinoki
+hash -d elm="/mnt/elm/${USER}"       # ~elm
+hash -d zamia="/mnt/zamia/${USER}"   # ~zamia
