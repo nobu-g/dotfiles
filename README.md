@@ -3,8 +3,8 @@
 ![License](http://img.shields.io/badge/license-MIT-blue.svg)
 [![Linux](https://github.com/nobu-g/dotfiles/actions/workflows/test-linux.yml/badge.svg)](https://github.com/nobu-g/dotfiles/actions/workflows/test-linux.yml)
 [![macOS](https://github.com/nobu-g/dotfiles/actions/workflows/test-macos.yml/badge.svg)](https://github.com/nobu-g/dotfiles/actions/workflows/test-macos.yml)
+[![installer](https://github.com/nobu-g/dotfiles/actions/workflows/test-installer.yml/badge.svg)](https://github.com/nobu-g/dotfiles/actions/workflows/test-installer.yml)
 [![lint](https://github.com/nobu-g/dotfiles/actions/workflows/lint.yml/badge.svg)](https://github.com/nobu-g/dotfiles/actions/workflows/lint.yml)
-[![test-installer](https://github.com/nobu-g/dotfiles/actions/workflows/test-installer.yml/badge.svg)](https://github.com/nobu-g/dotfiles/actions/workflows/test-installer.yml)
 
 My dotfiles.
 
