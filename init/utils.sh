@@ -113,23 +113,3 @@ function checkinstall() {
     :
   fi
 }
-
-# function git_clone_or_fetch() {
-#   local repo="$1"
-#   local dest="$2"
-#   local name
-#   name=$(basename "$repo")
-#   if [ ! -d "$dest/.git" ]; then
-#     print_default "Installing $name..."
-#     print_default ""
-#     mkdir -p $dest
-#     git clone --depth 1 $repo $dest
-#   else
-#     print_default "Pulling $name..."
-#     (
-#       builtin cd $dest && git pull --depth 1 --rebase origin "$(basename "$(git symbolic-ref --short refs/remotes/origin/HEAD)")" ||
-#         print_notice "Exec in compatibility mode [git pull --rebase]" &&
-#         builtin cd $dest && git fetch --unshallow && git rebase origin/"$(basename "$(git symbolic-ref --short refs/remotes/origin/HEAD)")"
-#     )
-#   fi
-# }
