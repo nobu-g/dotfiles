@@ -9,7 +9,7 @@ jobs:
       max-parallel: 4
       fail-fast: false
       matrix:
-        dist: [ubuntu, centos, fedora, rockylinux]
+        dist: [ubuntu, debian, fedora, rockylinux]
     steps:
       - name: Check out code
         uses: actions/checkout@v2

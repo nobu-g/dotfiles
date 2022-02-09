@@ -48,10 +48,10 @@ make install [SUDO=1] [FULL_INSTALL=1]
 - `apt install gcc build-essential procps curl file git`
 - `apt install python3-pip zlib1g-dev`
 
-### CentOS
-- `yum install sudo make zsh`
-- `yum install gcc 'Development Tools' procps-ng curl file git`
-- `yum install perl-ExtUtils-MakeMaker glibc-devel python3`
+### Debian
+- `apt install sudo make zsh`
+- `apt install gcc build-essential procps curl file git`
+- `apt install python3-pip zlib1g-dev`
 
 ### Fedora
 - `dnf install sudo make zsh`
