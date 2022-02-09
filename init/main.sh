@@ -47,8 +47,11 @@ esac
 
 # install Rust and its packages
 export RUSTUP_INIT_SKIP_PATH_CHECK="yes"
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
-export PATH="$HOME/.cargo/bin:$PATH"
+if ! [[ -x ${HOME}/.cargo/bin/cargo ]]; then
+  # https://www.rust-lang.org/tools/install
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
+fi
+export PATH="${HOME}/.cargo/bin:${PATH}"
 if (type cargo &> /dev/null); then
   bash -x "$here/rust-packages.sh"
 fi
