@@ -34,6 +34,7 @@ cask "font-jetbrains-mono"
 cask "font-noto-sans-cjk-jp"
 cask "monitorcontrol"
 cask "bartender"
+cask "openvpn-connect"
 
 # MAS
 mas "XCode", id: 497799835
