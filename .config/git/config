@@ -38,7 +38,7 @@
 	# Diff against the current branch's merge-base
 	diff-merge-base = !git diff $(git merge-base-head)
 
-    s = status
+    s = status -u
     a = add
     ps = push
     pl = pull
