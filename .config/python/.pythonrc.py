@@ -9,9 +9,13 @@ from pathlib import Path
 from typing import *
 from collections import defaultdict
 
+msg = 'Imported sys, os, re, json, Path, defaultdict, and all modules of typing'
+
 try:
     from pyknp import *
+    msg += ' and pyknp.'
 except ImportError:
     print("pyknp not available")
+    msg += '.'
 
-print('Imported sys, os, re, json, pathlib.Path, collections.defaultdict, and all modules of typing.')
+print(msg)
