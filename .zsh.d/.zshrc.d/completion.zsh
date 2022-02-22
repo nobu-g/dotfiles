@@ -34,6 +34,7 @@ zstyle ':completion:*:manuals' separate-sections true
 zstyle ':completion:*:cd:*' tag-order local-directories path-directories
 ### use cache
 zstyle ':completion:*' use-cache yes
+zstyle ':completion::complete:*' cache-path "${XDG_CACHE_HOME:-${HOME}/.cache}/zsh/zcompcache"
 ### use sudo path
 zstyle ':completion:sudo:*' environ PATH="$SUDO_PATH:$PATH"
 # 今いるディレクトリを補完候補から外す

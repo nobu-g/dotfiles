@@ -3,7 +3,7 @@
 # place above compinit
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 source "${ZINIT_HOME}/zinit.zsh"
-ZINIT[COMPINIT_OPTS]=-C
+ZINIT[COMPINIT_OPTS]="-C -d ${XDG_CACHE_HOME:-${HOME}/.cache}/zsh/zcompdump"
 # If you place the source below compinit, then add those two lines after the source:
 # autoload -Uz _zinit
 # (( ${+_comps} )) && _comps[zinit]=_zinit
