@@ -119,6 +119,10 @@ cd() {
   fi
 }
 
+fontlist() { fc-list | sed 's,:.*,,' | sort -u }
+mvbak() { mv ${1%%/} ${1%%/}"-$(date "+"%Y-%m-%d)" }
+cpbak() { cp -R ${1%%/} ${1%%/}"-$(date "+"%Y-%m-%d)" }
+
 # set operations
 autoload -Uz union
 autoload -Uz isect
