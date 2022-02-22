@@ -51,6 +51,7 @@ alias path='echo -e ${PATH//:/\\n}'
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
 alias sum='paste -sd+ | bc'
+alias tree='tree -CF'
 alias -- -='cd -'
 alias -- --='cd --'
 (($+commands[delta])) && alias diff='delta' || alias diff='diff -u'
