@@ -4,6 +4,7 @@ export LESSCHARSET='utf-8'
 if [[ -e ${HOMEBREW_PREFIX}/bin/src-hilite-lesspipe.sh ]]; then
   export LESSOPEN="| ${HOMEBREW_PREFIX}/bin/src-hilite-lesspipe.sh %s"
 fi
+export LESSHISTFILE="${XDG_DATA_HOME:-${HOME}/.local/share}/less/lesshst"
 
 # PAGER
 export PAGER="less"
