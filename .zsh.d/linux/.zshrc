@@ -28,17 +28,7 @@ fi
 
 # LESS man page colors (makes Man pages more readable).
 man() {
-  env \
-  LESS_TERMCAP_mb=$'\E[01;31m' \
-  LESS_TERMCAP_md=$'\E[01;31m' \
-  LESS_TERMCAP_me=$'\E[0m' \
-  LESS_TERMCAP_se=$'\E[0m' \
-  LESS_TERMCAP_so=$'\E[00;44;37m' \
-  LESS_TERMCAP_ue=$'\E[0m' \
-  LESS_TERMCAP_us=$'\E[01;32m' \
-  -u LD_PRELOAD \
-  -u MANPAGER \
-  man "$@"
+  env -u LD_PRELOAD -u MANPAGER man "$@" | col -bx | bat -l man -p
 }
 
 # alias
