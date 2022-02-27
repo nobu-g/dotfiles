@@ -37,24 +37,35 @@ done
 
 ## peco
 peco-select-history() {
-  BUFFER=$(\history -Endir 1 | peco --query "$BUFFER" --prompt "[hist]" --print-query | tail -1 | cut -d' ' -f4-)
+  BUFFER="$(\history -Endir 1 | peco --query "$BUFFER" --prompt "[hist]" --print-query | tail -1 | cut -d' ' -f4-)"
   CURSOR=${#BUFFER}
   #  zle clear-screen
 }
 zle -N peco-select-history
-bindkey '^r' peco-select-history
+# bindkey '^r' peco-select-history
 
 fzf-select-history() {
-  BUFFER="$(history -nr 1 | awk '!a[$0]++' | fzf --query "$BUFFER" | sed 's/\\n/\n/')"
-  CURSOR=${#BUFFER} # カーソルを文末に移動
-  zle -R -c         # refresh
+  BUFFER="$(\history -Endir 1 | fzf --query "${BUFFER}" --prompt "[hist]" | cut -d' ' -f4-)"
+  CURSOR=${#BUFFER} # move cursor to the end of the line
+  # zle -R -c         # refresh
 }
-# zle -N fzf-select-history
-# bindkey '^r' fzf-select-history
+zle -N fzf-select-history
+bindkey '^r' fzf-select-history
+
+export FZF_DEFAULT_OPTS='
+  --cycle
+  --no-sort
+  --layout=reverse
+  --no-mouse
+  --color=fg:#f8f8f2,hl:#bd93f9
+  --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9
+  --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6
+  --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4
+'
 
 ## search a destination from cdr list and cd the destination
-peco-cdr() {
-  local dest=$(cdr -l | sed -Ee 's/^[0-9]+\s+//' | peco --query "$BUFFER" --prompt "[dest]")
+fzf-cdr() {
+  local dest="$(cdr -l | sed -Ee 's/^[0-9]+\s+//' | fzf --query "${BUFFER}" --prompt "[dest]" --preview '_var={}; ls -FHA --color=always "${_var/#\~/$HOME}"')"
   if [[ -n "${dest}" ]]; then
     BUFFER="cd ${dest}"
     zle accept-line
@@ -62,8 +73,8 @@ peco-cdr() {
     zle reset-prompt
   fi
 }
-zle -N peco-cdr
-bindkey '^x' peco-cdr
+zle -N fzf-cdr
+bindkey '^x' fzf-cdr
 
 # cdr設定(pecoの'^x'に必要)
 autoload -Uz chpwd_recent_dirs cdr
@@ -74,30 +85,36 @@ zstyle ':chpwd:*' recent-dirs-file "${XDG_DATA_HOME:-$HOME/.local/share}/shell/c
 zstyle ':completion:*' recent-dirs-insert both
 
 # peco find file (https://k0kubun.hatenablog.com/entry/2014/07/06/033336)
-peco-find-file() {
-  local source_files
+fzf-find-file() {
+  local cand_files
   if git rev-parse 2> /dev/null; then
-    source_files=$(git ls-files)
+    cand_files=$(git ls-files)
   else
-    source_files=$(find . -type f)
+    cand_files=$(find . -type f)
   fi
-  local selected_files=$(echo ${source_files} | peco --prompt "[file]" | tr '\n', ' ')
+  local selected_files=$(echo ${cand_files} | fzf --prompt "[file]" --multi)
 
-  BUFFER=${BUFFER}${selected_files}
+  BUFFER="${BUFFER}${selected_files}"
   CURSOR=${#BUFFER}
   zle redisplay
 }
-zle -N peco-find-file
-bindkey '^_' peco-find-file # works by ^/
+zle -N fzf-find-file
+bindkey '^_' fzf-find-file # works by ^/
 
 # peco process kill (https://github.com/masutaka/dotfiles-public/blob/master/.zshrc)
 peco-pkill() {
-  for pid in $(ps aux | peco --prompt "[kill]" | awk '{ print $2 }'); do
-    kill $pid
+  for pid in $(ps aux | peco --prompt "[kill]" | awk '{print $2}'); do
+    kill ${pid}
     echo "Killed ${pid}"
-	done
+  done
 }
-alias pk="peco-pkill"
+fzf-pkill() {
+  for pid in $(ps aux | fzf --prompt "[kill]" --multi | awk '{print $2}'); do
+    kill ${pid}
+    echo "Killed ${pid}"
+  done
+}
+alias pk="fzf-pkill"
 
 
 # broot
