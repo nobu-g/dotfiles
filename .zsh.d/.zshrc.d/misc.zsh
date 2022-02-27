@@ -45,7 +45,7 @@ zle -N peco-select-history
 # bindkey '^r' peco-select-history
 
 fzf-select-history() {
-  BUFFER="$(\history -Endir 1 | fzf --query "${BUFFER}" --prompt "[hist]" | cut -d' ' -f4-)"
+  BUFFER="$(\history -Endir 1 | fzf --query "${BUFFER}" --prompt "[hist] " | cut -d' ' -f4-)"
   CURSOR=${#BUFFER} # move cursor to the end of the line
   # zle -R -c         # refresh
 }
@@ -65,7 +65,7 @@ export FZF_DEFAULT_OPTS='
 
 ## search a destination from cdr list and cd the destination
 fzf-cdr() {
-  local dest="$(cdr -l | sed -Ee 's/^[0-9]+\s+//' | fzf --query "${BUFFER}" --prompt "[dest]" --preview '_var={}; ls -FHA --color=always "${_var/#\~/$HOME}"')"
+  local dest="$(cdr -l | sed -Ee 's/^[0-9]+\s+//' | fzf --query "${BUFFER}" --prompt "[dest] " --preview '_var={}; ls -FHA --color=always "${_var/#\~/$HOME}"')"
   if [[ -n "${dest}" ]]; then
     BUFFER="cd ${dest}"
     zle accept-line
@@ -92,7 +92,7 @@ fzf-find-file() {
   else
     cand_files=$(find . -type f)
   fi
-  local selected_files=$(echo ${cand_files} | fzf --prompt "[file]" --multi)
+  local selected_files=$(echo ${cand_files} | fzf --prompt "[file] " --multi)
 
   BUFFER="${BUFFER}${selected_files}"
   CURSOR=${#BUFFER}
@@ -109,7 +109,7 @@ peco-pkill() {
   done
 }
 fzf-pkill() {
-  for pid in $(ps aux | fzf --prompt "[kill]" --multi | awk '{print $2}'); do
+  for pid in $(ps aux | fzf --prompt "[kill] " --multi | awk '{print $2}'); do
     kill ${pid}
     echo "Killed ${pid}"
   done
