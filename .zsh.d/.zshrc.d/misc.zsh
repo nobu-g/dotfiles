@@ -47,7 +47,7 @@ zle -N peco-select-history
 fzf-select-history() {
   BUFFER="$(\history -Endir 1 | fzf --query "${BUFFER}" --prompt "[hist] " | cut -d' ' -f4-)"
   CURSOR=${#BUFFER} # move cursor to the end of the line
-  # zle -R -c         # refresh
+  zle -R -c         # refresh
 }
 zle -N fzf-select-history
 bindkey '^r' fzf-select-history
