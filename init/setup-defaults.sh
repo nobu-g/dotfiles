@@ -17,6 +17,10 @@ fi
 # Possible values: `WhenScrolling`, `Automatic` and `Always`
 defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
 
+# Enable full keyboard access for all controls
+# (e.g. enable Tab in modal dialogs)
+defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+
 echo "Dock: speed up showing and hiding"
 defaults write com.apple.dock autohide-delay -float 0
 defaults write com.apple.dock autohide-time-modifier -float 1.0
@@ -24,27 +28,41 @@ defaults write com.apple.dock autohide-time-modifier -float 1.0
 #defaults delete com.apple.dock autohide-delay
 #defaults delete com.apple.dock autohide-time-modifier
 
-echo "Dock: speed up moving apps across desktops"
-defaults write com.apple.dock workspaces-edge-delay -float 0.2
-# defaults delete com.apple.finder AnimateInfoPanes  # back to the original
+echo "Dock: automatically hide and show the Dock"
+defaults write com.apple.dock autohide -bool true
 
 echo "Dock: set the icon on the Dock to semi-transparent after hiding the app"
 defaults write com.apple.dock showhidden -bool true
 
+echo "Dock: speed up moving apps across desktops"
+defaults write com.apple.dock workspaces-edge-delay -float 0.2
+# defaults delete com.apple.finder AnimateInfoPanes  # back to the original
+
+echo "Dock: don't automatically rearrange Spaces based on most recent use"
+defaults write com.apple.dock mru-spaces -bool false
+
+echo "Dock: enable highlight hover effect for the grid view of a stack"
+defaults write com.apple.dock mouse-over-hilite-stack -bool true
+
 echo "Mission Control: speed up animation"
 defaults write com.apple.dock expose-animation-duration -float 0.1
+
+###############################################################################
+# Finder                                                                      #
+###############################################################################
 
 echo "Finder: suppress creating .DS_Store in external storage"
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
-echo "Other apps"
-defaults write com.hegenberg.BetterTouchTool BTTDisableSecureInputLookup YES
-defaults write com.apple.dt.Xcode ShowBuildOperationDuration YES
-defaults write org.python.python ApplePersistenceIgnoreState NO
-
 echo "Finder: disble animations"
 defaults write com.apple.finder DisableAllAnimations -boolean true
 # defaults delete com.apple.finder DisableAllAnimations  # back to the original
+
+echo "Finder: when performing a search, search the current folder by default"
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+
+echo "Finder: disable the warning when changing a file extension"
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
 echo "Finder: show all filename extensions"
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
@@ -76,6 +94,11 @@ defaults write com.apple.finder QLHidePanelOnDeactivate -bool true
 echo "Terminal: only use UTF-8"
 defaults write com.apple.terminal StringEncodings -array 4
 
+echo "Other apps"
+defaults write com.hegenberg.BetterTouchTool BTTDisableSecureInputLookup YES
+defaults write com.apple.dt.Xcode ShowBuildOperationDuration YES
+defaults write org.python.python ApplePersistenceIgnoreState NO
+
 echo "Expand save dialog by default"
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
@@ -102,13 +125,16 @@ defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 echo "Set a blazingly fast keyboard repeat rate"
 defaults write NSGlobalDomain KeyRepeat -int 1
 echo "Set a shorter Delay until key repeat"
-defaults write NSGlobalDomain InitialKeyRepeat -int 15
+defaults write NSGlobalDomain InitialKeyRepeat -int 10
 
 # echo "Trackpad: Enable tap to click"
 # defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 
 echo "Safari: enable debug menu"
 defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
+
+echo "Safari: Show the full URL in the address bar (note: this still hides the scheme)"
+defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
 
 echo "Screencapture: save screenshots to the desktop"
 defaults write com.apple.screencapture location -string "${HOME}/Desktop"
@@ -122,6 +148,9 @@ defaults write com.apple.screencapture disable-shadow -boolean true;killall Syst
 echo "speedup dialog display"
 defaults write -g NSWindowResizeTime 0.001
 # defaults delete -g NSWindowResizeTime  # back to the original
+
+echo "iTerm2: don't display the annoying prompt when quitting iTerm"
+defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 
 # Hot corners
 # Possible values:

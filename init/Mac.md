@@ -22,7 +22,6 @@
 - Automatically keep my Mac up to date: On
 ### Dock & Menu Bar
 - Automatically hide and show the Dock: On
-- Show recent applications in Dock: Off
 - Battery -> Show Percentage: On
 - Spotlight -> Show in Menu Bar: Off
 ### Keyboard
@@ -59,8 +58,6 @@
 - Display Settings -> Resolution: Scaled -> More Space
 
 ## Finder
-- Preferences -> tab:Advanced -> Show all filename extensions: On
-- Preferences -> tab:Advanced -> Show warning before changing an extension: Off
 - Preferences -> tab:Advanced -> Show warning before removing from iCloud Drive: Off
 
 ## Docker Desktop
