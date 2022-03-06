@@ -1,23 +1,31 @@
 #!/usr/bin/env bash
 
-# Extract archives - use: extract <file>
-# Credits to http://dotfiles.org/~pseup/.bashrc
-
-if [ -f "$1" ]; then
-  case "$1" in
-  *.tar.bz2) tar xjf "$1" ;;
-  *.tar.gz) tar xzf "$1" ;;
-  *.bz2) bunzip2 "$1" ;;
-  *.rar) rar x "$1" ;;
-  *.gz) gunzip "$1" ;;
-  *.tar) tar xf "$1" ;;
-  *.tbz2) tar xjf "$1" ;;
-  *.tgz) tar xzf "$1" ;;
-  *.zip) unzip "$1" ;;
-  *.Z) uncompress "$1" ;;
-  *.7z) 7z x "$1" ;;
-  *) echo "'$1' cannot be extracted via extract()" ;;
+extract() {
+  local lower full_path
+  lower=${1,,}  # Used for matching
+  full_path=$(readlink -f "$1")  # The real path, expanded & absolute
+  case "$lower" in
+    *.tar.gz) tar xzf "$full_path" ;;
+    *.tgz) tar xzf "$full_path" ;;
+    *.gz) gunzip -c "$full_path" ;;
+    *.tar.bz2) tar xjf "$full_path" ;;
+    *.tbz2) tar xjf "$full_path" ;;
+    *.bz2) bunzip2 -c "$full_path" ;;
+    *.tar) tar xf "$full_path" ;;
+    *.rar) unrar x "$full_path" ;;
+    *.zip) unzip "$full_path" ;;
+    *.z) uncompress "$full_path" ;;
+    *.7z) 7z x "$full_path" ;;
+    *.xz) xz -d "$full_path" ;;
+    *.lzma) unlzma -vk "$full_path" ;;
+    *.lha) lha e "$full_path" ;;
+    *.rpm) rpm2cpio "$full_path" | cpio -i --make-directories ;;
+    *.deb) ar x "$full_path" ;;
+    *.arj) arj -y e "$full_path" ;;
+    *.ace) unace e "$full_path" ;;
+    *.xpi) unzip "$full_path" ;;
+    *) print "Unknown archive type: $1" ; return 1 ;;
   esac
-else
-  echo "'$1' is not a valid file"
-fi
+}
+
+extract "$@"
