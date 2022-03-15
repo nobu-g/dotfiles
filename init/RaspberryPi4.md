@@ -61,3 +61,11 @@
 
 ## Setting up Open VPN server
 See https://github.com/kylemanna/docker-openvpn
+
+## ngrok
+### Installation
+```shell
+wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm64.tgz
+tar xvzf ngrok-stable-linux-arm64.tgz
+mv ngrok ~/.local/bin
+```
