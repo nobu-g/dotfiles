@@ -54,6 +54,7 @@ bindkey '^r' fzf-select-history
 
 export FZF_DEFAULT_OPTS='
   --cycle
+  --exact
   --no-sort
   --layout=reverse
   --no-mouse
