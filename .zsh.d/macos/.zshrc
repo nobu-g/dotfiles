@@ -71,3 +71,5 @@ alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/C
 alias jumanpp='docker run -i --rm --platform linux/amd64 kunlp/jumanpp-knp jumanpp'
 (($+commands[knp])) || alias knp='docker run -i --rm --platform linux/amd64 kunlp/jumanpp-knp knp'
 alias ch='charm'
+alias disk='diskutil'
+alias dutil='diskutil'

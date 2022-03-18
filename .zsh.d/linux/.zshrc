@@ -38,6 +38,7 @@ alias gzcat='zcat'
 alias ssh='LC_PWD="${PWD}" /usr/bin/ssh -o SendEnv=LC_PWD'
 [[ -x /usr/bin/git ]] && alias git='/usr/bin/git'
 alias nv='nvidia-smi'
+alias sc='systemctl'
 
 # directory alias
 hash -d larch="/mnt/larch/${USER}"   # ~larch
