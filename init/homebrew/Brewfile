@@ -1,11 +1,12 @@
 # Basic CLI tools
-brew "gcc"
-brew "wget"
-brew "curl"
 brew "cmake"
+brew "curl"
+brew "gcc"
 brew "meson"
+brew "wget"
 
 # Shells
+brew "bash"
 brew "zsh"
 
 # Editors
@@ -13,43 +14,45 @@ brew "emacs"
 brew "vim"
 
 # Programming languages
-brew "python"
-brew "python@3.10"
-brew "python@3.9"
-brew "perl"
-brew "ruby", args: ["force-bottle"]
 brew "go"
 brew "node"
 brew "node@16"
+brew "perl"
+brew "python"
+brew "python@3.10"
+brew "python@3.9"
+brew "ruby", args: ["force-bottle"]
 # Rust is installed via rustup
 
 # Modern alternatives to Liunx CLI tools
+brew "bat"        # cat
+brew "colordiff"  # diff
+brew "duf"        # df
+brew "fd"         # find
 brew "git"        # git
-brew "openssh"    # ssh
-brew "tmux"       # tmux
+brew "git-delta"  # diff
 brew "htop"       # top
 brew "lsd"        # ls
-brew "fd"         # find
-brew "ripgrep"    # grep -r
+brew "openssh"    # ssh
 brew "procs"      # ps
-brew "colordiff"  # diff
-brew "sd"         # sed/awk
 brew "rargs"      # Util like xargs + awk with pattern matching support
-brew "bat"        # cat
-brew "git-delta"  # diff
-brew "duf"        # df
+brew "ripgrep"    # grep -r
+brew "sd"         # sed/awk
+brew "tmux"       # tmux
+brew "xz"         # xz
 
 # Misc
-brew "moreutils"  # chronic, combine, ifne, sponge, ...
-brew "tree"       # Display directories as trees (with optional color/HTML output)
-brew "pipx"       # Execute binaries from Python packages in isolated environments
 brew "atuin"      # Improved shell history for zsh and bash
-brew "zoxide"     # Shell extension to navigate your filesystem faster
-brew "peco"       # Simplistic interactive filtering tool
-brew "fzf"        # Command-line fuzzy finder written in Go
 brew "direnv"     # Load/unload environment variables based on $PWD
+brew "fzf"        # Command-line fuzzy finder written in Go
+brew "moreutils"  # chronic, combine, ifne, sponge, ...
+brew "peco"       # Simplistic interactive filtering tool
+brew "pipx"       # Execute binaries from Python packages in isolated environments
+brew "tree"       # Display directories as trees (with optional color/HTML output)
 brew "watch"      # Executes a program periodically, showing output fullscreen
+brew "zoxide"     # Shell extension to navigate your filesystem faster
 
 # System
 brew "ansible"    # Automate deployment, configuration, and upgrading
 brew "whois"      # Lookup tool for domain names and other internet resources
+brew "nmap"       # Port scanning utility for large networks

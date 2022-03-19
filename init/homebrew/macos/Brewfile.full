@@ -3,10 +3,10 @@ brew "gdb"
 brew "rsync"  # Utility that provides fast incremental file transfer
 
 # Misc
-brew "pwgen"  # password generator
+brew "blackhole-16ch"  # Virtual Audio Driver
 brew "carthage"
 brew "latexdiff"
-brew "blackhole-16ch"  # Virtual Audio Driver
+brew "pwgen"  # password generator
 
 # System
 brew "fswatch"
@@ -14,36 +14,36 @@ brew "pstree"
 
 # CASK
 cask_args appdir: "/Applications"
-cask "mactex-no-gui"
-cask "latexit"
-cask "blu-ray-player-pro"
-cask "gimp"
-cask "audacity"
-cask "google-cloud-sdk"
 cask "alfred"
-cask "zoom"
-cask "discord"
-cask "notion"
-cask "clipy"
 cask "alt-tab"
-cask "skim"
-cask "pdf-expert"
-cask "dash"
+cask "audacity"
+cask "bartender"
 cask "biscuit"
+cask "blu-ray-player-pro"
+cask "clipy"
+cask "dash"
+cask "discord"
 cask "font-jetbrains-mono"
 cask "font-noto-sans-cjk-jp"
+cask "gimp"
+cask "google-cloud-sdk"
+cask "latexit"
+cask "mactex-no-gui"
 cask "monitorcontrol"
-cask "bartender"
+cask "notion"
 cask "openvpn-connect"
 cask "papers"
+cask "pdf-expert"
+cask "skim"
+cask "zoom"
 
 # MAS
-mas "XCode", id: 497799835
-mas "Trello", id: 1278508951
-mas "Effortless", id: 1368722917
-mas "Evernote", id: 406056744
 mas "Apple Configurator 2", id: 1037126344
 mas "BetterSnapTool", id: 417375580
 mas "DaisyDisk", id: 411643860
+mas "Effortless", id: 1368722917
+mas "Evernote", id: 406056744
 mas "Key Codes", id: 414568915
 mas "Mathpix Snipping Tool", id: 1349670778
+mas "Trello", id: 1278508951
+mas "XCode", id: 497799835

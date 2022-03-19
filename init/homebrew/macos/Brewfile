@@ -5,36 +5,35 @@ tap "homebrew/cask-fonts"
 brew "binutils"   # ld, ar, ...
 brew "coreutils"  # ls, cp, rm, ...
 brew "diffutils"  # diff, cmp, ...
+brew "ed"
 brew "findutils"  # find, locate, updatedb, xargs
-brew "less"
+brew "gawk"
 brew "gnu-sed"
 brew "gnu-tar"
 brew "gnu-which"
-brew "gawk"
-brew "ed"
 brew "grep"
 brew "gzip"
-brew "bash"
+brew "less"
 
 # Misc
 brew "ghq"     # Remote repository management made easy
-brew "nkf"     # Network Kanji code conversion Filter (NKF)
 brew "mackup"  # Keep your Mac's application settings in sync
+brew "nkf"     # Network Kanji code conversion Filter (NKF)
 
 # CASK
 cask_args appdir: "/Applications"
-cask "docker"
-cask "google-chrome"
-cask "dropbox"
-cask "iterm2"
-cask "visual-studio-code"
-cask "pycharm"
-cask "google-japanese-ime"
-cask "xquartz"
-cask "macfuse"
-cask "font-hack-nerd-font"
-cask "karabiner-elements"
 cask "bettertouchtool"
+cask "docker"
+cask "dropbox"
+cask "font-hack-nerd-font"
+cask "google-chrome"
+cask "google-japanese-ime"
+cask "iterm2"
+cask "karabiner-elements"
+cask "macfuse"
+cask "pycharm"
+cask "visual-studio-code"
+cask "xquartz"
 
 # MAS
 # mas "Slack", id: 803453959  # seems to require being signed in
@@ -43,5 +42,5 @@ cask "bettertouchtool"
 # mas "Pages", id: 409201541
 # mas "Keynote", id: 409183694
 # mas "Numbers", id: 409203825
-mas "The Unarchiver", id: 425424353
 mas "OneDrive", id: 823766827
+mas "The Unarchiver", id: 425424353

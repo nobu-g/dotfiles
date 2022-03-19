@@ -2,48 +2,47 @@
 brew "neovim"
 
 # Programming languages
-brew "python@3.8"
 brew "openjdk"
+brew "python@3.8"
 
 # Misc
-brew "rga"          # ripgrep-all
+brew "cling"        # C++ interpreter
+brew "cpanm"        # Get, unpack, build, and install modules from CPAN
+brew "ffmpeg"       # Play, record, convert, and stream audio and video
+brew "gh"           # GitHub CLI
+brew "glow"         # Render markdown on the CLI
+brew "imagemagick"  # Tools and libraries to manipulate images in many formats
+brew "jq"           # Lightweight and flexible command-line JSON processor
+brew "nginx"        # HTTP(S) server and reverse proxy, and IMAP/POP3 proxy server
 brew "pandoc"       # recommended by rga
 brew "poppler"      # recommended by rga
-brew "tesseract"    # recommended by rga
-brew "st"           # command-line statistics calculator
-brew "cling"        # C++ interpreter
-brew "tokei"        # Program that allows you to count code, quickly
-brew "nginx"        # HTTP(S) server and reverse proxy, and IMAP/POP3 proxy server
+brew "pre-commit"   # Framework for managing multi-language pre-commit hooks
 brew "rename"       # Perl-powered file rename script with many helpful built-ins
+brew "rga"          # ripgrep-all
 brew "shellcheck"   # Static analysis and lint tool, for (ba)sh scripts
 brew "shfmt"        # Autoformat shell script source code
-brew "gh"           # GitHub CLI
-brew "imagemagick"  # Tools and libraries to manipulate images in many formats
-brew "ffmpeg"       # Play, record, convert, and stream audio and video
-brew "glow"         # Render markdown on the CLI
-brew "cpanm"        # Get, unpack, build, and install modules from CPAN
-brew "pre-commit"   # Framework for managing multi-language pre-commit hooks
-brew "jq"           # Lightweight and flexible command-line JSON processor
+brew "st"           # command-line statistics calculator
+brew "tesseract"    # recommended by rga
+brew "tokei"        # Program that allows you to count code, quickly
 brew "yq"           # Process YAML documents from the CLI
 
 # Tools written in Rust
-brew "xsv"          # command-line CSV processor
+brew "broot"        # New way to see and navigate directory trees
+brew "cargo-edit"   # Utility for managing cargo dependencies from the command-line
 brew "choose-rust"  # Human-friendly and fast alternative to cut and (sometimes) awk
-brew "hyperfine"    # comman-line benchmark tool
-brew "pastel"       # color manipulation
 brew "dust"         # A more intuitive version of du in rust
 brew "hexyl"        # Command-line hex viewer
-brew "broot"        # New way to see and navigate directory trees
-brew "tealdeer"     # Very fast implementation of tldr in Rust
+brew "hyperfine"    # comman-line benchmark tool
+brew "pastel"       # color manipulation
 brew "pueue"        # Command-line tool for managing long-running shell commands
+brew "tealdeer"     # Very fast implementation of tldr in Rust
 brew "watchexec"    # Execute commands when watched files change
-brew "cargo-edit"   # Utility for managing cargo dependencies from the command-line
+brew "xsv"          # command-line CSV processor
 
 # System
-brew "vmtouch"    # Portable file system cache diagnostics and control
-brew "dog"        # Command-line DNS client
 brew "bandwhich"  # Terminal bandwidth utilization tool
-brew "nmap"       # Port scanning utility for large networks
+brew "dog"        # Command-line DNS client
+brew "gping"      # Ping, but with a graph
 brew "iperf3"     # Update of iperf: measures TCP, UDP, and SCTP bandwidth
 brew "netperf"    # Benchmarks performance of many different types of networking
-brew "gping"      # Ping, but with a graph
+brew "vmtouch"    # Portable file system cache diagnostics and control
