@@ -17,9 +17,9 @@ brew "gzip"
 brew "bash"
 
 # Misc
-brew "ghq"
-brew "nkf"
-brew "mackup"
+brew "ghq"     # Remote repository management made easy
+brew "nkf"     # Network Kanji code conversion Filter (NKF)
+brew "mackup"  # Keep your Mac's application settings in sync
 
 # CASK
 cask_args appdir: "/Applications"

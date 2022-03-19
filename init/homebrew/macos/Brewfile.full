@@ -35,13 +35,13 @@ cask "font-noto-sans-cjk-jp"
 cask "monitorcontrol"
 cask "bartender"
 cask "openvpn-connect"
+cask "papers"
 
 # MAS
 mas "XCode", id: 497799835
 mas "Trello", id: 1278508951
 mas "Effortless", id: 1368722917
 mas "Evernote", id: 406056744
-mas "Hidden Bar", id: 1452453066
 mas "Apple Configurator 2", id: 1037126344
 mas "BetterSnapTool", id: 417375580
 mas "DaisyDisk", id: 411643860

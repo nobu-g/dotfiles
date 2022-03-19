@@ -17,7 +17,7 @@ brew "python"
 brew "python@3.10"
 brew "python@3.9"
 brew "perl"
-brew "ruby"
+brew "ruby", args: ["force-bottle"]
 brew "go"
 brew "node"
 brew "node@16"
@@ -37,12 +37,10 @@ brew "sd"         # sed/awk
 brew "rargs"      # Util like xargs + awk with pattern matching support
 brew "bat"        # cat
 brew "git-delta"  # diff
-tap "ko1nksm/getoptions"
-brew "getoptions"
+brew "duf"        # df
 
 # Misc
 brew "moreutils"  # chronic, combine, ifne, sponge, ...
-brew "jq"         # command-line JSON processor
 brew "tree"       # Display directories as trees (with optional color/HTML output)
 brew "pipx"       # Execute binaries from Python packages in isolated environments
 brew "atuin"      # Improved shell history for zsh and bash
@@ -50,7 +48,8 @@ brew "zoxide"     # Shell extension to navigate your filesystem faster
 brew "peco"       # Simplistic interactive filtering tool
 brew "fzf"        # Command-line fuzzy finder written in Go
 brew "direnv"     # Load/unload environment variables based on $PWD
+brew "watch"      # Executes a program periodically, showing output fullscreen
 
 # System
-brew "ansible"
-brew "whois"
+brew "ansible"    # Automate deployment, configuration, and upgrading
+brew "whois"      # Lookup tool for domain names and other internet resources

@@ -23,6 +23,8 @@ brew "ffmpeg"       # Play, record, convert, and stream audio and video
 brew "glow"         # Render markdown on the CLI
 brew "cpanm"        # Get, unpack, build, and install modules from CPAN
 brew "pre-commit"   # Framework for managing multi-language pre-commit hooks
+brew "jq"           # Lightweight and flexible command-line JSON processor
+brew "yq"           # Process YAML documents from the CLI
 
 # Tools written in Rust
 brew "xsv"          # command-line CSV processor
