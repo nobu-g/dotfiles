@@ -1,6 +1,6 @@
 # les: less or ls
 
-_ls() {
+_lsd_or_ls() {
   if (type lsd &> /dev/null); then
     lsd -Fh "$@"
   else
@@ -9,9 +9,10 @@ _ls() {
 }
 
 if [[ $# == 0 ]]; then
-  _ls
+  _lsd_or_ls
 elif [[ -f $1 ]]; then
   (type bat &> /dev/null) && bat -p "$@" || cat "$@"
 else
-  _ls "$@"
+  _lsd_or_ls "$@"
 fi
+unfunction _lsd_or_ls
