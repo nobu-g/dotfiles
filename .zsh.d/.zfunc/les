@@ -1,9 +1,17 @@
 # les: less or ls
 
+_ls() {
+  if (type lsd &> /dev/null); then
+    lsd -Fh "$@"
+  else
+    ls -FH --color=tty "$@"
+  fi
+}
+
 if [[ $# == 0 ]]; then
-  lsd -F
+  _ls
 elif [[ -f $1 ]]; then
-  bat $@
+  (type bat &> /dev/null) && bat -p "$@" || cat "$@"
 else
-  lsd -F $@
+  _ls "$@"
 fi
