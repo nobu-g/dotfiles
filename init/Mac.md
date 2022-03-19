@@ -13,7 +13,7 @@
 
 ## Google Chrome
 1. Log in using your Google account
-2. Log in to Chrome extensions
+2. Log in to your Chrome extensions
 
 ## System Preferences
 ### Apple ID
@@ -66,7 +66,7 @@
 - Preferences -> General -> Use Docker Compose V2: On
 
 ## BetterTouchTool
-1. Sync preferences manually
+1. Sync your preferences manually
     ```shell
     ln -s ~/Dropbox/Settings/BetterTouchTool/BetterTouchTool ~/Library/Application\ Support/
     ```
