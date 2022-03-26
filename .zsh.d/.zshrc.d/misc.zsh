@@ -45,12 +45,31 @@ zle -N peco-select-history
 # bindkey '^r' peco-select-history
 
 fzf-select-history() {
-  BUFFER="$(\history -Endir 1 | fzf --query "${BUFFER}" --prompt "[hist] " | cut -d' ' -f4-)"
+  BUFFER="$(\history -ndir 1 | fzf --query "${BUFFER}" --prompt "[hist] " | cut -d' ' -f4-)"
   CURSOR=${#BUFFER} # move cursor to the end of the line
   zle -R -c         # refresh
 }
 zle -N fzf-select-history
 bindkey '^r' fzf-select-history
+
+fzf-history-widget() {
+  local selected num
+  setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
+  selected=( $(fc -nirl 1 | FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort,ctrl-z:ignore $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER} +m" $(__fzfcmd) | cut -d' ' -f4-) )
+  local ret=$?
+  # if [[ -n "$selected" ]]; then
+  #   num=$selected[1]
+  #   if [[ -n "$num" ]]; then
+  #     zle vi-fetch-history -n $num
+  #   fi
+  # fi
+  # BUFFER="${selected}"
+  # CURSOR=${#BUFFER}
+  # zle reset-prompt
+  return "${ret}"
+}
+zle -N fzf-history-widget
+bindkey '^r' fzf-history-widget
 
 export FZF_DEFAULT_OPTS='
   --cycle
