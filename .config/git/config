@@ -50,7 +50,7 @@
     dfc = diff --cached
     co = checkout
     cob = checkout -b
-    com = checkout master
+    com = checkout main
     bra = branch
     cm = commit -m
     cam = commit -a -m
