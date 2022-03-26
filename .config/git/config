@@ -51,6 +51,7 @@
     co = checkout
     cob = checkout -b
     com = checkout master
+    b = branch
     bra = branch
     cm = commit -m
     cam = commit -a -m
