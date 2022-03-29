@@ -128,6 +128,10 @@ ZSH_HIGHLIGHT_STYLES[globbing]='none'
 ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=185'
 ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=185'
 
+# Zinit packages
+# https://github.com/zdharma-continuum/zinit-packages/tree/main/fzf
+zinit pack"default" atload'source _fzf_completion' for fzf
+
 # https://itchyny.hatenablog.com/entry/2017/06/12/090000
 # requires `go install github.com/itchyny/fillin@latest`
 # usage:
