@@ -41,7 +41,7 @@ peco-select-history() {
   CURSOR=${#BUFFER}
   #  zle clear-screen
 }
-zle -N peco-select-history
+# zle -N peco-select-history
 # bindkey '^r' peco-select-history
 
 fzf-select-history() {
@@ -49,27 +49,8 @@ fzf-select-history() {
   CURSOR=${#BUFFER} # move cursor to the end of the line
   zle -R -c         # refresh
 }
-zle -N fzf-select-history
-bindkey '^r' fzf-select-history
-
-fzf-history-widget() {
-  local selected num
-  setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
-  selected=( $(fc -nirl 1 | FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort,ctrl-z:ignore $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER} +m" $(__fzfcmd) | cut -d' ' -f4-) )
-  local ret=$?
-  # if [[ -n "$selected" ]]; then
-  #   num=$selected[1]
-  #   if [[ -n "$num" ]]; then
-  #     zle vi-fetch-history -n $num
-  #   fi
-  # fi
-  # BUFFER="${selected}"
-  # CURSOR=${#BUFFER}
-  # zle reset-prompt
-  return "${ret}"
-}
-zle -N fzf-history-widget
-bindkey '^r' fzf-history-widget
+# zle -N fzf-select-history
+# bindkey '^r' fzf-select-history
 
 export FZF_DEFAULT_OPTS='
   --cycle
@@ -77,15 +58,37 @@ export FZF_DEFAULT_OPTS='
   --no-sort
   --layout=reverse
   --no-mouse
+  --height 40%
+  --tiebreak=index
   --color=fg:#f8f8f2,hl:#bd93f9
   --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9
   --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6
   --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4
 '
 
+fzf-history-widget() {
+  # setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
+  local selected="$(
+    fc -nirl 1 |
+    FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} -n2..,.. --bind=ctrl-r:toggle-sort,ctrl-z:ignore ${FZF_CTRL_R_OPTS} --query=${(qqq)LBUFFER} --prompt '[hist] ' +m" $(__fzfcmd) |
+    cut -d' ' -f4-
+  )"
+  local ret=$?
+  zle reset-prompt
+  BUFFER="${selected}"
+  CURSOR=${#BUFFER}
+  return "${ret}"
+}
+zle -N fzf-history-widget
+bindkey '^r' fzf-history-widget
+
 ## search a destination from cdr list and cd the destination
-fzf-cdr() {
-  local dest="$(cdr -l | sed -Ee 's/^[0-9]+\s+//' | fzf --query "${BUFFER}" --prompt "[dest] " --preview '_var={}; ls -FHA --color=always "${_var/#\~/$HOME}"')"
+fzf-cdr-widget() {
+  local dest="$(
+    cdr -l |
+    sed -Ee 's/^[0-9]+\s+//' |
+    fzf -n2..,.. --bind=ctrl-r:toggle-sort,ctrl-z:ignore ${FZF_CTRL_R_OPTS} --query=${LBUFFER} --prompt '[dest] ' +m --preview '_var={}; ls -FHA --color=always "${_var/#\~/$HOME}"'
+  )"
   if [[ -n "${dest}" ]]; then
     BUFFER="cd ${dest}"
     zle accept-line
@@ -93,13 +96,13 @@ fzf-cdr() {
     zle reset-prompt
   fi
 }
-zle -N fzf-cdr
-bindkey '^x' fzf-cdr
+zle -N fzf-cdr-widget
+bindkey '^x' fzf-cdr-widget
 
 # cdr設定(pecoの'^x'に必要)
 autoload -Uz chpwd_recent_dirs cdr
 add-zsh-hook chpwd chpwd_recent_dirs
-zstyle ':chpwd:*' recent-dirs-max 2000
+zstyle ':chpwd:*' recent-dirs-max 3000
 zstyle ':chpwd:*' recent-dirs-default yes
 zstyle ':chpwd:*' recent-dirs-file "${XDG_DATA_HOME:-$HOME/.local/share}/shell/chpwd-recent-dirs"
 zstyle ':completion:*' recent-dirs-insert both
