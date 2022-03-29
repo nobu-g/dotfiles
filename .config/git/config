@@ -51,7 +51,6 @@
     co = checkout
     cob = checkout -b
     com = checkout main
-    b = branch
     bra = branch
     cm = commit -m
     cam = commit -a -m
@@ -125,7 +124,7 @@
 # https://stackoverflow.com/questions/16244969/how-to-tell-git-to-ignore-individual-lines-i-e-gitignore-for-specific-lines-of
 # If a filter named "gitignore" is applied, lines that end with "# gitignore" are ignored
 [filter "gitignore"]
-    clean = "sed '/# gitignore$/d'"
+    clean = "sed -E '/# ?gitignore$/d'"
     smudge = cat
 
 [advice]
