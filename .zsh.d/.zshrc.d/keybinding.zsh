@@ -51,6 +51,7 @@ zle -N history-beginning-search-forward-end history-search-end
 [[ -n "${key[Left]}" ]]    && bindkey "${key[Left]}"    backward-char
 [[ -n "${key[Right]}" ]]   && bindkey "${key[Right]}"   forward-char
 
+bindkey "^d" delete-char
 bindkey "^k" kill-line
 bindkey "^l" clear-screen
 bindkey "^r" history-incremental-search-backward
