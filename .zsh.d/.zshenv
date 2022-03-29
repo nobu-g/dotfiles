@@ -102,6 +102,11 @@ if [[ -d ${HOMEBREW_PREFIX}/opt/ruby ]]; then
   path=(${HOMEBREW_PREFIX}/opt/ruby/bin(N-/) ${path})
 fi
 
+# Java
+if [[ -d ${HOMEBREW_PREFIX}/opt/openjdk ]]; then
+  path=(${HOMEBREW_PREFIX}/opt/openjdk/bin(N-/) ${path})
+fi
+
 # Golang
 if [[ -d ${HOME}/.go ]]; then
   export GOPATH="${HOME}/.go"
