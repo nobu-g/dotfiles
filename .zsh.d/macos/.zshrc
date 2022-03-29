@@ -73,3 +73,6 @@ alias jumanpp='docker run -i --rm --platform linux/amd64 kunlp/jumanpp-knp juman
 alias ch='charm'
 alias disk='diskutil'
 alias dutil='diskutil'
+# valid if Intel-based Homebrew is installed
+# arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+[[ -x /usr/local/bin/brew ]] && alias ibrew="arch -x86_64 /usr/local/bin/brew"
