@@ -68,7 +68,7 @@ export PYTHONUSERBASE="${HOME}/.local"
 if [[ -d /mnt/berry_f/home ]]; then
   export WORKON_HOME="/mnt/berry_f/home/${USER}/.virtualenvs"  # use cached directory for virtualenv
 else
-  export PIPENV_VENV_IN_PROJECT=true  # pipenv で仮想環境をプロジェクト直下に作るように
+  export PIPENV_VENV_IN_PROJECT=true
 fi
 
 # PYTEST
@@ -98,7 +98,7 @@ if [[ -n ${HOMEBREW_PREFIX} ]]; then
 fi
 
 # Ruby
-if [[ -n ${HOMEBREW_PREFIX} ]]; then
+if [[ -d ${HOMEBREW_PREFIX}/opt/ruby ]]; then
   path=(${HOMEBREW_PREFIX}/opt/ruby/bin(N-/) ${path})
 fi
 

@@ -1,6 +1,3 @@
-# pipenv
-# eval "$(pipenv --completion)" # compinitが呼ばれていて起動が遅くなる原因になっているが、次バージョンで修正されそう
-
 # search with google
 google() {
   if echo $1 | grep -qE "^-[nt]$"; then
