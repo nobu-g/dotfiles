@@ -3,7 +3,7 @@
 ## Additional setup (Mac)
 
 ### Enable TouchID when running `sudo`
-1. Add write permission to `/etc/sudoers`
+1. Add write permission to `/etc/pam.d/sudo`
     ```shell
     sudo chmod +w /etc/pam.d/sudo
     ```
