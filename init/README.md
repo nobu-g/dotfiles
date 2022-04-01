@@ -12,7 +12,7 @@
     auth       sufficient     pam_tid.so
     ```
 3. Restore the permission.
-    ```text
+    ```shell
     sudo chmod -w /etc/pam.d/sudo
     ```
 
