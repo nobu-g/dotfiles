@@ -2,8 +2,11 @@
 
 set -eu
 
-export DOTFILES_GITHUB="https://github.com/nobu-g/dotfiles.git"
-export DOTFILES_TARBALL="https://github.com/nobu-g/dotfiles/archive/main.tar.gz"
+SUDO="${SUDO:-"0"}"
+FULL_INSTALL="${FULL_INSTALL:-"0"}"
+
+DOTFILES_GITHUB="https://github.com/nobu-g/dotfiles.git"
+DOTFILES_TARBALL="https://github.com/nobu-g/dotfiles/archive/main.tar.gz"
 DOTPATH="${DOTPATH:-"$HOME/dotfiles"}"
 
 # https://github.com/yutkat/dotfiles/blob/52db06ac638df87e34ebd7ac323653a328a982ca/install_scripts/lib/dotsinstaller/utilfuncs.sh
@@ -186,4 +189,4 @@ dotfiles_download
 # move to $DOTPATH
 cd "$DOTPATH" || die "not found: $DOTPATH"
 
-make install
+make install SUDO="${SUDO}" FULL_INSTALL="${FULL_INSTALL}"
