@@ -70,7 +70,7 @@ fzf-history-widget() {
   # setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
   local selected="$(
     fc -nirl 1 |
-    FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} -n2..,.. --bind=ctrl-r:toggle-sort,ctrl-z:ignore ${FZF_CTRL_R_OPTS} --query=${(qqq)LBUFFER} --prompt '[hist] ' +m" $(__fzfcmd) |
+    FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} -n2..,.. --bind=ctrl-r:toggle-sort,ctrl-z:ignore ${FZF_CTRL_R_OPTS} --query=${(qqq)LBUFFER} --prompt '[hist] ' +m" fzf |
     cut -d' ' -f4-
   )"
   local ret=$?
