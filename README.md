@@ -9,6 +9,7 @@
 My dotfiles.
 
 ## Features
+
 - [zsh](https://zsh.sourceforge.io)
 - [Homebrew](https://brew.sh/) / [Linuxbrew](https://docs.brew.sh/Homebrew-on-Linux)
 - [Zinit](https://github.com/zdharma-continuum/zinit)
@@ -25,6 +26,7 @@ My dotfiles.
 ```
 
 Options:
+
 - `SUDO=1`: specify this if you have sudo privileges
 - `FULL_INSTALL=1`: specify this if you want to install all the brew packages
 - `HOMEBREW_PREFIX=/somewhere`: specify this if you want to install Homebrew to a different directory
@@ -40,25 +42,30 @@ make install [SUDO=1] [FULL_INSTALL=1]
 ## Requirements
 
 ### macOS
-- `sudo xcode-select --install`  # to use git
+
+- `sudo xcode-select --install`
 - `softwareupdate --install-rosetta` (Apple M1 Mac)
 
 ### Ubuntu
+
 - `apt install sudo make zsh`
 - `apt install gcc build-essential procps curl file git`
 - `apt install python3-pip zlib1g-dev`
 
 ### Debian
+
 - `apt install sudo make zsh`
 - `apt install gcc build-essential procps curl file git`
 - `apt install python3-pip zlib1g-dev`
 
 ### Fedora
+
 - `dnf install sudo make zsh`
 - `dnf install gcc 'Development Tools' procps-ng curl file git libxcrypt-compat`
 - `dnf install g++ perl-ExtUtils-MakeMaker perl-FindBin glibc-devel python3`
 
 ### Rocky Linux
+
 - `dnf install sudo make zsh`
 - `dnf install gcc 'Development Tools' procps-ng curl file git`
 - `dnf install perl-ExtUtils-MakeMaker glibc-devel python3`
