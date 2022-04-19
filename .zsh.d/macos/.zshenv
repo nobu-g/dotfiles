@@ -13,12 +13,9 @@ manpath=(
   ${manpath}
 )
 
-## other tool paths
-path=(
-  /opt/X11/bin(N-/)  # X11
-  /Library/Apple/usr/bin
-  ${path}
-)
+# evaluate contents of /etc/paths.d and /etc/manpath.d instead of path_helper
+path=($(cat /etc/paths.d/*) ${path})
+manpath=($(cat /etc/manpaths.d/*) ${manpath})
 
 ## TexLive
 if [[ -e /Library/TeX ]]; then
