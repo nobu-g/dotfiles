@@ -113,11 +113,17 @@ if [[ -d ${HOME}/.go ]]; then
   path=(${GOPATH}/bin(N-/) ${path})
 fi
 
+# RubyGems
+if [[ -d ${HOME}/.gem/ruby ]]; then
+  for p in ${HOME}/.gem/ruby/*/bin; do
+    path=(${p}(N-/) ${path})
+  done
+fi
+
 path=(
   ${HOME}/.cargo/bin(N-/)  # Rust
   ${HOME}/.poetry/bin(N-/)  # Poetry
   ${HOME}/.emacs.d/bin(N-/)  # doom-emacs
-  ${HOME}/.gem/ruby/3.0.0/bin(N-/)  # gem
   ${path}
 )
 
