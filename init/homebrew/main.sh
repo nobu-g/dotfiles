@@ -6,11 +6,11 @@ here=$(dirname "${BASH_SOURCE[0]:-$0}")
 
 case "${OSTYPE}" in
 linux* | cygwin*)
-  BREW_SETUP_DIR="$here/linux"
+  BREW_SETUP_DIR="${here}/linux"
   ;;
 freebsd* | darwin*)
   xcode-select --install
-  BREW_SETUP_DIR="$here/macos"
+  BREW_SETUP_DIR="${here}/macos"
   ;;
 esac
 
@@ -21,10 +21,10 @@ fi
 eval "$("${HOMEBREW_PREFIX}/bin/brew" shellenv)"
 
 # install dependencies from Brewfile
-brew bundle install --file "$here/Brewfile"
+brew bundle install --file "${here}/Brewfile"
 brew bundle install --file "${BREW_SETUP_DIR}/Brewfile"
 if [[ ${FULL_INSTALL} -eq 1 ]]; then
-  brew bundle install --file "$here/Brewfile.full"
+  brew bundle install --file "${here}/Brewfile.full"
   brew bundle install --file "${BREW_SETUP_DIR}/Brewfile.full"
 fi
 echo "Installed formulae and casks:"
