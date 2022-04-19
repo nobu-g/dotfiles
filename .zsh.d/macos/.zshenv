@@ -22,7 +22,7 @@ path=(
 
 ## TexLive
 if [[ -e /Library/TeX ]]; then
-  path=(/Library/TeX/texbin(N-/) ${path})
+  path=(/Library/TeX/Distributions/Programs/texbin(N-/) ${path})
   manpath=(/Library/TeX/Documentation/texmf-dist-doc/man(N-/) ${manpath})
   infopath=(/Library/TeX/Documentation/texmf-dist-doc/info(N-/) ${infopath})
 fi
