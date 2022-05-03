@@ -9,7 +9,7 @@ set -xu
 
 here=$(dirname "${BASH_SOURCE[0]:-$0}")
 
-mkdir -p "${HOME}"/{.emacs.d,.config,scripts,.local}
+mkdir -p "${HOME}"/{.emacs.d,.config,scripts,.local,.zsh}
 mkdir -p "${HOME}"/.local/{bin,share,lib,include,src}
 mkdir -p "${HOME}"/.local/share/{node,shell,less,python}
 mkdir -p "${HOME}"/.cache/zsh

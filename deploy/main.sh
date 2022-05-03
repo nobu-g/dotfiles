@@ -7,9 +7,11 @@ if [[ -z ${DOTPATH} ]]; then
   export DOTPATH
 fi
 
-for f in "${DOTPATH%/}"/.zsh.d/{.zshenv,.zprofile,.zshrc,.p10k.zsh}; do
+for f in "${DOTPATH%/}"/.zsh.d/{.zshenv,.zprofile,.zshrc}; do
   ln -snfv "$f" "$HOME"
 done
+
+ln -snfv "${DOTPATH%/}/.zsh.d/.p10k.zsh" "${HOME}/.zsh/.p10k.zsh"
 
 for f in "${DOTPATH%/}"/.config/*; do
   ln -snfv "$f" "$HOME/.config"
