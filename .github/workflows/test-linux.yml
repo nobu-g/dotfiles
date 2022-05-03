@@ -1,6 +1,8 @@
 name: test-linux
 
-on: [push]
+on:
+  push:
+    branches: [main]
 
 jobs:
   test-linux:

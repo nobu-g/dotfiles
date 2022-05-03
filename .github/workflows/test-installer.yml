@@ -1,6 +1,9 @@
 name: test-installer
 
-on: [push]
+on:
+  schedule:
+    - cron: '0 15 1 * *'  # run at 0:00 on 2nd every month (JST)
+  workflow_dispatch:
 
 jobs:
   test-installer:
