@@ -12,7 +12,7 @@ jobs:
         dist: [ubuntu, debian, fedora, rockylinux]
     steps:
       - name: Check out code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Build docker image
         run: docker build . -f containers/${{ matrix.dist }}.dockerfile -t dotfiles:${{ matrix.dist }}
       - name: Create and start docker container
