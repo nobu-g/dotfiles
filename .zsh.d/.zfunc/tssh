@@ -24,7 +24,8 @@ _tmux() {
   [[ -z ${sess} ]] && _shell
   local att=$(tmux ls -f "#{==:#S,$sess}" -F "#{session_attached}" 2> /dev/null)
   if [[ -n ${att} ]]; then
-    [[ ${att} == "0" ]] && _attach "${sess}" || { echo "Session: '${sess}' already attached." 2>&1 && _shell }
+    [[ ${att} != "0" ]] && { read -q "?Session: '${sess}' already attached. Force attach? (y/n) " || { echo "" && _shell } }
+    _attach "${sess}"
   elif [[ -n ${is_new} ]] || read -q "?Session: '${sess}' does not exist. Create new one? (y/n) "; then
     _new "${sess}"
   else
