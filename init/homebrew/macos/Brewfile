@@ -42,5 +42,5 @@ cask "xquartz"
 # mas "Pages", id: 409201541
 # mas "Keynote", id: 409183694
 # mas "Numbers", id: 409203825
-mas "OneDrive", id: 823766827
+# mas "OneDrive", id: 823766827
 mas "The Unarchiver", id: 425424353
