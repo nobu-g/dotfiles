@@ -9,6 +9,8 @@ export LANGUAGE=en_US
 
 # PATH Settings
 ## Zsh synchronizes path, manpath, and fpath with PATH, MANPATH, and FPATH respectively
+## -g: do not restrict parameter to local scope
+## -a: specify that arguments refer to arrays
 ## -U: keep array values unique
 ## -x: export parameter
 ## -T: tie scalar to array
@@ -17,9 +19,9 @@ export LANGUAGE=en_US
 ### N: use NULL_GLOB
 ### -: follow symlinks toggle
 ### /: directories
-typeset -U path manpath fpath
-typeset -xUT INFOPATH infopath
-typeset -xUT SUDO_PATH sudo_path
+typeset -gaU path manpath fpath
+typeset -gaxUT INFOPATH infopath
+typeset -gaxUT SUDO_PATH sudo_path
 # PATH
 path=(
   {/usr{/local,},}/{bin,sbin}(N-/)

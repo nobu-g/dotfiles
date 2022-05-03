@@ -147,3 +147,14 @@ export ATUIN_NOBIND="true"
 zinit lucid \
   light-mode for @ellie/atuin
 bindkey '^t' _atuin_search_widget
+
+zinit ice \
+  as"completion" \
+  blockf \
+  id-as"poetry-completion" \
+  has"poetry" \
+  atclone"poetry completions zsh > _poetry" \
+  atpull"%atclone" \
+  run-atpull \
+  nocompile
+zinit light zdharma-continuum/null
