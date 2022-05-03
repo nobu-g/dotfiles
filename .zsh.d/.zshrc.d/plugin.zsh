@@ -46,6 +46,7 @@ zinit light 'joel-porquet/zsh-dircolors-solarized'
 # completion
 #--------------------------------#
 ## zsh-autosuggestions
+# `zicompinit; zicdreplay -q` should be run after all compdefs
 zinit wait"1" lucid atload"unset ZSH_AUTOSUGGEST_USE_ASYNC; _zsh_autosuggest_start" \
   atinit"zicompinit; zicdreplay -q" \
   light-mode for @zsh-users/zsh-autosuggestions
