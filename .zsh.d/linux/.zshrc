@@ -21,9 +21,9 @@ apt-user-install() {
 }
 
 # stderred
-if [[ -f "${HOME}/.local/lib/libstderred.so" ]]; then
+if [[ -f "${HOMEBREW_PREFIX}/lib/libstderred.so" ]]; then
   export STDERRED_ESC_CODE=$(echo -e "$(tput setaf 9)")
-  export LD_PRELOAD="${HOME}/.local/lib/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+  export LD_PRELOAD="${HOMEBREW_PREFIX}/lib/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
 fi
 
 # LESS man page colors (makes Man pages more readable).

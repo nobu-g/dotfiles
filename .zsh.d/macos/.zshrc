@@ -52,9 +52,9 @@ bindkey '^y' paste-as-yank
 autoload -Uz o # open directory or file
 
 # stderred
-if [[ -f "${HOME}/.local/lib/libstderred.dylib" ]]; then
+if [[ -f "${HOMEBREW_PREFIX}/lib/libstderred.dylib" ]]; then
   export STDERRED_ESC_CODE=$(tput setaf 9)
-  export DYLD_INSERT_LIBRARIES="${HOME}/.local/lib/libstderred.dylib${DYLD_INSERT_LIBRARIES:+:$DYLD_INSERT_LIBRARIES}"
+  export DYLD_INSERT_LIBRARIES="${HOMEBREW_PREFIX}/lib/libstderred.dylib${DYLD_INSERT_LIBRARIES:+:$DYLD_INSERT_LIBRARIES}"
 fi
 
 # completions for google-cloud-sdk

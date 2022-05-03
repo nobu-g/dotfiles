@@ -83,20 +83,3 @@ machine=$(uname -m | sed 's/arm64/aarch64/')
 curl -SL "https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-$(uname -s)-${machine}" \
   -o "${DOCKER_CONFIG}/cli-plugins/docker-compose"
 chmod +x "${DOCKER_CONFIG}/cli-plugins/docker-compose"
-
-# https://github.com/sickill/stderred
-case "${OSTYPE}" in
-linux* | cygwin*)
-  lib_ext=".so"
-  ;;
-freebsd* | darwin*)
-  lib_ext=".dylib"
-  ;;
-esac
-prefix="${HOME}/.local"
-if ! [[ -f "${prefix}/lib/libstderred${lib_ext}" ]] && (type cmake &> /dev/null); then
-  git clone https://github.com/sickill/stderred.git "${prefix}/src/stderred"
-  cd "${prefix}/src/stderred" || exit
-  make
-  ln -snfv "$(pwd)/build/libstderred${lib_ext}" "${prefix}/lib/"
-fi
