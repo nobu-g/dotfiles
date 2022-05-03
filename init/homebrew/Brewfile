@@ -43,16 +43,17 @@ brew "xz"         # xz
 
 # Misc
 tap "nobu-g/tap"
-brew "atuin"      # Improved shell history for zsh and bash
-brew "direnv"     # Load/unload environment variables based on $PWD
-brew "fzf"        # Command-line fuzzy finder written in Go
-brew "moreutils"  # chronic, combine, ifne, sponge, ...
-brew "peco"       # Simplistic interactive filtering tool
-brew "pipx"       # Execute binaries from Python packages in isolated environments
-brew "stderred"   # Stderr in red
-brew "tree"       # Display directories as trees (with optional color/HTML output)
-brew "watch"      # Executes a program periodically, showing output fullscreen
-brew "zoxide"     # Shell extension to navigate your filesystem faster
+brew "atuin"       # Improved shell history for zsh and bash
+brew "direnv"      # Load/unload environment variables based on $PWD
+brew "fzf"         # Command-line fuzzy finder written in Go
+brew "getoptions"  # An elegant option parser for shell scripts
+brew "moreutils"   # chronic, combine, ifne, sponge, ...
+brew "peco"        # Simplistic interactive filtering tool
+brew "pipx"        # Execute binaries from Python packages in isolated environments
+brew "stderred"    # Stderr in red
+brew "tree"        # Display directories as trees (with optional color/HTML output)
+brew "watch"       # Executes a program periodically, showing output fullscreen
+brew "zoxide"      # Shell extension to navigate your filesystem faster
 
 # System
 brew "ansible"    # Automate deployment, configuration, and upgrading
