@@ -3,7 +3,7 @@ name: test-macos
 on: [push]
 
 jobs:
-  macos:
+  test-macos:
     runs-on: macos-latest
     steps:
     - name: Clone this repo

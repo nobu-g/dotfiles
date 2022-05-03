@@ -3,7 +3,7 @@ name: test-installer
 on: [push]
 
 jobs:
-  ubuntu:
+  test-installer:
     runs-on: ubuntu-latest
     steps:
       - name: Run installer
