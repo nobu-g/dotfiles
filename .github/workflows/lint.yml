@@ -5,15 +5,8 @@ on: [push]
 jobs:
   lint:
     runs-on: ubuntu-latest
-    container: ubuntu:latest
     steps:
       - uses: actions/checkout@v3
-      - name: Update packages
-        run: apt-get update
-      - name: Install packages for install repository
-        run: DEBIAN_FRONTEND=noninteractive apt-get install -y git sudo software-properties-common python3-pip
-      - name: Install required repository
-        run: apt-add-repository "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted universe"
       - name: Install required packages
         run: apt-get update && apt-get install -y shellcheck
       # - name: Execute shellcheck (zsh)
