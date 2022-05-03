@@ -43,6 +43,7 @@ brew "xz"         # xz
 
 # Misc
 tap "nobu-g/tap"
+tap "ko1nksm/getoptions"
 brew "atuin"       # Improved shell history for zsh and bash
 brew "direnv"      # Load/unload environment variables based on $PWD
 brew "fzf"         # Command-line fuzzy finder written in Go
