@@ -109,7 +109,7 @@ zinit wait'1' lucid \
   light-mode for @soimort/translate-shell
 
 # romkatv/powerlevel10k
-zinit ice depth=1 atload'source ~/.zsh/.p10k.zsh' nocd
+zinit ice depth=1 atload'source "${ZDOTDIR:-${HOME}}/.p10k.zsh"' nocd
 zinit light romkatv/powerlevel10k
 ZLE_RPROMPT_INDENT=0
 

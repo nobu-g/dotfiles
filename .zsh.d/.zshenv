@@ -3,6 +3,10 @@ if (( ${+ZPROF} )); then
   zmodload zsh/zprof && zprof
 fi
 
+export ZDOTDIR="${ZDOTDIR:-${HOME}/.zsh}"
+SELF="${(%):-%N}"
+DOTPATH="$(dirname "${SELF:A:h}")"
+
 # LANG
 export LANG=ja_JP.UTF-8
 export LANGUAGE=en_US
@@ -48,9 +52,6 @@ sudo_path=({,/usr/pkg,/usr/local,/usr}/sbin(N-/))
 if [[ $(id -u) -eq 0 ]]; then  # root user
   path=(${sudo_path} ${path})
 fi
-
-SELF="${(%):-%N}"
-DOTPATH="$(dirname "${SELF:A:h}")"
 
 # search HOMEBREW_PREFIX from candidates because the prefix varies depending on the environment
 # note that the former the candidate, the higher the priority
