@@ -16,7 +16,6 @@ export PKG_CONFIG_PATH="${HOMEBREW_PREFIX}/opt/icu4c/lib/pkgconfig"
 pipx install csvkit
 pipx install pipenv
 pipx install poetry
-poetry completions zsh > "${HOME}/.zfunc/_poetry"
 pipx install kyoto-reader
 pipx install ipython
 pipx install py-spy
