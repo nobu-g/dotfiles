@@ -1,4 +1,4 @@
-FROM rockylinux/rockylinux:latest
+FROM rockylinux:latest
 
 RUN dnf update -y && dnf install -y sudo
 # add sudo user
