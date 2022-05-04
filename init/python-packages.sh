@@ -20,3 +20,4 @@ poetry completions zsh > "${HOME}/.zfunc/_poetry"
 pipx install kyoto-reader
 pipx install ipython
 pipx install py-spy
+pipx install httpie
