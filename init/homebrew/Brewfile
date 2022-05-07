@@ -57,6 +57,5 @@ brew "watch"       # Executes a program periodically, showing output fullscreen
 brew "zoxide"      # Shell extension to navigate your filesystem faster
 
 # System
-brew "ansible"    # Automate deployment, configuration, and upgrading
 brew "whois"      # Lookup tool for domain names and other internet resources
 brew "nmap"       # Port scanning utility for large networks

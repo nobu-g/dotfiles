@@ -20,3 +20,4 @@ pipx install kyoto-reader
 pipx install ipython
 pipx install py-spy
 pipx install httpie
+pipx install ansible-core
