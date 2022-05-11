@@ -110,6 +110,21 @@ checkinstall() {
   fi
 }
 
+update_packages() {
+  _distro=$(whichdistro)
+  if [ "$_distro" = "debian" ]; then
+    sudo apt-get update -y && sudo apt-get upgrade -y
+  elif [ "$_distro" = "redhat" ]; then
+    sudo yum update -y
+  elif [ "$_distro" = "arch" ]; then
+    sudo pacman -Syyu  # udpate & upgrade
+  elif [ "$_distro" = "alpine" ]; then
+    sudo apk update
+  else
+    :
+  fi
+}
+
 
 # copied from https://github.com/b4b4r07/dotfiles/blob/66dddda6803ada50a0ab879e5db784afea72b7be/etc/install
 
@@ -181,6 +196,7 @@ install_basic_packages() {
 }
 
 if [ "${SUDO}" -eq 1 ]; then
+  update_packages
   install_basic_packages
 fi
 
