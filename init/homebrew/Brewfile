@@ -7,7 +7,7 @@ brew "wget"
 
 # Shells
 brew "bash"
-brew "zsh"
+# brew "zsh"  # Zsh 5.9 is not compatible with Zsh 5.8
 
 # Editors
 brew "emacs"
