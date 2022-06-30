@@ -7,7 +7,12 @@ on:
 
 jobs:
   test-installer:
-    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 2
+      fail-fast: false
+      matrix:
+        os: ["ubuntu-latest", "macos-latest"]  # Juman++ cannot be built on ubuntu:22.04
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Run installer
         run: SUDO=1 sh -c "$(curl -fsSL https://raw.githubusercontent.com/nobu-g/dotfiles/main/install.sh)"
