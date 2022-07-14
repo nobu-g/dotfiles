@@ -8,6 +8,7 @@ pip3 install --user pyknp
 # command-line tools
 pipx install virtualenv
 pipx install autopep8
+pipx install flake8
 pipx install trash-cli
 pipx install speedtest-cli
 # https://github.com/googlefonts/pyfontaine/issues/109#issuecomment-604872347
