@@ -48,6 +48,7 @@ brew "atuin"       # Improved shell history for zsh and bash
 brew "direnv"      # Load/unload environment variables based on $PWD
 brew "fzf"         # Command-line fuzzy finder written in Go
 brew "getoptions"  # An elegant option parser for shell scripts
+brew "jq"          # Lightweight and flexible command-line JSON processor
 brew "moreutils"   # chronic, combine, ifne, sponge, ...
 brew "peco"        # Simplistic interactive filtering tool
 brew "pipx"        # Execute binaries from Python packages in isolated environments

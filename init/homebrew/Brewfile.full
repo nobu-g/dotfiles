@@ -12,7 +12,6 @@ brew "ffmpeg"       # Play, record, convert, and stream audio and video
 brew "gh"           # GitHub CLI
 brew "glow"         # Render markdown on the CLI
 brew "imagemagick"  # Tools and libraries to manipulate images in many formats
-brew "jq"           # Lightweight and flexible command-line JSON processor
 brew "nginx"        # HTTP(S) server and reverse proxy, and IMAP/POP3 proxy server
 brew "pandoc"       # recommended by rga
 brew "poppler"      # recommended by rga
