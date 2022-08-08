@@ -66,15 +66,11 @@ done
 
 # Python
 export PYTHONUSERBASE="${HOME}/.local"
-
-# PIPENV
-if [[ -d /mnt/berry_f/home ]]; then
-  export WORKON_HOME="/mnt/berry_f/home/${USER}/.virtualenvs"  # use cached directory for virtualenv
+if [[ -d "${HOME}/.virtualenvs" ]]; then
+  export WORKON_HOME="${HOME}/.virtualenvs"
 else
   export PIPENV_VENV_IN_PROJECT=true
 fi
-
-# PYTEST
 export PYTEST_ADDOPTS="-v -s --ff"
 
 # zmv
