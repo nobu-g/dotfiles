@@ -7,7 +7,7 @@ cmds=$(
   cat <<- "EOD"
 _new() { tmux -CC new -s "$1" }
 _attach() { tmux -CC attach -t "$1" }
-_shell() { echo "Starting a standard shell..." 2>&1 && exec ${SHELL} -l }
+_shell() { echo "Starting a non-tmux shell..." 2>&1 && exec ${SHELL} -l }
 _tmux() {
   [[ -n "$TMUX" || -n "$STY" ]] && echo "Already in a tmux session." 2>&1 && return 0
   local sess
