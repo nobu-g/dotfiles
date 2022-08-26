@@ -12,10 +12,10 @@ from collections import defaultdict
 __msg = 'Imported sys, os, re, json, Path, defaultdict, and all modules of typing'
 
 try:
-    from pyknp import *
-    __msg += ' and pyknp.'
+    from rhoknp import *
+    __msg += ' and rhoknp.'
 except ImportError:
-    print("pyknp not available")
+    print("rhoknp not available")
     __msg += '.'
 
 print(__msg)

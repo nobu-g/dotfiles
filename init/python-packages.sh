@@ -3,7 +3,7 @@
 set -u
 
 # packages to import from everywhere
-pip3 install --user pyknp
+pip3 install --user rhoknp
 
 # command-line tools
 pipx install virtualenv
