@@ -38,6 +38,7 @@ cask "papers"
 cask "pdf-expert"
 cask "skim"
 cask "zoom"
+cask "parallels"
 
 # MAS
 mas "Apple Configurator 2", id: 1037126344
