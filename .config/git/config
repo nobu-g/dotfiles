@@ -44,6 +44,7 @@
     pl = pull
     pus = push
     pul = pull
+    f = fetch
     d = diff
     df = diff
     dc = diff --cached
@@ -51,6 +52,7 @@
     co = checkout
     cob = checkout -b
     com = checkout main
+    b = branch
     bra = branch
     cm = commit -m
     cam = commit -a -m
