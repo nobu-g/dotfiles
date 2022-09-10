@@ -12,12 +12,12 @@ readlinkf_posix() {
   [ -e "${target%/}" ] || target=${1%"${1##*[!/]}"} # trim trailing slashes
   [ -d "${target:-/}" ] && target="$target/"
 
-  cd -P . 2>/dev/null || return 1
+  cd -P . 2> /dev/null || return 1
   while [ "$max_symlinks" -ge 0 ] && max_symlinks=$((max_symlinks - 1)); do
     if [ ! "$target" = "${target%/*}" ]; then
       case $target in
-        /*) cd -P "${target%/*}/" 2>/dev/null || break ;;
-        *) cd -P "./${target%/*}" 2>/dev/null || break ;;
+        /*) cd -P "${target%/*}/" 2> /dev/null || break ;;
+        *) cd -P "./${target%/*}" 2> /dev/null || break ;;
       esac
       target=${target##*/}
     fi
@@ -32,7 +32,7 @@ readlinkf_posix() {
     #   <file mode>, <number of links>, <owner name>, <group name>,
     #   <size>, <date and time>, <pathname of link>, <contents of link>
     # https://pubs.opengroup.org/onlinepubs/9699919799/utilities/ls.html
-    link=$(ls -dl -- "$target" 2>/dev/null) || break
+    link=$(ls -dl -- "$target" 2> /dev/null) || break
     target=${link#*" $target -> "}
   done
   return 1
@@ -48,12 +48,12 @@ readlinkf_readlink() {
   [ -e "${target%/}" ] || target=${1%"${1##*[!/]}"} # trim trailing slashes
   [ -d "${target:-/}" ] && target="$target/"
 
-  command cd -P . 2>/dev/null || return 1
+  command cd -P . 2> /dev/null || return 1
   while [ "$max_symlinks" -ge 0 ] && max_symlinks=$((max_symlinks - 1)); do
     if [ ! "$target" = "${target%/*}" ]; then
       case $target in
-        /*) command cd -P "${target%/*}/" 2>/dev/null || break ;;
-        *) command cd -P "./${target%/*}" 2>/dev/null || break ;;
+        /*) command cd -P "${target%/*}/" 2> /dev/null || break ;;
+        *) command cd -P "./${target%/*}" 2> /dev/null || break ;;
       esac
       target=${target##*/}
     fi
@@ -64,7 +64,7 @@ readlinkf_readlink() {
       return 0
     fi
 
-    target=$(readlink -- "$target" 2>/dev/null) || break
+    target=$(readlink -- "$target" 2> /dev/null) || break
   done
   return 1
 }

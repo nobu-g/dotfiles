@@ -5,13 +5,13 @@ set -u
 here=$(dirname "${BASH_SOURCE[0]:-$0}")
 
 case "${OSTYPE}" in
-linux* | cygwin*)
-  BREW_SETUP_DIR="${here}/linux"
-  ;;
-freebsd* | darwin*)
-  xcode-select --install
-  BREW_SETUP_DIR="${here}/macos"
-  ;;
+  linux* | cygwin*)
+    BREW_SETUP_DIR="${here}/linux"
+    ;;
+  freebsd* | darwin*)
+    xcode-select --install
+    BREW_SETUP_DIR="${here}/macos"
+    ;;
 esac
 
 # install Homebrew/Linuxbrew

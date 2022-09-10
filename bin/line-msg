@@ -6,7 +6,7 @@ token_file="$(dirname "$0")/${TOKEN_FILE_NAME}"
 if ! [[ -f ${token_file} ]]; then
   echo "Input your LINE access token to use this command. You can get LINE access token at https://notify-bot.line.me/ ."
   read -rp "TOKEN: " token
-  echo "$token" >"$token_file"
+  echo "$token" > "$token_file"
   chmod 600 "$token_file"
   echo "Saved your token at $(readlink -f "$token_file") ."
   exit 0
@@ -21,4 +21,4 @@ else
   msg="${*}"
 fi
 
-curl -X POST -H "Authorization: Bearer ${token}" -F "message=${msg}" ${URL} &>/dev/null
+curl -X POST -H "Authorization: Bearer ${token}" -F "message=${msg}" ${URL} &> /dev/null

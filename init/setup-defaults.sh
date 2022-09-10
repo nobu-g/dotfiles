@@ -143,7 +143,8 @@ echo "Screencapture: save screenshots in PNG format (other options: BMP, GIF, JP
 defaults write com.apple.screencapture type -string "png"
 
 echo "Screencapture: remove shadows from screenshots"
-defaults write com.apple.screencapture disable-shadow -boolean true;killall SystemUIServer
+defaults write com.apple.screencapture disable-shadow -boolean true
+killall SystemUIServer
 
 echo "speedup dialog display"
 defaults write -g NSWindowResizeTime 0.001

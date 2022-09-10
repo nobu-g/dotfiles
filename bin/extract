@@ -2,8 +2,8 @@
 
 extract() {
   local lower full_path
-  lower=${1,,}  # Used for matching
-  full_path=$(readlink -f "$1")  # The real path, expanded & absolute
+  lower=${1,,}                  # Used for matching
+  full_path=$(readlink -f "$1") # The real path, expanded & absolute
   case "$lower" in
     *.tar.gz) tar xzf "$full_path" ;;
     *.tgz) tar xzf "$full_path" ;;
@@ -24,7 +24,10 @@ extract() {
     *.arj) arj -y e "$full_path" ;;
     *.ace) unace e "$full_path" ;;
     *.xpi) unzip "$full_path" ;;
-    *) print "Unknown archive type: $1" ; return 1 ;;
+    *)
+      print "Unknown archive type: $1"
+      return 1
+      ;;
   esac
 }
 

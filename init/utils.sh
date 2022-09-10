@@ -40,15 +40,15 @@ yes_or_no_select() {
   print_notice "Are you ready? [yes/no]"
   read -r answer
   case $answer in
-  yes | y)
-    return 0
-    ;;
-  no | n)
-    return 1
-    ;;
-  *)
-    yes_or_no_select
-    ;;
+    yes | y)
+      return 0
+      ;;
+    no | n)
+      return 1
+      ;;
+    *)
+      yes_or_no_select
+      ;;
   esac
 }
 
@@ -56,7 +56,7 @@ append_file_if_not_exist() {
   contents="$1"
   target_file="$2"
   if ! grep -q "${contents}" "${target_file}"; then
-    echo "${contents}" >>"${target_file}"
+    echo "${contents}" >> "${target_file}"
   fi
 }
 
@@ -88,7 +88,7 @@ checkinstall() {
   distro=$(whichdistro)
   if [[ $distro == "redhat" ]]; then
     sudo yum clean all
-    if ! grep -i "fedora" /etc/redhat-release >/dev/null; then
+    if ! grep -i "fedora" /etc/redhat-release > /dev/null; then
       sudo yum install -y epel-release
       if [[ $(cat /etc/*release | grep '^VERSION=' | cut -d '"' -f 2 | cut -d " " -f 1) -ge 8 ]]; then
         sudo dnf install -y 'dnf-command(config-manager)'

@@ -16,17 +16,17 @@ mkdir -p "${HOME}"/.cache/zsh
 
 # install Homebrew and its packages
 case "${OSTYPE}" in
-linux* | cygwin*)
-  HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-"${HOME}/.linuxbrew"}
-  ;;
-freebsd* | darwin*)
-  if [[ $(uname -m) == "arm64" ]]; then
-    HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-"/opt/homebrew"}
-  else
-    # x86_64
-    HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-"/usr/local"}
-  fi
-  ;;
+  linux* | cygwin*)
+    HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-"${HOME}/.linuxbrew"}
+    ;;
+  freebsd* | darwin*)
+    if [[ $(uname -m) == "arm64" ]]; then
+      HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-"/opt/homebrew"}
+    else
+      # x86_64
+      HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-"/usr/local"}
+    fi
+    ;;
 esac
 bash -x "$here/homebrew/main.sh"
 eval "$("${HOMEBREW_PREFIX}/bin/brew" shellenv)"
@@ -35,15 +35,15 @@ eval "$("${HOMEBREW_PREFIX}/bin/brew" shellenv)"
 bash "$here/setup-shell.sh"
 
 case "${OSTYPE}" in
-freebsd* | darwin*)
-  bash -x "$here/setup-defaults.sh"
-  # install doom-emacs
-  if ! (type ~/.emacs.d/bin/doom &> /dev/null); then
-    rm -rf ~/.emacs.d &&
-      git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d &&
-      yes | ~/.emacs.d/bin/doom install
-  fi
-  ;;
+  freebsd* | darwin*)
+    bash -x "$here/setup-defaults.sh"
+    # install doom-emacs
+    if ! (type ~/.emacs.d/bin/doom &> /dev/null); then
+      rm -rf ~/.emacs.d &&
+        git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d &&
+        yes | ~/.emacs.d/bin/doom install
+    fi
+    ;;
 esac
 
 # install Rust and its packages
@@ -72,7 +72,7 @@ fi
 # install Go packages
 if (type go &> /dev/null); then
   go install github.com/itchyny/fillin@latest
-  go install golang.org/x/tools/gopls@latest  # or brew install gopls
+  go install golang.org/x/tools/gopls@latest # or brew install gopls
 fi
 
 # install Docker Compose V2
