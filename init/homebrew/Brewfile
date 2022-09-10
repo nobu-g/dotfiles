@@ -4,6 +4,8 @@ brew "curl"
 brew "gcc"
 brew "meson"
 brew "wget"
+brew "gawk"
+brew "gzip"
 
 # Shells
 brew "bash"

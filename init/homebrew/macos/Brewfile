@@ -7,12 +7,10 @@ brew "coreutils"  # ls, cp, rm, ...
 brew "diffutils"  # diff, cmp, ...
 brew "ed"
 brew "findutils"  # find, locate, updatedb, xargs
-brew "gawk"
 brew "gnu-sed"
 brew "gnu-tar"
 brew "gnu-which"
 brew "grep"
-brew "gzip"
 brew "less"
 
 # Misc
