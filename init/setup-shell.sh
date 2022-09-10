@@ -51,12 +51,12 @@ if [[ -z ${zsh_path} ]]; then
   echo "you don't have zsh in /etc/shells"
   # set zsh_path only when zsh installed via Homebrew is not under $HOME
   brew_prefix=$(realpath "${HOMEBREW_PREFIX}")
-  if (type brew &> /dev/null) && [[ -n ${brew_prefix##$(realpath "${HOME}")/*} ]]; then
+  if (type brew &> /dev/null) && [[ -n ${brew_prefix##"$(realpath "${HOME}")"/*} ]]; then
     zsh_path="${HOMEBREW_PREFIX}/bin/zsh"
   else
     zsh_path="$(command -v zsh)"
     for p in $(bash_which -a zsh); do
-      if [[ -n ${p##$(realpath "${HOME}")/*} ]]; then
+      if [[ -n ${p##"$(realpath "${HOME}")"/*} ]]; then
         zsh_path="${p}"
         break
       fi

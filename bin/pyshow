@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 show_version() {
   for p in $(which -a $1); do
@@ -6,9 +6,9 @@ show_version() {
   done
 }
 
-echo 'python:'
+printf 'python:\n'
 show_version python
-echo '\npython2:'
+printf '\npython2:\n'
 show_version python2
-echo '\npython3:'
+printf '\npython3:\n'
 show_version python3
