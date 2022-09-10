@@ -11,6 +11,7 @@ repos:
     rev: master
     hooks:
       # - id: shellcheck
+      #   files: ^(bin|init)/
       #   types: [shell]
       - id: shfmt
         args: [-i, "2", -ci, -sr, -s]
