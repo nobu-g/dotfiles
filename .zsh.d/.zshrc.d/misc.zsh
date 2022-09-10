@@ -164,6 +164,7 @@ cd() {
 fontlist() { fc-list | sed 's,:.*,,' | sort -u }
 mvbak() { mv ${1%%/} ${1%%/}"-$(date "+"%Y-%m-%d)" }
 cpbak() { cp -R ${1%%/} ${1%%/}"-$(date "+"%Y-%m-%d)" }
+rwh() { while read -r p; do [[ $p =~ ^/ ]] && realpath "$p" || echo "$p"; done < <(which -a "$1") }
 
 # set operations
 autoload -Uz union
