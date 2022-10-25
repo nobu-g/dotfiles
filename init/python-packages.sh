@@ -18,7 +18,8 @@ pipx install csvkit
 pipx install pipenv
 pipx install poetry
 pipx install kyoto-reader
-pipx install ipython
-pipx install py-spy
-pipx install httpie
-pipx install ansible-core
+pipx install ipython      # Interactive computing in Python
+pipx install py-spy       # Sampling profiler for Python programs
+pipx install httpie       # User-friendly cURL replacement (command-line HTTP client)
+pipx install ansible-core # Automate deployment, configuration, and upgrading
+pipx install pre-commit   # Framework for managing multi-language pre-commit hooks

@@ -16,7 +16,6 @@ brew "imagemagick"  # Tools and libraries to manipulate images in many formats
 brew "nginx"        # HTTP(S) server and reverse proxy, and IMAP/POP3 proxy server
 brew "pandoc"       # recommended by rga
 brew "poppler"      # recommended by rga
-brew "pre-commit"   # Framework for managing multi-language pre-commit hooks
 brew "rga"          # ripgrep-all
 brew "shellcheck"   # Static analysis and lint tool, for (ba)sh scripts
 brew "shfmt"        # Autoformat shell script source code
