@@ -10,12 +10,12 @@ brew "cling"        # C++ interpreter
 brew "cpanm"        # Get, unpack, build, and install modules from CPAN
 brew "ffmpeg"       # Play, record, convert, and stream audio and video
 brew "gh"           # GitHub CLI
+brew "git-lfs"      # Git extension for versioning large files
 brew "glow"         # Render markdown on the CLI
 brew "imagemagick"  # Tools and libraries to manipulate images in many formats
 brew "nginx"        # HTTP(S) server and reverse proxy, and IMAP/POP3 proxy server
 brew "pandoc"       # recommended by rga
 brew "poppler"      # recommended by rga
-brew "pre-commit"   # Framework for managing multi-language pre-commit hooks
 brew "rga"          # ripgrep-all
 brew "shellcheck"   # Static analysis and lint tool, for (ba)sh scripts
 brew "shfmt"        # Autoformat shell script source code

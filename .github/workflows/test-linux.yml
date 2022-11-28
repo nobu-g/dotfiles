@@ -8,15 +8,15 @@ jobs:
   test-linux:
     runs-on: ubuntu-latest
     strategy:
-      max-parallel: 4
+      max-parallel: 3
       fail-fast: false
       matrix:
-        dist: [ubuntu, debian, fedora, rockylinux]
+        dist: [ubuntu, debian, fedora]
     steps:
       - name: Check out code
         uses: actions/checkout@v3
       - name: Build docker image
-        run: docker build . -f containers/${{ matrix.dist }}.dockerfile -t dotfiles:${{ matrix.dist }}
+        run: docker build . -f dockerfile/${{ matrix.dist }}.dockerfile -t dotfiles:${{ matrix.dist }}
       - name: Create and start docker container
         run: docker run -td -u user -w /home/user dotfiles:${{ matrix.dist }} /bin/sh
       - name: Clone dotfiles
@@ -25,18 +25,3 @@ jobs:
         run: docker exec -i -w /home/user/dotfiles $(docker ps -lq) make install
       - name: Test dotfiles
         run: docker exec -i -w /home/user/dotfiles $(docker ps -lq) make test
-
-  # alpine:
-  #   runs-on: ubuntu-latest
-  #   container: alpine:latest
-  #   steps:
-  #     - name: Install required packages
-  #       run: apk add --no-cache bash bc coreutils curl file g++ gawk gcc gettext git grep libc-dev make procps ruby ruby-bigdecimal ruby-etc ruby-fiddle ruby-irb ruby-json ruby-test-unit sqlite sudo unzip wget zsh
-  #     - name: Clone this repo
-  #       run: git clone --depth 1 https://github.com/nobu-g/dotfiles.git
-  #     - name: Install dotfiles
-  #       run: make install
-  #       working-directory: ./dotfiles
-  #     - name: Test commands
-  #       run: make test
-  #       working-directory: ./dotfiles

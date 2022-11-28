@@ -18,9 +18,10 @@ brew "vim"
 # Programming languages
 brew "go"
 brew "node"
-brew "node@16"
+brew "node@18"
 brew "perl"
 brew "python"
+brew "python@3.11"
 brew "python@3.10"
 brew "python@3.9"
 brew "ruby", args: ["force-bottle"]
