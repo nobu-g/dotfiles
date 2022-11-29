@@ -162,9 +162,9 @@ cd() {
 }
 
 fontlist() { fc-list | sed 's,:.*,,' | sort -u }
-mvbak() { mv ${1%%/} ${1%%/}"-$(date "+"%Y-%m-%d)" }
-cpbak() { cp -R ${1%%/} ${1%%/}"-$(date "+"%Y-%m-%d)" }
-rwh() { while read -r p; do [[ $p =~ ^/ ]] && realpath "$p" || echo "$p"; done < <(which -a "$1") }
+mvbak() { mv ${1%%/} "${1%%/}.bak$(date "+"%Y-%m-%d)" }
+cpbak() { cp -R ${1%%/} "${1%%/}.bak$(date "+"%Y-%m-%d)" }
+rwh() { while read -r p; do [[ $p =~ ^/ ]] && realpath "$p" || echo "$p"; done < <(which -a "$1") }  # which + realpath
 
 # set operations
 autoload -Uz union
@@ -189,6 +189,6 @@ autoload -Uz tssh     # ssh and tmux, like tssh <host-name> <session-name>
 #   fi
 # }
 
-# shell integration 設定
+# iTerm shell integration
 export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
 test -e "${ZDOTDIR}/.iterm2_shell_integration.zsh" && source "${ZDOTDIR}/.iterm2_shell_integration.zsh"
