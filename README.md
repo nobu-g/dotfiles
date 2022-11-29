@@ -64,12 +64,6 @@ make install [SUDO=1] [FULL_INSTALL=1]
 - `dnf install gcc 'Development Tools' procps-ng curl file git libxcrypt-compat`
 - `dnf install g++ perl-ExtUtils-MakeMaker perl-FindBin glibc-devel python3`
 
-### Rocky Linux
-
-- `dnf install sudo make zsh`
-- `dnf install gcc 'Development Tools' procps-ng curl file git`
-- `dnf install perl-ExtUtils-MakeMaker glibc-devel python3`
-
 ## License
 
 MIT
