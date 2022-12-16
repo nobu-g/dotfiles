@@ -54,6 +54,7 @@
     com = checkout main
     b = branch
     bra = branch
+    c = commit
     cm = commit -m
     cam = commit -a -m
     last = log -1 HEAD
