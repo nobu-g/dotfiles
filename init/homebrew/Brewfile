@@ -1,7 +1,7 @@
 # Basic CLI tools
+#brew "gcc"
 brew "cmake"
 brew "curl"
-brew "gcc"
 brew "meson"
 brew "wget"
 brew "gawk"
@@ -12,20 +12,19 @@ brew "bash"
 # brew "zsh"  # Zsh 5.9 is not compatible with Zsh 5.8
 
 # Editors
-brew "emacs"
+#brew "emacs"
 brew "vim"
 
 # Programming languages
 brew "go"
-brew "node"
-brew "node@18"
+# brew "node"
+# brew "node@18"
 brew "perl"
 brew "python"
 brew "python@3.11"
 brew "python@3.10"
 brew "python@3.9"
-brew "ruby", args: ["force-bottle"]
-# Rust is installed via rustup
+brew "ruby"
 
 # Modern alternatives to Liunx CLI tools
 brew "bat"        # cat
@@ -35,19 +34,19 @@ brew "fd"         # find
 brew "git"        # git
 brew "git-delta"  # diff
 brew "htop"       # top
-brew "lsd"        # ls
-brew "openssh"    # ssh
-brew "procs"      # ps
-brew "rargs"      # Util like xargs + awk with pattern matching support
-brew "ripgrep"    # grep -r
-brew "sd"         # sed/awk
+# brew "lsd"        # ls
+# brew "openssh"    # ssh
+# brew "procs"      # ps
+# brew "rargs"      # Util like xargs + awk with pattern matching support
+# brew "ripgrep"    # grep -r
+# brew "sd"         # sed/awk
 brew "tmux"       # tmux
 brew "xz"         # xz
 
 # Misc
 tap "nobu-g/tap"
 tap "ko1nksm/getoptions"
-brew "atuin"       # Improved shell history for zsh and bash
+# brew "atuin"       # Improved shell history for zsh and bash
 brew "direnv"      # Load/unload environment variables based on $PWD
 brew "fzf"         # Command-line fuzzy finder written in Go
 brew "getoptions"  # An elegant option parser for shell scripts
