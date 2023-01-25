@@ -18,7 +18,7 @@ update: ## Fetch changes for this repo
 	git pull origin main
 
 upgrade: ## Upgrade installed packages
-	brew update && brew upgrade
+	brew update && brew upgrade && brew cleanup
 	(type pipx &> /dev/null) && pipx upgrade-all
 	pkgs="$(pip3 list --user -o | tail -n +3 | awk '{ print $$1 }')"; \
 	[[ -n $$pkgs ]] && pip3 install --user -U $$pkgs || true
