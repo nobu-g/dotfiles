@@ -28,9 +28,9 @@ My dotfiles.
 
 Options:
 
-- `SUDO=1`: specify this if you have sudo privileges
-- `FULL_INSTALL=1`: specify this if you want to install all the brew packages
-- `HOMEBREW_PREFIX=/somewhere`: specify this if you want to install Homebrew to a different directory
+- `SUDO=1`: specify this if you have sudo privileges.
+- `FULL_INSTALL=1`: specify this if you want to install all the Homebrew packages listed in `Brewfile` and `Brewfile.full`.
+- `HOMEBREW_PREFIX=/somewhere`: specify this if you want to install Homebrew in a directory other than the default.
 
 ### Using GNU Make
 
@@ -45,13 +45,13 @@ make install [SUDO=1] [FULL_INSTALL=1]
 ### macOS
 
 - `sudo xcode-select --install`
-- `softwareupdate --install-rosetta` (Apple M1 Mac)
+- `softwareupdate --install-rosetta` (for Apple Silicon)
 
 ### Ubuntu
 
-- `apt install sudo make zsh`
-- `apt install gcc build-essential procps curl file git`
-- `apt install python3-pip zlib1g-dev`
+- `apt install sudo make zsh` (basic packages)
+- `apt install gcc build-essential procps curl file git` (packages for Homebrew)
+- `apt install python3-pip zlib1g-dev libp11-kit-dev` (packages for Homebrew packages)
 
 ### Debian
 
