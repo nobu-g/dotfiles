@@ -1,6 +1,7 @@
 # dotfiles
 
 ![License](http://img.shields.io/badge/license-MIT-blue.svg)
+[![CodeFactor](https://www.codefactor.io/repository/github/nobu-g/dotfiles/badge)](https://www.codefactor.io/repository/github/nobu-g/dotfiles)
 [![Linux](https://github.com/nobu-g/dotfiles/actions/workflows/test-linux.yml/badge.svg)](https://github.com/nobu-g/dotfiles/actions/workflows/test-linux.yml)
 [![macOS](https://github.com/nobu-g/dotfiles/actions/workflows/test-macos.yml/badge.svg)](https://github.com/nobu-g/dotfiles/actions/workflows/test-macos.yml)
 [![installer](https://github.com/nobu-g/dotfiles/actions/workflows/test-installer.yml/badge.svg)](https://github.com/nobu-g/dotfiles/actions/workflows/test-installer.yml)
