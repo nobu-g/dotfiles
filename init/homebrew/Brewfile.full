@@ -25,17 +25,18 @@ brew "tokei"        # Program that allows you to count code, quickly
 brew "yq"           # Process YAML documents from the CLI
 
 # Tools written in Rust
-brew "broot"        # New way to see and navigate directory trees
-brew "cargo-edit"   # Utility for managing cargo dependencies from the command-line
-brew "choose-rust"  # Human-friendly and fast alternative to cut and (sometimes) awk
-brew "dust"         # A more intuitive version of du in rust
-brew "hexyl"        # Command-line hex viewer
-brew "hyperfine"    # comman-line benchmark tool
-brew "pastel"       # color manipulation
-brew "pueue"        # Command-line tool for managing long-running shell commands
-brew "tealdeer"     # Very fast implementation of tldr in Rust
-brew "watchexec"    # Execute commands when watched files change
-brew "xsv"          # command-line CSV processor
+brew "broot"           # New way to see and navigate directory trees
+brew "cargo-edit"      # Utility for managing cargo dependencies from the command-line
+brew "cargo-outdated"  # Cargo subcommand for displaying when Rust dependencies are out of date
+brew "choose-rust"     # Human-friendly and fast alternative to cut and (sometimes) awk
+brew "dust"            # A more intuitive version of du in rust
+brew "hexyl"           # Command-line hex viewer
+brew "hyperfine"       # comman-line benchmark tool
+brew "pastel"          # color manipulation
+brew "pueue"           # Command-line tool for managing long-running shell commands
+brew "tealdeer"        # Very fast implementation of tldr in Rust
+brew "watchexec"       # Execute commands when watched files change
+brew "xsv"             # command-line CSV processor
 
 # System
 brew "bandwhich"  # Terminal bandwidth utilization tool
