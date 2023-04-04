@@ -1,7 +1,8 @@
-FROM fedora:latest
+FROM fedora:38
 
-RUN dnf update -y && dnf install -y sudo
+RUN dnf update -y && dnf install -y sudo && dnf clean all
 # add sudo user
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN useradd -m -s /bin/bash user && \
     echo 'user:hogehoge' | chpasswd && \
     echo 'user ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers

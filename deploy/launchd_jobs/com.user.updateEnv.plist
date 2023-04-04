@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>Label</key>
+        <string>com.user.updateEnv</string>
+        <key>ProgramArguments</key>
+        <array>
+            <string>/usr/bin/make</string>
+            <string>-f</string>
+            <string>$HOME/Projects/github.com/nobu-g/dotfiles/Makefile</string>
+            <string>upgrade</string>
+        </array>
+        <key>StartCalendarInterval</key>
+        <dict>
+            <key>Minute</key>
+            <integer>0</integer>
+            <key>Hour</key>
+            <integer>21</integer>
+            <key>Week</key>
+            <integer>2</integer>
+        </dict>
+        <key>RunAtLoad</key>
+        <true/>
+        <key>StandardErrorPath</key>
+        <string>/tmp/updateEnv.err</string>
+        <key>StandardOutPath</key>
+        <string>/tmp/updateEnv.out</string>
+    </dict>
+</plist>
