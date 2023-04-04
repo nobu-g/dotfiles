@@ -41,6 +41,7 @@ case "${OSTYPE}" in
     if ! (type ~/.config/emacs/bin/doom &> /dev/null); then
       rm -rf ~/.config/emacs &&
         git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs &&
+        ln -snfv "$(dirname "${here}")/.config/doom" ~/.config/ &&
         yes | ~/.config/emacs/bin/doom install
     fi
     ;;
