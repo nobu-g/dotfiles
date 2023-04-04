@@ -60,9 +60,3 @@
 
 ;;; line wrap
 (global-visual-line-mode t)
-
-(defvar server-socket-dir
-  (and (featurep 'make-network-process '(:family local))
-   (format "%s/emacs%d" (or (getenv "TMPDIR") "/tmp") (user-uid)))
-  "The directory in which to place the server socket.
-  If local sockets are not supported, this is nil.")

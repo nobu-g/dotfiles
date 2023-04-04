@@ -122,7 +122,7 @@ fi
 path=(
   ${HOME}/.cargo/bin(N-/)  # Rust
   ${HOME}/.poetry/bin(N-/)  # Poetry
-  ${HOME}/.emacs.d/bin(N-/)  # doom-emacs
+  ${HOME}/.config/emacs/bin(N-/)  # doom-emacs
   ${path}
 )
 

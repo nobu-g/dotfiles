@@ -38,10 +38,10 @@ case "${OSTYPE}" in
   freebsd* | darwin*)
     bash -x "$here/setup-defaults.sh"
     # install doom-emacs
-    if ! (type ~/.emacs.d/bin/doom &> /dev/null); then
-      rm -rf ~/.emacs.d &&
-        git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d &&
-        yes | ~/.emacs.d/bin/doom install
+    if ! (type ~/.config/emacs/bin/doom &> /dev/null); then
+      rm -rf ~/.config/emacs &&
+        git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs &&
+        yes | ~/.config/emacs/bin/doom install
     fi
     ;;
 esac
