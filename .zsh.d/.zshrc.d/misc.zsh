@@ -12,7 +12,7 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'" # https://github.com/sharkdp/b
 
 # EDITOR
 export EDITOR='emacsclient -s ${EMACS_SERVER_SOCKET}'
-export EMACS_SERVER_SOCKET="${TMPDIR:-/tmp}/emacs$(id -u)/server"
+export EMACS_SERVER_SOCKET="${TMPDIR:-/tmp}/emacs$(id -u)"
 
 # BurntSushi/ripgrep
 export RIPGREP_CONFIG_PATH="${XDG_CONFIG_HOME:-$HOME/.config}/ripgrep/config"
