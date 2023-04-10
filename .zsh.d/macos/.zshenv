@@ -17,11 +17,6 @@ manpath=(
 path=($(cat /etc/paths.d/*) ${path})
 manpath=($(cat /etc/manpaths.d/*) ${manpath})
 
-## PyCharm
-if [[ -e /Applications/PyCharm.app ]]; then
-  path=(/Applications/PyCharm.app/Contents/MacOS(N-/) ${path})
-fi
-
 ## TexLive
 if [[ -e /Library/TeX ]]; then
   path=(/Library/TeX/Distributions/Programs/texbin(N-/) ${path})
