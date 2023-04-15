@@ -61,6 +61,8 @@ fi
 gc_completion="${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 [[ -f ${gc_completion} ]] && zinit snippet "${gc_completion}"
 
+export EMACS_SERVER_SOCKET="${TMPDIR:-/tmp}/emacs$(id -u)/server"
+
 # alias
 alias rm='trash'  # https://github.com/andreafrancia/trash-cli
 alias ldd='otool -L'

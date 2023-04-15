@@ -31,6 +31,8 @@ man() {
   env -u LD_PRELOAD -u MANPAGER man "$@" | col -bx | bat -l man -p
 }
 
+export EMACS_SERVER_SOCKET="${TMPDIR:-/tmp}/emacs$(id -u)"
+
 # alias
 alias pbcopy='clipcopy'
 alias pbpaste='clippaste'
