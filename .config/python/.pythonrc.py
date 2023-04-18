@@ -9,22 +9,19 @@ from pathlib import Path
 from typing import *
 from collections import defaultdict
 
-__msg = 'Imported sys, os, re, json, Path, defaultdict, and all modules of typing.'
+print('Imported sys, os, re, json, Path, defaultdict, and all modules of typing.')
 
 try:
     from rhoknp import *
-    __msg += '\nImported all modules of rhoknp.'
+    print('Imported all modules of rhoknp.')
 except ImportError:
     print("rhoknp not available")
-    __msg += '.'
 
 try:
     from transformers import AutoConfig, AutoModel, AutoTokenizer
-    __msg += '\nImported AutoConfig, AutoModel, and AutoTokenizer from transformers.'
+    print('Imported AutoConfig, AutoModel, and AutoTokenizer from transformers.')
 except ImportError:
     pass
-
-print(__msg)
 
 # https://unix.stackexchange.com/questions/630642/change-location-of-python-history
 import readline
