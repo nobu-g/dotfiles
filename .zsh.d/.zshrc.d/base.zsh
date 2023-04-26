@@ -8,7 +8,7 @@ autoload -Uz colors && colors
 # export LSCOLORS=gxfxcxdxbxegexabagacad  # GNU系の LS_COLORS に相当
 export TERM='xterm-256color'
 
-WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
+WORDCHARS='*?_-.[]~&;!#$%^|(){}<>'
 
 # COMMAND HISTORY
 HISTFILE=$HOME/.zsh_history
