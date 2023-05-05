@@ -1,9 +1,13 @@
+# Setup procedures for Mac
+
 ## Preliminary
+
 1. System Preferences -> Software Update -> Make sure the system is up to date
 1. Install Xcode
-2. Open Xcode and agree to the license
-3. `sudo xcode-select --install`
-4. Open Terminal.app and install dotfiles specifying a location
+1. Open Xcode and agree to the license
+1. `sudo xcode-select --install`
+1. Open Terminal.app and install dotfiles specifying a location
+
     ```shell
     DOTPATH=$HOME/Projects/github.com/nobu-g/dotfiles \
     FULL_INSTALL=1 \
@@ -12,19 +16,28 @@
     ```
 
 ## Google Chrome
+
 1. Log in using your Google account
-2. Log in to your Chrome extensions
+1. Log in to your Chrome extensions
 
 ## System Preferences
+
 ### Apple ID
+
 - Log in
+
 ### Software Update
+
 - Automatically keep my Mac up to date: On
+
 ### Dock & Menu Bar
+
 - Automatically hide and show the Dock: On
 - Battery -> Show Percentage: On
 - Spotlight -> Show in Menu Bar: Off
+
 ### Keyboard
+
 - tab:Keyboard -> Key Repeat: Fastest
 - tab:Keyboard -> Delay Until Repeat: Shortest
 - tab:Shortcuts -> Launchpad & Dock -> Turn Dock Hiding On/Off: Off
@@ -47,38 +60,53 @@
 - tab:Shortcuts -> App Shortcuts -> Papers.app -> Papers Settings: Cmd-,
 - tab:Shortcuts -> App Shortcuts -> Papers.app -> Close All: Cmd-Shift-W
 - tab:Input Sources -> Add Google Japanese Input
+
 ### Trackpad
+
 - tab:Point & Click -> Click: Lightest
 - tab:Point & Click -> Tracking speed: Fastest
+
 ### Internet Accounts
+
 - iCloud -> iCloud Drive -> tab:Documents -> Desktop & Documents Folder: On
+
 ### Mission Control
+
 - Automatically rearrange Spaces based on most recent use: Off
+
 ### Displays
+
 - Display Settings -> Resolution: Scaled -> More Space
 
 ## Finder
+
 - Preferences -> tab:Advanced -> Show warning before removing from iCloud Drive: Off
 
 ## Docker Desktop
+
 - Log in using your Docker Hub account
 - Preferences -> General -> Start Docker Desktop when you log in: On
 - Preferences -> General -> Use Docker Compose V2: On
 
 ## BetterTouchTool
+
 1. Sync your preferences manually
+
     ```shell
     ln -s ~/Dropbox/Settings/BetterTouchTool/BetterTouchTool ~/Library/Application\ Support/
     ```
-2. Search "BetterTouchTool" in your mail box and find an activation link
-3. Go to the link and activate the license
-4. Settings -> Basic -> Launch BetterTouchTool on startup: On
+
+1. Search "BetterTouchTool" in your mail box and find an activation link
+1. Go to the link and activate the license
+1. Settings -> Basic -> Launch BetterTouchTool on startup: On
 
 ## VSCode
+
 1. Install the Setting Sync extension
-2. Open the command palette and run "Setting Sync: Turn On..."
-3. Log in using your GitHub account
+1. Open the command palette and run "Setting Sync: Turn On..."
+1. Log in using your GitHub account
 
 ## Slack
+
 - Input your email address and receive an invitation link
 - Open the invitation link
