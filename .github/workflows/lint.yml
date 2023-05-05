@@ -15,7 +15,7 @@ jobs:
       #   run: test $(find ./.zsh.d/ -type f | grep -v .zsh.d/.zfunc | xargs shellcheck -f gcc --exclude=SC1036,SC1056,SC1072,SC1073,SC1090,SC2139,SC2206,SC2034,SC2148,SC2016,SC2086,SC2128,SC2068,SC2155,SC2001 | tee -a /dev/stderr | wc -l) -le 1
       # - name: Execute shellcheck (zsh functions)
       #   run: test $(find ./.zsh.d/.zfunc -type f | xargs shellcheck -f gcc --exclude=SC1036,SC1056,SC1072,SC1073,SC1090,SC2139,SC2206,SC2034,SC2148,SC2016,SC2086,SC2128,SC2068,SC2155,SC2001,SC2168 | tee -a /dev/stderr | wc -l) -le 1
-      - name: Execute shellcheck for installer
+      - name: Execute shellcheck (installer)
         run: test $(find . -type f -name "*.sh" | xargs shellcheck -f gcc --exclude=SC1090,SC2086 | tee -a /dev/stderr | wc -l) -le 0
   lint:
     runs-on: ubuntu-latest
@@ -24,6 +24,8 @@ jobs:
       - name: Install required packages
         run: |
           pipx install pre-commit
-          brew install shfmt
+          go install mvdan.cc/sh/v3/cmd/shfmt@latest
+      - name: Add path for Python packages
+        run: echo "$HOME/.go/bin" >> $GITHUB_PATH
       - name: Run pre-commit
         run: pre-commit run --all-files
