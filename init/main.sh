@@ -76,11 +76,11 @@ if (type go &> /dev/null); then
   go install golang.org/x/tools/gopls@latest # or brew install gopls
 fi
 
-# install Docker Compose V2
-DOCKER_CONFIG="${DOCKER_CONFIG:-$HOME/.docker}"
-mkdir -p "${DOCKER_CONFIG}/cli-plugins"
-machine=$(uname -m | sed 's/arm64/aarch64/')
-# https://github.com/docker/compose/releases
-curl -SL "https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-$(uname -s)-${machine}" \
-  -o "${DOCKER_CONFIG}/cli-plugins/docker-compose"
-chmod +x "${DOCKER_CONFIG}/cli-plugins/docker-compose"
+# # install Docker Compose V2
+# DOCKER_CONFIG="${DOCKER_CONFIG:-$HOME/.docker}"
+# mkdir -p "${DOCKER_CONFIG}/cli-plugins"
+# machine=$(uname -m | sed 's/arm64/aarch64/')
+# # https://github.com/docker/compose/releases
+# curl -SL "https://github.com/docker/compose/releases/download/v2.17.3/docker-compose-$(uname -s)-${machine}" \
+#   -o "${DOCKER_CONFIG}/cli-plugins/docker-compose"
+# chmod +x "${DOCKER_CONFIG}/cli-plugins/docker-compose"
