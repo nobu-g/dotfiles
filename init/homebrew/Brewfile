@@ -23,8 +23,7 @@ brew "perl"
 brew "python"
 brew "python@3.11"
 brew "python@3.10"
-brew "python@3.9"
-brew "ruby", args: ["force-bottle"]
+brew "ruby"
 # Rust is installed via rustup
 
 # Modern alternatives to Liunx CLI tools
@@ -36,7 +35,6 @@ brew "git"        # git
 brew "git-delta"  # diff
 brew "htop"       # top
 brew "lsd"        # ls
-brew "openssh"    # ssh
 brew "procs"      # ps
 brew "rargs"      # Util like xargs + awk with pattern matching support
 brew "ripgrep"    # grep -r

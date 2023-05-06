@@ -3,17 +3,19 @@ brew "neovim"       # Ambitious Vim-fork focused on extensibility and agility
 
 # Programming languages
 brew "openjdk"      # Development kit for the Java programming language
+brew "python@3.9"   # Interpreted, interactive, object-oriented programming language
 brew "python@3.8"   # Interpreted, interactive, object-oriented programming language
 
 # Misc
 brew "cling"        # C++ interpreter
 brew "cpanm"        # Get, unpack, build, and install modules from CPAN
 brew "ffmpeg"       # Play, record, convert, and stream audio and video
-brew "gh"           # GitHub CLI
+brew "gh"           # GitHub command-line tool
 brew "git-lfs"      # Git extension for versioning large files
 brew "glow"         # Render markdown on the CLI
 brew "imagemagick"  # Tools and libraries to manipulate images in many formats
 brew "nginx"        # HTTP(S) server and reverse proxy, and IMAP/POP3 proxy server
+brew "openssh"      # OpenBSD freely-licensed SSH connectivity tools
 brew "pandoc"       # recommended by rga
 brew "poppler"      # recommended by rga
 brew "rga"          # ripgrep-all
@@ -31,7 +33,7 @@ brew "cargo-outdated"  # Cargo subcommand for displaying when Rust dependencies 
 brew "choose-rust"     # Human-friendly and fast alternative to cut and (sometimes) awk
 brew "dust"            # A more intuitive version of du in rust
 brew "hexyl"           # Command-line hex viewer
-brew "hyperfine"       # comman-line benchmark tool
+brew "hyperfine"       # Command-line benchmarking tool
 brew "pastel"          # color manipulation
 brew "pueue"           # Command-line tool for managing long-running shell commands
 brew "tealdeer"        # Very fast implementation of tldr in Rust
