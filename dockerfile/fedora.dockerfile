@@ -21,6 +21,7 @@ RUN dnf update -y && dnf install -y \
     g++ \
     perl-ExtUtils-MakeMaker \
     perl-FindBin \
+    perl-IPC-Cmd \
     glibc-devel \
     python3 \
     && dnf clean all \
