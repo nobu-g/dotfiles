@@ -10,9 +10,9 @@ print('Imported sys, os, re, json, Path, defaultdict, and all types from typing.
 
 try:
     from rhoknp import * # noqa
-    print('Imported all modules etc. from rhoknp.')
+    print('Imported all importables from rhoknp.')
 except ImportError:
-    print("rhoknp not available")
+    pass
 
 try:
     from transformers import AutoConfig, AutoModel, AutoTokenizer # noqa
@@ -35,14 +35,17 @@ except OSError:
     pass
 
 
-def write_history():
+def write_history(path):
+    import os
     import readline
     try:
-        readline.write_history_file(__hist)
+        os.makedirs(os.path.dirname(path), mode=0o700, exist_ok=True)
+        readline.write_history_file(path)
     except OSError:
         # bpo-19891, bpo-41193: Home directory does not exist
         # or is not writable, or the filesystem is read-only.
         pass
 
 
-atexit.register(write_history)
+atexit.register(write_history, __hist)
+del (atexit, readline, __hist, write_history)
