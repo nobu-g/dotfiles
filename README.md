@@ -63,7 +63,7 @@ make install [SUDO=1] [FULL_INSTALL=1]
 
 - `dnf install sudo make zsh`
 - `dnf install gcc 'Development Tools' procps-ng curl file git libxcrypt-compat`
-- `dnf install g++ perl-ExtUtils-MakeMaker perl-FindBin perl-IPC-Cmd glibc-devel python3`
+- `dnf install g++ perl-ExtUtils-MakeMaker perl-FindBin perl-IPC-Cmd perl-Pod-Html glibc-devel python3`
 
 ## License
 
