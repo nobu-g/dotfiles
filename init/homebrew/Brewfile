@@ -1,29 +1,31 @@
 # Basic CLI tools
-brew "cmake"
-brew "curl"
-brew "gcc"
-brew "meson"
-brew "wget"
-brew "gawk"
-brew "gzip"
+brew "cmake"  # Cross-platform make
+brew "curl"   # Get a file from an HTTP, HTTPS or FTP server
+brew "gcc"    # GNU compiler collection
+brew "meson"  # Fast and user friendly build system
+brew "wget"   # Internet file retriever
+brew "gawk"   # GNU awk utility
+brew "gzip"   # Popular GNU data compression program
 
 # Shells
-brew "bash"
-# brew "zsh"  # Zsh 5.9 is not compatible with Zsh 5.8
+brew "bash"  # Bourne-Again SHell, a UNIX command interpreter
+# Homebrew installs Zsh 5.9, which is not compatible with system Zsh 5.8 on Ubuntu 20.04 and 22.04
+# brew "zsh"  # UNIX shell (command interpreter)
 
 # Editors
-brew "emacs"
-brew "vim"
+brew "emacs"  # GNU Emacs text editor
+brew "vim"    # Vi 'workalike' with many additional features
 
 # Programming languages
-brew "go"
-brew "node"
-brew "node@18"
-brew "perl"
-brew "python"
-brew "python@3.11"
-brew "python@3.10"
-brew "ruby"
+brew "go"           # Open source programming language to build simple/reliable/efficient software
+brew "node"         # Platform built on V8 to build network applications
+brew "node@18"      # Platform built on V8 to build network applications
+brew "node@20"      # Platform built on V8 to build network applications
+brew "perl"         # Highly capable, feature-rich programming language
+brew "python"       # Interpreted, interactive, object-oriented programming language
+brew "python@3.10"  # Interpreted, interactive, object-oriented programming language
+brew "python@3.11"  # Interpreted, interactive, object-oriented programming language
+brew "ruby"         # Powerful, clean, object-oriented scripting language
 # Rust is installed via rustup
 
 # Modern alternatives to Liunx CLI tools
@@ -59,5 +61,5 @@ brew "watch"       # Executes a program periodically, showing output fullscreen
 brew "zoxide"      # Shell extension to navigate your filesystem faster
 
 # System
-brew "whois"      # Lookup tool for domain names and other internet resources
-brew "nmap"       # Port scanning utility for large networks
+brew "whois"  # Lookup tool for domain names and other internet resources
+brew "nmap"   # Port scanning utility for large networks

@@ -1,10 +1,10 @@
 # Editors
-brew "neovim"       # Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"  # Ambitious Vim-fork focused on extensibility and agility
 
 # Programming languages
 brew "openjdk"      # Development kit for the Java programming language
-brew "python@3.9"   # Interpreted, interactive, object-oriented programming language
 brew "python@3.8"   # Interpreted, interactive, object-oriented programming language
+brew "python@3.9"   # Interpreted, interactive, object-oriented programming language
 
 # Misc
 brew "cling"        # C++ interpreter
