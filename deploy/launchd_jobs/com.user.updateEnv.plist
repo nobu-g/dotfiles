@@ -6,10 +6,9 @@
         <string>com.user.updateEnv</string>
         <key>ProgramArguments</key>
         <array>
-            <string>/usr/bin/make</string>
-            <string>-f</string>
-            <string>$HOME/Projects/github.com/nobu-g/dotfiles/Makefile</string>
-            <string>upgrade</string>
+            <string>/bin/zsh</string>
+            <string>-c</string>
+            <string>/usr/bin/make -f $DOTPATH/Makefile upgrade</string>
         </array>
         <key>StartCalendarInterval</key>
         <dict>
