@@ -19,7 +19,7 @@ brew "nginx"        # HTTP(S) server and reverse proxy, and IMAP/POP3 proxy serv
 brew "openssh"      # OpenBSD freely-licensed SSH connectivity tools
 brew "pandoc"       # recommended by rga
 brew "poppler"      # recommended by rga
-brew "rga"          # ripgrep-all
+brew "rga"          # Wrapper around ripgrep that adds multiple rich file types
 brew "shellcheck"   # Static analysis and lint tool, for (ba)sh scripts
 brew "shfmt"        # Autoformat shell script source code
 brew "st"           # command-line statistics calculator
@@ -32,10 +32,10 @@ brew "broot"           # New way to see and navigate directory trees
 brew "cargo-edit"      # Utility for managing cargo dependencies from the command-line
 brew "cargo-outdated"  # Cargo subcommand for displaying when Rust dependencies are out of date
 brew "choose-rust"     # Human-friendly and fast alternative to cut and (sometimes) awk
-brew "dust"            # A more intuitive version of du in rust
+brew "dust"            # More intuitive version of du in rust
 brew "hexyl"           # Command-line hex viewer
 brew "hyperfine"       # Command-line benchmarking tool
-brew "pastel"          # color manipulation
+brew "pastel"          # Command-line tool to generate, analyze, convert and manipulate colors
 brew "pueue"           # Command-line tool for managing long-running shell commands
 brew "tealdeer"        # Very fast implementation of tldr in Rust
 brew "watchexec"       # Execute commands when watched files change
