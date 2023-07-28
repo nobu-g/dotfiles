@@ -66,6 +66,7 @@
 
 [core]
     pager = delta
+    quotepath = false
 
 [color]
     ui = true
