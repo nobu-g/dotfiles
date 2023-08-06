@@ -84,3 +84,14 @@ fi
 # curl -SL "https://github.com/docker/compose/releases/download/v2.17.3/docker-compose-$(uname -s)-${machine}" \
 #   -o "${DOCKER_CONFIG}/cli-plugins/docker-compose"
 # chmod +x "${DOCKER_CONFIG}/cli-plugins/docker-compose"
+
+# install iTerm2 shell integration
+ZDOTDIR="${ZDOTDIR:-${HOME}/.zsh}"
+ITERM2_SHELL_INTEGRATION_RC_URL="https://iterm2.com/shell_integration/zsh"
+ITERM2_SHELL_INTEGRATION_RC="${ZDOTDIR}/.iterm2_shell_integration.zsh"
+if ! [[ -f ${ITERM2_SHELL_INTEGRATION_RC} ]]; then
+  echo "Downloading script from ${ITERM2_SHELL_INTEGRATION_RC_URL} and saving it to ${ITERM2_SHELL_INTEGRATION_RC}..."
+  curl -SsL "${ITERM2_SHELL_INTEGRATION_RC_URL}" > "${ITERM2_SHELL_INTEGRATION_RC}" &&
+    chmod +x "${ITERM2_SHELL_INTEGRATION_RC}" ||
+    echo "Couldn't download script from ${ITERM2_SHELL_INTEGRATION_RC_URL}" 1>&2
+fi
