@@ -24,8 +24,9 @@ export IPYTHONDIR="${XDG_CONFIG_HOME:-$HOME/.config}/ipython"
 # Node.js
 export NODE_REPL_HISTORY="${XDG_DATA_HOME:-$HOME/.local/share}/node/.node_repl_history"
 
-# rustup
+# Rust
 export RUSTUP_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/rustup"
+export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 
 # Docker
 export DOCKER_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/docker"
