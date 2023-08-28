@@ -27,6 +27,9 @@ export NODE_REPL_HISTORY="${XDG_DATA_HOME:-$HOME/.local/share}/node/.node_repl_h
 # rustup
 export RUSTUP_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/rustup"
 
+# Docker
+export DOCKER_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/docker"
+
 # direnv
 eval "$(direnv hook zsh)"
 p=$PWD
