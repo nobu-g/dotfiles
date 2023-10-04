@@ -19,9 +19,8 @@ _pipx_install speedtest-cli
 export PATH="${HOMEBREW_PREFIX}/opt/icu4c/bin:${HOMEBREW_PREFIX}/opt/icu4c/sbin:$PATH"
 export PKG_CONFIG_PATH="${HOMEBREW_PREFIX}/opt/icu4c/lib/pkgconfig"
 _pipx_install csvkit
-_pipx_install pipenv # Python Development Workflow for Humans.
-_pipx_install poetry # Python dependency management and packaging made easy.
-_pipx_install kyoto-reader
+_pipx_install pipenv           # Python Development Workflow for Humans.
+_pipx_install poetry           # Python dependency management and packaging made easy.
 _pipx_install ipython          # Interactive computing in Python
 _pipx_install py-spy           # Sampling profiler for Python programs
 _pipx_install httpie           # User-friendly cURL replacement (command-line HTTP client)
