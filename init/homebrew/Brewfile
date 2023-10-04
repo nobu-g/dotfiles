@@ -23,8 +23,8 @@ brew "node@18"      # Platform built on V8 to build network applications
 brew "node@20"      # Platform built on V8 to build network applications
 brew "perl"         # Highly capable, feature-rich programming language
 brew "python"       # Interpreted, interactive, object-oriented programming language
-brew "python@3.10"  # Interpreted, interactive, object-oriented programming language
 brew "python@3.11"  # Interpreted, interactive, object-oriented programming language
+brew "python@3.12"  # Interpreted, interactive, object-oriented programming language
 brew "ruby"         # Powerful, clean, object-oriented scripting language
 # Rust is installed via rustup
 
