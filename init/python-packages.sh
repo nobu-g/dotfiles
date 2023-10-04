@@ -14,15 +14,15 @@ _pipx_install_py312() {
 }
 
 # command-line tools
-_pipx_install_py312 virtualenv # Virtual Python Environment builder
-_pipx_install_py312 autopep8
-_pipx_install_py312 flake8
-_pipx_install_py312 trash-cli
-_pipx_install_py312 speedtest-cli
+_pipx_install_py312 virtualenv    # Virtual Python Environment builder
+_pipx_install_py312 autopep8      # A tool that automatically formats Python code to conform to the PEP 8 style guide
+_pipx_install_py312 flake8        # the modular source code checker: pep8 pyflakes and co
+_pipx_install_py312 trash-cli     # Command line interface to FreeDesktop.org Trash.
+_pipx_install_py312 speedtest-cli # Command line interface for testing internet bandwidth using speedtest.net
 # https://github.com/googlefonts/pyfontaine/issues/109#issuecomment-604872347
 export PATH="${HOMEBREW_PREFIX}/opt/icu4c/bin:${HOMEBREW_PREFIX}/opt/icu4c/sbin:$PATH"
 export PKG_CONFIG_PATH="${HOMEBREW_PREFIX}/opt/icu4c/lib/pkgconfig"
-_pipx_install_py312 csvkit
+_pipx_install_py312 csvkit           # A suite of command-line tools for working with CSV, the king of tabular file formats.
 _pipx_install_py312 pipenv           # Python Development Workflow for Humans.
 _pipx_install_py312 poetry           # Python dependency management and packaging made easy.
 _pipx_install_py312 ipython          # Interactive computing in Python
