@@ -18,6 +18,7 @@ _pipx_install_py312 virtualenv    # Virtual Python Environment builder
 _pipx_install_py312 autopep8      # A tool that automatically formats Python code to conform to the PEP 8 style guide
 _pipx_install_py312 flake8        # the modular source code checker: pep8 pyflakes and co
 _pipx_install_py312 poetry        # Python dependency management and packaging made easy.
+_pipx_install_py312 pipenv        # Python Development Workflow for Humans.
 _pipx_install_py312 pre-commit    # Framework for managing multi-language pre-commit hooks
 _pipx_install_py312 ipython       # Interactive computing in Python
 _pipx_install_py312 trash-cli     # Command line interface to FreeDesktop.org Trash.
@@ -28,7 +29,6 @@ export PKG_CONFIG_PATH="${HOMEBREW_PREFIX}/opt/icu4c/lib/pkgconfig"
 _pipx_install_py312 csvkit # A suite of command-line tools for working with CSV, the king of tabular file formats.
 
 if [[ ${FULL_INSTALL} -eq 1 ]]; then
-  _pipx_install_py312 pipenv           # Python Development Workflow for Humans.
   _pipx_install_py312 py-spy           # Sampling profiler for Python programs
   _pipx_install_py312 httpie           # User-friendly cURL replacement (command-line HTTP client)
   _pipx_install_py312 ansible-core     # Automate deployment, configuration, and upgrading
