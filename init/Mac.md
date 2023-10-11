@@ -110,3 +110,12 @@
 
 - Input your email address and receive an invitation link
 - Open the invitation link
+
+## Disable Input Method Indicator
+
+cf. <https://stackoverflow.com/questions/77248249/disable-macos-sonoma-text-insertion-point-cursor-caps-lock-indicator>
+
+```shell
+sudo mkdir -p /Library/Preferences/FeatureFlags/Domain
+sudo /usr/libexec/PlistBuddy -c "Add 'redesigned_text_cursor:Enabled' bool false" /Library/Preferences/FeatureFlags/Domain/UIKit.plist
+```
