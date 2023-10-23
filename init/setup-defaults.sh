@@ -183,6 +183,31 @@ defaults write NSGlobalDomain KeyRepeat -int 1
 echo "Set a shorter Delay until key repeat"
 defaults write NSGlobalDomain InitialKeyRepeat -int 10
 
+defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "Duplicate Tab" -string "@k"
+defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "复制标签" -string "@k"
+defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "タブを複製" -string "@k"
+
+defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "Select Previous Tab" -string "@["
+defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "选择上一个标签" -string "@["
+defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "前のタブを選択" -string "@["
+
+defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "Select Next Tab" -string "@]"
+defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "选择下一个标签" -string "@]"
+defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "次のタブを選択" -string "@]"
+
+# These commands are not working because extra backslashes are added (e.g., `@\\\\U2190``)
+# defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "Back" -string "@\U2190"
+# defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "返回" -string "@\U2190"
+# defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "戻る" -string "@\U2190"
+
+# defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "Forward" -string "@\U2192"
+# defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "前进" -string "@\U2192"
+# defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "進む" -string "@\U2192"
+
+defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "Enter Full Screen" -string '@^$f'
+defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "进入全屏幕" -string '@^$f'
+defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "フルスクリーンにする" -string '@^$f'
+
 # echo "Trackpad: Enable tap to click"
 # defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 
