@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -u
+set -uo pipefail
 
 # Set computer name (as done via System Preferences → Sharing)
 #sudo scutil --set ComputerName "0x6D746873"
@@ -13,13 +13,42 @@ if [[ ${SUDO} -eq 1 ]]; then
   sudo nvram SystemAudioVolume=" "
 fi
 
-# Always show scrollbars
-# Possible values: `WhenScrolling`, `Automatic` and `Always`
+###############################################################################
+# Global Config                                                               #
+###############################################################################
+
+echo "Always show scrollbars"
+# Possible values: `WhenScrolling`, `Automatic`, and `Always`
 defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
 
 # Enable full keyboard access for all controls
 # (e.g. enable Tab in modal dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+
+echo "Expand save dialog by default"
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
+
+echo "Expand print panel by default"
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
+
+echo "Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)"
+defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+
+echo "Enable subpixel font rendering on non-Apple LCDs"
+defaults write NSGlobalDomain AppleFontSmoothing -int 2
+
+echo "Disable press-and-hold for keys in favor of key repeat"
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+
+echo "Speedup dialog display"
+defaults write -g NSWindowResizeTime 0.001
+# defaults delete -g NSWindowResizeTime  # back to the original
+
+###############################################################################
+# Dock                                                                        #
+###############################################################################
 
 echo "Dock: speed up showing and hiding"
 defaults write com.apple.dock autohide-delay -float 0
@@ -82,42 +111,69 @@ defaults write com.apple.finder ShowStatusBar -bool true
 echo "Finder: show the ~/Library folder"
 chflags nohidden ~/Library
 
+echo "Finder: Hide Quick Look when switching to other apps"
+defaults write com.apple.finder QLHidePanelOnDeactivate -bool true
+# defaults delete com.apple.finder QLHidePanelOnDeactivate  # back to the original
+
 if [[ ${SUDO} -eq 1 ]]; then
   echo "Finder: show the /Volumes folder"
   sudo chflags nohidden /Volumes
 fi
 
-echo "Finder: Hide Quick Look when switching to other apps"
-defaults write com.apple.finder QLHidePanelOnDeactivate -bool true
-# defaults delete com.apple.finder QLHidePanelOnDeactivate  # back to the original
+###############################################################################
+# Activity Monitor                                                            #
+###############################################################################
+
+echo "ActivityMonitor: show the main window when launching Activity Monitor"
+defaults write com.apple.ActivityMonitor OpenMainWindow -bool true
+
+echo "ActivityMonitor: visualize CPU usage in the Dock icon"
+defaults write com.apple.ActivityMonitor IconType -int 5
+
+echo "ActivityMonitor: show all processes"
+defaults write com.apple.ActivityMonitor ShowCategory -int 0
+
+echo "ActivityMonitor: sort results by CPU usage"
+defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
+defaults write com.apple.ActivityMonitor SortDirection -int 0
+
+###############################################################################
+# Other Apps                                                                  #
+###############################################################################
 
 echo "Terminal: only use UTF-8"
 defaults write com.apple.terminal StringEncodings -array 4
 
-echo "Other apps"
+echo "Printer: Automatically quit printer app once the print jobs complete"
+defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+
 defaults write com.hegenberg.BetterTouchTool BTTDisableSecureInputLookup YES
 defaults write com.apple.dt.Xcode ShowBuildOperationDuration YES
 defaults write org.python.python ApplePersistenceIgnoreState NO
 
-echo "Expand save dialog by default"
-defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
-defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
+echo "iTerm2: don't display the annoying prompt when quitting iTerm"
+defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 
-echo "Expand print panel by default"
-defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
-defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
+echo "Safari: enable debug menu"
+defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
 
-echo "Printer: Automatically quit printer app once the print jobs complete"
-defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+echo "Safari: Show the full URL in the address bar (note: this still hides the scheme)"
+defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
 
-echo "Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)"
-defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+echo "Screencapture: save screenshots to the desktop"
+defaults write com.apple.screencapture location -string "${HOME}/Desktop"
 
-echo "Enable subpixel font rendering on non-Apple LCDs"
-defaults write NSGlobalDomain AppleFontSmoothing -int 2
+echo "Screencapture: save screenshots in PNG format"
+# Other options: BMP, GIF, JPG, PDF, TIFF
+defaults write com.apple.screencapture type -string "png"
 
-echo "Disable press-and-hold for keys in favor of key repeat"
-defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+echo "Screencapture: remove shadows from screenshots"
+defaults write com.apple.screencapture disable-shadow -boolean true
+killall SystemUIServer
+
+###############################################################################
+# Keyboard and Trackpad                                                       #
+###############################################################################
 
 # キーのリピート・リピート認識時間
 # System Preferencesのカーソルで合わせられる最速よりも、リピートは1.5倍、入力認識は2倍早くできる
@@ -129,29 +185,6 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 10
 
 # echo "Trackpad: Enable tap to click"
 # defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-
-echo "Safari: enable debug menu"
-defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
-
-echo "Safari: Show the full URL in the address bar (note: this still hides the scheme)"
-defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
-
-echo "Screencapture: save screenshots to the desktop"
-defaults write com.apple.screencapture location -string "${HOME}/Desktop"
-
-echo "Screencapture: save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)"
-defaults write com.apple.screencapture type -string "png"
-
-echo "Screencapture: remove shadows from screenshots"
-defaults write com.apple.screencapture disable-shadow -boolean true
-killall SystemUIServer
-
-echo "speedup dialog display"
-defaults write -g NSWindowResizeTime 0.001
-# defaults delete -g NSWindowResizeTime  # back to the original
-
-echo "iTerm2: don't display the annoying prompt when quitting iTerm"
-defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 
 # Hot corners
 # Possible values:
@@ -175,23 +208,6 @@ defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 # Bottom left screen corner → Start screen saver
 # defaults write com.apple.dock wvous-bl-corner -int 5
 # defaults write com.apple.dock wvous-bl-modifier -int 0
-
-###############################################################################
-# Activity Monitor                                                            #
-###############################################################################
-
-# Show the main window when launching Activity Monitor
-defaults write com.apple.ActivityMonitor OpenMainWindow -bool true
-
-# Visualize CPU usage in the Activity Monitor Dock icon
-defaults write com.apple.ActivityMonitor IconType -int 5
-
-# Show all processes in Activity Monitor
-defaults write com.apple.ActivityMonitor ShowCategory -int 0
-
-# Sort Activity Monitor results by CPU usage
-defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
-defaults write com.apple.ActivityMonitor SortDirection -int 0
 
 echo "Kill affected applications"
 for app in Safari Finder Dock Mail SystemUIServer; do
