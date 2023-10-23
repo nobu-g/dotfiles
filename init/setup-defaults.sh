@@ -213,6 +213,23 @@ defaults write com.ReadCube.Papers NSUserKeyEquivalents -dict-add "Papers Settin
 defaults write com.ReadCube.Papers NSUserKeyEquivalents -dict-add "Select Next Tab" -string "@]"
 defaults write com.ReadCube.Papers NSUserKeyEquivalents -dict-add "Select Previous Tab" -string "@["
 
+# https://apple.stackexchange.com/questions/91679/is-there-a-way-to-set-an-application-shortcut-in-the-keyboard-preference-pane-vi
+# Select the previous input source: Off
+# 前の入力ソースを選択: Off
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 60 "<dict><key>enabled</key><false/></dict>"
+# Select next source in input menu: Off
+# 入力メニューの次のソースを選択: Off
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 61 "<dict><key>enabled</key><false/></dict>"
+# Show Spotlight search field
+# Spotlight検索を表示
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 "<dict><key>enabled</key><true/><key>value</key><dict><key>parameters</key><array><integer>65535</integer><integer>49</integer><integer>1572864</integer></array><key>type</key><string>standard</string></dict></dict>"
+# Show Spotlight window: Off
+# Finderの検索ウインドウを表示: Off
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 65 "<dict><key>enabled</key><false/></dict>"
+# Turn Dock Hiding On/Off: Off
+# Dockを自動的に表示/非表示のオン/オフ: Off
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 52 "<dict><key>enabled</key><false/></dict>"
+
 # echo "Trackpad: Enable tap to click"
 # defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 

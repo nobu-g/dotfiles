@@ -40,13 +40,8 @@
 
 - tab:Keyboard -> Key Repeat: Fastest
 - tab:Keyboard -> Delay Until Repeat: Shortest
-- tab:Shortcuts -> Launchpad & Dock -> Turn Dock Hiding On/Off: Off
 - tab:Shortcuts -> Mission Control -> Mission Control: Off
 - tab:Shortcuts -> Mission Control -> Application windows: Off
-- tab:Shortcuts -> Input Sources -> Select the previous input source: Off
-- tab:Shortcuts -> Input Sources -> Select next source in input menu: Off
-- tab:Shortcuts -> Spotlight -> Show Spotlight search: Opt-Cmd-Space
-- tab:Shortcuts -> Spotlight -> Show Finder search window: Off
 - tab:Shortcuts -> App Shortcuts -> Add Google Chrome.app
 - tab:Shortcuts -> App Shortcuts -> Google Chrome.app -> Forward: Cmd-→
 - tab:Shortcuts -> App Shortcuts -> Google Chrome.app -> Back: Cmd-←
