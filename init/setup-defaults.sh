@@ -208,6 +208,11 @@ defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "Enter Full Scre
 defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "进入全屏幕" -string '@^$f'
 defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "フルスクリーンにする" -string '@^$f'
 
+defaults write com.ReadCube.Papers NSUserKeyEquivalents -dict-add "Close All" -string '@$w'
+defaults write com.ReadCube.Papers NSUserKeyEquivalents -dict-add "Papers Settings" -string "@,"
+defaults write com.ReadCube.Papers NSUserKeyEquivalents -dict-add "Select Next Tab" -string "@]"
+defaults write com.ReadCube.Papers NSUserKeyEquivalents -dict-add "Select Previous Tab" -string "@["
+
 # echo "Trackpad: Enable tap to click"
 # defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 

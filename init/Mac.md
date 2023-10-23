@@ -50,11 +50,6 @@
 - tab:Shortcuts -> App Shortcuts -> Add Google Chrome.app
 - tab:Shortcuts -> App Shortcuts -> Google Chrome.app -> Forward: Cmd-→
 - tab:Shortcuts -> App Shortcuts -> Google Chrome.app -> Back: Cmd-←
-- tab:Shortcuts -> App Shortcuts -> Add Papers.app
-- tab:Shortcuts -> App Shortcuts -> Papers.app -> Select Next Tab: Cmd-]
-- tab:Shortcuts -> App Shortcuts -> Papers.app -> Select Previous Tab: Cmd-[
-- tab:Shortcuts -> App Shortcuts -> Papers.app -> Papers Settings: Cmd-,
-- tab:Shortcuts -> App Shortcuts -> Papers.app -> Close All: Cmd-Shift-W
 - tab:Input Sources -> Add Google Japanese Input
 
 ### Trackpad
