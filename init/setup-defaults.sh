@@ -204,10 +204,14 @@ defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "次のタブを
 # defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "前进" -string "@\U2192"
 # defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "進む" -string "@\U2192"
 
+# shellcheck disable=SC2016
 defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "Enter Full Screen" -string '@^$f'
+# shellcheck disable=SC2016
 defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "进入全屏幕" -string '@^$f'
+# shellcheck disable=SC2016
 defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "フルスクリーンにする" -string '@^$f'
 
+# shellcheck disable=SC2016
 defaults write com.ReadCube.Papers NSUserKeyEquivalents -dict-add "Close All" -string '@$w'
 defaults write com.ReadCube.Papers NSUserKeyEquivalents -dict-add "Papers Settings" -string "@,"
 defaults write com.ReadCube.Papers NSUserKeyEquivalents -dict-add "Select Next Tab" -string "@]"
