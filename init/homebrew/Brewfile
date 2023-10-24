@@ -19,7 +19,6 @@ brew "vim"    # Vi 'workalike' with many additional features
 # Programming languages
 brew "go"           # Open source programming language to build simple/reliable/efficient software
 brew "node"         # Platform built on V8 to build network applications
-brew "node@18"      # Platform built on V8 to build network applications
 brew "node@20"      # Platform built on V8 to build network applications
 brew "perl"         # Highly capable, feature-rich programming language
 brew "python"       # Interpreted, interactive, object-oriented programming language
