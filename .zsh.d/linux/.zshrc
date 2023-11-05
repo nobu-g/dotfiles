@@ -43,8 +43,6 @@ alias nv='nvidia-smi'
 alias sc='systemctl'
 
 # directory alias
-hash -d larch="/mnt/larch/${USER}"   # ~larch
-hash -d hinoki="/mnt/hinoki/${USER}" # ~hinoki
-hash -d elm="/mnt/elm/${USER}"       # ~elm
-hash -d zamia="/mnt/zamia/${USER}"   # ~zamia
-hash -d mint="/mnt/mint/${USER}"     # ~mint
+for nas in larch hinoki elm zamia mint osmanthus clover; do
+  hash -d "${nas}"="/mnt/${nas}/${USER}"  # ~nas points to /mnt/nas/${USER}
+done
