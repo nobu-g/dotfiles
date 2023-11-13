@@ -8,6 +8,12 @@ jobs:
   test-macos:
     runs-on: macos-latest
     steps:
+    - name: Remove pre-installed Homebrew
+      run: |
+        sudo rm -rf /usr/local/Homebrew
+        sudo rm -rf /usr/local/Caskroom
+        sudo rm -f /usr/local/bin/brew
+        sudo rm -rf /opt/homebrew
     - name: Clone this repo
       run: git clone --depth 1 https://github.com/nobu-g/dotfiles.git
     - name: Install dotfiles
