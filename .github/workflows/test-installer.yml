@@ -11,9 +11,13 @@ jobs:
       max-parallel: 2
       fail-fast: false
       matrix:
-        os: ["ubuntu-latest", "macos-latest"]  # Juman++ cannot be built on ubuntu:22.04
+        os: ["ubuntu-latest", "macos-latest"]
     runs-on: ${{ matrix.os }}
     steps:
+      - name: Remove pre-installed Homebrew on Linux
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        # https://github.com/actions/runner-images/blob/main/images/linux/Ubuntu2204-Readme.md#homebrew-note
+        run: sudo rm -rf /home/linuxbrew/
       - name: Run installer
         run: SUDO=1 sh -c "$(curl -fsSL https://raw.githubusercontent.com/nobu-g/dotfiles/main/install.sh)"
       - name: Test environment
