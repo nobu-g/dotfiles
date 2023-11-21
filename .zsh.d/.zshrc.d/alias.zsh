@@ -3,7 +3,7 @@
 setopt complete_aliases # don't expand aliases _before_ completion has finished
 
 alias ls='ls -FH --color=tty'
-(($+commands[lsd])) && _ls='lsd -Fh' || _ls='ls'
+(($+commands[lsd])) && _ls='TZ=Asia/Tokyo lsd -Fh' || _ls='ls'
 alias ll="$_ls -l"
 alias la="$_ls -la"
 alias lt="$_ls -lt"
