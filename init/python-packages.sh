@@ -15,8 +15,7 @@ _pipx_install_py312() {
 
 # command-line tools
 _pipx_install_py312 virtualenv    # Virtual Python Environment builder
-_pipx_install_py312 autopep8      # A tool that automatically formats Python code to conform to the PEP 8 style guide
-_pipx_install_py312 flake8        # the modular source code checker: pep8 pyflakes and co
+_pipx_install_py312 ruff          # An extremely fast Python linter and code formatter, written in Rust.
 _pipx_install_py312 poetry        # Python dependency management and packaging made easy.
 _pipx_install_py312 pipenv        # Python Development Workflow for Humans.
 _pipx_install_py312 pre-commit    # Framework for managing multi-language pre-commit hooks
