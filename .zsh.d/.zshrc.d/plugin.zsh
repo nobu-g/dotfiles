@@ -9,7 +9,7 @@ ZINIT[COMPINIT_OPTS]="-C -d ${XDG_CACHE_HOME:-${HOME}/.cache}/zsh/zcompdump"
 # (( ${+_comps} )) && _comps[zinit]=_zinit
 
 #--------------------------------#
-# zinit extension
+# Zinit extension
 #--------------------------------#
 # zinit light-mode for \
   # @zinit-zsh/z-a-readurl \
@@ -20,6 +20,10 @@ ZINIT[COMPINIT_OPTS]="-C -d ${XDG_CACHE_HOME:-${HOME}/.cache}/zsh/zcompdump"
   # @zinit-zsh/z-a-submods \
   # @zinit-zsh/z-a-man # -> require gem
 
+#--------------------------------#
+# enable completion for aliases
+#--------------------------------#
+# See `.zsh.d/.zshrc.d/alias.zsh`
 zicompdef g='git'
 zicompdef gti='git'
 zicompdef l='ls'
@@ -31,10 +35,15 @@ if (($+commands[docker])); then
   zicompdef d='docker'
 fi
 zicompdef zi='zinit'
+zicompdef b='bat'
+zicompdef s='ssh'
+zicompdef c='cd'
+zicompdef t='tmux'
+zicompdef h='htop'
 
-# other themes: dircolors.ansi-dark, dircolors.ansi-light, dircolors.256dark
+# available themes: dircolors.ansi-universal, dircolors.ansi-dark, dircolors.ansi-light, dircolors.256dark
 zinit ice atload'[[ -e $HOME/.zsh-dircolors.config ]] || setupsolarized dircolors.ansi-universal' \
-  atload'zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"'
+  atload'zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"' nocd
 zinit light 'joel-porquet/zsh-dircolors-solarized'
 
 # zinit ice wait"1" lucid
@@ -47,8 +56,8 @@ zinit light 'joel-porquet/zsh-dircolors-solarized'
 #--------------------------------#
 ## zsh-autosuggestions
 # `zicompinit; zicdreplay -q` should be run after all compdefs
-zinit wait"1" lucid atload"unset ZSH_AUTOSUGGEST_USE_ASYNC; _zsh_autosuggest_start" \
-  atinit"zicompinit; zicdreplay -q" \
+zinit wait'1' lucid atload'unset ZSH_AUTOSUGGEST_USE_ASYNC; _zsh_autosuggest_start' \
+  atinit'zicompinit; zicdreplay -q' nocd \
   light-mode for @zsh-users/zsh-autosuggestions
 # Widgets that accept the entire suggestion
 ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(
@@ -92,11 +101,11 @@ zinit wait lucid blockf atpull'zinit creinstall -q .' has'docker' for \
 # # fast-theme XDG:overlay  # 初回はこれの実行を忘れずに
 
 ## zshmarks
-zinit ice wait"1" lucid
-zinit light jocelynmallon/zshmarks
+zinit wait'1' lucid nocd \
+  light-mode for @jocelynmallon/zshmarks
 
 ## clipcopy and clippaste function
-zinit ice wait"2" lucid
+zinit ice wait'2' lucid nocd
 zinit snippet 'OMZ::lib/clipboard.zsh'
 
 ## history editing
@@ -109,8 +118,8 @@ zinit wait'1' lucid \
   light-mode for @soimort/translate-shell
 
 # romkatv/powerlevel10k
-zinit ice depth=1 atload'source "${ZDOTDIR:-${HOME}}/.p10k.zsh"' nocd
-zinit light romkatv/powerlevel10k
+zinit depth=1 atload'source "${ZDOTDIR:-${HOME}}/.p10k.zsh"' nocd \
+  light-mode for @romkatv/powerlevel10k
 ZLE_RPROMPT_INDENT=0
 
 # fast-syntax-highlighting から乗り換え
@@ -131,7 +140,7 @@ ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=185'
 
 # Zinit packages
 # https://github.com/zdharma-continuum/zinit-packages/tree/main/fzf
-zinit pack"default" atload'source _fzf_completion' for fzf
+zinit pack'default' atload'source _fzf_completion' for fzf
 
 # https://itchyny.hatenablog.com/entry/2017/06/12/090000
 # requires `go install github.com/itchyny/fillin@latest`
@@ -140,7 +149,7 @@ zinit pack"default" atload'source _fzf_completion' for fzf
 # foo: Hello,
 # bar: world
 # Hello, world
-zinit wait'1' lucid \
+zinit wait'2' lucid \
   light-mode for @itchyny/zsh-auto-fillin
 
 # atuin
@@ -159,3 +168,10 @@ zinit ice \
   run-atpull \
   nocompile
 zinit light zdharma-continuum/null
+
+zinit wait lucid \
+  id-as="pipx-completion" \
+  atclone="register-python-argcomplete pipx > pipx.gen.zsh" \
+  atpull="%atclone" \
+  pick="pipx.gen.zsh" \
+  light-mode for @zdharma-continuum/null

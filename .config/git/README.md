@@ -4,7 +4,7 @@ Git settings
 
 ## Init
 
-Run following commands:
+Run the following commands:
 
 ```shell
 git config --global user.name "First-name Family-name"

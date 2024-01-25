@@ -22,7 +22,6 @@ if (type bat &> /dev/null); then
   bat cache --build
 fi
 
-ln -snfv "${HOME}/.config/latex/.latexmkrc" "${HOME}"
 ln -snfv "${DOTPATH%/}"/bin/{line,line-msg,pyshow,readlinkf} "${HOME}/.local/bin"
 
 case "${OSTYPE}" in
@@ -30,7 +29,6 @@ linux* | cygwin*)
   ln -snfv "${DOTPATH%/}/.emacs.d/init.el" "${HOME}/.emacs.d"
   ;;
 freebsd* | darwin*)
-  ln -snfv "${DOTPATH%/}/.doom.d" "${HOME}/.doom.d"
   ln -snfv "${HOME}"/.config/mackup/{.mackup,.mackup.cfg} "${HOME}"
   bash -x "${DOTPATH%/}/deploy/launch-agents.sh"
   ;;

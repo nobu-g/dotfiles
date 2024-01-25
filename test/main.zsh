@@ -15,15 +15,32 @@ check() {
 printenv
 brew doctor
 
-# test built-in commands
+# test shell built-in commands
+check "alias"
+check "autoload"
+check "bindkey"
 check "cd"
-check "ls"
-check "pwd"
+check "echo"
+check "export"
+check "history"
+check "setopt"
+check "source"
+check "unsetopt"
+
+# test pre-installed commands
+check "cat"
+check "chmod"
 check "cp"
+check "grep"
+check "ls"
+check "man"
 check "mv"
+check "pwd"
+check "rm"
 
 # test brew packages
 check "python3"
+check "git"
 check "perl"
 check "ruby"
 check "go"
@@ -31,18 +48,23 @@ check "fd"
 check "rg"
 
 # test aliases
+check "a"
+check "d"
 check "e"
+check "g"
 check "relogin"
 check "re"
-check "d"
+check "p"
 check "py"
 check "brew"
 check "sum"
 
 # test installed tools
 check "zinit"
+check "virtualenv"
 check "pipenv"
 check "poetry"
+check "pre-commit"
 
 # test user functions
 check "les"

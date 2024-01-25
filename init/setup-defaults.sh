@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -u
+set -uo pipefail
 
 # Set computer name (as done via System Preferences → Sharing)
 #sudo scutil --set ComputerName "0x6D746873"
@@ -13,13 +13,42 @@ if [[ ${SUDO} -eq 1 ]]; then
   sudo nvram SystemAudioVolume=" "
 fi
 
-# Always show scrollbars
-# Possible values: `WhenScrolling`, `Automatic` and `Always`
+###############################################################################
+# Global Config                                                               #
+###############################################################################
+
+echo "Always show scrollbars"
+# Possible values: `WhenScrolling`, `Automatic`, and `Always`
 defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
 
 # Enable full keyboard access for all controls
 # (e.g. enable Tab in modal dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+
+echo "Expand save dialog by default"
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
+
+echo "Expand print panel by default"
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
+
+echo "Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)"
+defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+
+echo "Enable subpixel font rendering on non-Apple LCDs"
+defaults write NSGlobalDomain AppleFontSmoothing -int 2
+
+echo "Disable press-and-hold for keys in favor of key repeat"
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+
+echo "Speedup dialog display"
+defaults write -g NSWindowResizeTime 0.001
+# defaults delete -g NSWindowResizeTime  # back to the original
+
+###############################################################################
+# Dock                                                                        #
+###############################################################################
 
 echo "Dock: speed up showing and hiding"
 defaults write com.apple.dock autohide-delay -float 0
@@ -82,53 +111,48 @@ defaults write com.apple.finder ShowStatusBar -bool true
 echo "Finder: show the ~/Library folder"
 chflags nohidden ~/Library
 
+echo "Finder: Hide Quick Look when switching to other apps"
+defaults write com.apple.finder QLHidePanelOnDeactivate -bool true
+# defaults delete com.apple.finder QLHidePanelOnDeactivate  # back to the original
+
 if [[ ${SUDO} -eq 1 ]]; then
   echo "Finder: show the /Volumes folder"
   sudo chflags nohidden /Volumes
 fi
 
-echo "Finder: Hide Quick Look when switching to other apps"
-defaults write com.apple.finder QLHidePanelOnDeactivate -bool true
-# defaults delete com.apple.finder QLHidePanelOnDeactivate  # back to the original
+###############################################################################
+# Activity Monitor                                                            #
+###############################################################################
+
+echo "ActivityMonitor: show the main window when launching Activity Monitor"
+defaults write com.apple.ActivityMonitor OpenMainWindow -bool true
+
+echo "ActivityMonitor: visualize CPU usage in the Dock icon"
+defaults write com.apple.ActivityMonitor IconType -int 5
+
+echo "ActivityMonitor: show all processes"
+defaults write com.apple.ActivityMonitor ShowCategory -int 0
+
+echo "ActivityMonitor: sort results by CPU usage"
+defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
+defaults write com.apple.ActivityMonitor SortDirection -int 0
+
+###############################################################################
+# Other Apps                                                                  #
+###############################################################################
 
 echo "Terminal: only use UTF-8"
 defaults write com.apple.terminal StringEncodings -array 4
 
-echo "Other apps"
+echo "Printer: Automatically quit printer app once the print jobs complete"
+defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+
 defaults write com.hegenberg.BetterTouchTool BTTDisableSecureInputLookup YES
 defaults write com.apple.dt.Xcode ShowBuildOperationDuration YES
 defaults write org.python.python ApplePersistenceIgnoreState NO
 
-echo "Expand save dialog by default"
-defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
-defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
-
-echo "Expand print panel by default"
-defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
-defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
-
-echo "Printer: Automatically quit printer app once the print jobs complete"
-defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
-
-echo "Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)"
-defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
-
-echo "Enable subpixel font rendering on non-Apple LCDs"
-defaults write NSGlobalDomain AppleFontSmoothing -int 2
-
-echo "Disable press-and-hold for keys in favor of key repeat"
-defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
-
-# キーのリピート・リピート認識時間
-# System Preferencesのカーソルで合わせられる最速よりも、リピートは1.5倍、入力認識は2倍早くできる
-# floatや0も可能だがOSによって壊れる
-echo "Set a blazingly fast keyboard repeat rate"
-defaults write NSGlobalDomain KeyRepeat -int 1
-echo "Set a shorter Delay until key repeat"
-defaults write NSGlobalDomain InitialKeyRepeat -int 10
-
-# echo "Trackpad: Enable tap to click"
-# defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+echo "iTerm2: don't display the annoying prompt when quitting iTerm"
+defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 
 echo "Safari: enable debug menu"
 defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
@@ -139,19 +163,79 @@ defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
 echo "Screencapture: save screenshots to the desktop"
 defaults write com.apple.screencapture location -string "${HOME}/Desktop"
 
-echo "Screencapture: save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)"
+echo "Screencapture: save screenshots in PNG format"
+# Other options: BMP, GIF, JPG, PDF, TIFF
 defaults write com.apple.screencapture type -string "png"
 
 echo "Screencapture: remove shadows from screenshots"
 defaults write com.apple.screencapture disable-shadow -boolean true
 killall SystemUIServer
 
-echo "speedup dialog display"
-defaults write -g NSWindowResizeTime 0.001
-# defaults delete -g NSWindowResizeTime  # back to the original
+###############################################################################
+# Keyboard and Trackpad                                                       #
+###############################################################################
 
-echo "iTerm2: don't display the annoying prompt when quitting iTerm"
-defaults write com.googlecode.iterm2 PromptOnQuit -bool false
+# キーのリピート・リピート認識時間
+# System Preferencesのカーソルで合わせられる最速よりも、リピートは1.5倍、入力認識は2倍早くできる
+# floatや0も可能だがOSによって壊れる
+echo "Set a blazingly fast keyboard repeat rate"
+defaults write NSGlobalDomain KeyRepeat -int 1
+echo "Set a shorter Delay until key repeat"
+defaults write NSGlobalDomain InitialKeyRepeat -int 10
+
+defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "Duplicate Tab" -string "@k"
+defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "复制标签" -string "@k"
+defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "タブを複製" -string "@k"
+
+defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "Select Previous Tab" -string "@["
+defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "选择上一个标签" -string "@["
+defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "前のタブを選択" -string "@["
+
+defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "Select Next Tab" -string "@]"
+defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "选择下一个标签" -string "@]"
+defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "次のタブを選択" -string "@]"
+
+# These commands are not working because extra backslashes are added (e.g., `@\\\\U2190``)
+# defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "Back" -string "@\U2190"
+# defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "返回" -string "@\U2190"
+# defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "戻る" -string "@\U2190"
+
+# defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "Forward" -string "@\U2192"
+# defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "前进" -string "@\U2192"
+# defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "進む" -string "@\U2192"
+
+# shellcheck disable=SC2016
+defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "Enter Full Screen" -string '@^$f'
+# shellcheck disable=SC2016
+defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "进入全屏幕" -string '@^$f'
+# shellcheck disable=SC2016
+defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "フルスクリーンにする" -string '@^$f'
+
+# shellcheck disable=SC2016
+defaults write com.ReadCube.Papers NSUserKeyEquivalents -dict-add "Close All" -string '@$w'
+defaults write com.ReadCube.Papers NSUserKeyEquivalents -dict-add "Papers Settings" -string "@,"
+defaults write com.ReadCube.Papers NSUserKeyEquivalents -dict-add "Select Next Tab" -string "@]"
+defaults write com.ReadCube.Papers NSUserKeyEquivalents -dict-add "Select Previous Tab" -string "@["
+
+# https://apple.stackexchange.com/questions/91679/is-there-a-way-to-set-an-application-shortcut-in-the-keyboard-preference-pane-vi
+# Select the previous input source: Off
+# 前の入力ソースを選択: Off
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 60 "<dict><key>enabled</key><false/></dict>"
+# Select next source in input menu: Off
+# 入力メニューの次のソースを選択: Off
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 61 "<dict><key>enabled</key><false/></dict>"
+# Show Spotlight search field
+# Spotlight検索を表示
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 "<dict><key>enabled</key><true/><key>value</key><dict><key>parameters</key><array><integer>65535</integer><integer>49</integer><integer>1572864</integer></array><key>type</key><string>standard</string></dict></dict>"
+# Show Spotlight window: Off
+# Finderの検索ウインドウを表示: Off
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 65 "<dict><key>enabled</key><false/></dict>"
+# Turn Dock Hiding On/Off: Off
+# Dockを自動的に表示/非表示のオン/オフ: Off
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 52 "<dict><key>enabled</key><false/></dict>"
+
+# echo "Trackpad: Enable tap to click"
+# defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 
 # Hot corners
 # Possible values:
@@ -175,23 +259,6 @@ defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 # Bottom left screen corner → Start screen saver
 # defaults write com.apple.dock wvous-bl-corner -int 5
 # defaults write com.apple.dock wvous-bl-modifier -int 0
-
-###############################################################################
-# Activity Monitor                                                            #
-###############################################################################
-
-# Show the main window when launching Activity Monitor
-defaults write com.apple.ActivityMonitor OpenMainWindow -bool true
-
-# Visualize CPU usage in the Activity Monitor Dock icon
-defaults write com.apple.ActivityMonitor IconType -int 5
-
-# Show all processes in Activity Monitor
-defaults write com.apple.ActivityMonitor ShowCategory -int 0
-
-# Sort Activity Monitor results by CPU usage
-defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
-defaults write com.apple.ActivityMonitor SortDirection -int 0
 
 echo "Kill affected applications"
 for app in Safari Finder Dock Mail SystemUIServer; do

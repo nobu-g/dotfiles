@@ -2,5 +2,6 @@
 
 set -u
 
-cargo install cargo-cache # cargo cache cleaner
-# cargo install mcfly     # better history search
+if [[ ${FULL_INSTALL} -eq 1 ]]; then
+  cargo install cargo-cache # cargo cache cleaner
+fi

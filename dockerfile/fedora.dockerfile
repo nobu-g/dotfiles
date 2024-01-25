@@ -1,7 +1,8 @@
-FROM fedora:latest
+FROM fedora:38
 
-RUN dnf update -y && dnf install -y sudo
+RUN dnf update -y && dnf install -y sudo && dnf clean all
 # add sudo user
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN useradd -m -s /bin/bash user && \
     echo 'user:hogehoge' | chpasswd && \
     echo 'user ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
@@ -20,7 +21,9 @@ RUN dnf update -y && dnf install -y \
     g++ \
     perl-ExtUtils-MakeMaker \
     perl-FindBin \
+    perl-IPC-Cmd \
     glibc-devel \
+    perl-Pod-Html \
     python3 \
     && dnf clean all \
     && rm -rf /var/cache/dnf/* /tmp/* /var/tmp/*

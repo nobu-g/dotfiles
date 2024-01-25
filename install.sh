@@ -173,7 +173,7 @@ install_basic_packages() {
   distro=$(whichdistro)
   checkinstall sudo make zsh
   if [ "$distro" = "debian" ]; then
-    checkinstall gcc build-essential procps curl file git python3-pip zlib1g-dev
+    checkinstall gcc build-essential procps curl file git python3-pip zlib1g-dev libp11-kit-dev
   elif [ "$distro" = "fedora" ]; then
     checkinstall gcc 'Development Tools' procps-ng curl file git libxcrypt-compat g++ perl-ExtUtils-MakeMaker perl-FindBin glibc-devel python3
   elif [ "$distro" = "redhat" ]; then

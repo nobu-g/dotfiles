@@ -57,6 +57,8 @@
     c = commit
     cm = commit -m
     cam = commit -a -m
+    m = merge
+    ma = merge --abort
     last = log -1 HEAD
     aliases = config --get-regexp alias
     remotes = remote -v
@@ -66,6 +68,7 @@
 
 [core]
     pager = delta
+    quotepath = false
 
 [color]
     ui = true
@@ -132,11 +135,3 @@
 
 [advice]
     addIgnoredFile = false
-
-[protocol]
-    # Use Git v2 protocol for better performance
-    # TODO: re-enable when more widely supported by Git versions
-    version = 2
-
-# [ghq]
-#     root = ~/Projects

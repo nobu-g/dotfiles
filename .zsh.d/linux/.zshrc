@@ -31,6 +31,8 @@ man() {
   env -u LD_PRELOAD -u MANPAGER man "$@" | col -bx | bat -l man -p
 }
 
+export EMACS_SERVER_SOCKET="${TMPDIR:-/tmp}/emacs$(id -u)/server"
+
 # alias
 alias pbcopy='clipcopy'
 alias pbpaste='clippaste'
@@ -42,7 +44,6 @@ alias sc='systemctl'
 alias tmux=/usr/bin/tmux
 
 # directory alias
-hash -d larch="/mnt/larch/${USER}"   # ~larch
-hash -d hinoki="/mnt/hinoki/${USER}" # ~hinoki
-hash -d elm="/mnt/elm/${USER}"       # ~elm
-hash -d zamia="/mnt/zamia/${USER}"   # ~zamia
+for nas in larch hinoki elm zamia mint osmanthus clover; do
+  hash -d "${nas}"="/mnt/${nas}/${USER}"  # ~nas points to /mnt/nas/${USER}
+done

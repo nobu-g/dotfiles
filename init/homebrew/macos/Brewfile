@@ -1,24 +1,26 @@
-# TAP
-tap "homebrew/cask-fonts"
-
 # GNU utilities
-brew "binutils"   # ld, ar, ...
-brew "coreutils"  # ls, cp, rm, ...
-brew "diffutils"  # diff, cmp, ...
-brew "ed"
-brew "findutils"  # find, locate, updatedb, xargs
-brew "gnu-sed"
-brew "gnu-tar"
-brew "gnu-which"
-brew "grep"
-brew "less"
+brew "binutils"   # GNU binary tools for native development
+brew "coreutils"  # GNU File, Shell, and Text utilities
+brew "diffutils"  # File comparison utilities
+brew "ed"         # Classic UNIX line editor
+brew "findutils"  # Collection of GNU find, xargs, and locate
+brew "gnu-sed"    # GNU implementation of the famous stream editor
+brew "gnu-tar"    # GNU version of the tar archiving utility
+brew "gnu-which"  # GNU implementation of which utility
+brew "grep"       # GNU grep, egrep and fgrep
+brew "less"       # Pager program similar to more
+
+# Shells
+brew "zsh"  # UNIX shell (command interpreter)
 
 # Misc
-brew "ghq"     # Remote repository management made easy
-brew "mackup"  # Keep your Mac's application settings in sync
-brew "nkf"     # Network Kanji code conversion Filter (NKF)
+brew "ghq"      # Remote repository management made easy
+brew "mackup"   # Keep your Mac's application settings in sync
+brew "nkf"      # Network Kanji code conversion Filter (NKF)
+brew "openssh"  # OpenBSD freely-licensed SSH connectivity tools
 
 # CASK
+tap "homebrew/cask-fonts"
 cask_args appdir: "/Applications"
 cask "bettertouchtool"
 cask "docker"
@@ -32,13 +34,3 @@ cask "macfuse"
 cask "pycharm"
 cask "visual-studio-code"
 cask "xquartz"
-
-# MAS
-# mas "Slack", id: 803453959  # seems to require being signed in
-# mas "LINE", id: 539883307  # seems to require being signed in
-# mas "Kindle", id: 405399194  # seems to require being signed in
-# mas "Pages", id: 409201541
-# mas "Keynote", id: 409183694
-# mas "Numbers", id: 409203825
-# mas "OneDrive", id: 823766827
-mas "The Unarchiver", id: 425424353

@@ -2,4 +2,4 @@
 brew "borgbackup"  # Deduplicating archiver with compression and authenticated encryption
 
 # System
-brew "sysstat"  # iostat, ...
+brew "sysstat"  # Performance monitoring tools for Linux

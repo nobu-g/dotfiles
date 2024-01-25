@@ -3,7 +3,7 @@
 setopt complete_aliases # don't expand aliases _before_ completion has finished
 
 alias ls='ls -FH --color=tty'
-(($+commands[lsd])) && _ls='lsd -Fh' || _ls='ls'
+(($+commands[lsd])) && _ls='TZ=Asia/Tokyo lsd -Fh' || _ls='ls'
 alias ll="$_ls -l"
 alias la="$_ls -la"
 alias lt="$_ls -lt"
@@ -22,6 +22,7 @@ alias gomi='rm -f *~'
 alias jk='jumanpp | knp'
 alias relogin='exec $SHELL -l'
 alias re='relogin'
+alias rp='realpath'
 alias wh='which -a'
 alias p='python3'
 alias p3='python3'
@@ -46,6 +47,7 @@ alias t='tmux'
 alias q='kubectl'
 alias a='alias'
 alias h='htop'
+alias v='vim'
 ## http://keisanbutsuriya.hateblo.jp/entry/2015/02/13/133858
 alias e='emacsclient --tty -a "" -s ${EMACS_SERVER_SOCKET}'
 alias emacs='emacsclient --tty -a "" -s ${EMACS_SERVER_SOCKET}'
