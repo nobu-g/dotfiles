@@ -75,7 +75,6 @@
 
 [merge]
     ff = false
-    conflictStyle = zdiff3
 
 [pull]
     ff = only
