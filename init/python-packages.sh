@@ -14,14 +14,15 @@ _pipx_install_py312() {
 }
 
 # command-line tools
-_pipx_install_py312 virtualenv    # Virtual Python Environment builder
-_pipx_install_py312 ruff          # An extremely fast Python linter and code formatter, written in Rust.
+_pipx_install_py312 ipython       # Interactive computing in Python
 _pipx_install_py312 poetry        # Python dependency management and packaging made easy.
 _pipx_install_py312 pipenv        # Python Development Workflow for Humans.
 _pipx_install_py312 pre-commit    # Framework for managing multi-language pre-commit hooks
-_pipx_install_py312 ipython       # Interactive computing in Python
-_pipx_install_py312 trash-cli     # Command line interface to FreeDesktop.org Trash.
+_pipx_install_py312 ruff          # An extremely fast Python linter and code formatter, written in Rust.
 _pipx_install_py312 speedtest-cli # Command line interface for testing internet bandwidth using speedtest.net
+_pipx_install_py312 trash-cli     # Command line interface to FreeDesktop.org Trash.
+_pipx_install_py312 uv            # An extremely fast Python package installer and resolver, written in Rust.
+_pipx_install_py312 virtualenv    # Virtual Python Environment builder
 # https://github.com/googlefonts/pyfontaine/issues/109#issuecomment-604872347
 export PATH="${HOMEBREW_PREFIX}/opt/icu4c/bin:${HOMEBREW_PREFIX}/opt/icu4c/sbin:$PATH"
 export PKG_CONFIG_PATH="${HOMEBREW_PREFIX}/opt/icu4c/lib/pkgconfig"
@@ -31,7 +32,7 @@ if [[ ${FULL_INSTALL} -eq 1 ]]; then
   _pipx_install_py312 py-spy           # Sampling profiler for Python programs
   _pipx_install_py312 httpie           # User-friendly cURL replacement (command-line HTTP client)
   _pipx_install_py312 ansible-core     # Automate deployment, configuration, and upgrading
-  _pipx_install_py311 kwja             # A unified Japanese analyzer based on foundation models
+  _pipx_install_py312 kwja             # A unified Japanese analyzer based on foundation models
   _pipx_install_py311 openai-whisper   # Robust Speech Recognition via Large-Scale Weak Supervision
   _pipx_install_py311 open-interpreter # Let language models run code locally.
 fi

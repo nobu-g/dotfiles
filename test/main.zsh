@@ -62,7 +62,7 @@ check "sum"
 # test installed tools
 check "zinit"
 check "virtualenv"
-check "pipenv"
+check "ruff"
 check "poetry"
 check "pre-commit"
 
