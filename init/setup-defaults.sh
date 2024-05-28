@@ -195,7 +195,7 @@ defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "Select Next Tab
 defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "选择下一个标签" -string "@]"
 defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "次のタブを選択" -string "@]"
 
-# These commands are not working because extra backslashes are added (e.g., `@\\\\U2190``)
+# These commands are not working because macOS inserts extra backslashes (e.g., `@\\\\U2190``)
 # defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "Back" -string "@\U2190"
 # defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "返回" -string "@\U2190"
 # defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "戻る" -string "@\U2190"

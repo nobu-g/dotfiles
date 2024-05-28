@@ -158,6 +158,7 @@ zinit lucid \
   light-mode for @ellie/atuin
 bindkey '^t' _atuin_search_widget
 
+# not working
 zinit ice \
   as"completion" \
   blockf \
