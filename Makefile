@@ -3,6 +3,8 @@ HOMEBREW_PREFIX :=
 SUDO := 0
 FULL_INSTALL := 0
 
+SHELL := /bin/zsh
+
 .PHONY: all list deploy init update install test clean help
 
 all: install
@@ -20,7 +22,8 @@ update: ## Fetch changes for this repo
 upgrade: ## Upgrade installed packages
 	brew update && brew upgrade && brew cleanup
 	(type pipx &> /dev/null) && pipx upgrade-all
-	pkgs="$(pip3 list --user -o | tail -n +3 | awk '{ print $$1 }')"; \
+	pip3 install -U pip
+	pkgs="$$(pip3 list --user -o --disable-pip-version-check | tail -n +3 | awk '{ print $$1 }')"; \
 	[[ -n $$pkgs ]] && pip3 install --user -U $$pkgs || true
 	(type zinit &> /dev/null) && zinit update --all || true
 
