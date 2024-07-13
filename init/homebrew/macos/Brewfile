@@ -20,7 +20,6 @@ brew "nkf"      # Network Kanji code conversion Filter (NKF)
 brew "openssh"  # OpenBSD freely-licensed SSH connectivity tools
 
 # CASK
-tap "homebrew/cask-fonts"
 cask_args appdir: "/Applications"
 cask "bettertouchtool"
 cask "docker"
