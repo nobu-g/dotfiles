@@ -44,7 +44,7 @@ brew "tmux"       # tmux
 brew "xz"         # xz
 
 # Misc
-brew tap "nobu-g/tap"
+tap "nobu-g/tap"
 brew "atuin"       # Improved shell history for zsh and bash
 brew "direnv"      # Load/unload environment variables based on $PWD
 brew "fzf"         # Command-line fuzzy finder written in Go
