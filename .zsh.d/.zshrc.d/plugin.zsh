@@ -170,6 +170,18 @@ zinit ice \
   nocompile
 zinit light zdharma-continuum/null
 
+# autoload -Uz ruff と compdef _ruff ruff が必要
+zinit ice \
+  as"completion" \
+  blockf \
+  id-as"ruff-completion" \
+  has"ruff" \
+  atclone"ruff generate-shell-completion zsh > _ruff" \
+  atpull"%atclone" \
+  run-atpull \
+  nocompile
+zinit light zdharma-continuum/null
+
 zinit wait lucid \
   id-as="pipx-completion" \
   atclone="register-python-argcomplete pipx > pipx.gen.zsh" \
