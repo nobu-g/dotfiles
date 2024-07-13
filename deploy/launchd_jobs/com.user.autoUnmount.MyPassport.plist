@@ -3,11 +3,11 @@
 <plist version="1.0">
     <dict>
         <key>Label</key>
-        <string>com.user.autoUnmount.Backup</string>
+        <string>com.user.autoUnmount.MyPassport</string>
         <key>EnvironmentVariables</key>
         <dict>
             <key>EXTERNAL_DEVICE_NAME</key>
-            <string>Backup</string>
+            <string>MyPassport</string>
         </dict>
         <key>ProgramArguments</key>
         <array>
@@ -16,10 +16,10 @@
             <string>exec $HOME/scripts/auto-unmount</string>
         </array>
         <key>StandardErrorPath</key>
-        <string>/tmp/autoUnmount.Backup.err.log</string>
+        <string>/tmp/autoUnmount.MyPassport.err.log</string>
         <key>StandardOutPath</key>
-        <string>/tmp/autoUnmount.Backup.out.log</string>
+        <string>/tmp/autoUnmount.MyPassport.out.log</string>
         <key>StartInterval</key>
-        <integer>300</integer>
+        <integer>600</integer>
     </dict>
 </plist>
