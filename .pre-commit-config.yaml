@@ -18,4 +18,4 @@ repos:
         files: ^(bin|init)/
         types: [shell]
       - id: markdownlint
-        args: [--rules, ~MD013]
+        args: [--rules, "~MD013,~MD032"]
