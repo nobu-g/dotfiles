@@ -121,6 +121,20 @@ if [[ ${SUDO} -eq 1 ]]; then
 fi
 
 ###############################################################################
+# Window Manager                                                              #
+###############################################################################
+
+# Use an alternative functionality provided by the BetterTouchTool app
+echo "Window Manager: disable Desktop & Dock -> Tile by dragging windows to screen edges"
+defaults write com.apple.WindowManager EnableTilingByEdgeDrag -bool false
+
+echo "Window Manager: disable Desktop & Dock -> Hold ⌥ key while dragging windows to tile"
+defaults write com.apple.WindowManager EnableTilingOptionAccelerator -bool false
+
+echo "Window Manager: disable Desktop & Dock -> Tiled windows have margins"
+defaults write com.apple.WindowManager EnableTiledWindowMargins -bool false
+
+###############################################################################
 # Activity Monitor                                                            #
 ###############################################################################
 
