@@ -131,8 +131,8 @@ if [[ -d ${HOME}/.gem/ruby ]]; then
 fi
 
 path=(
+  ${HOME}/.local/share/cargo/bin(N-/)  # Rust
   ${HOME}/.cargo/bin(N-/)  # Rust
-  ${HOME}/.poetry/bin(N-/)  # Poetry
   ${HOME}/.config/emacs/bin(N-/)  # doom-emacs
   ${path}
 )
