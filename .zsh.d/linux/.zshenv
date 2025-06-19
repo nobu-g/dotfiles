@@ -1,3 +1,5 @@
+export XDG_RUNTIME_DIR="/run/user/$(id -u)"  # https://serverfault.com/a/887298
+
 # settings for hosts with CUDA installed
 if [[ -d /usr/local/cuda ]]; then
   export CUDA_HOME="/usr/local/cuda"

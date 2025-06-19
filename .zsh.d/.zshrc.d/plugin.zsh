@@ -158,12 +158,25 @@ zinit lucid \
   light-mode for @ellie/atuin
 bindkey '^t' _atuin_search_widget
 
+# not working
 zinit ice \
   as"completion" \
   blockf \
   id-as"poetry-completion" \
   has"poetry" \
   atclone"poetry completions zsh > _poetry" \
+  atpull"%atclone" \
+  run-atpull \
+  nocompile
+zinit light zdharma-continuum/null
+
+# autoload -Uz ruff と compdef _ruff ruff が必要
+zinit ice \
+  as"completion" \
+  blockf \
+  id-as"ruff-completion" \
+  has"ruff" \
+  atclone"ruff generate-shell-completion zsh > _ruff" \
   atpull"%atclone" \
   run-atpull \
   nocompile

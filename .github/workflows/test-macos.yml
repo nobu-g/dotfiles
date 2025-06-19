@@ -14,6 +14,9 @@ jobs:
         sudo rm -rf /usr/local/Caskroom
         sudo rm -f /usr/local/bin/brew
         sudo rm -rf /opt/homebrew
+    - name: Remove pre-installed Apps
+      run: |
+        sudo rm -rf '/Applications/Google Chrome.app'
     - name: Clone this repo
       run: git clone --depth 1 https://github.com/nobu-g/dotfiles.git
     - name: Install dotfiles

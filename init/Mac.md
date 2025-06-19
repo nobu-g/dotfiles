@@ -30,27 +30,24 @@
 
 - Automatically keep my Mac up to date: On
 
-### Dock & Menu Bar
+### Control Center
 
-- Automatically hide and show the Dock: On
-- Battery -> Show Percentage: On
-- Spotlight -> Show in Menu Bar: Off
+- Control Center -> Battery: Show in Menu Bar: On
+- Control Center -> Battery: Show in Control Center: Off
+- Control Center -> Battery: Show Percentage: On
+- Control Center -> Spotlight: Don't Show in Menu Bar
+- Control Center -> Siri: Don't Show in Menu Bar
 
 ### Keyboard
 
-- tab:Keyboard -> Key Repeat: Fastest
-- tab:Keyboard -> Delay Until Repeat: Shortest
-- tab:Shortcuts -> Mission Control -> Mission Control: Off
-- tab:Shortcuts -> Mission Control -> Application windows: Off
-- tab:Shortcuts -> App Shortcuts -> Add Google Chrome.app
-- tab:Shortcuts -> App Shortcuts -> Google Chrome.app -> Forward: Cmd-→
-- tab:Shortcuts -> App Shortcuts -> Google Chrome.app -> Back: Cmd-←
-- tab:Input Sources -> Add Google Japanese Input
-
-### Trackpad
-
-- tab:Point & Click -> Click: Lightest
-- tab:Point & Click -> Tracking speed: Fastest
+<!-- - Keyboard -> Key Repeat: Fastest
+- Keyboard -> Delay Until Repeat: Shortest -->
+<!-- - Keyboard -> Keyboard Shortcuts... -> Mission Control -> Mission Control: Off
+- Keyboard -> Keyboard Shortcuts... -> Mission Control -> Application windows: Off -->
+- Keyboard -> Keyboard Shortcuts... -> App Shortcuts -> Add Google Chrome.app
+- Keyboard -> Keyboard Shortcuts... -> App Shortcuts -> Google Chrome.app -> Forward: Cmd-→
+- Keyboard -> Keyboard Shortcuts... -> App Shortcuts -> Google Chrome.app -> Back: Cmd-←
+- Keyboard -> Input Sources -> Add Google Japanese Input
 
 ### Internet Accounts
 

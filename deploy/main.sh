@@ -12,7 +12,7 @@ for f in "${DOTPATH%/}"/.zsh.d/{.zshenv,.zprofile,.zshrc,.p10k.zsh}; do
   ln -snfv "$f" "${ZDOTDIR}"
 done
 # .zshenv is placed in $HOME, which is the default $ZDOTDIR, for the initial login
-ln -snfv "${ZDOTDIR%/}/.zshenv" "${HOME}"
+ln -snfv "${ZDOTDIR%/}/.zshenv" "${HOME}"/.zshenv
 
 for f in "${DOTPATH%/}"/.config/*; do
   ln -snfv "$f" "${HOME}/.config"

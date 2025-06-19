@@ -49,3 +49,13 @@ def write_history(path):
 
 atexit.register(write_history, __hist)
 del (atexit, readline, __hist, write_history)
+
+
+# # Import custom REPL
+# sys.path.append(str(Path.home().joinpath('.config/python')))
+# from repl import start_custom_repl
+# # Start custom REPL if in interactive mode
+# print("Starting custom REPL...")
+# start_custom_repl(str(__hist))
+
+# del (atexit, readline, __hist, write_history, start_custom_repl)

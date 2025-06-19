@@ -63,10 +63,21 @@ gc_completion="${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-
 
 export EMACS_SERVER_SOCKET="${TMPDIR:-/tmp}/emacs$(id -u)/server"
 
+## PyCharm CLI launcher
+charm() {
+  if [[ -e "/Applications/PyCharm CE.app" ]]; then
+    open -na "PyCharm CE.app" --args "$@"
+  elif [[ -e "/Applications/PyCharm.app" ]]; then
+    open -na "PyCharm.app" --args "$@"
+  else
+    echo "PyCharm is not installed." >&2
+    return 1
+  fi
+}
+
 # alias
 alias rm='trash'  # https://github.com/andreafrancia/trash-cli
 alias ldd='otool -L'
-alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
 # alias jumanpp='docker run -i --rm --platform linux/amd64 kunlp/jumanpp-knp jumanpp'
 (($+commands[knp])) || alias knp='docker run -i --rm --platform linux/amd64 kunlp/jumanpp-knp knp'
 alias ch='charm'
