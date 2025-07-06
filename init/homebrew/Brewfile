@@ -22,8 +22,8 @@ brew "node"         # Platform built on V8 to build network applications
 brew "node@22"      # Platform built on V8 to build network applications
 brew "perl"         # Highly capable, feature-rich programming language
 brew "python"       # Interpreted, interactive, object-oriented programming language
-brew "python@3.11"  # Interpreted, interactive, object-oriented programming language
 brew "python@3.12"  # Interpreted, interactive, object-oriented programming language
+brew "python@3.13"  # Interpreted, interactive, object-oriented programming language
 brew "ruby"         # Powerful, clean, object-oriented scripting language
 # Rust is installed via rustup
 
@@ -56,6 +56,7 @@ brew "nobu-g/tap/stderred" # Stderr in red
 brew "tree"        # Display directories as trees (with optional color/HTML output)
 brew "watch"       # Executes a program periodically, showing output fullscreen
 brew "zoxide"      # Shell extension to navigate your filesystem faster
+brew "uv"          # An extremely fast Python package and project manager, written in Rust.
 
 # System
 brew "whois"  # Lookup tool for domain names and other internet resources
