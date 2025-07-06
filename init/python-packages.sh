@@ -2,9 +2,6 @@
 
 set -u
 
-# packages to import from everywhere
-pip3 install --user rhoknp
-
 _uv_install_py312() {
   uv tool install "$1" --python "${HOMEBREW_PREFIX}/opt/python@3.12/bin/python3.12"
 }
@@ -18,6 +15,7 @@ _uv_install_py313 csvkit        # A suite of command-line tools for working with
 _uv_install_py313 ipython       # Interactive computing in Python
 _uv_install_py313 poetry        # Python dependency management and packaging made easy.
 _uv_install_py313 pre-commit    # Framework for managing multi-language pre-commit hooks
+_uv_install_py313 rhoknp        # Yet another Python binding for Juman++/KNP/KWJA
 _uv_install_py313 ruff          # An extremely fast Python linter and code formatter, written in Rust.
 _uv_install_py313 ty            # An extremely fast Python type checker, written in Rust.
 _uv_install_py313 speedtest-cli # Command line interface for testing internet bandwidth using speedtest.net
