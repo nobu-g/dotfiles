@@ -40,7 +40,6 @@ brew "pastel"          # Command-line tool to generate, analyze, convert and man
 brew "pueue"           # Command-line tool for managing long-running shell commands
 brew "tealdeer"        # Very fast implementation of tldr in Rust
 brew "watchexec"       # Execute commands when watched files change
-brew "xsv"             # command-line CSV processor
 
 # System
 brew "bandwhich"  # Terminal bandwidth utilization tool
