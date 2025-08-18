@@ -25,7 +25,7 @@ extract() {
     *.ace) unace e "$full_path" ;;
     *.xpi) unzip "$full_path" ;;
     *)
-      print "Unknown archive type: $1"
+      printf '%s\n' "Unknown archive type: $1"
       return 1
       ;;
   esac
