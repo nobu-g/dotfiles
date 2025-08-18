@@ -117,7 +117,7 @@ update_packages() {
   elif [ "$_distro" = "redhat" ]; then
     sudo yum update -y
   elif [ "$_distro" = "arch" ]; then
-    sudo pacman -Syyu  # udpate & upgrade
+    sudo pacman -Syyu  # update & upgrade
   elif [ "$_distro" = "alpine" ]; then
     sudo apk update
   else
