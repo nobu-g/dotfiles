@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Color pallete checker for shell
+# Color palette checker for shell
 
 for C in {0..255}; do
   tput setab "$C"
