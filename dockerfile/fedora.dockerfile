@@ -1,4 +1,4 @@
-FROM fedora:38
+FROM fedora:42
 
 RUN dnf update -y && dnf install -y sudo && dnf clean all
 # add sudo user
