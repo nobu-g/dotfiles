@@ -38,7 +38,7 @@ brew "hexyl"           # Command-line hex viewer
 brew "hyperfine"       # Command-line benchmarking tool
 brew "pastel"          # Command-line tool to generate, analyze, convert and manipulate colors
 brew "pueue"           # Command-line tool for managing long-running shell commands
-brew "tealdeer"        # Very fast implementation of tldr in Rust
+brew "tlrc"            # Official tldr client written in Rust
 brew "watchexec"       # Execute commands when watched files change
 
 # System
