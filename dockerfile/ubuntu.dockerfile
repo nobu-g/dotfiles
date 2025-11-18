@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -6,8 +6,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 # add sudo user
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-RUN groupadd -g 1000 wheel && \
-    useradd -g wheel -G sudo -m -s /bin/bash user && \
+RUN useradd -G sudo -m -s /bin/bash user && \
     echo 'user:hogehoge' | chpasswd
 RUN echo 'Defaults visiblepw' >> /etc/sudoers && \
     echo 'user ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers

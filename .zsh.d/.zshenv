@@ -131,6 +131,7 @@ fi
 
 path=(
   ${HOME}/.local/share/cargo/bin(N-/)  # Rust
+  ${HOME}/.local/share/npm/bin(N-/)  # Node.js
   ${HOME}/.cargo/bin(N-/)  # Rust
   ${HOME}/.config/emacs/bin(N-/)  # doom-emacs
   ${path}

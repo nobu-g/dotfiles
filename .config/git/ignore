@@ -235,3 +235,7 @@ DerivedData/
 
 .idea
 .envrc
+
+**/.claude/settings.local.json
+**/CLAUDE.md
+**/.mcp.json

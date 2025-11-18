@@ -3,9 +3,9 @@ brew "neovim"  # Ambitious Vim-fork focused on extensibility and agility
 
 # Programming languages
 brew "openjdk"      # Development kit for the Java programming language
-brew "node@20"      # Platform built on V8 to build network applications
-brew "python@3.9"   # Interpreted, interactive, object-oriented programming language
 brew "python@3.10"  # Interpreted, interactive, object-oriented programming language
+brew "python@3.11"  # Interpreted, interactive, object-oriented programming language
+brew "python@3.12"  # Interpreted, interactive, object-oriented programming language
 
 # Misc
 brew "cling"        # C++ interpreter
@@ -28,7 +28,7 @@ brew "tesseract"    # recommended by rga
 brew "tokei"        # Program that allows you to count code, quickly
 brew "yq"           # Process YAML documents from the CLI
 
-# Tools written in Rust
+# Modern tools written in Rust
 brew "broot"           # New way to see and navigate directory trees
 brew "cargo-edit"      # Utility for managing cargo dependencies from the command-line
 brew "cargo-outdated"  # Cargo subcommand for displaying when Rust dependencies are out of date
@@ -38,9 +38,8 @@ brew "hexyl"           # Command-line hex viewer
 brew "hyperfine"       # Command-line benchmarking tool
 brew "pastel"          # Command-line tool to generate, analyze, convert and manipulate colors
 brew "pueue"           # Command-line tool for managing long-running shell commands
-brew "tealdeer"        # Very fast implementation of tldr in Rust
+brew "tlrc"            # Official tldr client written in Rust
 brew "watchexec"       # Execute commands when watched files change
-brew "xsv"             # command-line CSV processor
 
 # System
 brew "bandwhich"  # Terminal bandwidth utilization tool

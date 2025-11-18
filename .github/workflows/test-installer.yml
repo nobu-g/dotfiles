@@ -21,4 +21,4 @@ jobs:
       - name: Run installer
         run: SUDO=1 sh -c "$(curl -fsSL https://raw.githubusercontent.com/nobu-g/dotfiles/main/install.sh)"
       - name: Test environment
-        run: cd $HOME/dotfiles && make test
+        run: cd "${HOME}/dotfiles" && make test
