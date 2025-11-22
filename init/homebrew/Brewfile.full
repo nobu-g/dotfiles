@@ -9,6 +9,7 @@ brew "python@3.12"  # Interpreted, interactive, object-oriented programming lang
 
 # Misc
 brew "cling"        # C++ interpreter
+brew "codex"        # OpenAI's coding agent that runs in your terminal
 brew "cpanm"        # Get, unpack, build, and install modules from CPAN
 brew "dasel"        # JSON, YAML, TOML, XML, and CSV query and modification tool
 brew "ffmpeg"       # Play, record, convert, and stream audio and video
