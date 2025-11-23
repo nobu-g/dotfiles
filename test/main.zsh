@@ -39,13 +39,14 @@ check "pwd"
 check "rm"
 
 # test brew packages
-check "python3"
-check "git"
-check "perl"
-check "ruby"
-check "go"
 check "fd"
+check "fzf"
+check "git"
+check "go"
+check "perl"
+check "python3"
 check "rg"
+check "ruby"
 
 # test aliases
 check "a"
@@ -63,8 +64,8 @@ check "sum"
 check "zinit"
 check "virtualenv"
 check "ruff"
-check "poetry"
 check "pre-commit"
+check "uv"
 
 # test user functions
 check "les"
