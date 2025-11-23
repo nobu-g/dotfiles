@@ -155,13 +155,6 @@ zinit lucid \
 bindkey '^t' _atuin_search_widget
 
 zinit wait lucid \
-  id-as="pipx-completion" \
-  atclone="register-python-argcomplete pipx > pipx.gen.zsh" \
-  atpull="%atclone" \
-  pick="pipx.gen.zsh" \
-  light-mode for @zdharma-continuum/null
-
-zinit wait lucid \
   id-as"ruff-completion" \
   as"completion" \
   blockf \
