@@ -20,20 +20,8 @@ if ! [[ -e ${HOMEBREW_PREFIX}/bin/brew ]]; then
 fi
 eval "$("${HOMEBREW_PREFIX}/bin/brew" shellenv)"
 
-# for gawk
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-
 # install dependencies from Brewfile
 brew update
-if [[ ${OSTYPE} == linux* ]] || [[ ${OSTYPE} == cygwin* ]]; then
-  # https://github.com/orgs/Homebrew/discussions/4899
-  brew unlink util-linux
-  brew unlink tcl-tk
-  brew install python@3.12
-  brew link util-linux
-  brew link tcl-tk
-fi
 brew bundle install --file "${here}/Brewfile"
 brew bundle install --file "${BREW_SETUP_DIR}/Brewfile"
 if [[ ${FULL_INSTALL} -eq 1 ]]; then
