@@ -4,6 +4,7 @@ brew "coreutils"  # GNU File, Shell, and Text utilities
 brew "diffutils"  # File comparison utilities
 brew "ed"         # Classic UNIX line editor
 brew "findutils"  # Collection of GNU find, xargs, and locate
+brew "gawk"       # GNU awk utility
 brew "gnu-sed"    # GNU implementation of the famous stream editor
 brew "gnu-tar"    # GNU version of the tar archiving utility
 brew "gnu-which"  # GNU implementation of which utility
