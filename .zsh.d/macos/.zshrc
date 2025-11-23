@@ -22,9 +22,19 @@ dsdel() {
   find $1 -name '.DS_Store' -type f -ls -delete
 }
 
+# ghq+fzf (peco alternative)
+fzf-repo-src() {
+  local dest
+  dest=$(ghq list -p | fzf --query "$BUFFER" --prompt "[ghq]> " --select-1 --exit-0)
+  if [[ -n "${dest}" ]]; then
+    BUFFER="cd ${dest}"
+    zle accept-line
+  fi
+}
+
 # ghq+peco
 # https://qiita.com/strsk/items/9151cef7e68f0746820d
-peco-src() {
+peco-repo-src() {
   local dest
   dest=$(ghq list -p | peco --query "$BUFFER" --prompt "[ghq]" --print-query | tail -1)
   if [[ -n "${dest}" ]]; then
@@ -33,8 +43,15 @@ peco-src() {
   fi
   # zle clear-screen
 }
-zle -N peco-src
-bindkey '^]' peco-src
+
+# prefer fzf when installed, otherwise fall back to peco
+if (( $+commands[fzf] )); then
+  zle -N fzf-repo-src
+  bindkey '^]' fzf-repo-src
+elif (( $+commands[peco] )); then
+  zle -N peco-repo-src
+  bindkey '^]' peco-repo-src
+fi
 
 copy-line-as-kill() {
   zle kill-line
