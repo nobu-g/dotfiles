@@ -158,6 +158,36 @@ fzf-pkill() {
 alias pk="fzf-pkill"
 
 
+# ghq+fzf (peco alternative)
+fzf-repo-src() {
+  local dest
+  dest=$(ghq list -p | fzf --query "$BUFFER" --prompt "[ghq]> " --select-1 --exit-0)
+  if [[ -n "${dest}" ]]; then
+    BUFFER="cd ${dest}"
+    zle accept-line
+  fi
+}
+# ghq+peco
+# https://qiita.com/strsk/items/9151cef7e68f0746820d
+peco-repo-src() {
+  local dest
+  dest=$(ghq list -p | peco --query "$BUFFER" --prompt "[ghq]" --print-query | tail -1)
+  if [[ -n "${dest}" ]]; then
+    BUFFER="cd ${dest}"
+    zle accept-line
+  fi
+  # zle clear-screen
+}
+
+# prefer fzf when installed, otherwise fall back to peco
+if (( $+commands[fzf] )); then
+  zle -N fzf-repo-src
+  bindkey '^]' fzf-repo-src
+elif (( $+commands[peco] )); then
+  zle -N peco-repo-src
+  bindkey '^]' peco-repo-src
+fi
+
 # broot
 [[ -f ${XDG_CONFIG_HOME:-$HOME/.config}/broot/launcher/bash/br ]] &&
   source ${XDG_CONFIG_HOME:-$HOME/.config}/broot/launcher/bash/br
