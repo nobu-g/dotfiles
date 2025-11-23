@@ -20,6 +20,10 @@ if ! [[ -e ${HOMEBREW_PREFIX}/bin/brew ]]; then
 fi
 eval "$("${HOMEBREW_PREFIX}/bin/brew" shellenv)"
 
+# for gawk
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 # install dependencies from Brewfile
 brew update
 if [[ ${OSTYPE} == linux* ]] || [[ ${OSTYPE} == cygwin* ]]; then
