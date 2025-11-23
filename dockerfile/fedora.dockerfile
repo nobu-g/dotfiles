@@ -22,6 +22,7 @@ RUN dnf update -y && dnf install -y \
     perl-FindBin \
     perl-IPC-Cmd \
     perl-Pod-Html \
+    perl-Time-Piece \
     python3 \
     && dnf clean all \
     && rm -rf /var/cache/dnf/* /tmp/* /var/tmp/*
