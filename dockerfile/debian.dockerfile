@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     make \
     zsh \
     gcc \
+    g++-12 \
     build-essential \
     procps \
     ca-certificates \
