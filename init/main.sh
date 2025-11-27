@@ -66,9 +66,7 @@ if ! [[ -d ${ZINIT_HOME} ]]; then
 fi
 
 # install Python packages
-if (type pipx &> /dev/null); then
-  bash -x "$here/python-packages.sh"
-fi
+bash -x "$here/python-packages.sh"
 
 # install Go packages
 if (type go &> /dev/null); then

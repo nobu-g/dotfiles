@@ -2,6 +2,11 @@
 
 set -u
 
+if ! (type uv &> /dev/null); then
+  echo "uv is not installed. Skipping Python package installation."
+  exit 0
+fi
+
 _uv_install_py313() {
   uv tool install "$1" --python "${HOMEBREW_PREFIX}/opt/python@3.13/bin/python3.13"
 }
