@@ -7,7 +7,7 @@ RUN useradd -m -s /bin/bash user && \
     echo 'user:hogehoge' | chpasswd && \
     echo 'user ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 # install dependencies
-RUN dnf update -y && dnf install -y \
+RUN dnf update -y && dnf group install -y development-tools && dnf install -y \
     make \
     zsh \
     gcc \
