@@ -10,8 +10,9 @@ brew "pwgen"           # Password generator
 brew "hadolint"        # Smarter Dockerfile linter to validate best practices
 
 # System
-brew "fswatch"  # Monitor a directory for changes and run a shell command
-brew "pstree"   # Show ps output as a tree
+brew "fswatch"        # Monitor a directory for changes and run a shell command
+brew "pstree"         # Show ps output as a tree
+brew "tw93/tap/mole"  # Comprehensive macOS cleanup and application uninstall tool
 
 # CASK
 cask_args appdir: "/Applications"
