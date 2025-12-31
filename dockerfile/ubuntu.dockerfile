@@ -25,7 +25,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     zlib1g-dev \
     python3-pip \
     libp11-kit-dev \
-    && apt-get clean \
+    && update-ca-certificates \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # RUN echo y | sh -c "$(curl -fsSL https://raw.githubusercontent.com/nobu-g/dotfiles/main/install.sh)"

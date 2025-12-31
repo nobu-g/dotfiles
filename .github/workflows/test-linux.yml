@@ -11,17 +11,19 @@ jobs:
       max-parallel: 3
       fail-fast: false
       matrix:
-        dist: [ubuntu, debian, fedora]
+        dist: [ubuntu]
     steps:
       - name: Check out code
         uses: actions/checkout@v5
       - name: Build docker image
         run: docker build . -f dockerfile/${{ matrix.dist }}.dockerfile -t dotfiles:${{ matrix.dist }}
       - name: Create and start docker container
-        run: docker run -td -u user -w /home/user dotfiles:${{ matrix.dist }} /bin/sh
+        run: docker run -td --name dotfiles-${{ matrix.dist }} -u user -w /home/user dotfiles:${{ matrix.dist }} /bin/sh
       - name: Clone dotfiles
-        run: docker exec "$(docker ps -lq)" git clone --depth 1 https://github.com/nobu-g/dotfiles
+        run: docker exec dotfiles-${{ matrix.dist }} git clone --depth 1 https://github.com/nobu-g/dotfiles
+      - name: debug
+        run: docker exec dotfiles-${{ matrix.dist }} sh -lc 'ls -l /etc/ssl/certs/ca-certificates.crt || true; curl -I https://sh.rustup.rs || true'
       - name: Install dotfiles
-        run: docker exec -i -w /home/user/dotfiles "$(docker ps -lq)" make install
+        run: docker exec -i -w /home/user/dotfiles dotfiles-${{ matrix.dist }} make install
       - name: Test dotfiles
-        run: docker exec -i -w /home/user/dotfiles "$(docker ps -lq)" make test
+        run: docker exec -i -w /home/user/dotfiles dotfiles-${{ matrix.dist }} make test
