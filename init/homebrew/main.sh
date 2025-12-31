@@ -24,11 +24,11 @@ eval "$("${HOMEBREW_PREFIX}/bin/brew" shellenv)"
 brew update
 brew install openssl@3
 brew postinstall openssl@3
-brew bundle install --file "${here}/Brewfile"
-brew bundle install --file "${BREW_SETUP_DIR}/Brewfile"
-if [[ ${FULL_INSTALL} -eq 1 ]]; then
-  brew bundle install --file "${here}/Brewfile.full"
-  brew bundle install --file "${BREW_SETUP_DIR}/Brewfile.full"
-fi
+# brew bundle install --file "${here}/Brewfile"
+# brew bundle install --file "${BREW_SETUP_DIR}/Brewfile"
+# if [[ ${FULL_INSTALL} -eq 1 ]]; then
+#   brew bundle install --file "${here}/Brewfile.full"
+#   brew bundle install --file "${BREW_SETUP_DIR}/Brewfile.full"
+# fi
 echo "Installed formulae and casks:"
 brew list
