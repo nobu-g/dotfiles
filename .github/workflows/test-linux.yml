@@ -14,7 +14,7 @@ jobs:
         dist: [ubuntu, debian, fedora]
     steps:
       - name: Check out code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Build docker image
         run: docker build . -f dockerfile/${{ matrix.dist }}.dockerfile -t dotfiles:${{ matrix.dist }}
       - name: Create and start docker container
