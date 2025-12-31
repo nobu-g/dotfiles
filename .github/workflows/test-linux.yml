@@ -2,7 +2,7 @@ name: test-linux
 
 on:
   push:
-    branches: [main]
+    branches: [fix-workflow]
 
 jobs:
   test-linux:
