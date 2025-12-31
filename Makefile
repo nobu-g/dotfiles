@@ -17,7 +17,7 @@ init: ## Setup environment settings
 	bash $(DOTPATH)/init/main.sh
 
 update: ## Fetch changes for this repo
-	git pull origin main
+	git pull
 
 upgrade: ## Upgrade installed packages
 	brew update && brew upgrade && brew cleanup
