@@ -20,7 +20,7 @@ jobs:
       - name: Create and start docker container
         run: docker run -td --name dotfiles-${{ matrix.dist }} -u user -w /home/user dotfiles:${{ matrix.dist }} /bin/sh
       - name: Clone dotfiles
-        run: docker exec dotfiles-${{ matrix.dist }} git clone --depth 1 https://github.com/nobu-g/dotfiles
+        run: docker exec dotfiles-${{ matrix.dist }} git clone --depth 1 -b fix-workflow https://github.com/nobu-g/dotfiles
       - name: debug
         run: docker exec dotfiles-${{ matrix.dist }} sh -lc 'ls -l /etc/ssl/certs/ca-certificates.crt || true; curl -I https://sh.rustup.rs || true'
       - name: Install dotfiles
