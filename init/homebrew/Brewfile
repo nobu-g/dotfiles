@@ -1,62 +1,62 @@
 # Basic CLI tools
 brew "cmake"  # Cross-platform make
 brew "curl"   # Get a file from an HTTP, HTTPS or FTP server
-brew "gcc"    # GNU compiler collection
-brew "meson"  # Fast and user friendly build system
-brew "wget"   # Internet file retriever
-brew "gzip"   # Popular GNU data compression program
+# brew "gcc"    # GNU compiler collection
+# brew "meson"  # Fast and user friendly build system
+# brew "wget"   # Internet file retriever
+# brew "gzip"   # Popular GNU data compression program
 
-# Shells
-brew "bash"  # Bourne-Again SHell, a UNIX command interpreter
-# Homebrew installs Zsh 5.9, which is not compatible with system Zsh 5.8 on Ubuntu 20.04 and 22.04
-# brew "zsh"  # UNIX shell (command interpreter)
+# # Shells
+# brew "bash"  # Bourne-Again SHell, a UNIX command interpreter
+# # Homebrew installs Zsh 5.9, which is not compatible with system Zsh 5.8 on Ubuntu 20.04 and 22.04
+# # brew "zsh"  # UNIX shell (command interpreter)
 
-# Editors
-brew "emacs"  # GNU Emacs text editor
-brew "vim"    # Vi 'workalike' with many additional features
+# # Editors
+# brew "emacs"  # GNU Emacs text editor
+# brew "vim"    # Vi 'workalike' with many additional features
 
-# Programming languages
-brew "go"           # Open source programming language to build simple/reliable/efficient software
-brew "node"         # Platform built on V8 to build network applications
-brew "node@24"      # Platform built on V8 to build network applications
+# # Programming languages
+# brew "go"           # Open source programming language to build simple/reliable/efficient software
+# brew "node"         # Platform built on V8 to build network applications
+# brew "node@24"      # Platform built on V8 to build network applications
 brew "perl"         # Highly capable, feature-rich programming language
 brew "python"       # Interpreted, interactive, object-oriented programming language
-brew "python@3.13"  # Interpreted, interactive, object-oriented programming language
-brew "python@3.14"  # Interpreted, interactive, object-oriented programming language
-brew "ruby"         # Powerful, clean, object-oriented scripting language
-# Rust is installed via rustup
+# brew "python@3.13"  # Interpreted, interactive, object-oriented programming language
+# brew "python@3.14"  # Interpreted, interactive, object-oriented programming language
+# brew "ruby"         # Powerful, clean, object-oriented scripting language
+# # Rust is installed via rustup
 
-# Modern alternatives to Liunx CLI tools
-brew "bat"        # cat
-brew "colordiff"  # diff
-brew "duf"        # df
-brew "fd"         # find
-brew "git"        # git
-brew "git-delta"  # diff
-brew "htop"       # top
-brew "lsd"        # ls
-brew "procs"      # ps
-brew "rargs"      # Util like xargs + awk with pattern matching support
-brew "ripgrep"    # grep -r
-brew "sd"         # sed/awk
-brew "tmux"       # tmux
-brew "xz"         # xz
+# # Modern alternatives to Liunx CLI tools
+# brew "bat"        # cat
+# brew "colordiff"  # diff
+# brew "duf"        # df
+# brew "fd"         # find
+# brew "git"        # git
+# brew "git-delta"  # diff
+# brew "htop"       # top
+# brew "lsd"        # ls
+# brew "procs"      # ps
+# brew "rargs"      # Util like xargs + awk with pattern matching support
+# brew "ripgrep"    # grep -r
+# brew "sd"         # sed/awk
+# brew "tmux"       # tmux
+# brew "xz"         # xz
 
-# Misc
-tap "nobu-g/tap"
-brew "atuin"       # Improved shell history for zsh and bash
-brew "direnv"      # Load/unload environment variables based on $PWD
-brew "fzf"         # Command-line fuzzy finder written in Go
-brew "jq"          # Lightweight and flexible command-line JSON processor
-brew "moreutils"   # chronic, combine, ifne, sponge, ...
-brew "peco"        # Simplistic interactive filtering tool
-brew "pipx"        # Execute binaries from Python packages in isolated environments
+# # Misc
+# tap "nobu-g/tap"
+# brew "atuin"       # Improved shell history for zsh and bash
+# brew "direnv"      # Load/unload environment variables based on $PWD
+# brew "fzf"         # Command-line fuzzy finder written in Go
+# brew "jq"          # Lightweight and flexible command-line JSON processor
+# brew "moreutils"   # chronic, combine, ifne, sponge, ...
+# brew "peco"        # Simplistic interactive filtering tool
+# brew "pipx"        # Execute binaries from Python packages in isolated environments
 brew "nobu-g/tap/stderred" # Stderr in red
-brew "tree"        # Display directories as trees (with optional color/HTML output)
-brew "watch"       # Executes a program periodically, showing output fullscreen
-brew "zoxide"      # Shell extension to navigate your filesystem faster
-brew "uv"          # An extremely fast Python package and project manager, written in Rust.
+# brew "tree"        # Display directories as trees (with optional color/HTML output)
+# brew "watch"       # Executes a program periodically, showing output fullscreen
+# brew "zoxide"      # Shell extension to navigate your filesystem faster
+# brew "uv"          # An extremely fast Python package and project manager, written in Rust.
 
-# System
-brew "whois"  # Lookup tool for domain names and other internet resources
-brew "nmap"   # Port scanning utility for large networks
+# # System
+# brew "whois"  # Lookup tool for domain names and other internet resources
+# brew "nmap"   # Port scanning utility for large networks
