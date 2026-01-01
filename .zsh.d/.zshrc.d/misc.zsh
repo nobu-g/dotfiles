@@ -42,6 +42,9 @@ export DOCKER_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/docker"
 # Claude
 export CLAUDE_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/claude"
 
+# Ansible
+export ANSIBLE_HOME="${XDG_DATA_HOME}/ansible"
+
 # direnv
 eval "$(direnv hook zsh)"
 p=$PWD
