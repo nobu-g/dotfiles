@@ -50,7 +50,6 @@ brew "fzf"         # Command-line fuzzy finder written in Go
 brew "jq"          # Lightweight and flexible command-line JSON processor
 brew "moreutils"   # chronic, combine, ifne, sponge, ...
 brew "peco"        # Simplistic interactive filtering tool
-brew "pipx"        # Execute binaries from Python packages in isolated environments
 brew "nobu-g/tap/stderred" # Stderr in red
 brew "tree"        # Display directories as trees (with optional color/HTML output)
 brew "watch"       # Executes a program periodically, showing output fullscreen
