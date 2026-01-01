@@ -22,8 +22,6 @@ eval "$("${HOMEBREW_PREFIX}/bin/brew" shellenv)"
 
 # install dependencies from Brewfile
 brew update
-brew install openssl@3
-brew postinstall openssl@3
 brew bundle install --file "${here}/Brewfile"
 brew bundle install --file "${BREW_SETUP_DIR}/Brewfile"
 if [[ ${FULL_INSTALL} -eq 1 ]]; then
