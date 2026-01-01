@@ -19,7 +19,6 @@ brew "vim"    # Vi 'workalike' with many additional features
 brew "go"           # Open source programming language to build simple/reliable/efficient software
 brew "node"         # Platform built on V8 to build network applications
 brew "node@24"      # Platform built on V8 to build network applications
-brew "perl"         # Highly capable, feature-rich programming language
 brew "python"       # Interpreted, interactive, object-oriented programming language
 brew "python@3.13"  # Interpreted, interactive, object-oriented programming language
 brew "python@3.14"  # Interpreted, interactive, object-oriented programming language
@@ -43,7 +42,6 @@ brew "tmux"       # tmux
 brew "xz"         # xz
 
 # Misc
-tap "nobu-g/tap"
 brew "atuin"       # Improved shell history for zsh and bash
 brew "direnv"      # Load/unload environment variables based on $PWD
 brew "fzf"         # Command-line fuzzy finder written in Go

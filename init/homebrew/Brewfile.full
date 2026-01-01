@@ -3,6 +3,7 @@ brew "neovim"  # Ambitious Vim-fork focused on extensibility and agility
 
 # Programming languages
 brew "openjdk"      # Development kit for the Java programming language
+brew "perl"         # Highly capable, feature-rich programming language
 brew "python@3.10"  # Interpreted, interactive, object-oriented programming language
 brew "python@3.11"  # Interpreted, interactive, object-oriented programming language
 brew "python@3.12"  # Interpreted, interactive, object-oriented programming language

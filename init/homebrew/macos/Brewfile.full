@@ -20,7 +20,6 @@ cask "alfred"
 cask "alt-tab"
 cask "audacity"
 cask "bartender"
-cask "biscuit"
 cask "blu-ray-player-pro"
 cask "cleanshot"
 cask "dash"
@@ -29,7 +28,6 @@ cask "font-jetbrains-mono"
 cask "font-noto-sans-jp"
 cask "gimp"
 cask "google-cloud-sdk"
-cask "jetbrains-gateway"
 cask "latexit"
 cask "maccy"
 cask "mactex-no-gui"
@@ -56,7 +54,6 @@ mas "Apple Configurator 2", id: 1037126344
 mas "BetterSnapTool", id: 417375580
 mas "DaisyDisk", id: 411643860
 mas "Effortless", id: 1368722917
-mas "Evernote", id: 406056744
 mas "Key Codes", id: 414568915
 mas "Mathpix Snipping Tool", id: 1349670778
 mas "Trello", id: 1278508951
