@@ -74,6 +74,9 @@ if (type go &> /dev/null); then
   go install golang.org/x/tools/gopls@latest # or brew install gopls
 fi
 
+# install Claude Code
+curl -fsSL https://claude.ai/install.sh | bash
+
 # # install Docker Compose V2
 # DOCKER_CONFIG="${DOCKER_CONFIG:-$HOME/.docker}"
 # mkdir -p "${DOCKER_CONFIG}/cli-plugins"
