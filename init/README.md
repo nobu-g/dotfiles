@@ -4,22 +4,16 @@
 
 ### Enable TouchID when running `sudo`
 
-1. Add write permission to `/etc/pam.d/sudo`
+1. Copy the template file to `/etc/pam.d/sudo_local`.
 
     ```shell
-    sudo chmod +w /etc/pam.d/sudo
+    sudo cp /etc/pam.d/sudo_local.template /etc/pam.d/sudo_local
     ```
 
-1. Add the following line to the beginning of `/etc/pam.d/sudo`.
+1. Edit `/etc/pam.d/sudo_local` to uncomment the following line:
 
     ```text
     auth       sufficient     pam_tid.so
-    ```
-
-1. Restore the permission.
-
-    ```shell
-    sudo chmod -w /etc/pam.d/sudo
     ```
 
 ### Synchronize configuration files that are not managed by dotfiles
