@@ -1,4 +1,4 @@
-FROM fedora:42
+FROM fedora:41
 
 RUN dnf update -y && dnf install -y sudo && dnf clean all
 # add sudo user
@@ -11,6 +11,8 @@ RUN dnf update -y && dnf group install -y development-tools && dnf install -y \
     make \
     zsh \
     gcc \
+    gcc13 \
+    gcc13-c++ \
     g++ \
     glibc-devel \
     procps-ng \
