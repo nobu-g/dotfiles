@@ -15,6 +15,13 @@ done
 ln -snfv "${ZDOTDIR%/}/.zshenv" "${HOME}"/.zshenv
 
 for f in "${DOTPATH%/}"/.config/*; do
+  if [[ "$(basename "$f")" == "claude" ]]; then
+    mkdir -p "${HOME}/.config/claude"
+    for cf in "${f}"/*; do
+      ln -snfv "$cf" "${HOME}/.config/claude"
+    done
+    continue
+  fi
   ln -snfv "$f" "${HOME}/.config"
 done
 # Reload bat syntaxes
