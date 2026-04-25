@@ -11,7 +11,7 @@ jobs:
       max-parallel: 3
       fail-fast: false
       matrix:
-        dist: [ubuntu, debian, fedora]
+        dist: [ubuntu, ubuntu26.04, debian, fedora]
     steps:
       - name: Check out code
         uses: actions/checkout@v6
