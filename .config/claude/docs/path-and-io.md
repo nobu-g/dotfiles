@@ -7,25 +7,25 @@ Standards for reading and writing local files: building paths, creating director
 - Use `pathlib.Path` for all file path operations; prefer `pathlib` over `os.path.*`.
 - **Do not** hard-code absolute local paths.
 - Prefer paths relative to repository root or configured directories.
-- Use the path utilities in `src/analysis_project/paths.py`.
-- **Do not** write outputs into raw data directories (`data/raw/`, `data/external/`).
 - Create parent directories explicitly when writing outputs: `path.parent.mkdir(parents=True, exist_ok=True)`.
+- Join paths with the `/` operator, including when joining a `Path` with a `str` (e.g. `base_dir / sub_dir / "file.txt"`); do not use `os.path.join` or `.joinpath(...)` for plain joins.
+- When you need to call a method on a freshly joined path, use `.joinpath(...)` instead of wrapping a `/` expression in parentheses.
+
+  - bad
+
+    ```python
+    (output_dir / "images").mkdir(parents=True, exist_ok=True)
+    ```
+
+  - good
+
+    ```python
+    output_dir.joinpath("images").mkdir(parents=True, exist_ok=True)
+    ```
+
 - Use descriptive file names.
 - Include dates or run identifiers when outputs are time-dependent.
 - Avoid overwriting existing outputs unless explicitly requested.
-
-## Example
-
-```python
-from analysis_project.paths import outputs_dir, ensure_parent_dir
-
-# Build the output path
-output_path = outputs_dir() / "tables" / "summary_2024q1.csv"
-
-# Create the parent directory before writing
-ensure_parent_dir(output_path)
-df.write_csv(output_path)
-```
 
 ## Reading and Writing Files
 
