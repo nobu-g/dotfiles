@@ -12,15 +12,13 @@
         </array>
         <key>StartCalendarInterval</key>
         <dict>
-            <key>Minute</key>
-            <integer>0</integer>
+            <key>Day</key>
+            <integer>1</integer>
             <key>Hour</key>
             <integer>21</integer>
-            <key>Week</key>
-            <integer>2</integer>
+            <key>Minute</key>
+            <integer>0</integer>
         </dict>
-        <key>RunAtLoad</key>
-        <true/>
         <key>StandardErrorPath</key>
         <string>/tmp/updateEnv.err</string>
         <key>StandardOutPath</key>
