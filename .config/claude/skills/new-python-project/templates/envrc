@@ -1,0 +1,8 @@
+layout uv
+
+# Project-local secrets / API keys often live here.
+# This file is gitignored — keep real values out of version control; only commit `.envrc.example`.
+# export OPENAI_API_KEY="PLACEHOLDER"
+# export ANTHROPIC_API_KEY="PLACEHOLDER"
+# export AWS_ACCESS_KEY_ID="PLACEHOLDER"
+# export AWS_SECRET_ACCESS_KEY="PLACEHOLDER"

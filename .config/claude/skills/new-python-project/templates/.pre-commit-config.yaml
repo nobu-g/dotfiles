@@ -1,0 +1,26 @@
+# After copying, run `pre-commit autoupdate` to fill in the latest `rev` for each repo.
+ci:
+  autofix_prs: false
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: PLACEHOLDER  # pre-commit autoupdate
+    hooks:
+      - id: end-of-file-fixer
+      - id: check-merge-conflict
+      - id: trailing-whitespace
+      - id: check-yaml
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: PLACEHOLDER  # pre-commit autoupdate
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
+  - repo: https://github.com/astral-sh/ty-pre-commit
+    rev: PLACEHOLDER  # pre-commit autoupdate
+    hooks:
+      - id: ty
+  - repo: https://github.com/pre-commit/pre-commit
+    rev: PLACEHOLDER  # pre-commit autoupdate
+    hooks:
+      - id: validate_manifest
