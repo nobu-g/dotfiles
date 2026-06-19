@@ -2,7 +2,13 @@
   "permissions": {
     "allow": [
       "Bash(pre-commit:*)"
-    ]
+    ],
+      "deny": [
+        "Read(./.env)",
+        "Read(./.env.*)",
+        "Read(./.envrc)"
+    ],
+    "defaultMode": "auto"
   },
   "enabledPlugins": {
     "context7@claude-plugins-official": true,
@@ -11,5 +17,8 @@
     "playwright@claude-plugins-official": true
   },
   "language": "Japanese",
-  "effortLevel": "high"
+  "effortLevel": "high",
+  "theme": "dark",
+  "skipAutoPermissionPrompt": true,
+  "model": "opus[1m]"
 }
