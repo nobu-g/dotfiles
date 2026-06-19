@@ -22,4 +22,3 @@ Detailed task-specific procedures are in `~/.config/claude/docs/*.md`.
 | Writing or reviewing Python code | [python-style](docs/python-style.md) |
 | DataFrame operations | [dataframe-polars](docs/dataframe-polars.md) |
 | File paths and I/O | [path-and-io](docs/path-and-io.md) |
-| Writing or revising Japanese technical docs | [japanese-tech-writing](docs/japanese-tech-writing.md) |

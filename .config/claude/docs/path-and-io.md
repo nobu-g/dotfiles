@@ -1,10 +1,10 @@
 # Path and I/O
 
-ローカルファイルの読み書き（パス構築、ディレクトリ作成、出力先の選定）を行うときの規範。
+Standards for reading and writing local files: building paths, creating directories, and choosing output locations.
 
 ## Rules
 
-- Use `pathlib.Path` for all file path operations.
+- Use `pathlib.Path` for all file path operations; prefer `pathlib` over `os.path.*`.
 - **Do not** hard-code absolute local paths.
 - Prefer paths relative to repository root or configured directories.
 - Use the path utilities in `src/analysis_project/paths.py`.
@@ -19,9 +19,45 @@
 ```python
 from analysis_project.paths import outputs_dir, ensure_parent_dir
 
-# 出力パスを構成
+# Build the output path
 output_path = outputs_dir() / "tables" / "summary_2024q1.csv"
 
-# 親ディレクトリを作成してから書き込み
+# Create the parent directory before writing
 ensure_parent_dir(output_path)
 df.write_csv(output_path)
+```
+
+## Reading and Writing Files
+
+- Avoid the `with open` idiom shown below; prefer the more concise `pathlib` form.
+
+  - bad
+
+    ```python
+    with open("data/my_file.txt") as f:
+        data = f.read()
+    ```
+
+  - good
+
+    ```python
+    data = Path("data/my_file.txt").read_text()
+    ```
+
+- The same applies to reading and writing JSON files.
+
+  - bad
+
+    ```python
+    with open("data/my_file.json") as f:
+        data = json.load(f)
+    with open("data/my_file.json", mode="wt") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+    ```
+
+  - good
+
+    ```python
+    data = json.loads(Path("data/my_file.json").read_text())
+    Path("data/my_file.json").write_text(json.dumps(data, indent=2, ensure_ascii=False))
+    ```

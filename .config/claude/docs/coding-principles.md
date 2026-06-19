@@ -1,13 +1,13 @@
 # Coding Principles
 
-すべてのコーディングタスクで遵守する言語非依存の一般原則。
+Language-agnostic principles that apply to every coding task.
 
-- コード中のコメントやメッセージは英語で記述してください。
-- ユーザーからの指示や仕様に疑問などがあれば作業を中断し、質問すること。
-- 一般的なコーディング規約を遵守すること。（Python プロジェクトであれば PEP8）
-- レポジトリ直下に `.pre-commit-config.yaml` がある場合は、編集後のコードが pre-commit をパスすることを確認すること。
-- 特に指定されない限り**後方互換性は無視**し、できる限りシンプルなコードを書くこと。
-- 保守性を重視し、冗長なコードや複雑なコードは避けること。
+- Write code comments and messages in English.
+- Stop and ask whenever instructions or specifications are unclear.
+- Follow standard coding conventions (e.g., PEP 8 for Python projects).
+- If `.pre-commit-config.yaml` exists at the repository root, make sure the edited code passes pre-commit.
+- Unless told otherwise, **ignore backward compatibility** and keep the code as simple as possible.
+- Prioritize maintainability; avoid verbose or complex code.
 
 ## Avoid over-engineering
 

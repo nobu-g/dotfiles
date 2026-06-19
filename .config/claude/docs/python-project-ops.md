@@ -1,6 +1,12 @@
 # Python Project Operations
 
-依存関係の管理、テスト実行、lint、フォーマット、型チェック、ノートブック実行を行うときの規範。
+Standards for managing dependencies, running tests, linting, formatting, type checking, and executing notebooks.
+
+## Tooling
+
+- Use `uv` for package management.
+- Use `ruff` for linting and formatting.
+- Use `ty` for type checking.
 
 ## Package Manager: uv Only
 
@@ -22,13 +28,14 @@ uv sync                    # Install/synchronize dependencies
 uv run pytest              # Run tests
 uv run ruff check .        # Lint
 uv run ruff format .       # Format
-uv run mypy src            # Type check
+uv run ty check            # Type check
 uv run papermill notebooks/input.ipynb notebooks/output.ipynb  # Execute notebook
 bash scripts/run_quality_checks.sh  # Run all quality checks
+```
 
 ## Workflow
 
 1. After modifying `pyproject.toml`, run `uv sync`.
 2. After adding code, run `uv run ruff check .` and `uv run ruff format .`.
-3. Before committing, run `uv run pytest` and `uv run mypy src`.
+3. Before committing, run `uv run pytest` and `uv run ty check`.
 4. For notebook execution in CI or automation, prefer `papermill`.
