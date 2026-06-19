@@ -20,16 +20,14 @@ Project-level conventions for scaffolding a new Python data/ML project. This is 
 ```
 <repo>/
 ├── src/                    # source — NO src/__init__.py (src is a dir, not a package)
-│   ├── cli.py              # entrypoint (Hydra or argparse)
-│   ├── config.py           # config loading (pydantic) for non-Hydra repos
-│   └── <subpackage>/       # __init__.py only inside real subpackages
-├── configs/                # Hydra config groups (only if using Hydra)
+├── configs/                 # Hydra config groups (only if using Hydra)
 ├── tests/
 │   ├── conftest.py         # test-case loader / fixtures
 │   └── data/               # snapshot/fixture files
 ├── data/                   # inputs (gitignored)
 ├── outputs/                # run artifacts (gitignored)
 ├── .envrc                  # `layout uv` (direnv)
+├── .gitignore              # generated via gitignore.io (+ data/ outputs/)
 ├── .pre-commit-config.yaml
 ├── pyproject.toml          # project + ruff + ty config all live here
 ├── CLAUDE.md               # AGENTS.md may symlink to it
@@ -54,6 +52,12 @@ Copy from `templates/` and adapt — don't hand-write these:
 - `templates/pyproject.toml` — canonical config with the full ruff `select`/`ignore` superset, ty, hatchling, uv. **Start here.** Set `name`/`description`/`dependencies`, then trim the ruff `select` list per project.
 - `templates/.pre-commit-config.yaml` — pre-commit-hooks + ruff + ty. `rev`s are `PLACEHOLDER`; run `pre-commit autoupdate` after copying to pin the latest versions.
 - `templates/envrc` — copy to the repo as `.envrc` (`layout uv` + commented API-key/secret placeholders). Keep `.envrc` gitignored; commit a sanitized `.envrc.example` instead.
+
+There is no `.gitignore` template — fetch a fresh one from gitignore.io and append the project dirs:
+
+```bash
+wget -qO .gitignore "https://www.toptal.com/developers/gitignore/api/python,macos"  # change `python,macos` based on the working project type
+```
 
 ## Config & CLI: pick the right tier
 
