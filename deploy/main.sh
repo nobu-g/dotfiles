@@ -37,7 +37,7 @@ linux* | cygwin*)
   ;;
 freebsd* | darwin*)
   if [[ ${OSTYPE} == darwin* ]]; then
-    ln -snfv "${DOTPATH%/}/bin/copy-file" "${HOME}/.local/bin"
+    ln -snfv "${DOTPATH%/}"/bin/{copy-file,paste-file} "${HOME}/.local/bin"
   fi
   ln -snfv "${HOME}"/.config/mackup/{.mackup,.mackup.cfg} "${HOME}"
   bash -x "${DOTPATH%/}/deploy/launch-agents.sh"

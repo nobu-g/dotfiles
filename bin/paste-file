@@ -1,0 +1,82 @@
+#!/usr/bin/env zsh
+
+set -eu
+
+if [[ $OSTYPE != darwin* ]]; then
+  print -u2 "paste-file: macOS is required"
+  exit 1
+fi
+
+cut=false
+
+if [[ ${1:-} == --cut ]]; then
+  cut=true
+  shift
+fi
+
+if (($# > 1)); then
+  print -u2 "Usage: paste-file [--cut] [DESTINATION]"
+  exit 2
+fi
+
+destination=${1:-.}
+destination=${destination:a}
+
+if [[ ! -d $destination ]]; then
+  print -u2 "paste-file: destination is not a directory: ${1:-.}"
+  exit 1
+fi
+
+swift - "$destination" "$cut" << 'SWIFT'
+import AppKit
+
+func fail(_ message: String) -> Never {
+  FileHandle.standardError.write(Data("paste-file: \(message)\n".utf8))
+  exit(1)
+}
+
+let arguments = CommandLine.arguments
+let destinationDirectory = URL(fileURLWithPath: arguments[1], isDirectory: true)
+let shouldMove = arguments[2] == "true"
+let pasteboard = NSPasteboard.general
+let options: [NSPasteboard.ReadingOptionKey: Any] = [
+  .urlReadingFileURLsOnly: true
+]
+
+guard let sources = pasteboard.readObjects(
+  forClasses: [NSURL.self],
+  options: options
+) as? [NSURL], !sources.isEmpty else {
+  fail("clipboard does not contain files")
+}
+
+let operations = sources.map { source in
+  let sourceURL = source as URL
+  return (
+    source: sourceURL,
+    destination: destinationDirectory.appendingPathComponent(sourceURL.lastPathComponent)
+  )
+}
+
+for operation in operations where FileManager.default.fileExists(atPath: operation.destination.path) {
+  fail("destination already exists: \(operation.destination.path)")
+}
+
+do {
+  for operation in operations {
+    if shouldMove {
+      try FileManager.default.moveItem(at: operation.source, to: operation.destination)
+    } else {
+      try FileManager.default.copyItem(at: operation.source, to: operation.destination)
+    }
+  }
+} catch {
+  fail(error.localizedDescription)
+}
+
+if shouldMove {
+  pasteboard.clearContents()
+}
+
+print("\(shouldMove ? "Moved" : "Pasted") \(operations.count) file(s).")
+SWIFT
