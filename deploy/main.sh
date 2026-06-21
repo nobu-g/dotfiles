@@ -36,6 +36,9 @@ linux* | cygwin*)
   ln -snfv "${DOTPATH%/}/.emacs.d/init.el" "${HOME}/.emacs.d"
   ;;
 freebsd* | darwin*)
+  if [[ ${OSTYPE} == darwin* ]]; then
+    ln -snfv "${DOTPATH%/}/bin/copy-file" "${HOME}/.local/bin"
+  fi
   ln -snfv "${HOME}"/.config/mackup/{.mackup,.mackup.cfg} "${HOME}"
   bash -x "${DOTPATH%/}/deploy/launch-agents.sh"
   ;;

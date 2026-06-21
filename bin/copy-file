@@ -1,0 +1,43 @@
+#!/usr/bin/env zsh
+
+set -eu
+
+if [[ $OSTYPE != darwin* ]]; then
+  print -u2 "copy-file: macOS is required"
+  exit 1
+fi
+
+if (($# == 0)); then
+  print -u2 "Usage: copy-file FILE..."
+  exit 2
+fi
+
+typeset -a files
+
+for input in "$@"; do
+  file=${input:a}
+
+  if [[ ! -e $file ]]; then
+    print -u2 "copy-file: file not found: $input"
+    exit 1
+  fi
+
+  files+=("$file")
+done
+
+swift - "${files[@]}" << 'SWIFT'
+import AppKit
+
+let urls = CommandLine.arguments.dropFirst().map {
+  NSURL(fileURLWithPath: $0)
+}
+let pasteboard = NSPasteboard.general
+
+pasteboard.clearContents()
+if !pasteboard.writeObjects(urls) {
+  FileHandle.standardError.write(Data("copy-file: failed to write to the clipboard\n".utf8))
+  exit(1)
+}
+SWIFT
+
+print "Copied ${#files} file(s) to the clipboard."
