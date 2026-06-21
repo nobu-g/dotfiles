@@ -23,7 +23,7 @@ brew "openssh"  # OpenBSD freely-licensed SSH connectivity tools
 # CASK
 cask_args appdir: "/Applications"
 cask "bettertouchtool"
-cask "docker"
+cask "docker-desktop"
 cask "dropbox"
 cask "font-hack-nerd-font"
 cask "google-chrome"
