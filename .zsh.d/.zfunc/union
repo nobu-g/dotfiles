@@ -4,7 +4,7 @@
 # $ cat file1 | union file2
 
 if [[ -p /dev/stdin ]]; then
-  cat - $@ | awk '!x[$0]++'
+  cat - "$@" | awk '!x[$0]++'
 else
-  cat $@ | awk '!x[$0]++'
+  cat "$@" | awk '!x[$0]++'
 fi

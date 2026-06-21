@@ -32,7 +32,10 @@ install: update init deploy ## Run make update, init, deploy
 	zsh -l -c 'exit'
 
 test: ## Test functions and expected tools
+	sh $(DOTPATH)/test/readlinkf.sh
+	zsh $(DOTPATH)/test/difference.zsh
 	zsh $(DOTPATH)/test/isect.zsh
+	zsh $(DOTPATH)/test/union.zsh
 	zsh -i $(DOTPATH)/test/main.zsh
 
 # clean: ## Remove the dot files and this repo

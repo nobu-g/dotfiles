@@ -12,4 +12,5 @@ else
   file1=$1
   file2=$2
 fi
-comm -23 <(sort $file1) <(sort $file2)
+[[ -r $file1 && -r $file2 ]] || return 1
+comm -23 <(sort "$file1") <(sort "$file2")
