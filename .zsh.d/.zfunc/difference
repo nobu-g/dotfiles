@@ -5,12 +5,21 @@
 
 local file1
 local file2
-if [[ -p /dev/stdin ]]; then
-  file1=/dev/stdin
-  file2=$1
-else
-  file1=$1
-  file2=$2
-fi
+
+case $# in
+  1)
+    file1=/dev/stdin
+    file2=$1
+    ;;
+  2)
+    file1=$1
+    file2=$2
+    ;;
+  *)
+    print -u2 'usage: difference FILE1 FILE2 | command | difference FILE2'
+    return 2
+    ;;
+esac
+
 [[ -r $file1 && -r $file2 ]] || return 1
 comm -23 <(sort "$file1") <(sort "$file2")
