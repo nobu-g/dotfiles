@@ -1,10 +1,40 @@
-# intersection set of two files
+# Print the intersection of the unique lines in two files.
 # usage:
 # $ isect file1 file2
 # $ cat file1 | isect file2
 
-if [[ -p /dev/stdin ]]; then
-  cat - $@ | awk 'x[$0]++'
-else
-  cat $@ | awk 'x[$0]++'
-fi
+local file1
+local file2
+
+case $# in
+  1)
+    file1=/dev/stdin
+    file2=$1
+    ;;
+  2)
+    file1=$1
+    file2=$2
+    ;;
+  *)
+    print -u2 'usage: isect FILE1 FILE2 | command | isect FILE2'
+    return 2
+    ;;
+esac
+
+awk '
+  BEGIN {
+    file2 = ARGV[2]
+    ARGV[2] = ""
+
+    while ((result = getline line < file2) > 0) {
+      lines[line] = 1
+    }
+    close(file2)
+
+    if (result < 0) {
+      exit 1
+    }
+  }
+
+  lines[$0] && !printed[$0]++
+' "$file1" "$file2"

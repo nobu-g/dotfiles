@@ -31,7 +31,8 @@ upgrade: ## Upgrade installed packages
 install: update init deploy ## Run make update, init, deploy
 	zsh -l -c 'exit'
 
-test: ## Test if expected tools are installed
+test: ## Test functions and expected tools
+	zsh $(DOTPATH)/test/isect.zsh
 	zsh -i $(DOTPATH)/test/main.zsh
 
 # clean: ## Remove the dot files and this repo
