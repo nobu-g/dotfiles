@@ -4,6 +4,11 @@ This file is an **agent router**. It provides high-level rules and directs agent
 
 Detailed task-specific procedures are in `~/.config/claude/docs/*.md`.
 
+## Environment
+
+- This machine's environment is managed by a dotfiles repo (at `$GHQ_ROOT/github.com/nobu-g/dotfiles` or `~/dotfiles`). Edit the dotfiles source, not the deployed files.
+- The Claude Code config dir is `~/.config/claude` (`CLAUDE_CONFIG_DIR`), **not** `~/.claude`. See [environment](docs/environment.md) for details.
+
 ## Hard Rules (Always Apply)
 
 - Never commit raw data, credentials, API keys, tokens, or customer-level records.
@@ -17,6 +22,7 @@ Detailed task-specific procedures are in `~/.config/claude/docs/*.md`.
 
 | Task | Doc |
 | ---- | --- |
+| Machine setup, dotfiles, shell, Claude config | [environment](docs/environment.md) |
 | Every coding task (start here) | [coding-principles](docs/coding-principles.md) |
 | Dependencies, tests, lint, type check | [python-project-ops](docs/python-project-ops.md) |
 | Writing or reviewing Python code | [python-style](docs/python-style.md) |
