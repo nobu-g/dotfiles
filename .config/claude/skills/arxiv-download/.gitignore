@@ -1,0 +1,4 @@
+# ランタイム生成物
+cache/
+.fetch_lock
+.fetch_timestamp
