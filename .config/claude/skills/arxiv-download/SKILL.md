@@ -1,6 +1,6 @@
 ---
 name: arxiv-download
-description: arXiv論文の本文をローカルにダウンロードする。arxiv IDまたは論文タイトルを受け取り、HTML版(優先)→ar5iv→PDFのフォールバックで取得。レート制限(10秒/回)とキャッシュ付き。ユーザーが「arxivから論文をダウンロードして」「arxiv-download」「論文の本文を取得して」「arxiv_idをダウンロード」などと言ったときに使う。
+description: arXiv論文の本文をローカルにダウンロードする。arxiv IDまたは論文タイトルを受け取り、HTML版(優先)→ar5iv→PDFのフォールバックで取得。レート制限(10秒/回)とキャッシュ付き。ユーザーが「arxivから論文をダウンロードして」「arxiv-download」「論文の本文を取得して」「<arxiv_id>をダウンロード」などと言ったときに使う。
 ---
 
 # arXiv 論文ダウンロード

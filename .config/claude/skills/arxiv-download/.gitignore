@@ -2,3 +2,4 @@
 cache/
 .fetch_lock
 .fetch_timestamp
+__pycache__/
