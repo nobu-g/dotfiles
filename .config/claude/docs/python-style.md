@@ -24,6 +24,12 @@ Standards for writing, editing, and reviewing Python code: type hints, docstring
   - Examples (when helpful)
   - Important assumptions
 
+## Imports
+
+- Place all imports at the top of the file; avoid imports in the middle of a file (e.g., inside functions).
+  - Imports at the top make a module's dependencies easy to see at a glance.
+  - Exceptions are acceptable only when necessary, such as to avoid circular imports or to defer the cost of an expensive optional dependency.
+
 ## Comments
 
 - **Inline comments and explanatory comments must be written in English.**
