@@ -20,5 +20,9 @@
   "effortLevel": "high",
   "theme": "dark",
   "skipAutoPermissionPrompt": true,
-  "model": "opus[1m]"
+  "model": "opus[1m]",
+  "statusLine": {
+    "type": "command",
+    "command": "bash \"${CLAUDE_CONFIG_DIR:-$HOME/.config/claude}/statusline-command.sh\""
+  }
 }
