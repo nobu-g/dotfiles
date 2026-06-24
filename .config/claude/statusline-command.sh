@@ -17,7 +17,10 @@ RESET=$'\033[0m'
 DIM=$'\033[2m'
 BOLD=$'\033[1m'
 
-BRANCH_ICON='' # U+E0A0 (Nerd Font git branch)
+BRANCH_ICON='' # U+F126 (nf-fa-code-branch)
+DIR_HOME_ICON=''     # U+F015 (nf-fa-home)
+DIR_HOME_SUB_ICON='' # U+F07C (nf-fa-folder_open)
+DIR_FOLDER_ICON=''   # U+F115 (nf-fa-folder_open_o)
 THIN=''        # thin divider for line 2
 
 # foreground helpers
@@ -84,9 +87,19 @@ IFS=$'\t' read -r BRANCH STAGED MODIFIED UNTRACKED AHEAD BEHIND < "$CACHE_FILE" 
 # ---------------------------------------------------------------------------
 LINE1=""
 
-# directory: dim blue ancestor path, bold bright-blue last component
-DIR_DIM=$(fg 31)    # steel blue (ancestors)
-DIR_BRIGHT=$(fg 39) # dodger blue (last component)
+# directory: leading dir icon (p10k nerdfont-complete), then
+# dim blue ancestor path + bold bright-blue last component
+DIR_DIM=$(fg 31)    # steel blue (ancestors, matches p10k DIR_FOREGROUND)
+DIR_BRIGHT=$(fg 39) # dodger blue (last component, matches p10k DIR_ANCHOR_FOREGROUND)
+# pick dir icon the way p10k does: home / home-subdir / other
+if [ "$SHORT_CWD" = "~" ]; then
+  dir_icon="$DIR_HOME_ICON"
+elif [ "${SHORT_CWD#\~/}" != "$SHORT_CWD" ]; then
+  dir_icon="$DIR_HOME_SUB_ICON"
+else
+  dir_icon="$DIR_FOLDER_ICON"
+fi
+LINE1+="${DIR_DIM}${dir_icon} ${RESET}"
 dir_parent="${SHORT_CWD%/*}"
 dir_last="${SHORT_CWD##*/}"
 if [ "$dir_parent" = "$SHORT_CWD" ] || [ -z "$dir_parent" ]; then
@@ -100,14 +113,13 @@ GIT_CLEAN=$(fg 76)   # medium green (clean branch)
 GIT_DIRTY=$(fg 178)  # amber (dirty branch)
 GIT_STATUS=$(fg 178) # amber (status counts)
 if [ -n "$BRANCH" ]; then
-  file_dirty=$(( ${STAGED:-0} + ${MODIFIED:-0} + ${UNTRACKED:-0} ))
-  [ "$file_dirty" -gt 0 ] && gc="$GIT_DIRTY" || gc="$GIT_CLEAN"
-  LINE1+="  ${gc}${BRANCH_ICON} ${BRANCH}${RESET}"
-  [ "${STAGED:-0}"    -gt 0 ] && LINE1+=" ${GIT_STATUS}~${STAGED}${RESET}"
-  [ "${MODIFIED:-0}"  -gt 0 ] && LINE1+=" ${GIT_STATUS}!${MODIFIED}${RESET}"
-  [ "${UNTRACKED:-0}" -gt 0 ] && LINE1+=" ${GIT_STATUS}?${UNTRACKED}${RESET}"
+  LINE1+="  ${GIT_CLEAN}${BRANCH_ICON} ${BRANCH}${RESET}"
+  # order mirrors .p10k.zsh my_git_formatter: behind, ahead, staged, unstaged, untracked
+  [ "${BEHIND:-0}"    -gt 0 ] && LINE1+=" ${GIT_CLEAN}⇣${BEHIND}${RESET}"
   [ "${AHEAD:-0}"     -gt 0 ] && LINE1+=" ${GIT_CLEAN}⇡${AHEAD}${RESET}"
-  [ "${BEHIND:-0}"    -gt 0 ] && LINE1+=" ${RED}⇣${BEHIND}${RESET}"
+  [ "${STAGED:-0}"    -gt 0 ] && LINE1+=" ${GIT_STATUS}+${STAGED}${RESET}"
+  [ "${MODIFIED:-0}"  -gt 0 ] && LINE1+=" ${GIT_STATUS}!${MODIFIED}${RESET}"
+  [ "${UNTRACKED:-0}" -gt 0 ] && LINE1+=" ${BLUE}?${UNTRACKED}${RESET}"
 elif [ -n "$REPO" ]; then
   LINE1+="  ${GIT_CLEAN}${BRANCH_ICON} ${REPO}${RESET}"
 fi
