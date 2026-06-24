@@ -3,12 +3,17 @@
     "allow": [
       "Bash(pre-commit:*)"
     ],
-      "deny": [
-        "Read(./.env)",
-        "Read(./.env.*)",
-        "Read(./.envrc)"
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./.envrc)"
     ],
     "defaultMode": "auto"
+  },
+  "model": "opus[1m]",
+  "statusLine": {
+    "type": "command",
+    "command": "bash \"${CLAUDE_CONFIG_DIR:-$HOME/.config/claude}/statusline-command.sh\""
   },
   "enabledPlugins": {
     "context7@claude-plugins-official": true,
@@ -19,10 +24,5 @@
   "language": "Japanese",
   "effortLevel": "high",
   "theme": "dark",
-  "skipAutoPermissionPrompt": true,
-  "model": "opus[1m]",
-  "statusLine": {
-    "type": "command",
-    "command": "bash \"${CLAUDE_CONFIG_DIR:-$HOME/.config/claude}/statusline-command.sh\""
-  }
+  "skipAutoPermissionPrompt": true
 }
