@@ -17,8 +17,7 @@ RESET=$'\033[0m'
 DIM=$'\033[2m'
 BOLD=$'\033[1m'
 
-SEP=''        # powerline right separator (U+E0B0, needs a Nerd/Powerline font)
-BRANCH_ICON='' # U+E0A0
+BRANCH_ICON='' # U+E0A0 (Nerd Font git branch)
 THIN=''        # thin divider for line 2
 
 # foreground helpers
@@ -26,31 +25,14 @@ fg() { printf '\033[38;5;%sm' "$1"; }
 bg() { printf '\033[48;5;%sm' "$1"; }
 
 GREY=$(fg 244)
+WHITE=$(fg 255)
 GREEN=$(fg 71)
 YELLOW=$(fg 179)
 RED=$(fg 167)
-BLUE=$(fg 75)
+BLUE=$(fg 39)
 CYAN=$(fg 80)
 MAGENTA=$(fg 176)
 ORANGE=$(fg 215)
-
-# ---------------------------------------------------------------------------
-# Powerline segment builder (line 1)
-# ---------------------------------------------------------------------------
-LINE1=""
-LAST_BG=""
-seg() { # bg fg text
-  local b="$1" f="$2" t="$3"
-  [ -z "$t" ] && return
-  if [ -n "$LAST_BG" ]; then
-    LINE1+="$(fg "$LAST_BG")$(bg "$b")${SEP}"
-  fi
-  LINE1+="$(bg "$b")$(fg "$f") ${t} "
-  LAST_BG="$b"
-}
-seg_close() {
-  [ -n "$LAST_BG" ] && LINE1+="${RESET}$(fg "$LAST_BG")${SEP}${RESET}"
-}
 
 # ---------------------------------------------------------------------------
 # Data extraction
@@ -98,37 +80,48 @@ fi
 IFS=$'\t' read -r BRANCH STAGED MODIFIED UNTRACKED AHEAD BEHIND < "$CACHE_FILE" 2>/dev/null
 
 # ---------------------------------------------------------------------------
-# Line 1: powerline segments
+# Line 1: p10k lean style  dir  git  pr
 # ---------------------------------------------------------------------------
-# dir
-seg 31 235 " ${SHORT_CWD}"
-# git
-if [ -n "$BRANCH" ]; then
-  status=""
-  [ "${STAGED:-0}" -gt 0 ]    && status+=" +${STAGED}"
-  [ "${MODIFIED:-0}" -gt 0 ]  && status+=" !${MODIFIED}"
-  [ "${UNTRACKED:-0}" -gt 0 ] && status+=" ?${UNTRACKED}"
-  [ "${AHEAD:-0}" -gt 0 ]     && status+=" ⇡${AHEAD}"
-  [ "${BEHIND:-0}" -gt 0 ]    && status+=" ⇣${BEHIND}"
-  if [ -n "$status" ]; then
-    seg 178 235 "${BRANCH_ICON} ${BRANCH}${status}"   # amber: dirty
-  else
-    seg 70 235 "${BRANCH_ICON} ${BRANCH}"             # green: clean
-  fi
-elif [ -n "$REPO" ]; then
-  seg 70 235 "${BRANCH_ICON} ${REPO}"
+LINE1=""
+
+# directory: dim blue ancestor path, bold bright-blue last component
+DIR_DIM=$(fg 31)    # steel blue (ancestors)
+DIR_BRIGHT=$(fg 39) # dodger blue (last component)
+dir_parent="${SHORT_CWD%/*}"
+dir_last="${SHORT_CWD##*/}"
+if [ "$dir_parent" = "$SHORT_CWD" ] || [ -z "$dir_parent" ]; then
+  LINE1+="${BOLD}${DIR_BRIGHT}${SHORT_CWD}${RESET}"
+else
+  LINE1+="${DIR_DIM}${dir_parent}/${RESET}${BOLD}${DIR_BRIGHT}${dir_last}${RESET}"
 fi
+
+# git branch + remote tracking
+GIT_CLEAN=$(fg 76)   # medium green (clean branch)
+GIT_DIRTY=$(fg 178)  # amber (dirty branch)
+GIT_STATUS=$(fg 178) # amber (status counts)
+if [ -n "$BRANCH" ]; then
+  file_dirty=$(( ${STAGED:-0} + ${MODIFIED:-0} + ${UNTRACKED:-0} ))
+  [ "$file_dirty" -gt 0 ] && gc="$GIT_DIRTY" || gc="$GIT_CLEAN"
+  LINE1+="  ${gc}${BRANCH_ICON} ${BRANCH}${RESET}"
+  [ "${STAGED:-0}"    -gt 0 ] && LINE1+=" ${GIT_STATUS}~${STAGED}${RESET}"
+  [ "${MODIFIED:-0}"  -gt 0 ] && LINE1+=" ${GIT_STATUS}!${MODIFIED}${RESET}"
+  [ "${UNTRACKED:-0}" -gt 0 ] && LINE1+=" ${GIT_STATUS}?${UNTRACKED}${RESET}"
+  [ "${AHEAD:-0}"     -gt 0 ] && LINE1+=" ${GIT_CLEAN}⇡${AHEAD}${RESET}"
+  [ "${BEHIND:-0}"    -gt 0 ] && LINE1+=" ${RED}⇣${BEHIND}${RESET}"
+elif [ -n "$REPO" ]; then
+  LINE1+="  ${GIT_CLEAN}${BRANCH_ICON} ${REPO}${RESET}"
+fi
+
 # pull request
 if [ -n "$PR_NUM" ]; then
   case "$PR_STATE" in
-    approved)          prc=70 ;;
-    changes_requested) prc=167 ;;
-    draft)             prc=244 ;;
-    *)                 prc=68 ;;
+    approved)          prc="$GREEN" ;;
+    changes_requested) prc="$RED" ;;
+    draft)             prc="$GREY" ;;
+    *)                 prc="$CYAN" ;;
   esac
-  seg "$prc" 235 " #${PR_NUM}${PR_STATE:+ ${PR_STATE}}"
+  LINE1+="  ${prc} #${PR_NUM}${PR_STATE:+ ${PR_STATE}}${RESET}"
 fi
-seg_close
 
 # ---------------------------------------------------------------------------
 # Line 2: model · context bar · cost · time · lines · effort · limits
@@ -136,24 +129,35 @@ seg_close
 divider=" ${GREY}${THIN}${RESET} "
 parts=()
 
-# model
-parts+=("${CYAN}${BOLD}${MODEL}${RESET}")
+# model + effort
+EFFORT=$(json '.effort.level // empty')
+if [ -n "$EFFORT" ]; then
+  parts+=("${CYAN}${BOLD}${MODEL}${RESET} ${MAGENTA}⚙ ${EFFORT}${RESET}")
+else
+  parts+=("${CYAN}${BOLD}${MODEL}${RESET}")
+fi
 
-# context window bar
+# helper: render a percentage bar (width=8 by default)
+make_bar() {
+  local pct="$1" color="$2" width="${3:-8}"
+  pct=${pct%.*}; pct=${pct:-0}
+  local filled=$(( pct * width / 100 ))
+  [ "$filled" -gt "$width" ] && filled=$width
+  local empty=$(( width - filled ))
+  local bar=""
+  [ "$filled" -gt 0 ] && printf -v _f "%${filled}s" && bar="${_f// /█}"
+  [ "$empty"  -gt 0 ] && printf -v _e "%${empty}s"  && bar+="${GREY}${_e// /░}${RESET}"
+  printf '%s' "${color}${bar}${RESET} ${color}${pct}%${RESET}"
+}
+
+# context window (number only)
 PCT=$(json '.context_window.used_percentage // empty')
 if [ -n "$PCT" ]; then
   PCT=${PCT%.*}; PCT=${PCT:-0}
   if   [ "$PCT" -ge 90 ]; then bc="$RED"
   elif [ "$PCT" -ge 70 ]; then bc="$YELLOW"
   else bc="$GREEN"; fi
-  width=10
-  filled=$(( PCT * width / 100 ))
-  [ "$filled" -gt "$width" ] && filled=$width
-  empty=$(( width - filled ))
-  bar=""
-  [ "$filled" -gt 0 ] && printf -v f "%${filled}s" && bar="${f// /█}"
-  [ "$empty" -gt 0 ]  && printf -v e "%${empty}s"  && bar+="${GREY}${e// /░}${RESET}"
-  parts+=("${GREY}ctx${RESET} ${bc}${bar}${RESET} ${bc}${PCT}%${RESET}")
+  parts+=("${GREY}ctx${RESET} ${bc}${PCT}%${RESET}")
 fi
 
 # duration
@@ -166,25 +170,46 @@ if [ -n "$DUR_MS" ]; then
   parts+=("${GREY}⏱ ${dur}${RESET}")
 fi
 
-# lines changed
-ADD=$(json '.cost.total_lines_added // 0')
-DEL=$(json '.cost.total_lines_removed // 0')
-if [ "${ADD:-0}" -gt 0 ] || [ "${DEL:-0}" -gt 0 ]; then
-  parts+=("${GREEN}+${ADD}${RESET} ${RED}-${DEL}${RESET}")
-fi
-
-# reasoning effort
-EFFORT=$(json '.effort.level // empty')
-[ -n "$EFFORT" ] && parts+=("${MAGENTA}⚙ ${EFFORT}${RESET}")
 
 # rate limits (Pro/Max only)
+# convert ISO 8601 resets_at to relative/absolute label: "Xm" or "H:MM"
+reset_label() {
+  local iso="$1"
+  [ -z "$iso" ] && return
+  local epoch now diff
+  epoch=$(date -j -f '%Y-%m-%dT%H:%M:%S' "${iso%%.*}" '+%s' 2>/dev/null \
+       || date -d "$iso" '+%s' 2>/dev/null) || return
+  now=$(date +%s)
+  diff=$(( epoch - now ))
+  if [ "$diff" -le 0 ]; then
+    printf 'now'
+  elif [ "$diff" -lt 3600 ]; then
+    printf '%dm' $(( diff / 60 ))
+  else
+    date -j -f '%s' "$epoch" '+%-H:%M' 2>/dev/null \
+    || date -d "@$epoch" '+%-H:%M' 2>/dev/null
+  fi
+}
+
 FIVE_H=$(json '.rate_limits.five_hour.used_percentage // empty')
+FIVE_H_RESET=$(json '.rate_limits.five_hour.resets_at // empty')
 WEEK=$(json '.rate_limits.seven_day.used_percentage // empty')
-if [ -n "$FIVE_H" ] || [ -n "$WEEK" ]; then
-  rl=""
-  [ -n "$FIVE_H" ] && rl+="5h $(printf '%.0f' "$FIVE_H")%"
-  [ -n "$WEEK" ]   && rl+="${rl:+ }7d $(printf '%.0f' "$WEEK")%"
-  parts+=("${ORANGE}${rl}${RESET}")
+if [ -n "$FIVE_H" ]; then
+  fh_int=${FIVE_H%.*}; fh_int=${fh_int:-0}
+  if   [ "$fh_int" -ge 90 ]; then fhc="$RED"
+  elif [ "$fh_int" -ge 70 ]; then fhc="$YELLOW"
+  else fhc="$ORANGE"; fi
+  fh_label="${GREY}5h${RESET} $(make_bar "$FIVE_H" "$fhc")"
+  fh_reset=$(reset_label "$FIVE_H_RESET")
+  [ -n "$fh_reset" ] && fh_label+=" ${GREY}↺${fh_reset}${RESET}"
+  parts+=("$fh_label")
+fi
+if [ -n "$WEEK" ]; then
+  wk_int=${WEEK%.*}; wk_int=${wk_int:-0}
+  if   [ "$wk_int" -ge 90 ]; then wkc="$RED"
+  elif [ "$wk_int" -ge 70 ]; then wkc="$YELLOW"
+  else wkc="$ORANGE"; fi
+  parts+=("${GREY}7d${RESET} $(make_bar "$WEEK" "$wkc")")
 fi
 
 # join line 2 parts with the thin divider
