@@ -56,7 +56,10 @@ SESSION_ID=$(json '.session_id // "nosession"')
 CACHE_FILE="${TMPDIR:-/tmp}/claude-statusline-git-${SESSION_ID}"
 CACHE_MAX_AGE=3
 
-cache_mtime() { stat -f %m "$1" 2>/dev/null || stat -c %Y "$1" 2>/dev/null || echo 0; }
+# GNU `stat -c` first (this machine uses gnubin); BSD `stat -f` as fallback.
+# Order matters: GNU `stat -f` means "filesystem status" and pollutes stdout,
+# so trying BSD syntax first would corrupt the value under GNU coreutils.
+cache_mtime() { stat -c %Y "$1" 2>/dev/null || stat -f %m "$1" 2>/dev/null || echo 0; }
 cache_stale() {
   [ ! -f "$CACHE_FILE" ] && return 0
   [ $(( $(date +%s) - $(cache_mtime "$CACHE_FILE") )) -gt "$CACHE_MAX_AGE" ]
@@ -149,9 +152,23 @@ else
   parts+=("${CYAN}${BOLD}${MODEL}${RESET}")
 fi
 
-# helper: render a percentage bar (width=8 by default)
+# helper: pick a color by used-percentage threshold; $2 is the low-band color
+pct_color() {
+  local int=${1%.*}; int=${int:-0}
+  if   [ "$int" -ge 90 ]; then printf '%s' "$RED"
+  elif [ "$int" -ge 70 ]; then printf '%s' "$YELLOW"
+  else printf '%s' "$2"; fi
+}
+
+# helper: render a percentage bar (width=8 by default). Empty pct means
+# "no data yet": a dim empty bar with a "–" placeholder instead of a number.
 make_bar() {
   local pct="$1" color="$2" width="${3:-8}"
+  if [ -z "$pct" ]; then
+    printf -v _e "%${width}s"
+    printf '%s' "${GREY}${_e// /░} –${RESET}"
+    return
+  fi
   pct=${pct%.*}; pct=${pct:-0}
   local filled=$(( pct * width / 100 ))
   [ "$filled" -gt "$width" ] && filled=$width
@@ -166,10 +183,7 @@ make_bar() {
 PCT=$(json '.context_window.used_percentage // empty')
 if [ -n "$PCT" ]; then
   PCT=${PCT%.*}; PCT=${PCT:-0}
-  if   [ "$PCT" -ge 90 ]; then bc="$RED"
-  elif [ "$PCT" -ge 70 ]; then bc="$YELLOW"
-  else bc="$GREEN"; fi
-  parts+=("${GREY}ctx${RESET} ${bc}${PCT}%${RESET}")
+  parts+=("${GREY}ctx${RESET} $(pct_color "$PCT" "$GREEN")${PCT}%${RESET}")
 fi
 
 # duration
@@ -182,47 +196,47 @@ if [ -n "$DUR_MS" ]; then
   parts+=("${GREY}⏱ ${dur}${RESET}")
 fi
 
-
 # rate limits (Pro/Max only)
-# convert ISO 8601 resets_at to relative/absolute label: "Xm" or "H:MM"
+# convert resets_at to an absolute clock label, e.g. "22:07".
+# resets_at is now a Unix epoch integer (older builds sent an ISO 8601 string);
+# accept both. GNU `date -d` first (this machine uses gnubin), BSD `date -j` next.
 reset_label() {
-  local iso="$1"
-  [ -z "$iso" ] && return
-  local epoch now diff
-  epoch=$(date -j -f '%Y-%m-%dT%H:%M:%S' "${iso%%.*}" '+%s' 2>/dev/null \
-       || date -d "$iso" '+%s' 2>/dev/null) || return
-  now=$(date +%s)
-  diff=$(( epoch - now ))
-  if [ "$diff" -le 0 ]; then
-    printf 'now'
-  elif [ "$diff" -lt 3600 ]; then
-    printf '%dm' $(( diff / 60 ))
+  local raw="$1"
+  [ -z "$raw" ] && return
+  local epoch now
+  if [[ "$raw" =~ ^[0-9]+$ ]]; then
+    epoch="$raw"
   else
-    date -j -f '%s' "$epoch" '+%-H:%M' 2>/dev/null \
-    || date -d "@$epoch" '+%-H:%M' 2>/dev/null
+    epoch=$(date -d "$raw" '+%s' 2>/dev/null \
+         || date -j -f '%Y-%m-%dT%H:%M:%S' "${raw%%.*}" '+%s' 2>/dev/null) || return
   fi
+  now=$(date +%s)
+  if [ "$epoch" -le "$now" ]; then
+    printf 'now'
+  else
+    date -d "@$epoch" '+%-H:%M' 2>/dev/null \
+    || date -j -f '%s' "$epoch" '+%-H:%M' 2>/dev/null
+  fi
+}
+
+# Always render the 5h/7d segments so the bars don't pop in and out.
+# Before the first response the input has no rate_limits; show an empty bar
+# with a dim "–" placeholder until the data arrives.
+rl_part() {
+  local label="$1" pct="$2" reset="$3" out
+  out="${GREY}${label}${RESET} $(make_bar "$pct" "$(pct_color "$pct" "$ORANGE")")"
+  if [ -n "$pct" ] && [ -n "$reset" ]; then
+    local rl; rl=$(reset_label "$reset")
+    [ -n "$rl" ] && out+=" ${GREY}↺${rl}${RESET}"
+  fi
+  printf '%s' "$out"
 }
 
 FIVE_H=$(json '.rate_limits.five_hour.used_percentage // empty')
 FIVE_H_RESET=$(json '.rate_limits.five_hour.resets_at // empty')
 WEEK=$(json '.rate_limits.seven_day.used_percentage // empty')
-if [ -n "$FIVE_H" ]; then
-  fh_int=${FIVE_H%.*}; fh_int=${fh_int:-0}
-  if   [ "$fh_int" -ge 90 ]; then fhc="$RED"
-  elif [ "$fh_int" -ge 70 ]; then fhc="$YELLOW"
-  else fhc="$ORANGE"; fi
-  fh_label="${GREY}5h${RESET} $(make_bar "$FIVE_H" "$fhc")"
-  fh_reset=$(reset_label "$FIVE_H_RESET")
-  [ -n "$fh_reset" ] && fh_label+=" ${GREY}↺${fh_reset}${RESET}"
-  parts+=("$fh_label")
-fi
-if [ -n "$WEEK" ]; then
-  wk_int=${WEEK%.*}; wk_int=${wk_int:-0}
-  if   [ "$wk_int" -ge 90 ]; then wkc="$RED"
-  elif [ "$wk_int" -ge 70 ]; then wkc="$YELLOW"
-  else wkc="$ORANGE"; fi
-  parts+=("${GREY}7d${RESET} $(make_bar "$WEEK" "$wkc")")
-fi
+parts+=("$(rl_part 5h "$FIVE_H" "$FIVE_H_RESET")")
+parts+=("$(rl_part 7d "$WEEK" "")")
 
 # join line 2 parts with the thin divider
 LINE2=""
