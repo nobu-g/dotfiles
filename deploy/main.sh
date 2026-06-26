@@ -22,6 +22,15 @@ for f in "${DOTPATH%/}"/.config/*; do
     done
     continue
   fi
+  if [[ "$(basename "$f")" == "codex" ]]; then
+    mkdir -p "${HOME}/.config/codex" "${HOME}/.agents/skills"
+    ln -snfv "${f}/AGENTS.md" "${HOME}/.config/codex/AGENTS.md"
+    # Codex loads skills from ~/.agents/skills; share the personal Claude skills
+    for sf in "${f}"/skills/*; do
+      ln -snfv "$sf" "${HOME}/.agents/skills/$(basename "$sf")"
+    done
+    continue
+  fi
   ln -snfv "$f" "${HOME}/.config"
 done
 # Reload bat syntaxes
