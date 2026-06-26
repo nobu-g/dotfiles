@@ -5,7 +5,7 @@
 # Deployed as ~/.local/bin/notify by deploy/main.sh on Linux hosts.
 #
 # On a remote host reached over SSH, the local machine runs a code_server
-# (~/scripts/code_server.py) that is exposed here at localhost:${NOTIFY_FORWARD_PORT}
+# (~/.local/bin/code_server.py) that is exposed here at localhost:${NOTIFY_FORWARD_PORT}
 # via SSH remote port forwarding. We POST the notification there so it pops on
 # the local desktop. On a real Linux desktop that port is closed, so we fall
 # back to notify-send; with neither available we stay silent.
