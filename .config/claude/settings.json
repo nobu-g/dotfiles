@@ -46,5 +46,6 @@
   "language": "Japanese",
   "effortLevel": "high",
   "theme": "dark",
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "tui": "fullscreen"
 }
