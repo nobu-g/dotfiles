@@ -197,7 +197,7 @@ if [ -n "$DUR_MS" ]; then
 fi
 
 # rate limits (Pro/Max only)
-# convert resets_at to an absolute clock label, e.g. "22:07".
+# convert resets_at to a remaining-duration label, e.g. "3h12m".
 # resets_at is now a Unix epoch integer (older builds sent an ISO 8601 string);
 # accept both. GNU `date -d` first (this machine uses gnubin), BSD `date -j` next.
 reset_label() {
@@ -214,8 +214,10 @@ reset_label() {
   if [ "$epoch" -le "$now" ]; then
     printf 'now'
   else
-    date -d "@$epoch" '+%-H:%M' 2>/dev/null \
-    || date -j -f '%s' "$epoch" '+%-H:%M' 2>/dev/null
+    local sec=$(( epoch - now )) h m
+    h=$(( sec / 3600 )); m=$(( (sec % 3600) / 60 ))
+    if   [ "$h" -gt 0 ]; then printf '%dh%dm' "$h" "$m"
+    else printf '%dm' "$m"; fi
   fi
 }
 
