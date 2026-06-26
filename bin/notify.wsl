@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# notify — send a desktop notification (WSL / wsl-notify-send.exe backend).
+# Usage: notify [-t TITLE] [-s SUBTITLE] [BODY ...]
+#        echo BODY | notify [-t TITLE] [-s SUBTITLE]
+# Deployed as ~/.local/bin/notify by deploy/main.sh under WSL.
+set -u
+
+title="Notification"
+subtitle=""
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -t | --title)
+      title="${2-}"
+      shift 2
+      ;;
+    -s | --subtitle)
+      subtitle="${2-}"
+      shift 2
+      ;;
+    --)
+      shift
+      break
+      ;;
+    -*) shift ;;
+    *) break ;;
+  esac
+done
+
+if [[ $# -gt 0 ]]; then
+  body="$*"
+elif [[ -p /dev/stdin ]]; then
+  body="$(cat -)"
+else
+  body=""
+fi
+
+command -v wsl-notify-send.exe > /dev/null 2>&1 || exit 0
+
+# wsl-notify-send.exe shows --category as the notification title and takes a
+# single message string for the body; fold the subtitle into that body since
+# there is no dedicated subtitle slot.
+msg="$body"
+[[ -n $subtitle ]] && msg="${subtitle}: ${body}"
+wsl-notify-send.exe --category "$title" "$msg" > /dev/null 2>&1 || true

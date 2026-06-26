@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+# notify — send a desktop notification (macOS / osascript backend).
+# Usage: notify [-t TITLE] [-s SUBTITLE] [BODY ...]
+#        echo BODY | notify [-t TITLE] [-s SUBTITLE]
+# Deployed as ~/.local/bin/notify by deploy/main.sh on macOS.
+set -u
+
+title="Notification"
+subtitle=""
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -t | --title)
+      title="${2-}"
+      shift 2
+      ;;
+    -s | --subtitle)
+      subtitle="${2-}"
+      shift 2
+      ;;
+    --)
+      shift
+      break
+      ;;
+    -*) shift ;;
+    *) break ;;
+  esac
+done
+
+if [[ $# -gt 0 ]]; then
+  body="$*"
+elif [[ -p /dev/stdin ]]; then
+  body="$(cat -)"
+else
+  body=""
+fi
+
+command -v osascript > /dev/null 2>&1 || exit 0
+
+# osascript string literals are double-quoted, so strip embedded quotes and
+# backslashes and collapse newlines/tabs to keep the AppleScript well-formed.
+sanitize() { printf '%s' "${1-}" | tr '\n\r\t' '   ' | tr -d '"\\'; }
+
+osascript \
+  -e "display notification \"$(sanitize "$body")\" with title \"$(sanitize "$title")\" subtitle \"$(sanitize "$subtitle")\" sound name \"Glass\"" \
+  > /dev/null 2>&1 || true

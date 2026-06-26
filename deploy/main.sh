@@ -40,6 +40,25 @@ fi
 
 ln -snfv "${DOTPATH%/}"/bin/{line,line-msg,pyshow,readlinkf} "${HOME}/.local/bin"
 
+# notify: deploy the environment-specific desktop-notification backend as `notify`.
+# All variants share the same CLI: notify [-t TITLE] [-s SUBTITLE] [BODY ...].
+notify_impl=""
+case "${OSTYPE}" in
+freebsd* | darwin*)
+  notify_impl="notify.darwin"
+  ;;
+linux* | cygwin*)
+  if [[ -n ${WSL_DISTRO_NAME:-} ]] || grep -qiE 'microsoft|wsl' /proc/version 2> /dev/null; then
+    notify_impl="notify.wsl"
+  else
+    notify_impl="notify.ssh_remote"
+  fi
+  ;;
+esac
+if [[ -n ${notify_impl} ]]; then
+  ln -snfv "${DOTPATH%/}/bin/${notify_impl}" "${HOME}/.local/bin/notify"
+fi
+
 case "${OSTYPE}" in
 linux* | cygwin*)
   ln -snfv "${DOTPATH%/}/.emacs.d/init.el" "${HOME}/.emacs.d"

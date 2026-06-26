@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+# notify — send a desktop notification from an SSH remote host.
+# Usage: notify [-t TITLE] [-s SUBTITLE] [BODY ...]
+#        echo BODY | notify [-t TITLE] [-s SUBTITLE]
+# Deployed as ~/.local/bin/notify by deploy/main.sh on Linux hosts.
+#
+# On a remote host reached over SSH, the local machine runs a code_server
+# (~/scripts/code_server.py) that is exposed here at localhost:${NOTIFY_FORWARD_PORT}
+# via SSH remote port forwarding. We POST the notification there so it pops on
+# the local desktop. On a real Linux desktop that port is closed, so we fall
+# back to notify-send; with neither available we stay silent.
+set -u
+
+port="${NOTIFY_FORWARD_PORT:-9607}"
+
+title="Notification"
+subtitle=""
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -t | --title)
+      title="${2-}"
+      shift 2
+      ;;
+    -s | --subtitle)
+      subtitle="${2-}"
+      shift 2
+      ;;
+    --)
+      shift
+      break
+      ;;
+    -*) shift ;;
+    *) break ;;
+  esac
+done
+
+if [[ $# -gt 0 ]]; then
+  body="$*"
+elif [[ -p /dev/stdin ]]; then
+  body="$(cat -)"
+else
+  body=""
+fi
+
+gen_data() {
+  jq -n \
+    --arg t "$title" \
+    --arg s "$subtitle" \
+    --arg b "$body" \
+    '{title: $t, subtitle: $s, body: $b}'
+}
+
+# use curl installed on local machine if possible
+curl_="curl"
+[[ -x /usr/bin/curl ]] && curl_="/usr/bin/curl"
+
+# Forward to the local machine through the SSH-forwarded code_server, if reachable.
+${curl_} \
+  -fsS \
+  --connect-timeout 1 \
+  -m 5 \
+  -H 'Content-Type: application/json' \
+  -d "$(gen_data)" \
+  "http://localhost:${port}/notify" > /dev/null 2>&1
