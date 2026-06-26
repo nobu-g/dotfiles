@@ -38,6 +38,7 @@ linux* | cygwin*)
 freebsd* | darwin*)
   if [[ ${OSTYPE} == darwin* ]]; then
     ln -snfv "${DOTPATH%/}"/bin/{copy-file,paste-file} "${HOME}/.local/bin"
+    bash -x "${DOTPATH%/}/deploy/docker-cli-plugins.sh"
   fi
   ln -snfv "${HOME}"/.config/mackup/{.mackup,.mackup.cfg} "${HOME}"
   bash -x "${DOTPATH%/}/deploy/launch-agents.sh"
