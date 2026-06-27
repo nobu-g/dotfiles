@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+_envrc() {
+  if [[ -e poetry.lock ]]; then
+    echo "layout poetry"
+  elif [[ -e uv.lock ]]; then
+    echo "layout uv"
+  elif [[ -e Pipfile ]]; then
+    echo "layout pipenv"
+  elif [[ -d .venv ]]; then
+    echo "export VIRTUAL_ENV=${PWD}/.venv"
+    echo 'PATH_add ${VIRTUAL_ENV}/bin'
+  fi
+}
+
+_envrc > .envrc
+direnv allow

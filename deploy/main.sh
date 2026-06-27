@@ -38,7 +38,7 @@ if (type bat &> /dev/null); then
   bat cache --build
 fi
 
-ln -snfv "${DOTPATH%/}"/bin/{line,line-msg,pyshow,readlinkf} "${HOME}/.local/bin"
+ln -snfv "${DOTPATH%/}"/bin/{line,line-msg,pyshow,readlinkf,init-direnv} "${HOME}/.local/bin"
 
 # notify: deploy the environment-specific desktop-notification backend as `notify`.
 # All variants share the same CLI: notify [-t TITLE] [-s SUBTITLE] [BODY ...].
