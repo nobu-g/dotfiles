@@ -14,7 +14,6 @@ json() { printf '%s' "$input" | jq -r "$1" 2>/dev/null; }
 # Palette (256-color) and glyphs
 # ---------------------------------------------------------------------------
 RESET=$'\033[0m'
-DIM=$'\033[2m'
 BOLD=$'\033[1m'
 
 BRANCH_ICON='' # U+F126 (nf-fa-code-branch)
@@ -28,7 +27,6 @@ fg() { printf '\033[38;5;%sm' "$1"; }
 bg() { printf '\033[48;5;%sm' "$1"; }
 
 GREY=$(fg 244)
-WHITE=$(fg 255)
 GREEN=$(fg 71)
 YELLOW=$(fg 179)
 RED=$(fg 167)
@@ -113,7 +111,6 @@ fi
 
 # git branch + remote tracking
 GIT_CLEAN=$(fg 76)   # medium green (clean branch)
-GIT_DIRTY=$(fg 178)  # amber (dirty branch)
 GIT_STATUS=$(fg 178) # amber (status counts)
 if [ -n "$BRANCH" ]; then
   LINE1+="  ${GIT_CLEAN}${BRANCH_ICON} ${BRANCH}${RESET}"
