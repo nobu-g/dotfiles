@@ -32,7 +32,6 @@ Standards for writing, editing, and reviewing Python code: type hints, docstring
 
 ## Comments
 
-- **Inline comments and explanatory comments must be written in English.**
 - Comments should explain non-obvious intent, assumptions, or business logic.
 - Do not comment obvious syntax.
 

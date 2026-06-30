@@ -17,7 +17,7 @@ Standards for DataFrame operations: loading, filtering, joining, aggregating, tr
 
 - Transformations should be reproducible and scriptable.
 - Avoid manual, spreadsheet-like edits.
-- Document data transformations with comments (written in English).
+- Document data transformations with comments.
 
 ## Examples
 
