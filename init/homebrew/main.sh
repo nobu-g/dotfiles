@@ -23,6 +23,10 @@ eval "$("${HOMEBREW_PREFIX}/bin/brew" shellenv)"
 # install dependencies from Brewfile
 brew update
 brew trust --formula nobu-g/tap/stderred
+# Serialize installs (default is parallel up to 4). With a non-default HOMEBREW_PREFIX
+# everything is built from source, and parallel formulae race on the shared download
+# cache lock ("process has already locked ...incomplete"), failing the build.
+export HOMEBREW_BUNDLE_JOBS=1
 brew bundle install --file "${here}/Brewfile"
 brew bundle install --file "${BREW_SETUP_DIR}/Brewfile"
 if [[ ${FULL_INSTALL} -eq 1 ]]; then
