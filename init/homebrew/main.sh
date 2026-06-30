@@ -23,6 +23,8 @@ eval "$("${HOMEBREW_PREFIX}/bin/brew" shellenv)"
 # install dependencies from Brewfile
 brew update
 brew trust --formula nobu-g/tap/stderred
+brew install openssl@3
+brew postinstall openssl@3
 # Serialize installs (default is parallel up to 4). With a non-default HOMEBREW_PREFIX
 # everything is built from source, and parallel formulae race on the shared download
 # cache lock ("process has already locked ...incomplete"), failing the build.
