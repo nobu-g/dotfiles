@@ -26,7 +26,9 @@ brew trust --formula nobu-g/tap/stderred
 # Serialize installs (default is parallel up to 4). With a non-default HOMEBREW_PREFIX
 # everything is built from source, and parallel formulae race on the shared download
 # cache lock ("process has already locked ...incomplete"), failing the build.
-export HOMEBREW_BUNDLE_JOBS=1
+# HOMEBREW_BUNDLE_JOBS=1 did not actually serialize; NO_JOBS is the documented toggle
+# that disables parallel jobs entirely.
+export HOMEBREW_BUNDLE_NO_JOBS=1
 brew bundle install --file "${here}/Brewfile"
 brew bundle install --file "${BREW_SETUP_DIR}/Brewfile"
 if [[ ${FULL_INSTALL} -eq 1 ]]; then
