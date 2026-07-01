@@ -17,9 +17,28 @@ jobs:
         uses: actions/checkout@v6
       - name: Build docker image
         run: docker build . -f dockerfile/ubuntu.dockerfile -t dotfiles:ubuntu
-      - name: Reproduce openssl@3 failure
+      - name: Reproduce openssl@3 failure (isolated install)
         run: >-
           docker run -i -u user
           --mount type=bind,source=${{ github.workspace }},target=/home/user/dotfiles,readonly
           dotfiles:ubuntu
           bash /home/user/dotfiles/.github/repro/openssl.sh
+
+  bundle-race:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        mode: [race, fixed]
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v6
+      - name: Build docker image
+        run: docker build . -f dockerfile/ubuntu.dockerfile -t dotfiles:ubuntu
+      - name: Bundle race test (MODE=${{ matrix.mode }})
+        run: >-
+          docker run -i -u user -e MODE=${{ matrix.mode }}
+          --mount type=bind,source=${{ github.workspace }},target=/home/user/dotfiles,readonly
+          dotfiles:ubuntu
+          bash /home/user/dotfiles/.github/repro/bundle-race.sh
