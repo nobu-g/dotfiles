@@ -40,6 +40,28 @@ if [[ "${MODE}" == "fixed" ]]; then
   brew postinstall openssl@3
 fi
 
+if [[ "${MODE}" == "diag" ]]; then
+  # Capture WHY openssl@3's post_install fails on a source build. Serialize downloads so the
+  # output isn't muddied by the download race, and run --verbose to surface the exception.
+  export HOMEBREW_DOWNLOAD_CONCURRENCY=1
+  sec "diag: brew install --verbose openssl@3 (capture post_install failure)"
+  brew install --verbose openssl@3 2>&1 | tail -80
+  echo ">>> install exit: ${PIPESTATUS[0]}"
+  sec "diag: all openssl@3 logs"
+  find /home/user/.cache/Homebrew/Logs/openssl@3 -type f 2>/dev/null | while read -r f; do
+    echo "===== ${f} ====="
+    tail -40 "${f}"
+  done
+  sec "diag: cert.pem state"
+  ls -l "${HOMEBREW_PREFIX}/etc/openssl@3/cert.pem" 2>&1
+  sec "diag: retry standalone postinstall --verbose"
+  brew postinstall --verbose openssl@3 2>&1 | tail -30
+  echo ">>> standalone postinstall exit: $?"
+  ls -l "${HOMEBREW_PREFIX}/etc/openssl@3/cert.pem" 2>&1
+  sec "DONE (diag)"
+  exit 0
+fi
+
 if [[ "${MODE}" == "envonly" ]]; then
   # Minimal candidate: serialize BOTH parallelism sources via env vars only. No pre-install,
   # no cert.pem manipulation. Tests whether the openssl@3 post_install succeeds on its own
