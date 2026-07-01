@@ -1,0 +1,25 @@
+name: repro-openssl
+
+# Temporary reproduction workflow for debugging the openssl@3 source-build / postinstall
+# failure on test-linux. Runs on a real amd64 runner (local dev env is arm64 and cannot
+# faithfully reproduce the source build). Only installs openssl@3, so it finishes fast.
+on:
+  push:
+    branches: [test-workflow]
+  workflow_dispatch:
+
+jobs:
+  repro-openssl:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v6
+      - name: Build docker image
+        run: docker build . -f dockerfile/ubuntu.dockerfile -t dotfiles:ubuntu
+      - name: Reproduce openssl@3 failure
+        run: >-
+          docker run -i -u user
+          --mount type=bind,source=${{ github.workspace }},target=/home/user/dotfiles,readonly
+          dotfiles:ubuntu
+          bash /home/user/dotfiles/.github/repro/openssl.sh
