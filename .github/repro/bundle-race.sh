@@ -40,6 +40,18 @@ if [[ "${MODE}" == "fixed" ]]; then
   brew postinstall openssl@3
 fi
 
+if [[ "${MODE}" == "hardened" ]]; then
+  export HOMEBREW_BUNDLE_NO_JOBS=1
+  sec "hardened: mirror main.sh (pre-install + explicit cert.pem link)"
+  brew install ca-certificates openssl@3
+  brew postinstall openssl@3 || true
+  # capture the real post_install error for the record
+  sec "post_install error log (root-cause evidence)"
+  cat /home/user/.cache/Homebrew/Logs/openssl@3/post_install.* 2>/dev/null | tail -30 || echo "(no post_install log)"
+  ln -sf ../ca-certificates/cert.pem "${HOMEBREW_PREFIX}/etc/openssl@3/cert.pem"
+  echo ">>> cert.pem after explicit link: $(readlink -f "${HOMEBREW_PREFIX}/etc/openssl@3/cert.pem" 2>&1)"
+fi
+
 sec "brew bundle install"
 brew bundle install --file /tmp/Brewfile
 echo ">>> bundle exit: $?"
