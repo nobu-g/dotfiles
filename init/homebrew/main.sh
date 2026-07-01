@@ -28,19 +28,32 @@ brew trust --formula nobu-g/tap/stderred
 # shared download-cache lock of common transitive deps, e.g. "A `brew install --formula
 # curl` process has already locked ...m4.rb.incomplete", which aborts the install.
 export HOMEBREW_DOWNLOAD_CONCURRENCY=1
-# With a non-default HOMEBREW_PREFIX, openssl@3 has no usable bottle and is built from
-# source. openssl@3's post_install links the CA bundle into
-# ${HOMEBREW_PREFIX}/etc/openssl@3/cert.pem; without it, brew's own curl/git cannot verify
-# TLS ("unable to get local issuer certificate") and every later download fails or hangs.
-# That post_install fails when it runs inside the same `brew install` that builds the keg
-# (the just-built ca-certificates dependency isn't resolvable yet), but a standalone re-run
-# succeeds. So install openssl@3 first, then re-run its post_install on its own.
-brew install openssl@3
-brew postinstall openssl@3
+# Point brew's toolchain (curl/git/openssl) at the OS CA bundle. With a non-default
+# HOMEBREW_PREFIX, openssl@3/ca-certificates are built from source and their post_install
+# (which is what normally links the CA bundle into openssl's cert.pem) is unreliable; when it
+# doesn't run, brew's curl/git cannot verify TLS ("unable to get local issuer certificate")
+# and every later download fails or hangs. brew's setup_ca_certificates honours these env
+# vars and only overrides them when it force-brews CA certs (not on Linux), so this fixes TLS
+# via env alone, without depending on the flaky post_install or touching any cert.pem.
+for _ca in /etc/ssl/certs/ca-certificates.crt \
+  /etc/pki/tls/certs/ca-bundle.crt \
+  /etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem \
+  /etc/ssl/ca-bundle.pem; do
+  if [[ -f ${_ca} ]]; then
+    export SSL_CERT_FILE="${_ca}" GIT_SSL_CAINFO="${_ca}"
+    break
+  fi
+done
+# Pre-build openssl@3 so `brew bundle` doesn't build it as a dependency mid-run: its
+# post_install exits non-zero on a source build, which would fail the bundle formula that
+# triggered the build. The warning here is harmless — SSL_CERT_FILE already provides the CA
+# bundle — so ignore the non-zero exit.
+brew install openssl@3 || true
 # Install formulae one at a time. `brew bundle`'s default is HOMEBREW_BUNDLE_JOBS=auto
 # (parallel up to 4 CPUs); parallel jobs race on shared source-built dependencies and their
-# download-cache locks, corrupting openssl@3's post_install and hanging the build. `--jobs 1`
-# is authoritative (an explicit flag cannot be overridden by env) and forces sequential.
+# download-cache locks and hang the build. `--jobs 1` is authoritative (an explicit flag
+# cannot be overridden by env) and forces sequential; the env var HOMEBREW_BUNDLE_JOBS=1 does
+# not reliably take effect.
 brew bundle install --jobs 1 --file "${here}/Brewfile"
 brew bundle install --jobs 1 --file "${BREW_SETUP_DIR}/Brewfile"
 if [[ ${FULL_INSTALL} -eq 1 ]]; then
