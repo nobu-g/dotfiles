@@ -41,7 +41,7 @@ if [[ "${MODE}" == "fixed" ]]; then
 fi
 
 if [[ "${MODE}" == "hardened" ]]; then
-  export HOMEBREW_BUNDLE_NO_JOBS=1
+  export HOMEBREW_DOWNLOAD_CONCURRENCY=1
   sec "hardened: mirror main.sh (pre-install openssl@3 + link cert.pem to OS CA bundle)"
   brew install openssl@3
   brew postinstall openssl@3 || true
@@ -58,7 +58,11 @@ if [[ "${MODE}" == "hardened" ]]; then
 fi
 
 sec "brew bundle install"
-brew bundle install --file /tmp/Brewfile
+if [[ "${MODE}" == "hardened" ]]; then
+  brew bundle install --jobs 1 --file /tmp/Brewfile
+else
+  brew bundle install --file /tmp/Brewfile
+fi
 echo ">>> bundle exit: $?"
 
 sec "openssl / cert health after bundle"

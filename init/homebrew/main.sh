@@ -23,6 +23,11 @@ eval "$("${HOMEBREW_PREFIX}/bin/brew" shellenv)"
 # install dependencies from Brewfile
 brew update
 brew trust --formula nobu-g/tap/stderred
+# Download in serial. At this non-standard HOMEBREW_PREFIX everything is built from source,
+# and the default parallel downloader (HOMEBREW_DOWNLOAD_CONCURRENCY=auto) races on the
+# shared download-cache lock of common transitive deps, e.g. "A `brew install --formula
+# curl` process has already locked ...m4.rb.incomplete", which aborts the install.
+export HOMEBREW_DOWNLOAD_CONCURRENCY=1
 # With a non-default HOMEBREW_PREFIX, openssl@3 has no usable bottle and is built from
 # source. The post_install of a source build fails intermittently for both openssl@3 and
 # ca-certificates (and *always* under a parallel `brew bundle`, where jobs race on these
@@ -45,17 +50,15 @@ for _ca in /etc/ssl/certs/ca-certificates.crt \
     break
   fi
 done
-# Serialize installs (default is parallel up to 4). Parallel formulae race on the shared
-# openssl@3 dependency and the download cache lock ("process has already locked
-# ...incomplete"), corrupting the openssl@3 post_install and hanging the build.
-# HOMEBREW_BUNDLE_JOBS=1 did not actually serialize; NO_JOBS is the documented toggle
-# that disables parallel jobs entirely.
-export HOMEBREW_BUNDLE_NO_JOBS=1
-brew bundle install --file "${here}/Brewfile"
-brew bundle install --file "${BREW_SETUP_DIR}/Brewfile"
+# Install formulae one at a time. `brew bundle`'s default is HOMEBREW_BUNDLE_JOBS=auto
+# (parallel up to 4 CPUs); parallel jobs race on shared source-built dependencies and their
+# download-cache locks, corrupting openssl@3's post_install and hanging the build. `--jobs 1`
+# is authoritative (an explicit flag cannot be overridden by env) and forces sequential.
+brew bundle install --jobs 1 --file "${here}/Brewfile"
+brew bundle install --jobs 1 --file "${BREW_SETUP_DIR}/Brewfile"
 if [[ ${FULL_INSTALL} -eq 1 ]]; then
-  brew bundle install --file "${here}/Brewfile.full"
-  brew bundle install --file "${BREW_SETUP_DIR}/Brewfile.full"
+  brew bundle install --jobs 1 --file "${here}/Brewfile.full"
+  brew bundle install --jobs 1 --file "${BREW_SETUP_DIR}/Brewfile.full"
 fi
 echo "Installed formulae and casks:"
 brew list
