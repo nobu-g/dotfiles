@@ -62,6 +62,26 @@ if [[ "${MODE}" == "diag" ]]; then
   exit 0
 fi
 
+if [[ "${MODE}" == "sslenv" ]]; then
+  # Pure-env candidate: point brew's toolchain at the OS CA bundle via the standard OpenSSL
+  # env vars (brew's setup_ca_certificates honours SSL_CERT_FILE/GIT_SSL_CAINFO and only
+  # overrides them when it force-brews CA certs, which it does not on Linux). No cert.pem
+  # manipulation, no dependence on the flaky openssl@3/ca-certificates post_install.
+  export HOMEBREW_DOWNLOAD_CONCURRENCY=1
+  for _ca in /etc/ssl/certs/ca-certificates.crt \
+    /etc/pki/tls/certs/ca-bundle.crt \
+    /etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem \
+    /etc/ssl/ca-bundle.pem; do
+    if [[ -f ${_ca} ]]; then
+      export SSL_CERT_FILE="${_ca}"
+      export GIT_SSL_CAINFO="${_ca}"
+      break
+    fi
+  done
+  sec "sslenv: SSL_CERT_FILE=${SSL_CERT_FILE:-<unset>}"
+  brew install openssl@3
+fi
+
 if [[ "${MODE}" == "clean" ]]; then
   # Final minimal fix mirrored from init/homebrew/main.sh: no cert.pem manipulation.
   export HOMEBREW_DOWNLOAD_CONCURRENCY=1
@@ -98,11 +118,14 @@ if [[ "${MODE}" == "hardened" ]]; then
 fi
 
 sec "brew bundle install"
-if [[ "${MODE}" == "hardened" || "${MODE}" == "clean" ]]; then
-  brew bundle install --jobs 1 --file /tmp/Brewfile
-else
-  brew bundle install --file /tmp/Brewfile
-fi
+case "${MODE}" in
+  hardened | clean | sslenv)
+    brew bundle install --jobs 1 --file /tmp/Brewfile
+    ;;
+  *)
+    brew bundle install --file /tmp/Brewfile
+    ;;
+esac
 echo ">>> bundle exit: $?"
 
 sec "openssl / cert health after bundle"
