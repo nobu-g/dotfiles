@@ -62,6 +62,15 @@ if [[ "${MODE}" == "diag" ]]; then
   exit 0
 fi
 
+if [[ "${MODE}" == "clean" ]]; then
+  # Final minimal fix mirrored from init/homebrew/main.sh: no cert.pem manipulation.
+  export HOMEBREW_DOWNLOAD_CONCURRENCY=1
+  sec "clean: brew install openssl@3 + standalone brew postinstall openssl@3"
+  brew install openssl@3
+  brew postinstall openssl@3
+  echo ">>> cert.pem after postinstall: $(readlink -f "${HOMEBREW_PREFIX}/etc/openssl@3/cert.pem" 2>&1)"
+fi
+
 if [[ "${MODE}" == "envonly" ]]; then
   # Minimal candidate: serialize BOTH parallelism sources via env vars only. No pre-install,
   # no cert.pem manipulation. Tests whether the openssl@3 post_install succeeds on its own
@@ -89,7 +98,7 @@ if [[ "${MODE}" == "hardened" ]]; then
 fi
 
 sec "brew bundle install"
-if [[ "${MODE}" == "hardened" ]]; then
+if [[ "${MODE}" == "hardened" || "${MODE}" == "clean" ]]; then
   brew bundle install --jobs 1 --file /tmp/Brewfile
 else
   brew bundle install --file /tmp/Brewfile

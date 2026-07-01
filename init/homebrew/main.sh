@@ -29,27 +29,14 @@ brew trust --formula nobu-g/tap/stderred
 # curl` process has already locked ...m4.rb.incomplete", which aborts the install.
 export HOMEBREW_DOWNLOAD_CONCURRENCY=1
 # With a non-default HOMEBREW_PREFIX, openssl@3 has no usable bottle and is built from
-# source. The post_install of a source build fails intermittently for both openssl@3 and
-# ca-certificates (and *always* under a parallel `brew bundle`, where jobs race on these
-# shared dependencies). openssl@3's post_install is what links the CA bundle into
-# ${HOMEBREW_PREFIX}/etc/openssl@3/cert.pem; when it does not run, brew's own curl/git can
-# no longer verify TLS ("unable to get local issuer certificate") and every subsequent
-# download fails or hangs.
-#
-# Install openssl@3 on its own line first (the keg builds fine even when its post_install
-# warns), then link its cert.pem straight to the OS CA bundle — the same store
-# ca-certificates bootstraps from — so we never depend on either flaky post_install.
+# source. openssl@3's post_install links the CA bundle into
+# ${HOMEBREW_PREFIX}/etc/openssl@3/cert.pem; without it, brew's own curl/git cannot verify
+# TLS ("unable to get local issuer certificate") and every later download fails or hangs.
+# That post_install fails when it runs inside the same `brew install` that builds the keg
+# (the just-built ca-certificates dependency isn't resolvable yet), but a standalone re-run
+# succeeds. So install openssl@3 first, then re-run its post_install on its own.
 brew install openssl@3
-brew postinstall openssl@3 || true
-mkdir -p "${HOMEBREW_PREFIX}/etc/openssl@3"
-for _ca in /etc/ssl/certs/ca-certificates.crt \
-  /etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem \
-  /etc/ssl/ca-bundle.pem; do
-  if [[ -f ${_ca} ]]; then
-    ln -sf "${_ca}" "${HOMEBREW_PREFIX}/etc/openssl@3/cert.pem"
-    break
-  fi
-done
+brew postinstall openssl@3
 # Install formulae one at a time. `brew bundle`'s default is HOMEBREW_BUNDLE_JOBS=auto
 # (parallel up to 4 CPUs); parallel jobs race on shared source-built dependencies and their
 # download-cache locks, corrupting openssl@3's post_install and hanging the build. `--jobs 1`
