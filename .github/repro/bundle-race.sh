@@ -40,6 +40,15 @@ if [[ "${MODE}" == "fixed" ]]; then
   brew postinstall openssl@3
 fi
 
+if [[ "${MODE}" == "envonly" ]]; then
+  # Minimal candidate: serialize BOTH parallelism sources via env vars only. No pre-install,
+  # no cert.pem manipulation. Tests whether the openssl@3 post_install succeeds on its own
+  # once nothing races with it.
+  export HOMEBREW_DOWNLOAD_CONCURRENCY=1
+  export HOMEBREW_BUNDLE_JOBS=1
+  sec "envonly: env vars only (HOMEBREW_DOWNLOAD_CONCURRENCY=1, HOMEBREW_BUNDLE_JOBS=1)"
+fi
+
 if [[ "${MODE}" == "hardened" ]]; then
   export HOMEBREW_DOWNLOAD_CONCURRENCY=1
   sec "hardened: mirror main.sh (pre-install openssl@3 + link cert.pem to OS CA bundle)"
@@ -66,7 +75,12 @@ fi
 echo ">>> bundle exit: $?"
 
 sec "openssl / cert health after bundle"
+echo ">>> cert.pem raw: $(ls -l "${HOMEBREW_PREFIX}/etc/openssl@3/cert.pem" 2>&1)"
 echo ">>> cert.pem resolves to: $(readlink -f "${HOMEBREW_PREFIX}/etc/openssl@3/cert.pem" 2>&1)"
+if [[ ! -e "${HOMEBREW_PREFIX}/etc/openssl@3/cert.pem" ]]; then
+  sec "cert.pem MISSING -- openssl@3 post_install log (diagnosis)"
+  cat /home/user/.cache/Homebrew/Logs/openssl@3/post_install*.log 2>/dev/null | tail -40 || echo "(no post_install log)"
+fi
 BREW_CURL="${HOMEBREW_PREFIX}/opt/curl/bin/curl"
 if [[ -x "${BREW_CURL}" ]]; then
   echo ">>> brew curl HTTPS test (the exact op that failed in CI):"

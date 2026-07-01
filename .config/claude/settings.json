@@ -10,17 +10,7 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "opus[1m]",
-  "statusLine": {
-    "type": "command",
-    "command": "bash \"${CLAUDE_CONFIG_DIR:-$HOME/.config/claude}/statusline-command.sh\""
-  },
-  "enabledPlugins": {
-    "context7@claude-plugins-official": true,
-    "frontend-design@claude-plugins-official": true,
-    "document-skills@anthropic-agent-skills": true,
-    "playwright@claude-plugins-official": true
-  },
+  "model": "sonnet",
   "hooks": {
     "Stop": [
       {
@@ -43,9 +33,19 @@
       }
     ]
   },
+  "statusLine": {
+    "type": "command",
+    "command": "bash \"${CLAUDE_CONFIG_DIR:-$HOME/.config/claude}/statusline-command.sh\""
+  },
+  "enabledPlugins": {
+    "context7@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true,
+    "document-skills@anthropic-agent-skills": true,
+    "playwright@claude-plugins-official": true
+  },
   "language": "Japanese",
-  "effortLevel": "high",
+  "effortLevel": "xhigh",
+  "tui": "fullscreen",
   "theme": "dark",
-  "skipAutoPermissionPrompt": true,
-  "tui": "fullscreen"
+  "skipAutoPermissionPrompt": true
 }
