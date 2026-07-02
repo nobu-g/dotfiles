@@ -13,6 +13,7 @@ Standards for managing dependencies, running tests, linting, formatting, type ch
 - Use `uv` for all dependency installation, synchronization, addition, removal, and updates.
 - **Never** use pip, pip3, `python -m pip`, poetry, conda, pipenv, or easy_install.
 - **Never** manually create or edit `requirements.txt`.
+- When running `uv` from a coding agent or sandboxed environment, set `UV_CACHE_DIR=./.uv_cache` so `uv` writes its cache inside the project instead of `~/.cache`.
 - Use `uv add <package>` when adding dependencies.
 - Use `uv add --group dev <package>` for dev-only dependencies.
 - Review diffs in `pyproject.toml` and `uv.lock` after dependency changes.
@@ -51,7 +52,7 @@ uv run ty check            # Type check
 
 ## Workflow
 
-1. After modifying `pyproject.toml`, run `uv sync`.
-2. After adding code, run `uv run ruff check .` and `uv run ruff format .`.
-3. Before committing, run `uv run pytest` and `uv run ty check`.
-4. For notebook execution in CI or automation, prefer `papermill`.
+1. In coding-agent or sandboxed environments, prefix `uv` commands with `UV_CACHE_DIR=./.uv_cache`.
+2. After modifying `pyproject.toml`, run `uv sync`.
+3. After adding code, run `uv run ruff check .` and `uv run ruff format .`.
+4. Before committing, run `uv run pytest` and `uv run ty check`.
