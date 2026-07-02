@@ -10,12 +10,9 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "ipdb>=0.13.13",
-    "pytest>=8.0.0",
+    "ipdb",
+    "pytest",
 ]
-# Optional feature groups (uncomment as needed); install with `uv sync --group <name>`:
-# api = ["fastapi[standard]>=0.128.0", "uvicorn[standard]>=0.40.0"]
-# ui = ["streamlit>=1.50.0"]
 
 [build-system]
 requires = ["hatchling"]
