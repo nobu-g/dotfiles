@@ -46,7 +46,7 @@ bash_which() {
   return "${rc}"
 }
 
-zsh_path="$(grep "zsh" /etc/shells)"
+zsh_path="$(grep -m1 '/zsh$' /etc/shells)"
 if [[ -z ${zsh_path} ]]; then
   echo "you don't have zsh in /etc/shells"
   # set zsh_path only when zsh installed via Homebrew is not under $HOME
@@ -62,7 +62,7 @@ if [[ -z ${zsh_path} ]]; then
       fi
     done
   fi
-  if [[ ${SUDO} -eq 1 ]]; then
+  if [[ ${SUDO} -ne 1 ]]; then
     echo "Trying to add ${zsh_path} to /etc/shells, but it seems you don't have sudo privileges."
     echo "Try to install dotfiles specifying 'SUDO=1'"
     exit 1
@@ -71,9 +71,9 @@ if [[ -z ${zsh_path} ]]; then
   echo "${zsh_path}" | sudo tee -a /etc/shells
 fi
 
-if [[ ${SUDO} -eq 1 ]]; then
+if [[ ${SUDO} -ne 1 ]]; then
   echo "Trying to change your login shell to ${zsh_path}, but it seems you don't have sudo privileges."
   echo "Try to install dotfiles specifying 'SUDO=1'"
   exit 1
 fi
-sudo chsh -s "$zsh_path" && echo "default shell changed to $zsh_path"
+sudo chsh -s "$zsh_path" "$USER" && echo "default shell changed to $zsh_path"
