@@ -3,10 +3,13 @@
 set -exu
 
 export ZDOTDIR="${ZDOTDIR:-${HOME}/.zsh}"
-if [[ -z ${DOTPATH} ]]; then
-  DOTPATH="$(dirname "$(dirname "${BASH_SOURCE[0]:-$0}")")"
+if [[ -z ${DOTPATH:-} ]]; then
+  # Resolve to an absolute path so the symlinks below never point relative.
+  DOTPATH="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")/.." && pwd)"
   export DOTPATH
 fi
+
+mkdir -p "${ZDOTDIR}" "${HOME}/.local/bin"
 
 for f in "${DOTPATH%/}"/.zsh.d/{.zshenv,.zprofile,.zshrc,.p10k.zsh}; do
   ln -snfv "$f" "${ZDOTDIR}"
