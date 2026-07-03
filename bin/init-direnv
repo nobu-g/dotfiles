@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 _envrc() {
   if [[ -e poetry.lock ]]; then
     echo "layout poetry"
@@ -13,5 +15,24 @@ _envrc() {
   fi
 }
 
-_envrc > .envrc
+content="$(_envrc)"
+
+# No recognized project layout: do not litter an empty .envrc.
+if [[ -z ${content} ]]; then
+  echo "init-direnv: no recognized Python project layout here; nothing to do" >&2
+  exit 0
+fi
+
+# Never clobber an .envrc we did not generate (e.g. a hand-written one).
+if [[ -e .envrc && "$(cat .envrc)" != "${content}" ]]; then
+  echo "init-direnv: .envrc already exists with different content; not overwriting" >&2
+  echo "  intended content:" >&2
+  sed 's/^/    /' <<< "${content}" >&2
+  exit 1
+fi
+
+# Idempotent: only (re)write when the content is missing or already ours.
+if [[ ! -f .envrc ]]; then
+  echo "${content}" > .envrc
+fi
 direnv allow

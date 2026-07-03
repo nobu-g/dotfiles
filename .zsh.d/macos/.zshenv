@@ -13,9 +13,19 @@ manpath=(
   ${manpath}
 )
 
-# evaluate contents of /etc/paths.d and /etc/manpath.d instead of path_helper
-path=($(cat /etc/paths.d/*) ${path})
-manpath=($(cat /etc/manpaths.d/*) ${manpath})
+# evaluate contents of /etc/paths.d and /etc/manpaths.d instead of path_helper.
+# Use an anon function so the temporaries do not leak into the global scope.
+# (N) avoids "no matches found" on hosts without these dirs (no_nomatch is not
+# set yet in .zshenv); the emptiness guard keeps `cat` from blocking on stdin
+# when the glob matches nothing; "${(f)...}" splits on newlines only so entries
+# containing spaces survive.
+() {
+  local -a files
+  files=(/etc/paths.d/*(N))
+  (( ${#files} )) && path=("${(f)$(cat -- ${files})}" ${path})
+  files=(/etc/manpaths.d/*(N))
+  (( ${#files} )) && manpath=("${(f)$(cat -- ${files})}" ${manpath})
+}
 
 ## TexLive
 if [[ -e /Library/TeX ]]; then

@@ -5,7 +5,9 @@ if [[ -d /usr/local/cuda ]]; then
   export CUDA_HOME="/usr/local/cuda"
   export CUDA_PATH="${CUDA_HOME}"
   export PATH="${CUDA_HOME}/bin:${PATH}"
-  export LD_LIBRARY_PATH="${CUDA_HOME}/lib64:${LD_LIBRARY_PATH}"
+  # Append the previous value only when set, so an unset LD_LIBRARY_PATH does not
+  # leave a trailing colon (an empty entry means CWD to the dynamic linker).
+  export LD_LIBRARY_PATH="${CUDA_HOME}/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}"
   export CUDA_DEVICE_ORDER="PCI_BUS_ID"
 fi
 
