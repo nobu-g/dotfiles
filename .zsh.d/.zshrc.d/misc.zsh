@@ -49,15 +49,17 @@ export CODEX_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/codex"
 export ANSIBLE_HOME="${XDG_DATA_HOME}/ansible"
 
 # direnv
-eval "$(direnv hook zsh)"
-p=$PWD
-while [[ $p != '/' ]]; do
-  if [[ -f $p/.envrc ]]; then
-    direnv allow
-    break
-  fi
-  p=$(dirname $p)
-done
+if (( ${+commands[direnv]} )); then
+  eval "$(direnv hook zsh)"
+  p=$PWD
+  while [[ $p != '/' ]]; do
+    if [[ -f $p/.envrc ]]; then
+      direnv allow
+      break
+    fi
+    p=$(dirname $p)
+  done
+fi
 
 ## peco
 peco-select-history() {
