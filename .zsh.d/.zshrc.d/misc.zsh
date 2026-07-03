@@ -51,14 +51,6 @@ export ANSIBLE_HOME="${XDG_DATA_HOME}/ansible"
 # direnv
 if (( ${+commands[direnv]} )); then
   eval "$(direnv hook zsh)"
-  p=$PWD
-  while [[ $p != '/' ]]; do
-    if [[ -f $p/.envrc ]]; then
-      direnv allow
-      break
-    fi
-    p=$(dirname $p)
-  done
 fi
 
 ## peco
