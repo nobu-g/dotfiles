@@ -84,7 +84,7 @@ whichdistro() {
 checkinstall() {
   # local distro
   _distro=$(whichdistro)
-  if [ "$_distro" = "redhat" ]; then
+  if [ "$_distro" = "redhat" ] || [ "$_distro" = "fedora" ]; then
     sudo yum clean all
     if ! grep -i "fedora" /etc/redhat-release >/dev/null; then
       sudo yum install -y epel-release
@@ -98,7 +98,7 @@ checkinstall() {
   pkgs="$*"
   if [ "$_distro" = "debian" ]; then
     sudo DEBIAN_FRONTEND=noninteractive apt-get install -y ${pkgs}
-  elif [ "$_distro" = "redhat" ]; then
+  elif [ "$_distro" = "redhat" ] || [ "$_distro" = "fedora" ]; then
     sudo yum install -y ${pkgs}
   elif [ "$_distro" = "arch" ]; then
     sudo pacman -S --noconfirm --needed ${pkgs}
@@ -114,7 +114,7 @@ update_packages() {
   _distro=$(whichdistro)
   if [ "$_distro" = "debian" ]; then
     sudo apt-get update -y && sudo apt-get upgrade -y
-  elif [ "$_distro" = "redhat" ]; then
+  elif [ "$_distro" = "redhat" ] || [ "$_distro" = "fedora" ]; then
     sudo yum update -y
   elif [ "$_distro" = "arch" ]; then
     sudo pacman -Syyu  # update & upgrade
@@ -159,11 +159,11 @@ dotfiles_download() {
       wget -O - "$DOTFILES_TARBALL"
     fi | tar xvz
 
-    if [ ! -d dotfiles-master ]; then
-      die "dotfiles-master: not found"
+    if [ ! -d dotfiles-main ]; then
+      die "dotfiles-main: not found"
     fi
     mkdir -p "$(dirname "$DOTPATH")"
-    command mv -f dotfiles-master "$DOTPATH"
+    command mv -f dotfiles-main "$DOTPATH"
   else
     die "curl or wget required"
   fi
