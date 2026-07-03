@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
 
-read -r -n 1 -p "$1 (y/n) " answer
+read -k 1 "answer?$1 (y/n) "
 echo ""
 test "$answer" = "y"

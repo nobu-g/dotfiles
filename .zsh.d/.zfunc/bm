@@ -1,6 +1,6 @@
 # bm: a wrapper command of jocelynmallon/zshmarks
 
-if ! (($ + commands[showmarks])); then
+if ! ((${+commands[showmarks]})); then
   echo "bm: jocelynmallon/zshmarks not found" 1>&2
   return 1
 fi
