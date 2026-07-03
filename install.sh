@@ -88,7 +88,10 @@ checkinstall() {
     sudo yum clean all
     if ! grep -i "fedora" /etc/redhat-release >/dev/null; then
       sudo yum install -y epel-release
-      if [ "$(cat /etc/*release | grep '^VERSION=' | cut -d '"' -f 2 | cut -d " " -f 1)" -ge 8 ]; then
+      # VERSION_ID is a bare major (e.g. 9) or a point release ("8.5"); take the
+      # major so `-ge` never chokes on a non-integer like "8.5".
+      _ver_major="$(sed -n 's/^VERSION_ID=//p' /etc/os-release | tr -d '"' | cut -d . -f 1)"
+      if [ "${_ver_major:-0}" -ge 8 ]; then
         sudo dnf install -y 'dnf-command(config-manager)'
         sudo dnf config-manager --set-enabled powertools
       fi
