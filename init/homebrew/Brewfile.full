@@ -45,8 +45,6 @@ brew "watchexec"       # Execute commands when watched files change
 
 # System
 brew "bandwhich"  # Terminal bandwidth utilization tool
-brew "dog"        # Command-line DNS client
 brew "gping"      # Ping, but with a graph
 brew "iperf3"     # Update of iperf: measures TCP, UDP, and SCTP bandwidth
-brew "netperf"    # Benchmarks performance of many different types of networking
 brew "vmtouch"    # Portable file system cache diagnostics and control

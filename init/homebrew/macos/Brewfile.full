@@ -3,11 +3,10 @@ brew "gdb"    # GNU debugger
 brew "rsync"  # Utility that provides fast incremental file transfer
 
 # Misc
-brew "blackhole-16ch"  # Virtual Audio Driver
-brew "carthage"        # Decentralized dependency manager for Cocoa
-brew "latexdiff"       # Compare and mark up LaTeX file differences
-brew "pwgen"           # Password generator
-brew "hadolint"        # Smarter Dockerfile linter to validate best practices
+brew "carthage"   # Decentralized dependency manager for Cocoa
+brew "latexdiff"  # Compare and mark up LaTeX file differences
+brew "pwgen"      # Password generator
+brew "hadolint"   # Smarter Dockerfile linter to validate best practices
 
 # System
 brew "fswatch"        # Monitor a directory for changes and run a shell command
@@ -16,6 +15,7 @@ brew "tw93/tap/mole"  # Comprehensive macOS cleanup and application uninstall to
 
 # CASK
 cask_args appdir: "/Applications"
+cask "blackhole-16ch"  # Virtual Audio Driver
 cask "alfred"
 cask "alt-tab"
 cask "audacity"
