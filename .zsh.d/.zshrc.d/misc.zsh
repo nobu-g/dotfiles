@@ -94,15 +94,22 @@ export FZF_DEFAULT_OPTS='
 
 fzf-history-widget() {
   # setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
-  local selected="$(
+  # Declare and assign separately: `local x=$(...)` makes $? the status of the
+  # `local` builtin (always 0), which would hide fzf's exit status.
+  local selected
+  selected="$(
     fc -nirl 1 |
     FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} -n2..,.. --bind=ctrl-r:toggle-sort,ctrl-z:ignore ${FZF_CTRL_R_OPTS} --query=${(qqq)LBUFFER} --prompt '[hist] ' +m" fzf |
     cut -d' ' -f4-
   )"
   local ret=$?
+  # Only replace the line on a successful pick; on ESC/Ctrl-C (non-zero exit)
+  # keep whatever the user was typing instead of wiping it.
+  if [[ ${ret} -eq 0 && -n ${selected} ]]; then
+    BUFFER="${selected}"
+    CURSOR=${#BUFFER}
+  fi
   zle reset-prompt
-  BUFFER="${selected}"
-  CURSOR=${#BUFFER}
   return "${ret}"
 }
 zle -N fzf-history-widget

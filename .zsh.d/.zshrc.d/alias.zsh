@@ -98,7 +98,7 @@ alias -s {tbz,bz2}='bzcat'
 alias -s {html,pdf}='open'
 
 expand-global-alias() {
-  if [[ "$LBUFFER" =~ " [A-Z0-9][^ ]+$" ]]; then
+  if [[ "$LBUFFER" =~ " [A-Z0-9][^ ]*$" ]]; then
     zle _expand_alias
     # zle expand-word
   fi

@@ -36,6 +36,6 @@ zstyle ':completion:*:cd:*' tag-order local-directories path-directories
 zstyle ':completion:*' use-cache yes
 zstyle ':completion::complete:*' cache-path "${XDG_CACHE_HOME:-${HOME}/.cache}/zsh/zcompcache"
 ### use sudo path
-zstyle ':completion:sudo:*' environ PATH="$SUDO_PATH:$PATH"
+zstyle ':completion:*:sudo:*' environ PATH="$SUDO_PATH:$PATH"
 # 今いるディレクトリを補完候補から外す
 zstyle ':completion:*' ignore-parents parent pwd ..
