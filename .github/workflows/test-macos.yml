@@ -3,10 +3,12 @@ name: test-macos
 on:
   push:
     branches: [main]
+  pull_request:
 
 jobs:
   test-macos:
     runs-on: macos-latest
+    timeout-minutes: 120
     steps:
     - name: Remove pre-installed Homebrew
       run: |
@@ -17,8 +19,10 @@ jobs:
     - name: Remove pre-installed Apps
       run: |
         sudo rm -rf '/Applications/Google Chrome.app'
-    - name: Clone this repo
-      run: git clone --depth 1 https://github.com/nobu-g/dotfiles.git
+    - name: Check out code
+      uses: actions/checkout@v6
+      with:
+        path: dotfiles
     - name: Install dotfiles
       run: make install
       working-directory: ./dotfiles

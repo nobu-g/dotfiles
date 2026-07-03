@@ -3,10 +3,12 @@ name: test-linux
 on:
   push:
     branches: [main]
+  pull_request:
 
 jobs:
   test-linux:
     runs-on: ubuntu-latest
+    timeout-minutes: 300
     strategy:
       max-parallel: 3
       fail-fast: false
