@@ -211,9 +211,10 @@ reset_label() {
   if [ "$epoch" -le "$now" ]; then
     printf 'now'
   else
-    local sec=$(( epoch - now )) h m
-    h=$(( sec / 3600 )); m=$(( (sec % 3600) / 60 ))
-    if   [ "$h" -gt 0 ]; then printf '%dh%dm' "$h" "$m"
+    local sec=$(( epoch - now )) d h m
+    d=$(( sec / 86400 )); h=$(( (sec % 86400) / 3600 )); m=$(( (sec % 3600) / 60 ))
+    if   [ "$d" -gt 0 ]; then printf '%dd%dh' "$d" "$h"
+    elif [ "$h" -gt 0 ]; then printf '%dh%dm' "$h" "$m"
     else printf '%dm' "$m"; fi
   fi
 }
@@ -234,8 +235,9 @@ rl_part() {
 FIVE_H=$(json '.rate_limits.five_hour.used_percentage // empty')
 FIVE_H_RESET=$(json '.rate_limits.five_hour.resets_at // empty')
 WEEK=$(json '.rate_limits.seven_day.used_percentage // empty')
+WEEK_RESET=$(json '.rate_limits.seven_day.resets_at // empty')
 parts+=("$(rl_part 5h "$FIVE_H" "$FIVE_H_RESET")")
-parts+=("$(rl_part 7d "$WEEK" "")")
+parts+=("$(rl_part 7d "$WEEK" "$WEEK_RESET")")
 
 # join line 2 parts with the thin divider
 LINE2=""
