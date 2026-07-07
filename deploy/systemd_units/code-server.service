@@ -1,0 +1,24 @@
+[Unit]
+Description=code_server: open remote folders in the local VS Code and relay desktop notifications
+After=network.target
+StartLimitIntervalSec=60
+StartLimitBurst=5
+
+[Service]
+Type=simple
+# Mirrors deploy/launchd_jobs/com.user.CodeServer.plist on macOS. The deployed
+# script is executable and has a python3 shebang, so exec it directly.
+ExecStart=%h/.local/bin/code_server.py --port 9607
+# A systemd user service does not inherit the interactive shell's WSL interop
+# environment, so set what launching the Windows VS Code GUI needs.
+Environment=WSL2_GUI_APPS_ENABLED=1
+Environment=WSLENV=WT_SESSION:WT_PROFILE_ID:
+Environment=PYTHONUNBUFFERED=1
+# Machine-specific vars (corporate proxy, WSL_DISTRO_NAME, ...) belong here,
+# not in the repo. The leading `-` makes the file optional.
+EnvironmentFile=-%h/.config/code_server/env
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target
