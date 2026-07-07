@@ -26,7 +26,7 @@ def _vscode_bin() -> str:
     The service manager (launchd/systemd) may start this server with a minimal
     PATH, so prefer well-known absolute locations before falling back to PATH.
     """
-    override = os.environ.get("CODE_SERVER_VSCODE_BIN")
+    override = os.environ.get("DESKTOP_BRIDGE_VSCODE_BIN")
     if override:
         return override
     if sys.platform == "darwin":
@@ -129,7 +129,7 @@ def main() -> None:
     # env = os.environ.copy()
     # env["VSCODE_WSL_DEBUG_INFO"] = "true"
     # from pathlib import Path
-    # Path("/home/ueda/code_server.log").write_text(json.dumps(env))
+    # Path("/home/ueda/desktop_bridge.log").write_text(json.dumps(env))
     # print(env)
 
 

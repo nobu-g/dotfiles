@@ -26,6 +26,6 @@ fi
 loginctl enable-linger "${USER}" > /dev/null 2>&1 || true
 
 systemctl --user daemon-reload || true
-systemctl --user enable --now code-server.service || true
+systemctl --user enable --now desktop-bridge.service || true
 
 exit 0

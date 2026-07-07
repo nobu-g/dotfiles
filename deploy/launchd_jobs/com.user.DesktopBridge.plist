@@ -3,12 +3,12 @@
 <plist version="1.0">
     <dict>
         <key>Label</key>
-        <string>com.user.CodeServer</string>
+        <string>com.user.DesktopBridge</string>
         <key>ProgramArguments</key>
         <array>
             <string>/bin/bash</string>
             <string>-c</string>
-            <string>exec $HOME/.local/bin/code_server.py --port 9607</string>
+            <string>exec $HOME/.local/bin/desktop_bridge.py --port 9607</string>
         </array>
         <key>KeepAlive</key>
         <dict>
@@ -18,8 +18,8 @@
         <key>RunAtLoad</key>
         <true/>
         <key>StandardErrorPath</key>
-        <string>/tmp/CodeServer.err</string>
+        <string>/tmp/DesktopBridge.err</string>
         <key>StandardOutPath</key>
-        <string>/tmp/CodeServer.out</string>
+        <string>/tmp/DesktopBridge.out</string>
     </dict>
 </plist>

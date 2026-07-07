@@ -65,16 +65,16 @@ fi
 case "${OSTYPE}" in
 linux* | cygwin*)
   ln -snfv "${DOTPATH%/}/.emacs.d/init.el" "${HOME}/.emacs.d"
-  # On WSL the local desktop editor is reachable, so run the code_server here
+  # On WSL the local desktop editor is reachable, so run the desktop-bridge here
   # too, started by a systemd user unit (WSL has no launchd).
   if [[ -n ${WSL_DISTRO_NAME:-} ]] || grep -qiE 'microsoft|wsl' /proc/version 2> /dev/null; then
-    ln -snfv "${DOTPATH%/}/bin/code_server.py" "${HOME}/.local/bin"
+    ln -snfv "${DOTPATH%/}/bin/desktop_bridge.py" "${HOME}/.local/bin"
     bash -x "${DOTPATH%/}/deploy/systemd-units.sh"
   fi
   ;;
 freebsd* | darwin*)
   if [[ ${OSTYPE} == darwin* ]]; then
-    ln -snfv "${DOTPATH%/}"/bin/{copy-file,paste-file,code_server.py} "${HOME}/.local/bin"
+    ln -snfv "${DOTPATH%/}"/bin/{copy-file,paste-file,desktop_bridge.py} "${HOME}/.local/bin"
     bash -x "${DOTPATH%/}/deploy/docker-cli-plugins.sh"
   fi
   ln -snfv "${HOME}"/.config/mackup/{.mackup,.mackup.cfg} "${HOME}"
