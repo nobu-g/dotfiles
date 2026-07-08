@@ -41,3 +41,9 @@ Standards for writing, editing, and reviewing Python code: type hints, docstring
 - Prefer explicit error handling over bare `except`.
 - Use `pathlib.Path` for file paths — see [path-and-io](path-and-io.md).
 - Follow `ruff` linting and formatting rules configured in `pyproject.toml`.
+
+## Streamlit
+
+- Do not use the deprecated `use_container_width` argument; use `width` instead.
+  - `use_container_width=True` -> `width="stretch"`
+  - `use_container_width=False` -> `width="content"`
