@@ -1,7 +1,6 @@
 #!/usr/bin/env zsh
 
 sshcode() {
-  set -x
   # variables to use
   local port destination host dir
   # parse option
@@ -42,3 +41,5 @@ sshcode() {
 #   return $ret
 # }
 # compdef _sshcode_completion sshcode
+
+sshcode "$@"
