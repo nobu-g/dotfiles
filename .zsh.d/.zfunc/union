@@ -1,10 +1,25 @@
-# union set of two files
+# Print the union of the unique lines in two files.
 # usage:
 # $ union file1 file2
 # $ cat file1 | union file2
 
-if [[ -p /dev/stdin ]]; then
-  cat - "$@" | awk '!x[$0]++'
-else
-  cat "$@" | awk '!x[$0]++'
-fi
+local file1
+local file2
+
+case $# in
+  1)
+    file1=/dev/stdin
+    file2=$1
+    ;;
+  2)
+    file1=$1
+    file2=$2
+    ;;
+  *)
+    print -u2 'usage: union FILE1 FILE2 | command | union FILE2'
+    return 2
+    ;;
+esac
+
+[[ -r $file1 && -r $file2 ]] || return 1
+cat "$file1" "$file2" | awk '!x[$0]++'
