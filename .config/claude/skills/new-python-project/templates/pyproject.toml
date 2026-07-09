@@ -24,11 +24,10 @@ package = false
 [tool.ruff]
 line-length = 120
 indent-width = 4
-target-version = "py311"  # The minimum Python version to target
+target-version = "py311"
 src = ["src"]
 
 [tool.ruff.lint]
-# Common superset. Trim per project.
 select = ["E", "F", "W", "I", "B", "PL", "NPY", "RUF", "UP", "TID", "COM", "PT", "ARG", "PYI"]
 ignore = [
     "PLR0912",  # Too many branches

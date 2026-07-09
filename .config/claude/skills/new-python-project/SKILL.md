@@ -36,22 +36,13 @@ Project-level conventions for scaffolding a new Python data/ML project. This is 
 
 Imports within `src/` are module-relative (`from metrics.bleu import ...`), or package-qualified when the project nests a named package under `src/` (e.g. `src/my_package/`).
 
-## Toolchain specifics
-
-The docs cover *that* we use uv/ruff/ty. The settings particular to these projects:
-
-- **Build**: `hatchling` with `[tool.uv] package = false` — these are runnable apps, not distributable libraries.
-- **Ruff**: `line-length = 120`, `target-version = "py311"`. Use the full `select`/`ignore` set from the template rather than reinventing it.
-- **Type check**: `ty` by default; switch to `mypy` only when a dependency needs its stubs (e.g. boto3/Pillow).
-- **direnv**: `.envrc` is just `layout uv`.
-
 ## Templates
 
 Copy from `templates/` and adapt — don't hand-write these:
 
 - `templates/pyproject.toml` — canonical config with the full ruff `select`/`ignore` superset, ty, hatchling, uv. **Start here.** Set `name`/`description`/`dependencies`, then trim the ruff `select` list per project.
-- `templates/.pre-commit-config.yaml` — pre-commit-hooks + ruff + ty. `rev`s are `PLACEHOLDER`; run `pre-commit autoupdate` after copying to pin the latest versions.
-- `templates/envrc` — copy to the repo as `.envrc` (`layout uv` + commented API-key/secret placeholders). Keep `.envrc` gitignored; commit a sanitized `.envrc.example` instead.
+- `templates/.pre-commit-config.yaml` — pre-commit-hooks + ruff + ty. Copy it replacing every `rev: PLACEHOLDER` with recent pinned versions, then run `pre-commit autoupdate` to use the latest versions.
+- `templates/envrc` — copy to the repo as `.envrc` (`layout uv` + commented API-key/secret placeholders). Only keep API keys and secres that are required in the repo. Make sure `.envrc` is gitignored.
 
 There is no `.gitignore` template — fetch a fresh one from gitignore.io and append the project dirs:
 
@@ -61,10 +52,10 @@ wget -qO .gitignore "https://www.toptal.com/developers/gitignore/api/python,maco
 
 ## Config & CLI: pick the right tier
 
-- **Simple tool / library** (one transform, few options): no CLI, or a thin **`argparse`** `cli.py`; load YAML with `pyyaml` and validate with a **pydantic** model.
-- **Experiment pipeline** (many swappable components, parameter sweeps): **Hydra** — `configs/` config groups, `@hydra.main(version_base=None, config_path="../configs", config_name="default")`, a `default.yaml` composing `base.yaml` + group defaults, and a `run.sh` to drive parameter matrices.
+- **Simple tool / library** (one transform, few options): no CLI, or a thin **`argparse`** `cli.py`.
+- **Experiment pipeline** (many swappable components, parameter sweeps): **Hydra** — `configs/` config groups, `@hydra.main(version_base=None, config_path="../configs", config_name="default")`, a `default.yaml` composing `base.yaml` + group defaults.
 
-Don't reach for Hydra unless there are real config groups to compose. For Hydra repos, set a project-local cache when needed: `export UV_CACHE_DIR="$PWD/.uv-cache"`.
+Don't reach for Hydra unless there are real config groups to compose.
 
 ## Data modeling & logging
 
