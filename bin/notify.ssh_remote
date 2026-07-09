@@ -12,6 +12,11 @@
 set -u
 
 port="${NOTIFY_FORWARD_PORT:-9607}"
+token="${DESKTOP_BRIDGE_TOKEN:-}"
+if [[ -z ${token} ]]; then
+  token_file="${XDG_CONFIG_HOME:-$HOME/.config}/desktop-bridge/token"
+  [[ -r ${token_file} ]] && IFS= read -r token < "${token_file}"
+fi
 
 title="Notification"
 subtitle=""
@@ -55,10 +60,20 @@ curl_="curl"
 [[ -x /usr/bin/curl ]] && curl_="/usr/bin/curl"
 
 # Forward to the local machine through the SSH-forwarded desktop-bridge, if reachable.
-${curl_} \
-  -fsS \
-  --connect-timeout 1 \
-  -m 5 \
-  -H 'Content-Type: application/json' \
-  -d "$(gen_data)" \
-  "http://localhost:${port}/notify" > /dev/null 2>&1
+curl_args=(
+  -fsS
+  --connect-timeout 1
+  -m 5
+  -H 'Content-Type: application/json'
+  -d "$(gen_data)"
+)
+[[ -n ${token} ]] && curl_args+=(-H "X-Desktop-Bridge-Token: ${token}")
+if ${curl_} "${curl_args[@]}" "http://localhost:${port}/notify" > /dev/null 2>&1; then
+  exit 0
+fi
+
+command -v notify-send > /dev/null 2>&1 || exit 0
+
+msg="$body"
+[[ -n $subtitle ]] && msg="${subtitle}: ${body}"
+notify-send "$title" "$msg" > /dev/null 2>&1 || true
