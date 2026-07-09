@@ -2,8 +2,9 @@
 
 result=0
 
-check() {
-  if (type $1 &> /dev/null); then
+_report() {
+  # _report <name> <status>  (status 0 = passed)
+  if [[ $2 -eq 0 ]]; then
     echo -e "\e[32m[PASSED]\e[m $1 "
     return 0
   else
@@ -11,6 +12,16 @@ check() {
     result=1
     return 1
   fi
+}
+
+check() {
+  type "$1" &> /dev/null
+  _report "$1" $?
+}
+
+check_alias() {
+  [[ "$(whence -w "$1")" == *": alias" ]]
+  _report "$1" $?
 }
 printenv
 brew doctor
@@ -49,16 +60,16 @@ check "rg"
 check "ruby"
 
 # test aliases
-check "a"
-check "d"
-check "e"
-check "g"
-check "relogin"
-check "re"
-check "p"
-check "py"
-check "brew"
-check "sum"
+check_alias "a"
+check_alias "d"
+check_alias "e"
+check_alias "g"
+check_alias "relogin"
+check_alias "re"
+check_alias "p"
+check_alias "py"
+check_alias "brew"
+check_alias "sum"
 
 # test installed tools
 check "zinit"
