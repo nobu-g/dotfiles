@@ -57,7 +57,14 @@ for f in "${DOTPATH%/}"/.config/*; do
   case "${f##*/}" in
   claude)
     mkdir -p "${HOME}/.config/claude"
-    link "${HOME}/.config/claude" "${f}"/*
+    for c in "${f}"/*; do
+      if [[ ${c##*/} != skills ]]; then
+        link "${HOME}/.config/claude" "${c}"
+        continue
+      fi
+      mkdir -p "${HOME}/.config/claude/skills"
+      link "${HOME}/.config/claude/skills" "${c}"/*
+    done
     ;;
   codex)
     mkdir -p "${HOME}/.config/codex" "${HOME}/.agents/skills"
