@@ -13,7 +13,8 @@ mkdir -p "${ZDOTDIR}" "${HOME}/.local/bin"
 
 backup_path_with_date() {
   local src="${1%%/}"
-  local backup="${src}.bak$(date "+%Y-%m-%d")"
+  local backup
+  backup="${src}.bak$(date "+%Y-%m-%d")"
   local candidate="${backup}"
   local i=1
 
