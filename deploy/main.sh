@@ -98,6 +98,8 @@ linux* | cygwin*)
     notify_impl="notify.wsl"
   else
     notify_impl="notify.ssh_remote"
+    # Forward `code [DIRECTORY]` to the desktop-bridge over the SSH tunnel.
+    link "${HOME}/.local/bin/code" "${DOTPATH%/}/bin/code.ssh_remote"
   fi
   ;;
 esac

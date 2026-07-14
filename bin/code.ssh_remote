@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+# code — open a directory from an SSH host in the local desktop's VS Code.
+# Usage: code [DIRECTORY]
+# Deployed as ~/.local/bin/code by deploy/main.sh on remote Linux hosts.
+set -u
+
+if [[ $# -gt 1 ]]; then
+  printf 'Usage: code [DIRECTORY]\n' >&2
+  exit 1
+fi
+
+directory="${1:-.}"
+if ! directory="$(cd -- "${directory}" 2> /dev/null && pwd -P)"; then
+  printf 'code: directory not found: %s\n' "${1:-.}" >&2
+  exit 1
+fi
+
+port="${DESKTOP_BRIDGE_PORT:-${NOTIFY_FORWARD_PORT:-9607}}"
+host="${DESKTOP_BRIDGE_SSH_HOST:-$(hostname)}"
+token="${DESKTOP_BRIDGE_TOKEN:-}"
+if [[ -z ${token} ]]; then
+  token_file="${XDG_CONFIG_HOME:-$HOME/.config}/desktop-bridge/token"
+  [[ -r ${token_file} ]] && IFS= read -r token < "${token_file}"
+fi
+
+data="$(
+  jq -n \
+    --arg host "${host}" \
+    --arg path "${directory}" \
+    '{host: $host, path: $path}'
+)"
+
+# Use curl installed on the base system if possible.
+curl_="curl"
+[[ -x /usr/bin/curl ]] && curl_="/usr/bin/curl"
+
+curl_args=(
+  -fsS
+  --connect-timeout 1
+  -m 5
+  -H 'Content-Type: application/json'
+  -d "${data}"
+)
+[[ -n ${token} ]] && curl_args+=(-H "X-Desktop-Bridge-Token: ${token}")
+"${curl_}" "${curl_args[@]}" "http://localhost:${port}/code" > /dev/null
