@@ -46,8 +46,9 @@ fi
 # completions for google-cloud-sdk
 gc_completion="${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 [[ -f ${gc_completion} ]] && zinit snippet "${gc_completion}"
+unset gc_completion
 
-export EMACS_SERVER_SOCKET="${TMPDIR:-/tmp}/emacs$(id -u)/server"
+export EMACS_SERVER_SOCKET="${TMPDIR:-/tmp}/emacs${EUID}/server"
 
 ## PyCharm CLI launcher
 charm() {

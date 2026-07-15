@@ -8,6 +8,7 @@ alias ll="$_ls -l"
 alias la="$_ls -la"
 alias lt="$_ls -lt"
 alias lat="$_ls -lat"
+unset _ls
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'

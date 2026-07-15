@@ -5,7 +5,8 @@ fi
 
 export ZDOTDIR="${ZDOTDIR:-${HOME}/.zsh}"
 SELF="${(%):-%N}"
-DOTPATH="$(dirname "${SELF:A:h}")"
+DOTPATH="${SELF:A:h:h}"
+unset SELF
 
 # LANG
 export LANG=ja_JP.UTF-8
@@ -49,7 +50,7 @@ fpath=(
 # PATH (SUDO)
 sudo_path=({,/usr/pkg,/usr/local,/usr}/sbin(N-/))
 
-if [[ $(id -u) -eq 0 ]]; then  # root user
+if [[ ${EUID} -eq 0 ]]; then  # root user
   path=(${sudo_path} ${path})
 fi
 
@@ -63,6 +64,7 @@ for prefix in "${HOME}/.linuxbrew" "/home/linuxbrew/.linuxbrew" "/opt/homebrew" 
     break
   fi
 done
+unset prefix
 
 # Python
 export PYTHONUSERBASE="${HOME}/.local"

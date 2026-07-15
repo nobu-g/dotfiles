@@ -1,5 +1,5 @@
 set_iterm2_status_bar() {
-  mycmd=(${(s: :)${1}})
+  local mycmd=(${(s: :)${1}})
   printf "\e]1337;SetUserVar=%s=%s\a" lastcmd "$(echo $mycmd | tr -d '\n' | base64)"
 }
 
@@ -31,7 +31,7 @@ man() {
   env -u LD_PRELOAD -u MANPAGER man "$@" | col -bx | bat -l man -p
 }
 
-export EMACS_SERVER_SOCKET="${TMPDIR:-/tmp}/emacs$(id -u)/server"
+export EMACS_SERVER_SOCKET="${TMPDIR:-/tmp}/emacs${EUID}/server"
 
 # alias
 alias pbcopy='clipcopy'

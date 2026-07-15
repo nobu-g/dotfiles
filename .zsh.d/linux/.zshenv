@@ -1,4 +1,4 @@
-export XDG_RUNTIME_DIR="/run/user/$(id -u)"  # https://serverfault.com/a/887298
+export XDG_RUNTIME_DIR="/run/user/${EUID}"  # https://serverfault.com/a/887298
 
 # settings for hosts with CUDA installed
 if [[ -d /usr/local/cuda ]]; then
@@ -35,6 +35,7 @@ if [[ -e /home/linuxbrew/.local ]]; then
   infopath=(${prefix}/share/info(N-/) ${infopath})
   fpath=(${prefix}/share/zsh/{functions,site-functions}(N-/) ${fpath})
 fi
+unset prefix
 
 # GXP3
 path=(${HOME}/gxp3(N-/) ${path})
