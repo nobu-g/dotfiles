@@ -17,13 +17,13 @@ print -l banana date >"$file2"
 
 expected=$'apple\ncherry'
 actual=$(difference "$file1" "$file2")
-[[ $actual == $expected ]] || {
+[[ $actual == "$expected" ]] || {
   print -u2 "file input: expected ${(qqq)expected}, got ${(qqq)actual}"
   exit 1
 }
 
 actual=$(print -l cherry apple banana | difference "$file2")
-[[ $actual == $expected ]] || {
+[[ $actual == "$expected" ]] || {
   print -u2 "standard input: expected ${(qqq)expected}, got ${(qqq)actual}"
   exit 1
 }

@@ -17,14 +17,14 @@ print -l date apple cherry >"$file2"
 
 expected=$'banana\napple\ndate\ncherry'
 actual=$(union "$file1" "$file2")
-[[ $actual == $expected ]] || {
+[[ $actual == "$expected" ]] || {
   print -u2 "file input: expected ${(qqq)expected}, got ${(qqq)actual}"
   exit 1
 }
 
 expected=$'banana\napple\ndate\ncherry'
 actual=$(print -l banana apple banana | union "$file2")
-[[ $actual == $expected ]] || {
+[[ $actual == "$expected" ]] || {
   print -u2 "standard input: expected ${(qqq)expected}, got ${(qqq)actual}"
   exit 1
 }
