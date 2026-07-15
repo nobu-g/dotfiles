@@ -9,7 +9,10 @@ if [[ -n "$SSH_AUTH_SOCK" && "$SSH_AUTH_SOCK" != "$SSH_AUTH_SOCK_LINK" ]]; then 
   mkdir -p "$(dirname "$SSH_AUTH_SOCK_LINK")"   # ディレクトリを作っておく
   ln -sf "$SSH_AUTH_SOCK" "$SSH_AUTH_SOCK_LINK" # symlink を現在の場所に貼る
 fi
-export SSH_AUTH_SOCK="$SSH_AUTH_SOCK_LINK"
+## symlink が生きたソケットを指すときだけ export する。
+## エージェント未転送のローカルログインでは未設定のまま残し (ssh が "no agent" と正しく報告)、
+## まだ生きている転送セッションの agent には固定 symlink 経由で再接続できる。
+[[ -S "$SSH_AUTH_SOCK_LINK" ]] && export SSH_AUTH_SOCK="$SSH_AUTH_SOCK_LINK"
 
 # # ログインした時自動で tmux attach
 # if [[ -z "$TMUX" && -z "$STY" ]]; then
