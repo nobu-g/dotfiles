@@ -2,7 +2,9 @@
 
 extract() {
   local lower full_path
-  lower=${1,,}                  # Used for matching
+  # Lowercase for matching. Avoid ${1,,} (bash 4+); stock macOS ships bash 3.2,
+  # where that expansion is a parse error.
+  lower=$(printf '%s' "$1" | tr '[:upper:]' '[:lower:]')
   full_path=$(readlink -f "$1") # The real path, expanded & absolute
   case "$lower" in
     *.tar.gz) tar xzf "$full_path" ;;
@@ -31,4 +33,6 @@ extract() {
   esac
 }
 
-extract "$@"
+for arg in "$@"; do
+  extract "$arg"
+done
