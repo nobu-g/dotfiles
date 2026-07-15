@@ -28,10 +28,6 @@ echo "Always show scrollbars"
 # Possible values: `WhenScrolling`, `Automatic`, and `Always`
 defaults write -g AppleShowScrollBars -string "Always"
 
-# Enable full keyboard access for all controls
-# (e.g. enable Tab in modal dialogs)
-defaults write -g AppleKeyboardUIMode -int 3
-
 echo "Expand save dialog by default"
 defaults write -g NSNavPanelExpandedStateForSaveMode -bool true
 defaults write -g NSNavPanelExpandedStateForSaveMode2 -bool true
@@ -50,7 +46,7 @@ echo "Disable press-and-hold for keys in favor of key repeat"
 defaults write -g ApplePressAndHoldEnabled -bool false
 
 echo "Speedup dialog display"
-defaults write -g NSWindowResizeTime 0.001
+defaults write -g NSWindowResizeTime -float 0.001
 # defaults delete -g NSWindowResizeTime  # back to the original
 
 ###############################################################################
@@ -102,11 +98,8 @@ defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 echo "Finder: show all filename extensions"
 defaults write -g AppleShowAllExtensions -bool true
 
-echo "Finder: show hidden files by default"
+echo "Finder: hide hidden files by default"
 defaults write com.apple.finder AppleShowAllFiles -bool false
-
-echo "Finder: use current directory as default search scope"
-defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 
 echo "Finder: show Path bar"
 defaults write com.apple.finder ShowPathbar -bool true
