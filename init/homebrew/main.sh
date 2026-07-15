@@ -9,7 +9,7 @@ case "${OSTYPE}" in
     BREW_SETUP_DIR="${here}/linux"
     ;;
   freebsd* | darwin*)
-    xcode-select --install
+    xcode-select -p &> /dev/null || xcode-select --install
     BREW_SETUP_DIR="${here}/macos"
     ;;
 esac

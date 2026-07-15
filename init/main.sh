@@ -28,7 +28,10 @@ case "${OSTYPE}" in
     fi
     ;;
 esac
-bash -x "$here/homebrew/main.sh"
+# Stop here if Homebrew setup fails: without brew, every later step (shellenv,
+# packages, tools) errors in confusing ways. This script has no `set -e`, so
+# the failure would otherwise cascade silently.
+bash -x "$here/homebrew/main.sh" || exit 1
 eval "$("${HOMEBREW_PREFIX}/bin/brew" shellenv)"
 
 # set the login shell to zsh
