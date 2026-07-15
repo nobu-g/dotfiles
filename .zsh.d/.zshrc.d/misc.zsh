@@ -20,6 +20,7 @@ export RIPGREP_CONFIG_PATH="${XDG_CONFIG_HOME:-$HOME/.config}/ripgrep/config"
 export PYTHONSTARTUP="${XDG_CONFIG_HOME:-$HOME/.config}/python/.pythonrc.py"
 export JUPYTER_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/jupyter"
 export IPYTHONDIR="${XDG_CONFIG_HOME:-$HOME/.config}/ipython"
+export PYTEST_ADDOPTS="-v -s --ff"
 
 # Ruby
 export GEM_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/gem"

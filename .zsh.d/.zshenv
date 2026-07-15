@@ -73,7 +73,6 @@ if [[ -d "${HOME}/.virtualenvs" ]]; then
 else
   export PIPENV_VENV_IN_PROJECT=true
 fi
-export PYTEST_ADDOPTS="-v -s --ff"
 
 # zmv
 autoload -Uz zmv
