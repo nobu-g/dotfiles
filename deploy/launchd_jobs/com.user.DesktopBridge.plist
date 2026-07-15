@@ -13,7 +13,7 @@
         <key>KeepAlive</key>
         <dict>
             <key>SuccessfulExit</key>
-            <true/>
+            <false/>
         </dict>
         <key>RunAtLoad</key>
         <true/>
