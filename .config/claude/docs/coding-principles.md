@@ -11,6 +11,10 @@ Language-agnostic principles that apply to every coding task.
 - Unless told otherwise, **ignore backward compatibility** and keep the code as simple as possible.
 - Prioritize maintainability; avoid verbose or complex code.
 
+## Freshness-sensitive facts
+
+Treat fast-changing technical facts as uncertain. Before relying on current versions, APIs, CLI flags, compatibility matrices, model support, pricing, limits, or known bugs, verify them from primary sources when the answer may affect implementation or advice. If verification is not possible, state the uncertainty and avoid presenting memory as fact.
+
 ## Avoid over-engineering
 
 Only make changes that are directly requested or clearly necessary. Keep solutions simple and focused:
