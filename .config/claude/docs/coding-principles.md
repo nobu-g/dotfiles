@@ -11,6 +11,14 @@ Language-agnostic principles that apply to every coding task.
 - Unless told otherwise, **ignore backward compatibility** and keep the code as simple as possible.
 - Prioritize maintainability; avoid verbose or complex code.
 
+## Coding-agent and sandboxed environments
+
+Redirect tool caches into the project before running tools that would otherwise
+write to a home-directory cache. Do not commit those cache directories.
+
+- `npm`: prefix commands with `npm_config_cache=./.npm_cache`.
+- `pre-commit`: prefix commands with `PRE_COMMIT_HOME=./.pre-commit-cache`.
+
 ## Freshness-sensitive facts
 
 Treat fast-changing technical facts as uncertain. Before relying on current versions, APIs, CLI flags, compatibility matrices, model support, pricing, limits, or known bugs, verify them from primary sources when the answer may affect implementation or advice. If verification is not possible, state the uncertainty and avoid presenting memory as fact.
