@@ -62,8 +62,6 @@ curl_="curl"
 # Forward to the local machine through the SSH-forwarded desktop-bridge, if reachable.
 curl_args=(
   -fsS
-  --connect-timeout 1
-  -m 5
   -H 'Content-Type: application/json'
   -d "$(gen_data)"
 )

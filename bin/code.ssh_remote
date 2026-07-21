@@ -36,8 +36,6 @@ curl_="curl"
 
 curl_args=(
   -fsS
-  --connect-timeout 1
-  -m 5
   -H 'Content-Type: application/json'
   -d "${data}"
 )
