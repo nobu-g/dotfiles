@@ -125,8 +125,8 @@ fi
 
 # RubyGems
 if [[ -d ${HOME}/.gem/ruby ]]; then
-  for p in ${HOME}/.gem/ruby/*/bin; do
-    path=(${p}(N-/) ${path})
+  for p in "${HOME}"/.gem/ruby/*/bin(N-/); do
+    path=(${p} ${path})
   done
 fi
 

@@ -23,7 +23,7 @@ fi
 # fi
 
 # 別のマシンに移動した時カレントディレクトリを維持
-if [[ -e ${LC_PWD} && ${PWD:P} != ${LC_PWD:P} ]]; then
+if [[ -e ${LC_PWD} && ${PWD:P} != "${LC_PWD:P}" ]]; then
   cd "$LC_PWD"
   unset LC_PWD
 fi

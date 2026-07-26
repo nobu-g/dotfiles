@@ -66,7 +66,11 @@ alias tree='tree -CF'
 alias pc='pre-commit'
 alias -- -='cd -'
 alias -- --='cd --'
-(($+commands[delta])) && alias diff='delta' || alias diff='diff -u'
+if (( $+commands[delta] )); then
+  alias diff='delta'
+else
+  alias diff='diff -u'
+fi
 
 # global alias
 alias -g A='| awk'

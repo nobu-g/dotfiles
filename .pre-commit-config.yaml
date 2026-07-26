@@ -21,6 +21,19 @@ repos:
       - id: markdownlint
         args: [--rules, "~MD013,~MD022,~MD029,~MD032,~MD033"]
 
+  - repo: https://github.com/ewhauser/shuck
+    rev: v0.0.45
+    hooks:
+      - id: shuck
+        files: ^\.zsh\.d/
+        exclude: ^\.zsh\.d/\.p10k\.zsh$
+        types_or: [file]
+        args:
+          - --ignore
+          - C001,C002,C003,C005
+          - --config
+          - 'lint.per-file-shell = {"**" = "zsh"}'
+
   - repo: https://github.com/rhysd/actionlint
     rev: v1.7.10
     hooks:
