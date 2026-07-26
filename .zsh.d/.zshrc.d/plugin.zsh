@@ -12,13 +12,13 @@ ZINIT[COMPINIT_OPTS]="-C -d ${XDG_CACHE_HOME:-${HOME}/.cache}/zsh/zcompdump"
 # Zinit extension
 #--------------------------------#
 # zinit light-mode for \
-  # @zinit-zsh/z-a-readurl \
-  # @zinit-zsh/z-a-bin-gem-node \
-  # @zinit-zsh/z-a-patch-dl \
-  # @zinit-zsh/z-a-unscope \
-  # @zinit-zsh/z-a-default-ice \
-  # @zinit-zsh/z-a-submods \
-  # @zinit-zsh/z-a-man # -> require gem
+# @zinit-zsh/z-a-readurl \
+# @zinit-zsh/z-a-bin-gem-node \
+# @zinit-zsh/z-a-patch-dl \
+# @zinit-zsh/z-a-unscope \
+# @zinit-zsh/z-a-default-ice \
+# @zinit-zsh/z-a-submods \
+# @zinit-zsh/z-a-man # -> require gem
 
 #--------------------------------#
 # enable completion for aliases
@@ -129,14 +129,14 @@ ZSH_HIGHLIGHT_MAXLENGTH=512
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 # see https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/highlighters/main/main-highlighter.zsh
 typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_STYLES[suffix-alias]='fg=green'
-ZSH_HIGHLIGHT_STYLES[global-alias]='bg=blue'
+ZSH_HIGHLIGHT_STYLES['suffix-alias']='fg=green'
+ZSH_HIGHLIGHT_STYLES['global-alias']='bg=blue'
 ZSH_HIGHLIGHT_STYLES[autodirectory]='fg=cyan'
 ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
 ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
 ZSH_HIGHLIGHT_STYLES[globbing]='none'
-ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=185'
-ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=185'
+ZSH_HIGHLIGHT_STYLES['single-hyphen-option']='fg=185'
+ZSH_HIGHLIGHT_STYLES['double-hyphen-option']='fg=185'
 
 # https://itchyny.hatenablog.com/entry/2017/06/12/090000
 # requires `go install github.com/itchyny/fillin@latest`

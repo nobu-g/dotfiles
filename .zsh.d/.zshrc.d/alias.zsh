@@ -66,7 +66,7 @@ alias tree='tree -CF'
 alias pc='pre-commit'
 alias -- -='cd -'
 alias -- --='cd --'
-if (( $+commands[delta] )); then
+if (($+commands[delta])); then
   alias diff='delta'
 else
   alias diff='diff -u'
@@ -103,7 +103,7 @@ alias -s {tbz,bz2}='bzcat'
 alias -s {html,pdf}='open'
 
 expand-global-alias() {
-  if [[ "$LBUFFER" =~ " [A-Z0-9][^ ]*$" ]]; then
+  if [[ $LBUFFER =~ " [A-Z0-9][^ ]*$" ]]; then
     zle _expand_alias
     # zle expand-word
   fi

@@ -50,7 +50,7 @@ export CODEX_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/codex"
 export ANSIBLE_HOME="${XDG_DATA_HOME}/ansible"
 
 # direnv
-if (( ${+commands[direnv]} )); then
+if ((${+commands[direnv]})); then
   eval "$(direnv hook zsh)"
 fi
 
@@ -92,8 +92,8 @@ fzf-history-widget() {
   local selected
   selected="$(
     fc -nirl 1 |
-    FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} -n2..,.. --bind=ctrl-r:toggle-sort,ctrl-z:ignore ${FZF_CTRL_R_OPTS} --query=${(qqq)LBUFFER} --prompt '[hist] ' +m" fzf |
-    cut -d' ' -f4-
+      FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} -n2..,.. --bind=ctrl-r:toggle-sort,ctrl-z:ignore ${FZF_CTRL_R_OPTS} --query=${(qqq)LBUFFER} --prompt '[hist] ' +m" fzf |
+      cut -d' ' -f4-
   )"
   local ret=$?
   # Only replace the line on a successful pick; on ESC/Ctrl-C (non-zero exit)
@@ -112,10 +112,10 @@ bindkey '^r' fzf-history-widget
 fzf-cdr-widget() {
   local dest="$(
     cdr -l |
-    sed -Ee 's/^[0-9]+\s+//' |
-    fzf -n2..,.. --bind=ctrl-r:toggle-sort,ctrl-z:ignore ${FZF_CTRL_R_OPTS} --query=${LBUFFER} --prompt '[dest] ' +m --preview '_var={}; ls -FHA --color=always "${_var/#\~/$HOME}"'
+      sed -Ee 's/^[0-9]+\s+//' |
+      fzf -n2..,.. --bind=ctrl-r:toggle-sort,ctrl-z:ignore ${FZF_CTRL_R_OPTS} --query=${LBUFFER} --prompt '[dest] ' +m --preview '_var={}; ls -FHA --color=always "${_var/#\~/$HOME}"'
   )"
-  if [[ -n "${dest}" ]]; then
+  if [[ -n ${dest} ]]; then
     BUFFER="cd ${dest}"
     zle accept-line
   else
@@ -165,12 +165,11 @@ fzf-pkill() {
 }
 alias pk="fzf-pkill"
 
-
 # ghq+fzf (peco alternative)
 fzf-repo-src() {
   local dest
   dest=$(ghq list -p | fzf --query "$BUFFER" --prompt "[ghq]> " --select-1 --exit-0)
-  if [[ -n "${dest}" ]]; then
+  if [[ -n ${dest} ]]; then
     BUFFER="cd ${dest}"
     zle accept-line
   fi
@@ -180,7 +179,7 @@ fzf-repo-src() {
 peco-repo-src() {
   local dest
   dest=$(ghq list -p | peco --query "$BUFFER" --prompt "[ghq]" --print-query | tail -1)
-  if [[ -n "${dest}" ]]; then
+  if [[ -n ${dest} ]]; then
     BUFFER="cd ${dest}"
     zle accept-line
   fi
@@ -188,10 +187,10 @@ peco-repo-src() {
 }
 
 # prefer fzf when installed, otherwise fall back to peco
-if (( $+commands[fzf] )); then
+if (($+commands[fzf])); then
   zle -N fzf-repo-src
   bindkey '^]' fzf-repo-src
-elif (( $+commands[peco] )); then
+elif (($+commands[peco])); then
   zle -N peco-repo-src
   bindkey '^]' peco-repo-src
 fi
@@ -210,17 +209,17 @@ add-zsh-hook chpwd _ls_abbrev
 # eval "$(zoxide init zsh)"
 
 cd() {
-  if [[ $# -eq 1 && $1 = "--" ]]; then
+  if [[ $# -eq 1 && $1 == "--" ]]; then
     pushd +2 || return 1
   else
     builtin cd $@ || return 1
   fi
 }
 
-fontlist() { fc-list | sed 's,:.*,,' | sort -u }
-mvbak() { mv ${1%%/} "${1%%/}.bak$(date "+"%Y-%m-%d)" }
-cpbak() { cp -R ${1%%/} "${1%%/}.bak$(date "+"%Y-%m-%d)" }
-rwh() { while read -r p; do [[ $p =~ ^/ ]] && realpath "$p" || echo "$p"; done < <(which -a "$1") }  # which + realpath
+fontlist() { fc-list | sed 's,:.*,,' | sort -u; }
+mvbak() { mv ${1%%/} "${1%%/}.bak$(date "+"%Y-%m-%d)"; }
+cpbak() { cp -R ${1%%/} "${1%%/}.bak$(date "+"%Y-%m-%d)"; }
+rwh() { while read -r p; do [[ $p =~ ^/ ]] && realpath "$p" || echo "$p"; done < <(which -a "$1"); } # which + realpath
 
 # set operations
 autoload -Uz union

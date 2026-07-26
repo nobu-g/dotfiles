@@ -25,6 +25,6 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: Install required packages
-        run: sudo apt-get update && sudo apt-get install -y shfmt pre-commit
+        run: sudo apt-get update && sudo apt-get install -y pre-commit
       - name: Run pre-commit
         run: pre-commit run --all-files

@@ -11,7 +11,7 @@ _lsd_or_ls() {
 if [[ $# == 0 ]]; then
   _lsd_or_ls
 elif [[ -f $1 ]]; then
-  if (( $+commands[bat] )); then
+  if (($+commands[bat])); then
     bat -p "$@"
   else
     cat "$@"

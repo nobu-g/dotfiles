@@ -12,8 +12,8 @@ trap 'rm -rf "$tmpdir"' EXIT
 file1="$tmpdir/file 1"
 file2="$tmpdir/file 2"
 
-print -l banana apple banana >"$file1"
-print -l date apple cherry >"$file2"
+print -l banana apple banana > "$file1"
+print -l date apple cherry > "$file2"
 
 expected=$'banana\napple\ndate\ncherry'
 actual=$(union "$file1" "$file2")
@@ -29,7 +29,7 @@ actual=$(print -l banana apple banana | union "$file2")
   exit 1
 }
 
-if union "$tmpdir/missing" >/dev/null 2>&1; then
+if union "$tmpdir/missing" > /dev/null 2>&1; then
   print -u2 'missing input file: expected failure'
   exit 1
 fi

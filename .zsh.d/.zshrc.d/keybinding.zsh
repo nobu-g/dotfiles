@@ -28,10 +28,10 @@ if [[ ${ret} -eq 0 ]]; then
   source "${keyfile}"
 else
   echo "WARNING: Keybindings may not be set correctly!" 1>&2
-  echo "Execute \`zkbd\` to create bindings." 1>&2
+  echo 'Execute `zkbd` to create bindings.' 1>&2
 fi
-unfunction zkbd_file; unset keyfile ret
-
+unfunction zkbd_file
+unset keyfile ret
 
 #################################################################################
 # Set some keybindings
@@ -42,14 +42,14 @@ zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 
 # Bind the keys that zkbd set up to some widgets
-[[ -n "${key[Home]}" ]]    && bindkey "${key[Home]}"    beginning-of-line
-[[ -n "${key[End]}" ]]     && bindkey "${key[End]}"     end-of-line
-[[ -n "${key[Insert]}" ]]  && bindkey "${key[Insert]}"  overwrite-mode
-[[ -n "${key[Delete]}" ]]  && bindkey "${key[Delete]}"  delete-char
-[[ -n "${key[Up]}" ]]      && bindkey "${key[Up]}"      up-line-or-search
-[[ -n "${key[Down]}" ]]    && bindkey "${key[Down]}"    down-line-or-search
-[[ -n "${key[Left]}" ]]    && bindkey "${key[Left]}"    backward-char
-[[ -n "${key[Right]}" ]]   && bindkey "${key[Right]}"   forward-char
+[[ -n ${key[Home]} ]] && bindkey "${key[Home]}" beginning-of-line
+[[ -n ${key[End]} ]] && bindkey "${key[End]}" end-of-line
+[[ -n ${key[Insert]} ]] && bindkey "${key[Insert]}" overwrite-mode
+[[ -n ${key[Delete]} ]] && bindkey "${key[Delete]}" delete-char
+[[ -n ${key[Up]} ]] && bindkey "${key[Up]}" up-line-or-search
+[[ -n ${key[Down]} ]] && bindkey "${key[Down]}" down-line-or-search
+[[ -n ${key[Left]} ]] && bindkey "${key[Left]}" backward-char
+[[ -n ${key[Right]} ]] && bindkey "${key[Right]}" forward-char
 
 bindkey "^d" delete-char
 bindkey "^k" kill-line

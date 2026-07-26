@@ -12,8 +12,8 @@ trap 'rm -rf "$tmpdir"' EXIT
 file1="$tmpdir/file 1"
 file2="$tmpdir/file 2"
 
-print -l cherry apple banana >"$file1"
-print -l banana date >"$file2"
+print -l cherry apple banana > "$file1"
+print -l banana date > "$file2"
 
 expected=$'apple\ncherry'
 actual=$(difference "$file1" "$file2")
@@ -28,7 +28,7 @@ actual=$(print -l cherry apple banana | difference "$file2")
   exit 1
 }
 
-if difference "$tmpdir/missing" "$file2" >/dev/null 2>&1; then
+if difference "$tmpdir/missing" "$file2" > /dev/null 2>&1; then
   print -u2 'missing input file: expected failure'
   exit 1
 fi

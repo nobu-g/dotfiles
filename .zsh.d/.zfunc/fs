@@ -1,6 +1,6 @@
 # Determine size of a file or total size of a directory
 
-if (( $# )); then
+if (($#)); then
   du -sbh -- "$@"
 else
   du -sbh .[^.]* ./*

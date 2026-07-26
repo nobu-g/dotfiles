@@ -10,16 +10,23 @@ repos:
   - repo: https://github.com/jumanjihouse/pre-commit-hooks
     rev: 3.0.0
     hooks:
-      # - id: shellcheck
-      #   files: ^(bin|init)/
-      #   types: [shell]
-      - id: shfmt
-        args: [-i, "2", -ci, -sr, -s]
-        files: ^(bin|init)/
-        types: [shell]
       # https://github.com/markdownlint/markdownlint/blob/main/docs/configuration.md
       - id: markdownlint
         args: [--rules, "~MD013,~MD022,~MD029,~MD032,~MD033"]
+
+  - repo: https://github.com/scop/pre-commit-shfmt
+    rev: v3.13.1-1
+    hooks:
+      - id: shfmt
+        args: [-w, -i, "2", -ci, -sr, -s]
+        files: ^(bin|init)/
+        types: [shell]
+      - id: shfmt
+        name: Check zsh style with shfmt
+        args: [-w, -ln, zsh, -i, "2", -ci, -sr, -s]
+        files: ^(\.zsh\.d/|test/.*\.zsh$)
+        exclude: ^\.zsh\.d/(\.p10k\.zsh|\.zshenv|macos/\.zprofile)$
+        types: [file]
 
   - repo: https://github.com/ewhauser/shuck
     rev: v0.0.45

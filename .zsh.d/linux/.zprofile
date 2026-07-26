@@ -2,7 +2,7 @@
 SSH_AUTH_SOCK_LINK="/tmp/${USER}_ssh_sock/ssh_auth_sock" # symlink を貼る場所
 ## -n : SSH_AUTH_SOCK がないときは symlink を貼らない
 ## != : SSH_AUTH_SOCK が既に SSH_AUTH_SOCK_LINK のときは貼らない
-if [[ -n "$SSH_AUTH_SOCK" && "$SSH_AUTH_SOCK" != "$SSH_AUTH_SOCK_LINK" ]]; then # 接続ごとに symlink の向き先を新しくする
+if [[ -n $SSH_AUTH_SOCK && $SSH_AUTH_SOCK != "$SSH_AUTH_SOCK_LINK" ]]; then # 接続ごとに symlink の向き先を新しくする
   # 古い agent を使い回す場合
   ## ! -S : SSH_AUTH_SOCK_LINK の向き先が既にソケットのときは貼らない
   # if [[ -n "$SSH_AUTH_SOCK" && "$SSH_AUTH_SOCK" != "$SSH_AUTH_SOCK_LINK" && ! -S $SSH_AUTH_SOCK_LINK ]]; then
@@ -12,7 +12,7 @@ fi
 ## symlink が生きたソケットを指すときだけ export する。
 ## エージェント未転送のローカルログインでは未設定のまま残し (ssh が "no agent" と正しく報告)、
 ## まだ生きている転送セッションの agent には固定 symlink 経由で再接続できる。
-[[ -S "$SSH_AUTH_SOCK_LINK" ]] && export SSH_AUTH_SOCK="$SSH_AUTH_SOCK_LINK"
+[[ -S $SSH_AUTH_SOCK_LINK ]] && export SSH_AUTH_SOCK="$SSH_AUTH_SOCK_LINK"
 
 # # ログインした時自動で tmux attach
 # if [[ -z "$TMUX" && -z "$STY" ]]; then

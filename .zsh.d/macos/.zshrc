@@ -63,7 +63,7 @@ charm() {
 }
 
 # alias
-alias rm='trash'  # https://github.com/andreafrancia/trash-cli
+alias rm='trash' # https://github.com/andreafrancia/trash-cli
 alias ldd='otool -L'
 # alias jumanpp='docker run -i --rm --platform linux/amd64 kunlp/jumanpp-knp jumanpp'
 (($+commands[knp])) || alias knp='docker run -i --rm --platform linux/amd64 kunlp/jumanpp-knp knp'

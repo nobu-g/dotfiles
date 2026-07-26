@@ -44,5 +44,5 @@ alias sc='systemctl'
 
 # directory alias
 for nas in larch hinoki elm zamia mint osmanthus clover; do
-  hash -d "${nas}"="/mnt/${nas}/${USER}"  # ~nas points to /mnt/nas/${USER}
+  hash -d "${nas}"="/mnt/${nas}/${USER}" # ~nas points to /mnt/nas/${USER}
 done

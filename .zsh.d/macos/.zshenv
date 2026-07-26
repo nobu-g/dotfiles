@@ -22,9 +22,9 @@ manpath=(
 () {
   local -a files
   files=(/etc/paths.d/*(N))
-  (( ${#files} )) && path=("${(f)$(cat -- ${files})}" ${path})
+  ((${#files})) && path=("${(f)$(cat -- ${files})}" ${path})
   files=(/etc/manpaths.d/*(N))
-  (( ${#files} )) && manpath=("${(f)$(cat -- ${files})}" ${manpath})
+  ((${#files})) && manpath=("${(f)$(cat -- ${files})}" ${manpath})
 }
 
 ## TexLive
