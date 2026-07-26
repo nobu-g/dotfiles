@@ -2,16 +2,27 @@
 
 Language-agnostic principles that apply to every coding task.
 
-- Write code comments and messages in English.
+- Write code comments, docstrings, log and error messages, and commit messages in
+  English. Follow project requirements for user-facing text.
 - Prefer small, reviewable changes.
 - Inspect the project documentation, code, tests, and configuration before asking.
   Ask only when unresolved ambiguity would materially affect behavior, data
   semantics, scope, or destructive or external actions.
 - Explain assumptions before non-trivial analytical or design decisions.
-- Follow standard coding conventions (e.g., PEP 8 for Python projects).
-- If `.pre-commit-config.yaml` exists at the repository root, make sure the edited code passes pre-commit.
-- Unless told otherwise, **ignore backward compatibility** and keep the code as simple as possible.
-- Prioritize maintainability; avoid verbose or complex code.
+- If `.pre-commit-config.yaml` exists, run the hooks relevant to the changed
+  files. Follow project instructions when a broader run is required.
+
+## Backward Compatibility
+
+- By default, ignore backward compatibility and prefer the cleanest, simplest
+  current design. Treat research and prototype code as non-mature unless the
+  repository shows otherwise.
+- Preserve compatibility only when the task or project requires it, or the code
+  is demonstrably highly mature and stable. Before a breaking change, weigh
+  repository age and commit volume, codebase size and quality, release and
+  versioning practices, tests and documentation, and evidence of public APIs,
+  persistent formats, or downstream users. If the evidence conflicts and the
+  impact is material, ask before deciding.
 
 ## Coding-agent and sandboxed environments
 
