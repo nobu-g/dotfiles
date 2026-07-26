@@ -4,7 +4,9 @@ Language-agnostic principles that apply to every coding task.
 
 - Write code comments and messages in English.
 - Prefer small, reviewable changes.
-- Stop and ask whenever instructions, specifications, or data semantics are unclear.
+- Inspect the project documentation, code, tests, and configuration before asking.
+  Ask only when unresolved ambiguity would materially affect behavior, data
+  semantics, scope, or destructive or external actions.
 - Explain assumptions before non-trivial analytical or design decisions.
 - Follow standard coding conventions (e.g., PEP 8 for Python projects).
 - If `.pre-commit-config.yaml` exists at the repository root, make sure the edited code passes pre-commit.

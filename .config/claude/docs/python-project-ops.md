@@ -18,11 +18,12 @@ Standards for managing dependencies, running tests, linting, formatting, type ch
 - Use `uv add --group dev <package>` for dev-only dependencies.
 - Review diffs in `pyproject.toml` and `uv.lock` after dependency changes.
 
-## Declaring Dependencies: Match Explicit Imports
+## Declaring Dependencies
 
-- Every package that is **explicitly imported** in the code must be declared as a dependency in `pyproject.toml`.
-- Conversely, do **not** declare a package that is never explicitly imported, even if it is installed.
-- Do not rely on transitive dependencies. If a package is imported directly, declare it directly — even when another declared dependency already pulls it in.
+- Declare every directly imported third-party package in the appropriate
+  dependency group in `pyproject.toml`; do not rely on transitive dependencies.
+- Keep non-imported dependencies when the project uses them as command-line
+  tools, plugins, build backends, entry points, type stubs, or data packages.
 
 ## Python Version
 

@@ -51,19 +51,20 @@ summary = (
 )
 ```
 
-### Safe Join with Row Count Check
+### Join with Cardinality Validation
 
 ```python
-left = pl.scan_parquet("data/processed/users.parquet")
-right = pl.scan_parquet("data/processed/orders.parquet")
+orders = pl.scan_parquet("data/processed/orders.parquet")
+users = pl.scan_parquet("data/processed/users.parquet")
 
-# Check row counts before the join
-left_count = left.select(pl.len()).collect().item()
-right_count = right.select(pl.len()).collect().item()
+# Each order has at most one matching user, so the join must not fan out.
+order_count = orders.select(pl.len()).collect().item()
+joined = orders.join(
+    users,
+    on="user_id",
+    how="left",
+    validate="m:1",
+).collect()
 
-joined = left.join(right, on="user_id", how="left").collect()
-
-# Check the row count after the join (detect fan-out)
-assert joined.height >= left_count, "rows were lost during the join"
-print(f"left={left_count}, right={right_count}, joined={joined.height}")
+assert joined.height == order_count, "join changed the number of orders"
 ```
