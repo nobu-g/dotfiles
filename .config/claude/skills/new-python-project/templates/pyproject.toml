@@ -10,8 +10,9 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "ipdb",
     "pytest",
+    "ruff",
+    "ty",
 ]
 
 [build-system]

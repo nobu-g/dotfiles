@@ -41,13 +41,14 @@ Standards for managing dependencies, Python versions, and project validation.
 ```bash
 uv sync
 uv run pytest path/to/test_file.py
-uv run ruff check path/to/changed_file.py
-uv run ruff format --check path/to/changed_file.py
-uv run ty check
+pre-commit run --files path/to/changed_file.py
 ```
 
 - Follow project-specific validation commands when present.
-- Start with checks relevant to the changed files. Run
-  `uv run ruff format <changed-paths>` only when formatting is needed.
+- Use pre-commit as the canonical runner for linting, formatting, and type
+  checking. Start with the changed files; use `pre-commit run --all-files` when
+  full-project validation is required.
+- If the project declares `ruff` and `ty` as development dependencies, use
+  `uv run ruff ...` and `uv run ty ...` for ad hoc checks.
 - Broaden tests, linting, formatting checks, and type checks when required by
   project instructions or warranted by the change's scope and risk.
