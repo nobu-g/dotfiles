@@ -29,5 +29,6 @@ Detailed task-specific procedures are in `~/.config/claude/docs/*.md`.
 | Every coding task | `~/.config/claude/docs/coding-principles.md` |
 | Dependencies, tests, lint, type check | `~/.config/claude/docs/python-project-ops.md` |
 | Writing or reviewing Python code | `~/.config/claude/docs/python-style.md` |
+| Writing, editing, or reviewing Streamlit applications | `~/.config/claude/docs/streamlit.md` |
 | DataFrame operations | `~/.config/claude/docs/dataframe-polars.md` |
 | File paths and I/O | `~/.config/claude/docs/path-and-io.md` |

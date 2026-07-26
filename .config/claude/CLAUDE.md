@@ -25,6 +25,7 @@ All other rules live in the docs below; consult them per the routing table.
 | [coding-principles](docs/coding-principles.md) | **Before any coding task.** Language-agnostic rules on scope, simplicity, asking when unclear, and avoiding over-engineering. |
 | [python-project-ops](docs/python-project-ops.md) | Managing dependencies, choosing a Python version, or running tests / lint / format / type checks. |
 | [python-style](docs/python-style.md) | Writing, editing, or reviewing Python source — type hints, docstrings, imports, comments, error handling. |
+| [streamlit](docs/streamlit.md) | Writing, editing, or reviewing Streamlit applications. |
 | [dataframe-polars](docs/dataframe-polars.md) | Loading, filtering, joining, aggregating, or reshaping tabular data. |
 | [path-and-io](docs/path-and-io.md) | Building file paths or reading / writing local files. |
 | [environment](docs/environment.md) | Touching machine setup, dotfiles, shell, or Claude Code config — or when a path / symlink behaves unexpectedly. |
