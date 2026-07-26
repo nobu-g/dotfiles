@@ -1,59 +1,53 @@
 # Python Project Operations
 
-Standards for managing dependencies, running tests, linting, formatting, type checking, and executing notebooks.
+Standards for managing dependencies, Python versions, and project validation.
 
 ## Tooling
 
-- Use `uv` for package management.
+- Use `uv` for dependency and environment management. Never invoke `pip`,
+  `pip3`, `python -m pip`, Poetry, Conda, Pipenv, or EasyInstall.
 - Use `ruff` for linting and formatting.
 - Use `ty` for type checking.
-
-## Package Manager: uv Only
-
-- Use `uv` for all dependency installation, synchronization, addition, removal, and updates.
-- **Never** use pip, pip3, `python -m pip`, poetry, conda, pipenv, or easy_install.
-- **Never** manually create or edit `requirements.txt`.
-- When running `uv` from a coding agent or sandboxed environment, set `UV_CACHE_DIR=./.uv_cache` so `uv` writes its cache inside the project instead of `~/.cache`.
-- Use `uv add <package>` when adding dependencies.
-- Use `uv add --group dev <package>` for dev-only dependencies.
-- Review diffs in `pyproject.toml` and `uv.lock` after dependency changes.
+- In coding-agent or sandboxed environments, set
+  `UV_CACHE_DIR=./.uv_cache` to avoid writing to a home-directory cache.
 
 ## Declaring Dependencies
 
-- Declare every directly imported third-party package in the appropriate
-  dependency group in `pyproject.toml`; do not rely on transitive dependencies.
+- Preserve an existing project's dependency manifest and lockfile format unless
+  the task requires a migration. For new projects, use `pyproject.toml` and
+  `uv.lock`.
+- In a uv-managed project, use `uv add <package>` for runtime dependencies and
+  `uv add --group dev <package>` for development dependencies.
+- Declare every directly imported third-party package in the project's
+  appropriate runtime or development dependency group; do not rely on
+  transitive dependencies.
 - Keep non-imported dependencies when the project uses them as command-line
   tools, plugins, build backends, entry points, type stubs, or data packages.
+- After dependency changes, synchronize the environment and review the manifest
+  and lockfile diffs.
 
 ## Python Version
 
-Two separate decisions — don't conflate them.
+- In an existing project, follow `requires-python`, the CI matrix, and the
+  existing `.python-version`.
+- For a new project, choose the minimum supported version from its target
+  environment and dependencies after checking the current CPython support
+  status.
+- Keep `requires-python` as a supported range. Pin the development interpreter
+  separately with `uv python pin <version>`.
 
-### `requires-python` (minimum supported version)
-
-- Keep the project broadly installable across **all currently supported Python versions**. Don't pin to a single version.
-- Rule of thumb: set the floor to **(oldest still-supported version) + 1**. Bumping the floor the moment the oldest version reaches end-of-life is a chore, so leaving one version of headroom avoids churn.
-- As of 2026 the oldest supported version is 3.10, so use `requires-python = ">=3.11"`.
-
-### Interpreter for building/running the dev environment
-
-- Can be newer than the floor — there's no need to develop on the minimum.
-- Avoid the very latest release; libraries often lag behind it. **(latest stable) - 1** is the safe default.
-- As of 2026 that means Python 3.13. Pin it with `uv python pin 3.13` (writes `.python-version`).
-
-## Common Commands
+## Validation
 
 ```bash
-uv sync                    # Install/synchronize dependencies
-uv run pytest              # Run tests
-uv run ruff check .        # Lint
-uv run ruff format .       # Format
-uv run ty check            # Type check
+uv sync
+uv run pytest path/to/test_file.py
+uv run ruff check path/to/changed_file.py
+uv run ruff format --check path/to/changed_file.py
+uv run ty check
 ```
 
-## Workflow
-
-1. In coding-agent or sandboxed environments, prefix `uv` commands with `UV_CACHE_DIR=./.uv_cache`.
-2. After modifying `pyproject.toml`, run `uv sync`.
-3. After adding code, run `uv run ruff check .` and `uv run ruff format .`.
-4. Before committing, run `uv run pytest` and `uv run ty check`.
+- Follow project-specific validation commands when present.
+- Start with checks relevant to the changed files. Run
+  `uv run ruff format <changed-paths>` only when formatting is needed.
+- Broaden tests, linting, formatting checks, and type checks when required by
+  project instructions or warranted by the change's scope and risk.
