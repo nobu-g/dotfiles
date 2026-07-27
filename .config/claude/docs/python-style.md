@@ -14,6 +14,15 @@ Standards for writing, editing, and reviewing Python code.
 - Use Google-style docstrings for public APIs when their behavior, contract, exceptions, or assumptions are not self-evident.
 - Omit sections that add no information.
 
+## Data Modeling
+
+- Use `@dataclass(frozen=True)` for plain internal data, and pydantic v2 `BaseModel` where validation or serialization matters (config, schemas, API payloads). Both coexist in one project — pick per use.
+
+## Logging
+
+- Log through stdlib `logging` with a module-level `logger = logging.getLogger(__name__)`. `loguru` is not used.
+- `print` is fine for CLI output.
+
 ## Code Style
 
 - Follow project-local conventions and the `ruff` configuration in `pyproject.toml`.

@@ -3,6 +3,7 @@
 Language-agnostic principles that apply to every coding task.
 
 - Write code comments, docstrings, log and error messages, and commit messages in English. Follow project requirements for user-facing text.
+- Keep commit messages short, imperative, and lowercase.
 - Prefer small, reviewable changes.
 - Inspect the project documentation, code, tests, and configuration before asking. Ask only when unresolved ambiguity would materially affect behavior, data semantics, scope, or destructive or external actions.
 - Explain assumptions before non-trivial analytical or design decisions.
