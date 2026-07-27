@@ -238,3 +238,8 @@ DerivedData/
 
 **/.claude/settings.local.json
 **/.mcp.json
+
+### Tool caches coding agents may create in the working tree ###
+.pre-commit-cache/
+.npm_cache/
+.uv_cache/

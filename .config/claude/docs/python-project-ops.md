@@ -7,7 +7,7 @@ Standards for managing dependencies, Python versions, and project validation.
 - Use `uv` for dependency and environment management. Never invoke `pip`, `pip3`, `python -m pip`, Poetry, Conda, Pipenv, or EasyInstall.
 - Use `ruff` for linting and formatting.
 - Use `ty` for type checking.
-- In coding-agent or sandboxed environments, set `UV_CACHE_DIR=./.uv_cache` to avoid writing to a home-directory cache.
+- Leave `uv`'s cache at its default location; see `Tool caches` in `coding-principles.md` before redirecting it.
 
 ## Declaring Dependencies
 

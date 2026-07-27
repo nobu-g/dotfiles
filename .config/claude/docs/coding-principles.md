@@ -13,12 +13,17 @@ Language-agnostic principles that apply to every coding task.
 - By default, ignore backward compatibility and prefer the cleanest, simplest current design. Treat research and prototype code as non-mature unless the repository shows otherwise.
 - Preserve compatibility only when the task or project requires it, or the code is demonstrably highly mature and stable. Before a breaking change, weigh repository age and commit volume, codebase size and quality, release and versioning practices, tests and documentation, and evidence of public APIs, persistent formats, or downstream users. If the evidence conflicts and the impact is material, ask before deciding.
 
-## Coding-agent and sandboxed environments
+## Tool caches
 
-Redirect tool caches into the project before running tools that would otherwise write to a home-directory cache. Do not commit those cache directories.
+Use each tool's default cache location, including when running as a coding agent. Never redirect a cache into the working tree as a precaution: it discards an existing warm cache, re-downloads everything from scratch, pollutes the working tree, and often cannot be cleaned up afterwards because deleting it needs a permission the agent does not have.
 
-- `npm`: prefix commands with `npm_config_cache=./.npm_cache`.
-- `pre-commit`: prefix commands with `PRE_COMMIT_HOME=./.pre-commit-cache`.
+Redirect a cache only after a command has actually failed because the home directory is unwritable, and only for the tool that failed:
+
+- `npm`: `npm_config_cache=./.npm_cache`
+- `pre-commit`: `PRE_COMMIT_HOME=./.pre-commit-cache`
+- `uv`: `UV_CACHE_DIR=./.uv_cache`
+
+When a redirect is unavoidable, keep the directory out of every commit, and tell the user in the response that it exists and how to remove it.
 
 ## Freshness-sensitive facts
 
