@@ -2,32 +2,20 @@
 
 Language-agnostic principles that apply to every coding task.
 
-- Write code comments, docstrings, log and error messages, and commit messages in
-  English. Follow project requirements for user-facing text.
+- Write code comments, docstrings, log and error messages, and commit messages in English. Follow project requirements for user-facing text.
 - Prefer small, reviewable changes.
-- Inspect the project documentation, code, tests, and configuration before asking.
-  Ask only when unresolved ambiguity would materially affect behavior, data
-  semantics, scope, or destructive or external actions.
+- Inspect the project documentation, code, tests, and configuration before asking. Ask only when unresolved ambiguity would materially affect behavior, data semantics, scope, or destructive or external actions.
 - Explain assumptions before non-trivial analytical or design decisions.
-- If `.pre-commit-config.yaml` exists, run the hooks relevant to the changed
-  files. Follow project instructions when a broader run is required.
+- If `.pre-commit-config.yaml` exists, run the hooks relevant to the changed files. Follow project instructions when a broader run is required.
 
 ## Backward Compatibility
 
-- By default, ignore backward compatibility and prefer the cleanest, simplest
-  current design. Treat research and prototype code as non-mature unless the
-  repository shows otherwise.
-- Preserve compatibility only when the task or project requires it, or the code
-  is demonstrably highly mature and stable. Before a breaking change, weigh
-  repository age and commit volume, codebase size and quality, release and
-  versioning practices, tests and documentation, and evidence of public APIs,
-  persistent formats, or downstream users. If the evidence conflicts and the
-  impact is material, ask before deciding.
+- By default, ignore backward compatibility and prefer the cleanest, simplest current design. Treat research and prototype code as non-mature unless the repository shows otherwise.
+- Preserve compatibility only when the task or project requires it, or the code is demonstrably highly mature and stable. Before a breaking change, weigh repository age and commit volume, codebase size and quality, release and versioning practices, tests and documentation, and evidence of public APIs, persistent formats, or downstream users. If the evidence conflicts and the impact is material, ask before deciding.
 
 ## Coding-agent and sandboxed environments
 
-Redirect tool caches into the project before running tools that would otherwise
-write to a home-directory cache. Do not commit those cache directories.
+Redirect tool caches into the project before running tools that would otherwise write to a home-directory cache. Do not commit those cache directories.
 
 - `npm`: prefix commands with `npm_config_cache=./.npm_cache`.
 - `pre-commit`: prefix commands with `PRE_COMMIT_HOME=./.pre-commit-cache`.
@@ -47,25 +35,18 @@ Only make changes that are directly requested or clearly necessary. Keep solutio
 
 ## Comments
 
-Code must be self-documenting. Comments are a last resort for what naming and
-structure cannot express, so keep them minimal.
+Code must be self-documenting. Comments are a last resort for what naming and structure cannot express, so keep them minimal.
 
-- Write a comment only for non-obvious behavior or constraints that remain true
-  independently of any edit: why a surprising approach was necessary, an external
-  contract or bug being worked around, a non-obvious invariant, or a link to a
-  spec or issue.
-- Never narrate the change. Comments and docstrings must not describe the edit,
-  the previous implementation, the reason for the change, or the user's request.
-  Delete such comments when editing code that already contains them.
-  Prohibited examples:
+- Write a comment only for non-obvious behavior or constraints that remain true independently of any edit: why a surprising approach was necessary, an external contract or bug being worked around, a non-obvious invariant, or a link to a spec or issue.
+- Never narrate the change. Comments and docstrings must not describe the edit, the previous implementation, the reason for the change, or the user's request. Delete such comments when editing code that already contains them. Prohibited examples:
   - `# changed from list to set for performance`
   - `# NEW: added retry handling`
   - `# removed the old validation here`
   - `# now uses the v2 endpoint`
   - `# keeping this for backward compatibility with the previous version`
-- Change summaries belong in the response to the user, the commit message, or the
-  pull request description — never in the code. A reader checking out the file
-  months later has no use for them; `git log` and `git blame` already answer
-  "what changed and why".
-- A comment that would go stale the moment the code changes again does not belong
-  in the code.
+- Change summaries belong in the response to the user, the commit message, or the pull request description — never in the code. A reader checking out the file months later has no use for them; `git log` and `git blame` already answer "what changed and why".
+- A comment that would go stale the moment the code changes again does not belong in the code.
+
+## Markdown authoring
+
+Write agent-facing Markdown (instruction files, skills, docs) without hard line wrapping. Break lines only at real structural boundaries — paragraphs, list items, headings. Mid-sentence line breaks inserted to satisfy a column limit add no meaning and only make the text harder to read and edit.
