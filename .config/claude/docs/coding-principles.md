@@ -8,6 +8,13 @@ Language-agnostic principles that apply to every coding task.
 - Explain assumptions before non-trivial analytical or design decisions.
 - If `.pre-commit-config.yaml` exists, run the hooks relevant to the changed files. Follow project instructions when a broader run is required.
 
+## Act only on explicit instructions
+
+- A question asks for an answer, not for the work it describes ("can this be done", "why does X happen", "どうにかならないか"). Investigate freely, then answer and propose the change without making it. A diagnosis is not approval to fix.
+- Never run `git commit`, `git push`, or history-rewriting commands unless asked in that message. Finishing an edit is not a reason to commit it, and approval for one commit does not carry over to later changes.
+- Do not widen a narrow request: documenting a rule is not applying it, and changing one file is not updating its callers.
+- Name an out-of-scope next step in one line at the end of the response instead of doing it.
+
 ## Backward Compatibility
 
 - By default, ignore backward compatibility and prefer the cleanest, simplest current design. Treat research and prototype code as non-mature unless the repository shows otherwise.

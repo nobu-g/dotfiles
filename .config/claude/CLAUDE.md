@@ -11,6 +11,8 @@ Detailed task-specific instructions are in `~/.config/claude/docs/*.md`.
 
 - Never commit raw data, credentials, API keys, tokens, or customer-level records.
 - Never modify, overwrite, delete, or regenerate data identified as raw or source data. If its status is unclear and the task would mutate it, ask first.
+- A question is a request for an answer, not for the work it describes. Answer it, propose the change, and stop. Implement only when explicitly instructed; see `Act only on explicit instructions` in `docs/coding-principles.md`.
+- Never run `git commit`, `git push`, or any history-rewriting command unless the user asks for it in that message.
 
 ## Routing Table
 
