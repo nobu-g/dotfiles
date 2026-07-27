@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+from __future__ import annotations
+
 import argparse
 import glob
 import hmac
@@ -36,8 +38,6 @@ def _vscode_bin() -> str:
             if os.path.exists(path):
                 return path
     elif _is_wsl():
-        # VS Code is installed on the Windows host; its `code` shim under
-        # /mnt/c launches the Windows app and understands vscode-remote URIs.
         matches = sorted(
             glob.glob(
                 "/mnt/c/Users/*/AppData/Local/Programs/"
@@ -128,12 +128,8 @@ class MyHandler(BaseHTTPRequestHandler):
         title: str = body["title"]
         subtitle: str = body["subtitle"]
         content: str = body["body"]
-        # The service manager (launchd/systemd) may start this server with a
-        # minimal PATH (no ~/.local/bin), so resolve `notify` by absolute
-        # path like the code binary above. deploy/main.sh points this at the
-        # platform-specific backend (notify.darwin / notify.wsl).
-        notify = str(Path.home() / ".local" / "bin" / "notify")
-        self._run([notify, "-t", title, "-s", subtitle, content])
+        notify = Path.home() / ".local" / "bin" / "notify"
+        self._run([str(notify), "-t", title, "-s", subtitle, content])
 
 
 def main() -> None:
