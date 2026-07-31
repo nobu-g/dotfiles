@@ -13,12 +13,20 @@ set -u
 
 input=$(cat)
 
+# The Notification event carries a .message; the Stop event does not.
+message=$(printf '%s' "$input" | jq -r '.message // ""')
+
+# The idle "Claude is waiting for your input" notification fires while the Stop
+# hook has already notified about the same pause, so drop it. Permission
+# requests, which arrive as their own Notification event, still get through.
+[[ "$message" == *"waiting for your input"* ]] && exit 0
+
 # Notification title: "Claude Code: <cwd basename>".
 dir=$(printf '%s' "$input" | jq -r '.cwd // ""' | xargs basename 2>/dev/null)
 
-# Subtitle: the Notification event carries a .message; the Stop event does not,
-# so fall back to a fixed string. One script serves both hooks this way.
-subtitle=$(printf '%s' "$input" | jq -r '.message // "Action required"')
+# Subtitle: the event message, or a fixed string for Stop. One script serves
+# both hooks this way.
+subtitle="${message:-Action required}"
 
 # Body: the most recent genuine user prompt from the transcript (skipping the
 # synthetic <command-*> / <local-command-*> entries), collapsed to one line.
