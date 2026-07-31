@@ -20,7 +20,7 @@ jobs:
       run: |
         sudo rm -rf '/Applications/Google Chrome.app'
     - name: Check out code
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
       with:
         path: dotfiles
     - name: Install dotfiles
