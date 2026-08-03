@@ -32,7 +32,7 @@ repos:
         types: [file]
 
   - repo: https://github.com/ewhauser/shuck
-    rev: v0.0.45
+    rev: v0.1.1
     hooks:
       - id: shuck
         files: ^\.zsh\.d/
@@ -45,6 +45,6 @@ repos:
           - 'lint.per-file-shell = {"**" = "zsh"}'
 
   - repo: https://github.com/rhysd/actionlint
-    rev: v1.7.10
+    rev: v1.7.12
     hooks:
       - id: actionlint

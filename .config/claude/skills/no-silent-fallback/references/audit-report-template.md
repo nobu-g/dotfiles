@@ -1,5 +1,3 @@
-# Default-value audit template
-
 Copy this structure, keep the headings, delete the guidance in parentheses. Write it in the language the user is writing in.
 
 ---
@@ -8,7 +6,7 @@ Copy this structure, keep the headings, delete the guidance in parentheses. Writ
 
 Falling back to a default value hides the caller's omission and makes it impossible to read from the code which values a run actually used. This report classifies every default in the scope below and proposes the fail-loud form for the ones that only fire on a mistake.
 
-**Criteria**
+Criteria:
 
 - *Must be required* — production callers always pass the value, so the default is reachable only by mistake; or the same default resolution is duplicated across layers; or the default fabricates data from absence; or it decides what the output means.
 - *Legitimate* — the default is the specification, a documented tuning constant, a meaningful absence, display-layer tolerance of partial records, or a labeled degradation.

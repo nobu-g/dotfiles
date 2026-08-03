@@ -92,6 +92,7 @@ When the request is "list the places first", produce a report and stop — propo
 
 1. **Read the real entry points first** (CLI, config loader, orchestration, container entrypoint). A default is judged against its actual callers, so you need to know what production always passes before you can call a default unreachable.
 2. **Sweep mechanically.** These over-report by design; classification is the work:
+
    ```bash
    rg -n --type py '\.get\([^)]+,'                          # dict.get with a default
    rg -n --type py '\bor\s+(0|0\.0|""|\[\]|\{\}|False)'      # falsy-swallowing `or`
@@ -104,6 +105,7 @@ When the request is "list the places first", produce a report and stop — propo
    rg -n --type ts '^\s*\w+\?:'                              # optional interface fields
    rg -n --glob '*.{sh,zsh,yml,yaml}' '\$\{[A-Za-z_][A-Za-z0-9_]*:-'
    ```
+
 3. **Classify every hit** with the decision test, and record the **caller evidence** — the `file:line` that already passes the value. That evidence is what turns "a default exists" into "this default is unreachable except by mistake".
 4. **Write the report** from `references/audit-report-template.md`: `file:line`, which criterion it trips, the fix, priority. Always include the *no change needed* section with reasons — the negative list is what makes the audit trustworthy and keeps the next sweep from re-flagging the same lines. Write it in the language the user is writing in.
 5. **Order by blast radius**, not by count: values that decide what the output means → fabrications from missing data → dead fallbacks → cosmetic. Group items that follow from a single decision so they land in one commit.
