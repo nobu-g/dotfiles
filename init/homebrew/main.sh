@@ -36,6 +36,10 @@ case "${OSTYPE}" in
     # Exporting SSL_CERT_FILE etc. instead does not work: bin/brew re-executes itself
     # via `env -i` and only lets HOMEBREW_* and a small allowlist through.
     export HOMEBREW_NO_INSTALL_FROM_API=1
+    # Route brew's downloads through a wrapper that falls back from the unreliable
+    # ftpmirror.gnu.org redirector to the canonical ftp.gnu.org (see the wrapper).
+    HOMEBREW_CURL_PATH="$(cd "${BREW_SETUP_DIR}" && pwd)/curl-ftpmirror-fallback.sh"
+    export HOMEBREW_CURL_PATH
     ;;
 esac
 # Download in serial. When building from source, the default parallel downloader
