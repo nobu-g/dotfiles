@@ -16,12 +16,13 @@ Detailed task-specific instructions are in `~/.config/claude/docs/*.md`.
 
 ## Routing Table
 
-Before acting, read every document that applies:
+Read the matching document before your first edit in that area, and state in one line which you read.
+Paths are absolute: `~/.config/claude/docs/<name>.md` — never resolve them against the project.
 
-- Any coding task: `docs/coding-principles.md`
-- Dependencies, Python versions, tests, lint, formatting, or type checks: `docs/python-project-ops.md`
-- Python source: `docs/python-style.md`
-- Streamlit applications: `docs/streamlit.md`
-- DataFrame operations: `docs/dataframe-polars.md`
-- File paths or I/O: `docs/path-and-io.md`
-- Machine setup, shell configuration, agent configuration, paths, or symlinks: `docs/environment.md`
+- Any coding task: `coding-principles.md`
+- Editing Python source: `python-style.md`
+- Adding deps, changing Python versions, or running tests/lint/format/type checks: `python-project-ops.md`
+- Editing a Streamlit app: `streamlit.md`
+- Writing DataFrame code: `dataframe-polars.md`
+- Writing path or file I/O code: `path-and-io.md`
+- Changing machine, shell, or agent configuration: `environment.md`
