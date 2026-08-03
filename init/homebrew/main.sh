@@ -21,34 +21,31 @@ fi
 eval "$("${HOMEBREW_PREFIX}/bin/brew" shellenv)"
 
 # install dependencies from Brewfile
+case "${OSTYPE}" in
+  linux* | cygwin*)
+    # On Linux the non-standard HOMEBREW_PREFIX forces most formulae to build from
+    # source, and Homebrew's JSON-API install path cannot handle that at scale:
+    #  - the postinstall child process fails to resolve formulae through the internal
+    #    API manifest (FormulaUnavailableError on "packages.<arch>.jws.json"), so every
+    #    source-built formula with a post_install step exits non-zero; openssl@3 then
+    #    never links cert.pem and all later TLS in brewed git/curl breaks,
+    #  - per-formula .rb source downloads race on the download-cache lock ("process has
+    #    already locked ....rb.incomplete") or fail silently ("<formula> source code
+    #    not found at .../api-source/...").
+    # Loading formulae from a full homebrew/core tap clone bypasses that machinery.
+    # Exporting SSL_CERT_FILE etc. instead does not work: bin/brew re-executes itself
+    # via `env -i` and only lets HOMEBREW_* and a small allowlist through.
+    export HOMEBREW_NO_INSTALL_FROM_API=1
+    ;;
+esac
+# Download in serial. When building from source, the default parallel downloader
+# (HOMEBREW_DOWNLOAD_CONCURRENCY=auto) races on the shared download-cache lock of common
+# transitive deps, which aborts the install.
+export HOMEBREW_DOWNLOAD_CONCURRENCY=1
+# Retry transient download failures (observed 502/504 bursts from ghcr.io and mirrors).
+export HOMEBREW_CURL_RETRIES=3
 brew update
 brew trust --formula nobu-g/tap/stderred
-# Download in serial. At this non-standard HOMEBREW_PREFIX everything is built from source,
-# and the default parallel downloader (HOMEBREW_DOWNLOAD_CONCURRENCY=auto) races on the
-# shared download-cache lock of common transitive deps, e.g. "A `brew install --formula
-# curl` process has already locked ...m4.rb.incomplete", which aborts the install.
-export HOMEBREW_DOWNLOAD_CONCURRENCY=1
-# Point brew's toolchain (curl/git/openssl) at the OS CA bundle. With a non-default
-# HOMEBREW_PREFIX, openssl@3/ca-certificates are built from source and their post_install
-# (which is what normally links the CA bundle into openssl's cert.pem) is unreliable; when it
-# doesn't run, brew's curl/git cannot verify TLS ("unable to get local issuer certificate")
-# and every later download fails or hangs. brew's setup_ca_certificates honours these env
-# vars and only overrides them when it force-brews CA certs (not on Linux), so this fixes TLS
-# via env alone, without depending on the flaky post_install or touching any cert.pem.
-for _ca in /etc/ssl/certs/ca-certificates.crt \
-  /etc/pki/tls/certs/ca-bundle.crt \
-  /etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem \
-  /etc/ssl/ca-bundle.pem; do
-  if [[ -f ${_ca} ]]; then
-    export SSL_CERT_FILE="${_ca}" GIT_SSL_CAINFO="${_ca}"
-    break
-  fi
-done
-# Pre-build openssl@3 so `brew bundle` doesn't build it as a dependency mid-run: its
-# post_install exits non-zero on a source build, which would fail the bundle formula that
-# triggered the build. The warning here is harmless — SSL_CERT_FILE already provides the CA
-# bundle — so ignore the non-zero exit.
-brew install openssl@3 || true
 # Install formulae one at a time. `brew bundle`'s default is HOMEBREW_BUNDLE_JOBS=auto
 # (parallel up to 4 CPUs); parallel jobs race on shared source-built dependencies and their
 # download-cache locks and hang the build. `--jobs 1` is authoritative (an explicit flag
