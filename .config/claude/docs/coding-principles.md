@@ -12,6 +12,7 @@ Language-agnostic principles that apply to every coding task.
 ## Act only on explicit instructions
 
 - A question asks for an answer, not for the work it describes ("can this be done", "why does X happen", "どうにかならないか"). Investigate freely, then answer and propose the change without making it. A diagnosis is not approval to fix.
+- Do not create or switch Git branches unless the user explicitly asks for it. Work on the current branch by default.
 - Never run `git commit`, `git push`, or history-rewriting commands unless asked in that message. Finishing an edit is not a reason to commit it, and approval for one commit does not carry over to later changes.
 - Do not widen a narrow request: documenting a rule is not applying it, and changing one file is not updating its callers.
 - Name an out-of-scope next step in one line at the end of the response instead of doing it.
