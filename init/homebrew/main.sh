@@ -48,18 +48,29 @@ esac
 export HOMEBREW_DOWNLOAD_CONCURRENCY=1
 # Retry transient download failures (observed 502/504 bursts from ghcr.io and mirrors).
 export HOMEBREW_CURL_RETRIES=3
+# Keep cached downloads: the `brew cleanup` run after each install deletes files that
+# later formulae in the same bundle still need, and a mid-bundle auto-update shifts the
+# tap state between the bundle's prefetch and its install steps.
+export HOMEBREW_NO_INSTALL_CLEANUP=1
+export HOMEBREW_NO_AUTO_UPDATE=1
 brew update
 brew trust --formula nobu-g/tap/stderred
-# Install formulae one at a time. `brew bundle`'s default is HOMEBREW_BUNDLE_JOBS=auto
-# (parallel up to 4 CPUs); parallel jobs race on shared source-built dependencies and their
-# download-cache locks and hang the build. `--jobs 1` is authoritative (an explicit flag
-# cannot be overridden by env) and forces sequential; the env var HOMEBREW_BUNDLE_JOBS=1 does
-# not reliably take effect.
-brew bundle install --jobs 1 --file "${here}/Brewfile"
-brew bundle install --jobs 1 --file "${BREW_SETUP_DIR}/Brewfile"
+
+# Install formulae one at a time: parallel jobs race on shared source-built
+# dependencies and their download-cache locks. `--jobs 1` is authoritative (an explicit
+# flag cannot be overridden by env). Bottles are still occasionally poured before the
+# download queue has finished writing them
+# (https://github.com/Homebrew/brew/issues/15957), which fails a formula spuriously;
+# the cache survives, so a single retry completes the run.
+bundle_install() {
+  brew bundle install --jobs 1 --file "$1" ||
+    brew bundle install --jobs 1 --file "$1"
+}
+bundle_install "${here}/Brewfile"
+bundle_install "${BREW_SETUP_DIR}/Brewfile"
 if [[ ${FULL_INSTALL} -eq 1 ]]; then
-  brew bundle install --jobs 1 --file "${here}/Brewfile.full"
-  brew bundle install --jobs 1 --file "${BREW_SETUP_DIR}/Brewfile.full"
+  bundle_install "${here}/Brewfile.full"
+  bundle_install "${BREW_SETUP_DIR}/Brewfile.full"
 fi
 echo "Installed formulae and casks:"
 brew list

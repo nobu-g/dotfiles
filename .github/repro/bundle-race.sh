@@ -26,6 +26,8 @@ if [[ "${MODE}" == "noapi" ]]; then
 fi
 export HOMEBREW_DOWNLOAD_CONCURRENCY=1
 export HOMEBREW_CURL_RETRIES=3
+export HOMEBREW_NO_INSTALL_CLEANUP=1
+export HOMEBREW_NO_AUTO_UPDATE=1
 
 sec "brew update (clones homebrew/core when NO_INSTALL_FROM_API=1)"
 brew update
@@ -50,7 +52,8 @@ brew "cmake"
 brew "curl"
 brew "wget"
 EOF
-brew bundle install --jobs 1 --file /tmp/Brewfile
+brew bundle install --jobs 1 --file /tmp/Brewfile ||
+  brew bundle install --jobs 1 --file /tmp/Brewfile
 bundle_exit=$?
 echo ">>> bundle exit: ${bundle_exit}"
 
@@ -58,7 +61,7 @@ sec "brewed curl TLS test (the exact op that failed in CI)"
 curl_exit=0
 BREW_CURL="${HOMEBREW_PREFIX}/opt/curl/bin/curl"
 if [[ -x ${BREW_CURL} ]]; then
-  "${BREW_CURL}" -sSfI https://github.com | head -3
+  "${BREW_CURL}" -sSf -o /dev/null -w "HTTP %{http_code}\n" https://github.com
   curl_exit=$?
   echo ">>> brewed curl exit: ${curl_exit}"
 else
