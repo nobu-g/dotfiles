@@ -105,6 +105,18 @@ OS の CA バンドル候補(distro 横断):`/etc/ssl/certs/ca-certificates.crt`
   (キャッシュが残るので2回目は即完走)。
 - **上流 tarball のダウンロード失敗**: `curl: (22) ... 404`/部分DL。多くは**一過性のミラー障害**
   (同時刻でも別 dist は踏まず完走する等)。→ まず再実行で切り分け、恒常なら `HOMEBREW_CURL_RETRIES` / Brewfile 見直し。
+  恒常破損の実例: ftpmirror.gnu.org の多日ダウン、invisible-mirror.net の ncurses tarball 内容破損
+  (取得ごとに違うハッシュ、`Formula reports different checksum`)。formula の mirror 定義があっても
+  ダウンロードキューはフォールバックしないため、`HOMEBREW_CURL_PATH` の curl ラッパーで正常ホスト
+  (ftp.gnu.org)へ URL を書き換えるのが確実。
+- **所要時間の構造変化(故障ではない)**: 2026-05/06 の brew 修正
+  (「Homebrew versions prior to 5.1.15 generated incorrect :any_skip_relocation」)以降、Linux bottle の
+  cellar タグが正しく固定 cellar になり、**非標準 prefix では bottle が pour されなくなった**。
+  それ以前(2026-04 まで)は誤タグの bottle を未 relocation のまま pour していたため各ジョブ約1時間で
+  完走していたが、以後は正味のソースビルド時間(node 1本で約2時間)がそのままかかる。
+  時間超過を故障と混同しないこと。対策はレバーではなく構成側: 重い formula の削減、
+  glibc が新しいベースイメージ(古い glibc だと brew が glibc+gcc をフルブートストラップし全 formula が低速化)、
+  `timeout-minutes` の引き上げ(GitHub ホストランナー上限 6h)。
 - **arch/環境固有のビルド失敗**: 終了コード 132(SIGILL)等。**ローカル arm64 の Docker で頻発するが CI(amd64)では
   起きないことが多い**。CI 実機で再現するまで「CI のバグ」と決めつけない。
 - **長時間化・タイムアウト**: 全ソースビルド由来。ハング(上記TLS)を消すと大幅短縮。必要なら timeout や package 削減。
