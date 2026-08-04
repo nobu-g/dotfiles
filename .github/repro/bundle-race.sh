@@ -22,6 +22,7 @@ eval "$("${HOMEBREW_PREFIX}/bin/brew" shellenv)"
 
 if [[ "${MODE}" == "noapi" ]]; then
   export HOMEBREW_NO_INSTALL_FROM_API=1
+  export HOMEBREW_CURL_PATH=/home/user/dotfiles/init/homebrew/linux/curl-ftpmirror-fallback.sh
 fi
 export HOMEBREW_DOWNLOAD_CONCURRENCY=1
 export HOMEBREW_CURL_RETRIES=3
