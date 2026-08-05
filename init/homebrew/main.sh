@@ -30,8 +30,8 @@ case "${OSTYPE}" in
     # The JSON-API install path breaks post_install for source-built formulae;
     # load formulae from a homebrew/core tap clone instead.
     export HOMEBREW_NO_INSTALL_FROM_API=1
-    # Fall back from the unreliable ftpmirror.gnu.org to ftp.gnu.org.
-    HOMEBREW_CURL_PATH="$(cd "${BREW_SETUP_DIR}" && pwd)/curl-ftpmirror-fallback.sh"
+    # Reroute unreliable GNU download hosts to the kernel.org mirror.
+    HOMEBREW_CURL_PATH="$(cd "${BREW_SETUP_DIR}" && pwd)/curl-gnu-mirror.sh"
     export HOMEBREW_CURL_PATH
     ;;
 esac

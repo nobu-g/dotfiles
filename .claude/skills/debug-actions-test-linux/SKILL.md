@@ -74,7 +74,7 @@ bottle が使えず、**ほぼ全 formula がソースビルド**になる。ソ
 | ダウンロードを逐次化(ロック競合回避) | `export HOMEBREW_DOWNLOAD_CONCURRENCY=1` |
 | DL リトライ強化(一過性の部分DL/瞬断) | `export HOMEBREW_CURL_RETRIES=<n>` |
 | install 毎の cleanup / bundle 中の auto-update を止める(キャッシュ・tap 状態の mid-run 変化を防ぐ) | `export HOMEBREW_NO_INSTALL_CLEANUP=1 HOMEBREW_NO_AUTO_UPDATE=1` |
-| brew のダウンロード URL を書き換える(死んだミラー回避) | `HOMEBREW_CURL_PATH=<wrapper>` に curl ラッパーを指定(例: `init/homebrew/linux/curl-ftpmirror-fallback.sh`)。ラッパー内は**絶対パスの `/usr/bin/curl` を exec** すること(素の `curl` は brew の shim 経由で自分に戻り無限再帰) |
+| brew のダウンロード URL を書き換える(死んだミラー回避) | `HOMEBREW_CURL_PATH=<wrapper>` に curl ラッパーを指定(例: `init/homebrew/linux/curl-gnu-mirror.sh`)。ラッパー内は**絶対パスの `/usr/bin/curl` を exec** すること(素の `curl` は brew の shim 経由で自分に戻り無限再帰) |
 | `post_install` 失敗の実エラーを見る | `HOMEBREW_DEVELOPER=1` で backtrace が出る(通常は握りつぶされる)。ただし DEVELOPER は `forbid_packages_from_paths` も無効化するので、挙動が変わり得る点に注意 |
 | ~~TLS の CA を OS バンドルに固定~~ | **効かない(2026-08 に確定)**: `bin/brew` は `env -i` で環境を再構成し、`HOMEBREW_*` と少数の allowlist(HOME/PATH/proxy 系)しか通さないため、`SSL_CERT_FILE`/`GIT_SSL_CAINFO` は brew に届かない |
 | 掃除・ヒント抑制でログを見やすく | `HOMEBREW_NO_INSTALL_CLEANUP=1 HOMEBREW_NO_ENV_HINTS=1 HOMEBREW_NO_ANALYTICS=1 HOMEBREW_NO_AUTO_UPDATE=1` |
@@ -129,7 +129,7 @@ OS の CA バンドル候補(distro 横断):`/etc/ssl/certs/ca-certificates.crt`
 
 ```bash
 export HOMEBREW_NO_INSTALL_FROM_API=1        # 根本修正: formula を tap clone からロード
-HOMEBREW_CURL_PATH=".../curl-ftpmirror-fallback.sh"  # 死んだ ftpmirror.gnu.org を ftp.gnu.org へ書き換え
+HOMEBREW_CURL_PATH=".../curl-gnu-mirror.sh"          # GNU 系ホスト(ftpmirror/ftp.gnu.org 等)を mirrors.kernel.org へ書き換え
 export HOMEBREW_CURL_PATH
 export HOMEBREW_DOWNLOAD_CONCURRENCY=1       # DL 逐次化
 export HOMEBREW_CURL_RETRIES=3               # 一過性の 502/504 対策
