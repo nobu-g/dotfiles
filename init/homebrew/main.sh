@@ -35,10 +35,6 @@ case "${OSTYPE}" in
     export HOMEBREW_CURL_PATH
     ;;
 esac
-export HOMEBREW_DOWNLOAD_CONCURRENCY=1 # parallel downloads race on cache locks
-export HOMEBREW_CURL_RETRIES=3
-export HOMEBREW_NO_INSTALL_CLEANUP=1 # cleanup deletes caches later formulae need
-export HOMEBREW_NO_AUTO_UPDATE=1
 brew update
 brew trust --formula nobu-g/tap/stderred
 
