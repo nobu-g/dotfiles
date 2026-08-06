@@ -70,10 +70,13 @@ bottle が使えず、**ほぼ全 formula がソースビルド**になる。ソ
 | 目的 | レバー |
 | --- | --- |
 | formula を逐次インストール | **`brew bundle install --jobs 1`**(フラグが確実。env `HOMEBREW_BUNDLE_JOBS/NO_JOBS` は効かないことがある) |
+| JSON-API 経路を丸ごと回避(api-source 起因の故障全部) | **`export HOMEBREW_NO_INSTALL_FROM_API=1`**(homebrew/core の tap clone 約1.4GB が走る。bottle は引き続き pour される) |
 | ダウンロードを逐次化(ロック競合回避) | `export HOMEBREW_DOWNLOAD_CONCURRENCY=1` |
 | DL リトライ強化(一過性の部分DL/瞬断) | `export HOMEBREW_CURL_RETRIES=<n>` |
-| TLS の CA を OS バンドルに固定(cert.pem を触らず) | `export SSL_CERT_FILE=<os-ca> GIT_SSL_CAINFO=<os-ca>`(brew が尊重) |
-| `post_install` 失敗の切り分け/回避 | 該当 formula を bundle 前に単独 `brew install`(必要なら `|| true`)、`brew postinstall <f>` を別実行 |
+| install 毎の cleanup / bundle 中の auto-update を止める(キャッシュ・tap 状態の mid-run 変化を防ぐ) | `export HOMEBREW_NO_INSTALL_CLEANUP=1 HOMEBREW_NO_AUTO_UPDATE=1` |
+| brew のダウンロード URL を書き換える(死んだミラー回避) | `HOMEBREW_CURL_PATH=<wrapper>` に curl ラッパーを指定(例: `init/homebrew/linux/curl-gnu-mirror.sh`)。ラッパー内は**絶対パスの `/usr/bin/curl` を exec** すること(素の `curl` は brew の shim 経由で自分に戻り無限再帰) |
+| `post_install` 失敗の実エラーを見る | `HOMEBREW_DEVELOPER=1` で backtrace が出る(通常は握りつぶされる)。ただし DEVELOPER は `forbid_packages_from_paths` も無効化するので、挙動が変わり得る点に注意 |
+| ~~TLS の CA を OS バンドルに固定~~ | **効かない(2026-08 に確定)**: `bin/brew` は `env -i` で環境を再構成し、`HOMEBREW_*` と少数の allowlist(HOME/PATH/proxy 系)しか通さないため、`SSL_CERT_FILE`/`GIT_SSL_CAINFO` は brew に届かない |
 | 掃除・ヒント抑制でログを見やすく | `HOMEBREW_NO_INSTALL_CLEANUP=1 HOMEBREW_NO_ENV_HINTS=1 HOMEBREW_NO_ANALYTICS=1 HOMEBREW_NO_AUTO_UPDATE=1` |
 | ジョブが 6h 上限に達する | ハング原因(壊れた TLS で無限リトライ等)を除去、`timeout-minutes` 設定、重い formula の削減 |
 | ビルド依存不足 | `dockerfile/<dist>.dockerfile` に apt/dnf で追加(例: g++, build-essential) |
@@ -86,35 +89,62 @@ OS の CA バンドル候補(distro 横断):`/etc/ssl/certs/ca-certificates.crt`
 
 これは過去に観測した一部。**ここに無い故障も普通に起きる**——上のループで一次情報から分類し直す。
 
+- **JSON-API 経路 × 全ソースビルド(2026-08 に根本解決済みの主犯)**: brew 6 の API インストール経路では
+  postinstall 子プロセスの formula 解決が内部マニフェストで失敗する
+  (`FormulaUnavailableError: No available formula with the name "packages.<arch>.jws.json"`)。
+  post_install を持つ**全** source-built formula(openssl@3, python@3.x, node, ruby…)の install が
+  非ゼロ終了になり bundle が失敗扱いにする。openssl@3 の post_install 失敗で cert.pem が張られず、
+  brewed git/curl の TLS も全滅(`unable to get local issuer certificate`)。さらに同じ api-source 機構が
+  `.rb.incomplete` の自己ロック競合や「`<formula> source code not found at .../api-source/...`」も起こす。
+  → **`HOMEBREW_NO_INSTALL_FROM_API=1`** で機構ごと回避(検証済み。下の「事例」)。
 - **並列の競合**: `... has already locked ...X.rb.incomplete` / 共有 dep の奪い合い。
   → `--jobs 1` + `HOMEBREW_DOWNLOAD_CONCURRENCY=1`。ハングやランダム失敗の温床。
-- **`post_install`/CA 起因の TLS 崩壊**: source-built な openssl@3・ca-certificates の post_install が不安定で
-  cert.pem が張られず、以後の HTTPS が `unable to get local issuer certificate` で失敗/ハング。
-  → `SSL_CERT_FILE`/`GIT_SSL_CAINFO` を OS バンドルへ(cert.pem は触らない)。詳細は下の「事例」。
+- **bottle が fetch 完了前に pour される散発バグ**(upstream Homebrew/brew#15957):
+  `No such file or directory @ rb_sysopen - ...--<dep>--....bottle.tar.gz`。
+  → `HOMEBREW_NO_INSTALL_CLEANUP=1 HOMEBREW_NO_AUTO_UPDATE=1` + **bundle を1回だけリトライ**
+  (キャッシュが残るので2回目は即完走)。
 - **上流 tarball のダウンロード失敗**: `curl: (22) ... 404`/部分DL。多くは**一過性のミラー障害**
   (同時刻でも別 dist は踏まず完走する等)。→ まず再実行で切り分け、恒常なら `HOMEBREW_CURL_RETRIES` / Brewfile 見直し。
+  恒常破損の実例: ftpmirror.gnu.org の多日ダウン、invisible-mirror.net の ncurses tarball 内容破損
+  (取得ごとに違うハッシュ、`Formula reports different checksum`)。formula の mirror 定義があっても
+  ダウンロードキューはフォールバックしないため、`HOMEBREW_CURL_PATH` の curl ラッパーで正常ホスト
+  (ftp.gnu.org)へ URL を書き換えるのが確実。
+- **所要時間の構造変化(故障ではない)**: 2026-05/06 の brew 修正
+  (「Homebrew versions prior to 5.1.15 generated incorrect :any_skip_relocation」)以降、Linux bottle の
+  cellar タグが正しく固定 cellar になり、**非標準 prefix では bottle が pour されなくなった**。
+  それ以前(2026-04 まで)は誤タグの bottle を未 relocation のまま pour していたため各ジョブ約1時間で
+  完走していたが、以後は正味のソースビルド時間(node 1本で約2時間)がそのままかかる。
+  時間超過を故障と混同しないこと。対策はレバーではなく構成側: 重い formula の削減、
+  glibc が新しいベースイメージ(古い glibc だと brew が glibc+gcc をフルブートストラップし全 formula が低速化)、
+  `timeout-minutes` の引き上げ(GitHub ホストランナー上限 6h)。
 - **arch/環境固有のビルド失敗**: 終了コード 132(SIGILL)等。**ローカル arm64 の Docker で頻発するが CI(amd64)では
   起きないことが多い**。CI 実機で再現するまで「CI のバグ」と決めつけない。
 - **長時間化・タイムアウト**: 全ソースビルド由来。ハング(上記TLS)を消すと大幅短縮。必要なら timeout や package 削減。
 
-## 事例:openssl@3 の TLS 崩壊(検証済みの最小修正)
+## 事例:2026-08 の全滅(JSON-API 経路の故障クラス、検証済みの修正)
 
-上の「並列の競合」+「post_install/CA 起因の TLS 崩壊」が重なった実例。`brew update` の後、bundle の前に:
+2026-06〜08 に全 dist が毎回失敗した実例。旧事例(SSL_CERT_FILE で CA を渡す)は
+**bin/brew の `env -i` フィルタで環境変数が届かないため誤りだった**。確定した修正は
+`init/homebrew/main.sh` の Linux ブロック(実 amd64 の ubuntu/debian で全緑を確認):
 
 ```bash
-export HOMEBREW_DOWNLOAD_CONCURRENCY=1                      # 並列DLのロック競合を回避
-for _ca in /etc/ssl/certs/ca-certificates.crt \
-  /etc/pki/tls/certs/ca-bundle.crt \
-  /etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem \
-  /etc/ssl/ca-bundle.pem; do
-  [[ -f ${_ca} ]] && export SSL_CERT_FILE="${_ca}" GIT_SSL_CAINFO="${_ca}" && break   # CA を OS バンドルへ
-done
-brew install openssl@3 || true                             # bundle 途中ビルドとその post_install 失敗を回避
-brew bundle install --jobs 1 --file "${here}/Brewfile"     # 逐次化(--jobs 1 が肝)
+export HOMEBREW_NO_INSTALL_FROM_API=1        # 根本修正: formula を tap clone からロード
+HOMEBREW_CURL_PATH=".../curl-gnu-mirror.sh"  # GNU 系ホスト(ftpmirror/ftp.gnu.org 等)を mirrors.kernel.org へ書き換え
+export HOMEBREW_CURL_PATH
+brew update
+brew bundle install --jobs 1 --file ... || brew bundle install --jobs 1 --file ...  # pour 競合(#15957)の1回リトライ
 ```
 
-方針:**cert.pem のパスは触らず env で解決**する(保守性)。`brew.sh` の `setup_ca_certificates` は
-Linux で `SSL_CERT_FILE` 等を尊重・上書きしないため、これで brew の curl/git の TLS が通る。
+上記が最小構成(2026-08-06 に全4 dist 緑で確認)。`HOMEBREW_DOWNLOAD_CONCURRENCY=1`・
+`HOMEBREW_NO_INSTALL_CLEANUP=1`・`HOMEBREW_NO_AUTO_UPDATE=1`・`HOMEBREW_CURL_RETRIES` も
+試行過程で使ったが、ablation で外しても緑だったため削除した(散発競合への防御としては
+「使えるレバー」表に残してある。フレークが再発したらまずこれらを戻して切り分ける)。
+
+デバッグの決め手は2つ: (1) `HOMEBREW_DEVELOPER=1 brew postinstall openssl@3` で隠れた実エラーを出す、
+(2) ローカル arm64 Docker(`--platform linux/amd64` + Rosetta)でも **postinstall のロジック故障は忠実に再現できた**
+(ビルド自体の失敗は偽陽性が出る点は従来どおり)。社内ネットワークでは Zscaler が ghcr.io を TLS 傍受するので、
+`security find-certificate -a -p -c "Zscaler" /Library/Keychains/System.keychain` で取った証明書を
+コンテナの `/usr/local/share/ca-certificates/` に置いて `update-ca-certificates` してから再現する。
 
 ## テンプレート
 
