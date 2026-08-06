@@ -129,15 +129,16 @@ OS の CA バンドル候補(distro 横断):`/etc/ssl/certs/ca-certificates.crt`
 
 ```bash
 export HOMEBREW_NO_INSTALL_FROM_API=1        # 根本修正: formula を tap clone からロード
-HOMEBREW_CURL_PATH=".../curl-gnu-mirror.sh"          # GNU 系ホスト(ftpmirror/ftp.gnu.org 等)を mirrors.kernel.org へ書き換え
+HOMEBREW_CURL_PATH=".../curl-gnu-mirror.sh"  # GNU 系ホスト(ftpmirror/ftp.gnu.org 等)を mirrors.kernel.org へ書き換え
 export HOMEBREW_CURL_PATH
-export HOMEBREW_DOWNLOAD_CONCURRENCY=1       # DL 逐次化
-export HOMEBREW_CURL_RETRIES=3               # 一過性の 502/504 対策
-export HOMEBREW_NO_INSTALL_CLEANUP=1         # 後続 formula が使うキャッシュを消させない
-export HOMEBREW_NO_AUTO_UPDATE=1             # bundle 中の tap 状態ドリフト防止
 brew update
 brew bundle install --jobs 1 --file ... || brew bundle install --jobs 1 --file ...  # pour 競合(#15957)の1回リトライ
 ```
+
+上記が最小構成(2026-08-06 に全4 dist 緑で確認)。`HOMEBREW_DOWNLOAD_CONCURRENCY=1`・
+`HOMEBREW_NO_INSTALL_CLEANUP=1`・`HOMEBREW_NO_AUTO_UPDATE=1`・`HOMEBREW_CURL_RETRIES` も
+試行過程で使ったが、ablation で外しても緑だったため削除した(散発競合への防御としては
+「使えるレバー」表に残してある。フレークが再発したらまずこれらを戻して切り分ける)。
 
 デバッグの決め手は2つ: (1) `HOMEBREW_DEVELOPER=1 brew postinstall openssl@3` で隠れた実エラーを出す、
 (2) ローカル arm64 Docker(`--platform linux/amd64` + Rosetta)でも **postinstall のロジック故障は忠実に再現できた**
