@@ -29,9 +29,11 @@ backup_path_with_date() {
 # link DEST SRC...
 # Symlink each SRC into place. If DEST is an existing directory, each link is
 # created inside it (named after SRC); otherwise DEST is the exact link path
-# (use a single SRC in that case). Anything already at a target that is not
-# already the intended symlink is backed up before the link is (re)created, so
-# real files are never silently clobbered on deploy.
+# (use a single SRC in that case). A real file or directory at a target is backed
+# up before the link is (re)created, so real files are never silently clobbered
+# on deploy. An existing symlink is replaced in place: it is a past deploy's
+# artifact, possibly spelled differently (via ~/dotfiles, or another clone of
+# this repo), and backing it up would only pile up dead links.
 link() {
   local dest="$1"
   shift
@@ -43,7 +45,7 @@ link() {
     else
       link_path="${dest}"
     fi
-    if { [[ -e ${link_path} ]] || [[ -L ${link_path} ]]; } && [[ "$(readlink "${link_path}" 2> /dev/null)" != "$src" ]]; then
+    if [[ -e ${link_path} ]] && [[ ! -L ${link_path} ]]; then
       backup_path_with_date "${link_path}"
     fi
     ln -snfv "$src" "${link_path}"
