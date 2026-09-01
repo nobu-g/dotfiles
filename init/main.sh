@@ -33,6 +33,11 @@ esac
 # the failure would otherwise cascade silently.
 bash -x "$here/homebrew/main.sh" || exit 1
 eval "$("${HOMEBREW_PREFIX}/bin/brew" shellenv)"
+case "${OSTYPE}" in
+  linux* | cygwin*)
+    export INFOPATH="${HOMEBREW_PREFIX}/share/info:/usr/local/share/info:/usr/share/info"
+    ;;
+esac
 
 # set the login shell to zsh
 bash "$here/setup-shell.sh"
