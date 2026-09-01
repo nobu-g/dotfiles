@@ -26,6 +26,11 @@
 ;; with the `:disable' property:
 ;(package! builtin-package :disable t)
 
+;; The Python module includes legacy Pipenv and Nose integrations by default.
+;; Python environments and tests are managed with uv and pytest instead.
+(package! pipenv :disable t)
+(package! nose :disable t)
+
 ;; You can override the recipe of a built in package without having to specify
 ;; all the properties for `:recipe'. These will inherit the rest of its recipe
 ;; from Doom or MELPA/ELPA/Emacsmirror:

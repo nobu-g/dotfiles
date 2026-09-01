@@ -111,7 +111,6 @@ fi
 
 case "${OSTYPE}" in
 linux* | cygwin*)
-  link "${HOME}/.emacs.d" "${DOTPATH%/}/.emacs.d/init.el"
   # On WSL the local desktop editor is reachable, so run the desktop-bridge here
   # too, started by a systemd user unit (WSL has no launchd).
   if [[ -n ${WSL_DISTRO_NAME:-} ]] || grep -qiE 'microsoft|wsl' /proc/version 2> /dev/null; then

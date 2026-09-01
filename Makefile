@@ -21,10 +21,8 @@ update: ## Fetch changes for this repo
 
 upgrade: ## Upgrade installed packages
 	brew update && brew upgrade && brew cleanup
+	if type doom &> /dev/null; then doom -! upgrade; fi
 	(type uv &> /dev/null) && uv tool upgrade --all || true
-	pip3 install -U pip
-	pkgs="$$(pip3 list --user -o --disable-pip-version-check | tail -n +3 | awk '{ print $$1 }')"; \
-	[[ -n $$pkgs ]] && pip3 install --user -U $${=pkgs} || true
 	(type npm &> /dev/null) && npm update -g || true
 	(type zinit &> /dev/null) && zinit update --all || true
 

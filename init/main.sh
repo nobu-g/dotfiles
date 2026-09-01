@@ -9,7 +9,7 @@ set -xu
 
 here=$(dirname "${BASH_SOURCE[0]:-$0}")
 
-mkdir -p "${HOME}"/{.emacs.d,.config,scripts,.local,.zsh}
+mkdir -p "${HOME}"/{.config,scripts,.local,.zsh}
 mkdir -p "${HOME}"/.local/{bin,share,lib,include,src}
 mkdir -p "${HOME}"/.local/share/{node,shell,less,python}
 mkdir -p "${HOME}"/.cache/zsh
@@ -40,15 +40,15 @@ bash "$here/setup-shell.sh"
 case "${OSTYPE}" in
   freebsd* | darwin*)
     bash -x "$here/setup-defaults.sh"
-    # install doom-emacs
-    if ! (type ~/.config/emacs/bin/doom &> /dev/null); then
-      rm -rf ~/.config/emacs &&
-        git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs &&
-        ln -snfv "$(dirname "${here}")/.config/doom" ~/.config/ &&
-        yes | ~/.config/emacs/bin/doom install
-    fi
     ;;
 esac
+
+DOOM_EMACS_DIR="${XDG_CONFIG_HOME:-${HOME}/.config}/emacs"
+if [[ ! -x ${DOOM_EMACS_DIR}/bin/doom ]]; then
+  git clone --depth 1 https://github.com/doomemacs/doomemacs "${DOOM_EMACS_DIR}" || exit 1
+fi
+ln -snfv "$(dirname "${here}")/.config/doom" "${XDG_CONFIG_HOME:-${HOME}/.config}/doom" &&
+  "${DOOM_EMACS_DIR}/bin/doom" -! install --no-config || exit 1
 
 # install Rust and its packages
 export RUSTUP_INIT_SKIP_PATH_CHECK="yes"
