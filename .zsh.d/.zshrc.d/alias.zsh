@@ -71,6 +71,8 @@ if (($+commands[delta])); then
 else
   alias diff='diff -u'
 fi
+alias cl='claude'
+alias cx='codex'
 
 # global alias
 alias -g A='| awk'
