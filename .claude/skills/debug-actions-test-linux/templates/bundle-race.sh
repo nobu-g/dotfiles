@@ -1,16 +1,15 @@
 #!/usr/bin/env bash
-# TEMPLATE (from the `dotfiles-test-linux` skill). Copy to `.github/repro/bundle-race.sh`.
+# TEMPLATE (from the `debug-actions-test-linux` skill). Copy to `.github/repro/bundle-race.sh`.
 # MODE env var selects the scenario: race | diag | sslenv | clean | envonly | fixed | hardened
 # (see the skill's SKILL.md for what each proves). Run it via templates/repro-openssl.yml.
 #
-# Tests the hypothesis that the openssl@3 postinstall failure on test-linux is caused by
-# `brew bundle` installing formulae in PARALLEL, so multiple jobs race on the shared
-# openssl@3 dependency and its download-cache lock (see the "process has already locked
-# ...incomplete" errors in the old CI log). At the non-standard HOMEBREW_PREFIX every
-# formula is built from source, which widens the race window.
+# Tests one hypothesis per MODE for failures of `brew bundle` on test-linux. The parallel
+# install race (`MODE=race`, "process has already locked ...incomplete") is one failure
+# class, not the root cause of the openssl@3 postinstall failure: that fix is
+# HOMEBREW_NO_INSTALL_FROM_API=1 in init/homebrew/main.sh (see the skill's SKILL.md).
 #
-#   MODE=race   -> default parallel bundle (reproduces the failure)
-#   MODE=fixed  -> serialize (HOMEBREW_BUNDLE_NO_JOBS=1) + pre-install openssl@3 (the fix)
+#   MODE=race   -> default parallel bundle (reproduces the lock contention)
+#   MODE=fixed  -> serialize (HOMEBREW_BUNDLE_NO_JOBS=1) + pre-install openssl@3
 set -uo pipefail
 
 export HOMEBREW_PREFIX=/home/user/.linuxbrew

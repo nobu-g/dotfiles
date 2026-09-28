@@ -14,7 +14,7 @@ This is a personal dotfiles repository that provides a comprehensive development
 - `make deploy` - Create symlinks to home directory
 - `make init` - Setup environment settings and install packages
 - `make update` - Fetch changes from main branch
-- `make upgrade` - Upgrade all installed packages (Homebrew, pip, zinit)
+- `make upgrade` - Upgrade all installed packages (Homebrew, Doom Emacs, uv tools, npm globals, zinit)
 - `make test` - Test if expected tools are installed
 
 ### Installation via Installer Script
@@ -51,7 +51,7 @@ Environment variables:
   - `Brewfile` - Core packages
   - `Brewfile.full` - Extended packages (with FULL_INSTALL=1)
   - `macos/` and `linux/` - Platform-specific packages
-- `init/python-packages.sh` - Python tools via uv/pipx
+- `init/python-packages.sh` - Python tools via `uv tool`
 - `init/rust-packages.sh` - Rust packages via cargo
 - `init/node-packages.sh` - Node.js packages
 

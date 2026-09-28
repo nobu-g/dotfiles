@@ -17,7 +17,7 @@ Standards for DataFrame operations: loading, filtering, joining, aggregating, tr
 
 - Transformations should be reproducible and scriptable.
 - Avoid manual, spreadsheet-like edits.
-- Document data transformations with comments.
+- Comment a transformation only when it relies on a non-obvious invariant or data assumption, such as an expected join cardinality (see `Comments` in `coding-principles.md`).
 
 ## Examples
 
@@ -26,10 +26,8 @@ Standards for DataFrame operations: loading, filtering, joining, aggregating, tr
 ```python
 import polars as pl
 
-# Lazily scan the Parquet file
 lf = pl.scan_parquet("data/raw/events.parquet")
 
-# Filter by date and select columns
 result = (
     lf.filter(pl.col("event_date") >= "2024-01-01")
     .select(["user_id", "event_type", "event_date"])
@@ -40,7 +38,6 @@ result = (
 ### Group By and Aggregation
 
 ```python
-# Aggregate the event count per user
 summary = (
     lf.group_by("user_id")
     .agg(

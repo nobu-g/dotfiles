@@ -82,9 +82,6 @@ bottle が使えず、**ほぼ全 formula がソースビルド**になる。ソ
 | ビルド依存不足 | `dockerfile/<dist>.dockerfile` に apt/dnf で追加(例: g++, build-essential) |
 | どうしても入らない formula | `Brewfile` から外す/代替に変える(スコープ判断はユーザーへ) |
 
-OS の CA バンドル候補(distro 横断):`/etc/ssl/certs/ca-certificates.crt`、`/etc/pki/tls/certs/ca-bundle.crt`、
-`/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem`、`/etc/ssl/ca-bundle.pem`。
-
 ## 既知の故障クラス(非網羅・辞書として参照)
 
 これは過去に観測した一部。**ここに無い故障も普通に起きる**——上のループで一次情報から分類し直す。
@@ -107,8 +104,8 @@ OS の CA バンドル候補(distro 横断):`/etc/ssl/certs/ca-certificates.crt`
   (同時刻でも別 dist は踏まず完走する等)。→ まず再実行で切り分け、恒常なら `HOMEBREW_CURL_RETRIES` / Brewfile 見直し。
   恒常破損の実例: ftpmirror.gnu.org の多日ダウン、invisible-mirror.net の ncurses tarball 内容破損
   (取得ごとに違うハッシュ、`Formula reports different checksum`)。formula の mirror 定義があっても
-  ダウンロードキューはフォールバックしないため、`HOMEBREW_CURL_PATH` の curl ラッパーで正常ホスト
-  (ftp.gnu.org)へ URL を書き換えるのが確実。
+  ダウンロードキューはフォールバックしないため、`HOMEBREW_CURL_PATH` の curl ラッパーで URL を
+  mirrors.kernel.org へ書き換えるのが確実(ftp.gnu.org 自体も長時間ダウンするので書き換え先にしない)。
 - **所要時間の構造変化(故障ではない)**: 2026-05/06 の brew 修正
   (「Homebrew versions prior to 5.1.15 generated incorrect :any_skip_relocation」)以降、Linux bottle の
   cellar タグが正しく固定 cellar になり、**非標準 prefix では bottle が pour されなくなった**。
