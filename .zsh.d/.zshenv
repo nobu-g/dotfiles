@@ -66,6 +66,8 @@ for prefix in "${HOME}/.linuxbrew" "/home/linuxbrew/.linuxbrew" "/opt/homebrew" 
 done
 unset prefix
 
+export HOMEBREW_NO_ASK=1
+
 # Python
 export PYTHONUSERBASE="${HOME}/.local"
 if [[ -d "${HOME}/.virtualenvs" ]]; then
