@@ -15,7 +15,7 @@ Detailed task-specific procedures are in `~/.config/claude/docs/*.md`.
 ## Hard Rules
 
 - Never commit raw data, credentials, API keys, tokens, or customer-level records.
-- Never modify, overwrite, delete, or regenerate raw data directly.
+- Never modify, overwrite, delete, or regenerate data identified as raw or source data. If its status is unclear and the task would mutate it, ask first.
 - Prefer small, reviewable changes.
 - Explain assumptions before non-trivial analytical decisions.
 - Ask for clarification when data semantics are unclear.

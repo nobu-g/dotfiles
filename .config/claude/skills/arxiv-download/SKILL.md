@@ -42,6 +42,5 @@ python <skill-dir>/arxiv_download.py 2501.00663
 - **arXiv に無い論文**: スクリプトが `FAILED` で終了する。WebSearch の結果や他のソースで対応する
 
 ## 注意
-- スクリプトはスキルに同梱（`arxiv_download.py`、SKILL.md と同じディレクトリ）。外部パスへの依存は無く、スキル単体で完結する。
 - cache / .fetch_lock / .fetch_timestamp はランタイム生成物で、スキルディレクトリの `.gitignore` で版管理対象外にしている。
 - 社内プロキシ環境では `export.arxiv.org`（API）が到達不能な場合がある。`arxiv.org` 本体（HTML/PDF）は通常アクセス可能

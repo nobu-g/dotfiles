@@ -64,5 +64,5 @@ Favor a snapshot style: fixture files under `tests/data/` paired by stem and loa
 ## Docs conventions
 
 - **CLAUDE.md** (English): Project Overview → Common Commands → Architecture → (Extension Points / Configuration for larger repos). Command-first and factual. `AGENTS.md` may symlink to it.
-- Write only repo-specific facts in `CLAUDE.md`: deviations, guard flags, per-entry-point extras, shared-storage symlinks, pipeline order, known traps. The global `~/.config/claude/CLAUDE.md` and its routed docs are in context in every project, and `pyproject.toml` is read on demand — restate neither.
+- Write only repo-specific facts in `CLAUDE.md`: deviations, guard flags, per-entry-point extras, shared-storage symlinks, pipeline order, known traps. The global `~/.config/claude/CLAUDE.md` loads in every project and routes to the shared docs, and `pyproject.toml` is read on demand — restate neither.
 - **README.md**: title + one-line subtitle → setup (`uv sync`) → quickstart → configuration. Add **`README.ja.md`** with cross-links (`[English](README.md) | [日本語](README.ja.md)`) for shared/internal projects and keep both in sync.
