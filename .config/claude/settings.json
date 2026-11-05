@@ -15,7 +15,14 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "opus[1m]",
+  "model": "opus",
+  "skillOverrides": {
+    "find-skills": "off",
+    "new-python-project": "user-invocable-only",
+    "no-silent-fallback": "user-invocable-only",
+    "trim-comments-and-docs": "user-invocable-only",
+    "pc": "user-invocable-only"
+  },
   "hooks": {
     "Stop": [
       {
@@ -43,17 +50,29 @@
     "command": "bash \"${CLAUDE_CONFIG_DIR:-$HOME/.config/claude}/statusline-command.sh\""
   },
   "enabledPlugins": {
-    "context7@claude-plugins-official": true,
-    "frontend-design@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": false,
     "document-skills@anthropic-agent-skills": true,
     "playwright@claude-plugins-official": true
   },
   "language": "Japanese",
   "effortLevel": "high",
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "high"
+    },
+    "claude-sonnet-5-5": {
+      "effortLevel": "xhigh"
+    }
+  },
   "advisorModel": "fable",
   "tui": "fullscreen",
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
   "skipWorkflowUsageWarning": true,
   "theme": "dark",
   "skipAutoPermissionPrompt": true,
-  "preferredNotifChannel": "iterm2"
+  "preferredNotifChannel": "iterm2",
+  "voiceEnabled": true
 }
