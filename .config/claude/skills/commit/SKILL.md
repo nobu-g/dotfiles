@@ -1,3 +1,10 @@
+---
+name: commit
+description: Create a git commit for the work just done.
+argument-hint: "[message or scope guidance]"
+disable-model-invocation: true
+---
+
 Create a git commit for the work just done.
 
 1. Run `git status` and `git diff` (and `git diff --staged`) to see what changed.
