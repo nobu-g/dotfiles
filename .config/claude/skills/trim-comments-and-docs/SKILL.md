@@ -5,19 +5,17 @@ description: Prune redundant comments and repository documentation, consolidate 
 
 # Trim Comments and Docs
 
-Minimize what readers must read and maintain while preserving information needed to use or change the project correctly. Prefer deletion and consolidation over rephrasing.
+Minimize what readers must read and maintain while preserving information needed to use or change the project correctly. Prefer deletion and consolidation over rephrasing or relocation.
 
 ## Decide what earns its place
 
 Read the relevant code and documents before editing. For each passage, ask what decision it helps a future reader make.
 
-Delete explanations evident from the code, duplicated facts, and obsolete instructions. Remove task narration and conversational residue; retain the underlying rationale only if it still matters. Do not turn each past incident into a permanent rule.
+Delete explanations evident from the code and obsolete instructions. Remove task narration and conversational residue. Do not turn each past incident into a permanent rule.
 
-Keep useful contracts, constraints, and rationale that the intended reader would otherwise lack. Public documentation should let callers use an interface without inspecting its implementation; this does not justify line-by-line explanations inside the code.
+Keep useful contracts, constraints, and rationale that the intended reader would otherwise lack. Public documentation should let callers use an interface without inspecting its implementation.
 
 Preserve the conditions under which a claim holds. Distinguish current requirements from observations and historical decisions.
-
-Deduplicate meaning, not wording. An overview and its supporting detail may serve different purposes.
 
 ## Choose one home
 
@@ -28,11 +26,11 @@ Place retained information according to its audience and when it is needed:
 - **Agent entrypoints:** Current conclusions and instructions needed across routine tasks.
 - **On-demand documents:** Specialized context, supporting evidence, and history worth retaining.
 
-Keep each fact in one authoritative location. Prefer existing documents; add a link elsewhere only when it helps discovery. For on-demand material, state when to consult it rather than requiring agents to load everything.
+Keep each fact in one authoritative location; code and configuration are authoritative for what they define. Deduplicate meaning, not wording: an overview may summarize supporting detail but should not repeat its specific values. Prefer existing documents. For on-demand material, state when to consult it rather than requiring agents to load everything.
 
-Consolidate without creating unnecessary navigation. Keep each explanation coherent; link to supporting detail rather than scattering it across files.
+Keep each explanation coherent rather than scattering it across files; add links only where they help discovery.
 
-Delete unnecessary content instead of relocating it. A shorter entrypoint is not an improvement if the same clutter survives in new files or unconditional imports.
+A shorter entrypoint is not an improvement if the same clutter survives in new files or unconditional imports.
 
 For example:
 
