@@ -92,6 +92,7 @@
 
 [delta]
     features = line-numbers
+    word-diff-regex = [\\p{Han}\\p{Hiragana}\\p{Katakana}]|[A-Za-z0-9_]+
     plus-style = bold green
     plus-non-emph-style = brightgreen
     plus-emph-style = bold green 22
