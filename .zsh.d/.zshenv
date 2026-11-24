@@ -67,6 +67,7 @@ done
 unset prefix
 
 export HOMEBREW_NO_ASK=1
+export HOMEBREW_NO_UPGRADE_AUTO_UPDATES_CASKS=1
 
 # Python
 export PYTHONUSERBASE="${HOME}/.local"
