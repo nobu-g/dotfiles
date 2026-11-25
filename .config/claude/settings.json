@@ -16,6 +16,7 @@
     "defaultMode": "auto"
   },
   "model": "opus",
+  "cleanupPeriodDays": 36500,
   "skillOverrides": {
     "find-skills": "off",
     "new-python-project": "user-invocable-only",
